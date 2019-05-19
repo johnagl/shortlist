@@ -1,7 +1,7 @@
 # Jobsy
 
-## Project Description
+- Who is it for?
+Test 1
 
-### Jobsy is designed for job seekers who  want to keep track of their applications and  their progress with their job search.
 
 ## Project Task Requirements
