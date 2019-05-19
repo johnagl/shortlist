@@ -1,6 +1,6 @@
 # Jobsy
 
-##Project Description
+## Project Description
 - Who is it for?
   - Test 1
 
