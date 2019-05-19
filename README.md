@@ -11,7 +11,7 @@
   - Test 3
   
 - What will users be able to do with this data?
-  -Test 4
+  - Test 4
   
 - What is some additional functionality you can add/remove based on time constraints?
   - Test 5
