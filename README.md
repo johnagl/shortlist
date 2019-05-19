@@ -7,7 +7,7 @@
 - What will it do? 
   - Test 2
  
- - What type of data will it store?
+- What type of data will it store?
   - Test 3
   
  -What will users be able to do with this data?
