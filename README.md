@@ -19,8 +19,16 @@
 ## Project Task Requirements
 
 - #### Minimal Requirements
+  - Landing page where the user can login or sign up 
+  - User dashboard - where the user can see all of their job applications, add jobs,  
+    navigate to metrics section and perform other functions of the web application
+  - A form that the user can fill out when adding a job 
+  - Ability to update job information / job application status 
 
 - #### Standard Requirements
+  - Metrics page which keeps track of user statistics and allows user to visualize their progress 
 
 - #### Stretch Requirements
+  - Ability to add jobs from external sources (indeed, linkedin)
+  -
 
