@@ -18,9 +18,9 @@
 
 ## Project Task Requirements
 
-- Minimal #### Requirements
+- #### Minimal Requirements
 
-- Standard #### Requirements
+- #### Standard Requirements
 
-- Stretch #### Requirements
+- #### Stretch Requirements
 
