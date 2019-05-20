@@ -2,7 +2,7 @@
 
 ## Project Description
 - #### Who is it for?
-  - Jobsy is for job seekers who want to keep track of their applications/progress with their job search.
+  - Jobsy is for job seekers who want to keep track of their job applications and progress with their job search.
 
 - #### What will it do? 
   - Users will have the ability to track the details of all of their job applications without having to use cluttered spread sheets and/or a complicated local file folder system. They will be able to add and update specific job information such as which stage a particular job application is in (Not yet applied, applied, phone screen, on site interview etc). An additional feature we are hoping to add is a metrics section where the user can visualize a number of statistics
@@ -17,3 +17,10 @@
   - Availability of statistics for the user visualize  their progress (average number of jobs applied for in 1 week, number of jobs at different stages of the application process etc).  
 
 ## Project Task Requirements
+
+- Minimal #### Requirements
+
+- Standard #### Requirements
+
+- Stretch #### Requirements
+
