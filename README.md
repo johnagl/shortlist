@@ -27,8 +27,13 @@
 
 - #### Standard Requirements
   - Metrics page which keeps track of user statistics and allows user to visualize their progress 
+  - Ability to filter jobs according to job application stage, company, job position and others
+  - Options for different dashboard views (users can toggle their preference)
+  - Ability to upload documents (resumes, cover letters)
 
 - #### Stretch Requirements
   - Ability to add jobs from external sources (indeed, linkedin)
-  -
+  - A map with a flag to locations to all jobs
+  - Ability to export data into excel sheets
+  - Using LinkedIn’s API (or other search engines) to allow users to easily input what they want into various fields
 
