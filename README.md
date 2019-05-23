@@ -38,6 +38,10 @@
   - Using LinkedIn’s API (or other search engines) to allow users to easily input what they want into various fields
 
 ## Project Task Requirements Breakdown
+  1. User dashboard (isolated/full view - 1 to start)
+    - front end: navbar with links to dashboard, map, metrics page
+    - front end: side bar with different job stage categories (wishlist, applied, phone interview etc)
+    - front end: pre-populated job data to display in the different job stage categories
 
 ## Prototypes
   
