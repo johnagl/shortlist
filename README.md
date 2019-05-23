@@ -42,6 +42,7 @@
      - front end: navbar with links to dashboard, map, metrics page
      - front end: side bar with different job stage categories (wishlist, applied, phone interview etc)
      - front end: pre-populated job data to display in the different job stage categories
+
   2. Ability to add/remove job posting/application
      - form that user fills out with job/company specific information
      - function that adds the job, and displays the job on the dashboard
@@ -49,9 +50,13 @@
 
 ## Prototypes
 ![alt text](https://i.imgur.com/J2WnEWM.png)
+
 ![alt text](https://i.imgur.com/cvA6Abf.jpg)
+
 ![alt text](https://i.imgur.com/jLEXgBX.jpg)
+
 ![alt text](https://i.imgur.com/q1xonIe.png)
+
 ![alt text](https://i.imgur.com/fLEvzev.jpg)
 
   
