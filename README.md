@@ -48,7 +48,11 @@
      - function that removes the job from the dashboard
 
 ## Prototypes
-![alt text](https://i.imgur.com/jLEXgBX.jpg)
 ![alt text](https://i.imgur.com/J2WnEWM.png)
+![alt text](https://i.imgur.com/cvA6Abf.jpg)
+![alt text](https://i.imgur.com/jLEXgBX.jpg)
+![alt text](https://i.imgur.com/q1xonIe.png)
+![alt text](https://i.imgur.com/fLEvzev.jpg)
+
   
 
