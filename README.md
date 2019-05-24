@@ -1,8 +1,8 @@
-# Jobsy
+# Shortlist
 
 ## Project Description
 - #### Who is it for?
-  - Jobsy is for job seekers who want to keep track of their job applications and progress with their job search.
+  - Shortlist is for job seekers who want to keep track of their job applications and progress with their job search.
 
 - #### What will it do? 
   - Users will have the ability to track the details of all of their job applications without having to use cluttered spread sheets and/or a complicated local file folder system. They will be able to add and update specific job information such as which stage a particular job application is in (Not yet applied, applied, phone screen, on site interview etc). An additional feature we are hoping to add is a metrics section where the user can visualize a number of statistics
