@@ -12,7 +12,10 @@
     "meteor-node-stubs": "^0.4.1",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
+    "react-dropdown": "^1.6.4",
+    "react-icons": "^3.7.0",
     "react-redux": "^7.0.3",
+    "reactjs-popup": "^1.4.1",
     "redux": "^4.0.1"
   },
   "meteor": {
