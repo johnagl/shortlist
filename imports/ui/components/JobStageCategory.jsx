@@ -7,7 +7,6 @@ import 'react-dropdown/style.css';
 import Popup from 'reactjs-popup';
 import AddJobPopup from './AddJobPopup.jsx'
 
-
 export default class JobStageCategory extends Component {
   onSubmit = () => {
     console.log('testing')

@@ -2,3 +2,7 @@ body {
   padding: 10px;
   font-family: sans-serif;
 }
+
+.JobCard {
+  background-color: #333333;
+}
