@@ -10,7 +10,7 @@ export default class JobPostings extends Component {
         const { postings } = this.props;
         const jobList = postings.map(posting => {
            return(
-            <div>
+            <div className="posting" key={posting.id}>
                 <JobCard id={ posting.id }title={ posting.title } company={ posting.company } status={ posting.status }/>
             </div>
            );

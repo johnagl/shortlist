@@ -8,9 +8,9 @@ export default class JobCard extends Component {
 
     return (
       <div>
-        <p>{ title }</p>
-        <p>{ company }</p>
-        <p>Status: { status }</p>
+        <div>{ title }</div>
+        <div>{ company }</div>
+        <div>Status: { status }</div>
       </div>
     );
   }
