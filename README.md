@@ -36,6 +36,7 @@
   - A map with a flag to locations to all jobs
   - Ability to export data into excel sheets
   - Using LinkedIn’s API (or other search engines) to allow users to easily input what they want into various fields
+  -calender to view deadlines or interview dates (moving it over to interview category - get prompted to give interview date)
 
 ## Project Task Requirements Breakdown
   1. User dashboard (isolated/full view - 1 to start)
