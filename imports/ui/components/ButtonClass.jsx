@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {increment} from '../actions/index';
+import { Button } from 'reactstrap';
 
-class Button extends Component {
+class ButtonClass extends Component {
 
     onSubmit = () => {
         this.props.increment(1);
@@ -15,6 +16,7 @@ class Button extends Component {
             <div>
                 <h1>The number is: {this.props.count}</h1>
                 <button onClick={this.onSubmit}>Click Me!</button>
+                <Button color="danger">Danger!</Button>
             </div>
             
         )
@@ -32,4 +34,4 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Button);
+export default connect(mapStateToProps, mapDispatchToProps)(ButtonClass);

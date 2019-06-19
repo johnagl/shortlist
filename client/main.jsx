@@ -5,6 +5,7 @@ import App from '/imports/ui/App';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../imports/ui/reducers';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 Meteor.startup(() => {
   render(

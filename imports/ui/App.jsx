@@ -9,7 +9,7 @@ import AddJobForm from './components/AddJobForm.jsx';
 import JobPostings from './components/JobPostings.jsx';
 import JobCard from './components/JobCard.jsx';
 import uuid from 'uuid';
-import Button from './components/Button.jsx'
+import ButtonClass from './components/ButtonClass.jsx';
 // import '../../../client/main.css';
 
 
@@ -27,7 +27,7 @@ export default class App extends React.Component {
     console.log(this.state.postings);
     return(
       <div>
-        <Button/>
+        <ButtonClass/>
         <JobStageCategory/>
         <JobPostings postings={this.state.postings}/>
       </div>
