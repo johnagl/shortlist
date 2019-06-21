@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import DeleteButton from './DeleteButton';
 // import '../../../client/main.css';
 
 class JobCard extends Component {
@@ -11,6 +12,7 @@ class JobCard extends Component {
         <div>{ title }</div>
         <div>{ company }</div>
         <div>Status: { this.getStatus(statusID).description }</div>
+        <DeleteButton jobID={id} />
       </div>
     );
   }

@@ -15,7 +15,7 @@ export const addJob = (job) => {
 export const removeJob = (id) => {
     return {
         type: 'REMOVE_JOB',
-        payload: id
+        id: id
     };
 };
 

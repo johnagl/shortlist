@@ -60,8 +60,9 @@ const jobsReducer = (state = initState, action) => {
             }
         
         case 'REMOVE_JOB':
-            return state.jobs;
-        
+            return state.jobs.filter(job => {
+                return job.id !== action.id
+            });        
         case 'TOGGLE_JOB_CARD':
             return state.jobs;
         
