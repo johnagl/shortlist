@@ -1,8 +1,16 @@
 .jobStageCardStyle {
-    width: 350px;
+    width: 300px;
+    height: 150px;
+    margin: auto;
+    padding-top: 20px;
 }
 
 .jobStageText {
+    text-align: center;
+    color: #252a34;
+}
+
+.addJobButton {
     text-align: center;
 }
 

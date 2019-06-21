@@ -29,7 +29,7 @@ class JobCard extends Component {
 
 const mapStateToProps = (state) => {
   return { 
-      status: state.status
+      status: state.status.status
   };
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { removeJob } from '../actions';
+import {bindActionCreators} from 'redux';
+import { removeJob } from '../actions/index';
 
 class DeleteButton extends React.Component {
 
@@ -19,4 +20,8 @@ const mapStateToProps = (state) => {
     return { jobs: state.jobs };
 }
 
-export default connect(mapStateToProps, { removeJob })(DeleteButton);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({removeJob : removeJob}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteButton);

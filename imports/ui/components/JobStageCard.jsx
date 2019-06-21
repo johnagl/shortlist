@@ -7,10 +7,10 @@ export default class JobStageCard extends Component {
     render() {
         return (
             <div className="jobStageCardStyle">
-                <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+                <Card body inverse style={{ backgroundColor: '#eaeaea', borderColor: '#eaeaea' }}>
                     <CardTitle  className="jobStageText">Shortlist</CardTitle>
                     <CardText></CardText>
-                    <AddButtonModal/>
+                    <AddButtonModal />
                 </Card>
             </div>                                    
         )

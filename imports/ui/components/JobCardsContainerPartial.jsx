@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
 import { Container, Row, Col } from 'reactstrap';
 import JobCard from './JobCard.jsx';
 
@@ -28,8 +29,9 @@ class JobCardsContainerPartial extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { jobs: state.jobs }
+    return { jobs: state.jobs.jobs }
 }
+
 
 const colStyle = {
     paddingTop: '15px',
@@ -37,7 +39,7 @@ const colStyle = {
 }
 
 const containerStyle = {
-    padding: '10px'
+    padding: '10px',
 }
 
 
