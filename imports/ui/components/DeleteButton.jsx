@@ -4,7 +4,7 @@ import { removeJob } from '../actions';
 
 class DeleteButton extends React.Component {
 
-    handleRemove() {
+    handleRemove = () => {
         this.props.removeJob(this.props.jobID);
     }
 

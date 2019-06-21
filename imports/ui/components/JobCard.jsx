@@ -5,8 +5,10 @@ import DeleteButton from './DeleteButton';
 // import '../../../client/main.css';
 
 class JobCard extends Component {
+
   render() {
-    const {id, title, company, statusID} = this.props
+    console.log(JSON.stringify(this.props));
+    const {id, title, company, statusID} = this.props;
     return (
       <div className="posting">
         <div>{ title }</div>
