@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import uuid from 'uuid';
 
 initState = {
+    currentStage: 'Applied',
     jobs: [
         {
             id: uuid.v4(),
@@ -54,7 +55,10 @@ const jobsReducer = (state = initState, action) => {
 
     switch (action.type){
         case 'ADD_JOB':
-            return state;
+            return {
+                ...state,
+                jobs:[...state.jobs, action.payload]
+            }
         
         case 'REMOVE_JOB':
             return state;
