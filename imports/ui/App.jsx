@@ -10,6 +10,11 @@ import JobPostings from './components/JobPostings.jsx';
 import JobCard from './components/JobCard.jsx';
 import uuid from 'uuid';
 import ButtonClass from './components/ButtonClass.jsx';
+import NavBar from './components/NavBar';
+import DashboardPage from './components/DashboardPage';
+import MapPage from './components/MapPage';
+import CalendarPage from './components/CalendarPage';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import '../../../client/main.css';
 
 
@@ -26,11 +31,16 @@ export default class App extends React.Component {
   render() {
     console.log(this.state.postings);
     return(
-      <div>
-        <ButtonClass/>
-        <JobStageCategory/>
-        <JobPostings postings={this.state.postings}/>
-      </div>
+      <BrowserRouter>
+        <NavBar />
+        <div className="app">
+          <Switch>
+            <Route exact path='/' component={DashboardPage} />
+            <Route path='/map' component ={MapPage} />
+            <Route path='/calendar' component={CalendarPage} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
