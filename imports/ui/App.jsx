@@ -19,21 +19,12 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
 export default class App extends React.Component {
-  state = {
-    postings : [
-        {id: uuid.v4(), title: "Software Engineering Co-op", company: "Amazon", status: "Wishlist"},
-        {id: uuid.v4(), title: "Full Stack Developer Co-op", company: "IBM", status: "Wishlist"},
-        {id: uuid.v4(), title: "Front End Developer Co-op", company: "Google", status: "Wishlist"},
-        {id: uuid.v4(), title: "Analytics Developer Co-op", company: "SAP", status: "Wishlist"}
-    ]
-  };
 
   render() {
-    console.log(this.state.postings);
     return(
       <BrowserRouter>
         <NavBar />
-        <div className="app">
+        <div className="flex-container">
           <Switch>
             <Route exact path='/' component={DashboardPage} />
             <Route path='/map' component ={MapPage} />
