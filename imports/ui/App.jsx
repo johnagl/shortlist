@@ -11,6 +11,8 @@ import JobCard from './components/JobCard.jsx';
 import uuid from 'uuid';
 import ButtonClass from './components/ButtonClass.jsx';
 import Navbar from './components/Navbar.jsx'
+import JobCardsContainerPartial from './components/JobCardsContainerPartial.jsx';
+import JobStageCard from './components/JobStageCard.jsx';
 // import '../../../client/main.css';
 
 
@@ -32,6 +34,9 @@ export default class App extends React.Component {
         <ButtonClass/>
         <JobStageCategory/>
         <JobPostings postings={this.state.postings}/>
+        <JobCardsContainerPartial />
+        <JobStageCard />
+
       </div>
     );
   }
