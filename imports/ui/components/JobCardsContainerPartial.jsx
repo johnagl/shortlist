@@ -7,11 +7,10 @@ class JobCardsContainerPartial extends Component {
 
     
     render() {
-        console.log(this.props.currentStage);
         let jobCards = this.props.jobs.map(jobCard => {
             return (
-                <Col xs="6" sm="3">
-                    <JobCard key={jobCard.id} title={jobCard.title} company={jobCard.company}/>
+                <Col xs="6" sm="3" key={jobCard.id}>
+                    <JobCard key={jobCard.id} title={jobCard.title} company={jobCard.company} statusID={jobCard.statusID}/>
                 </Col>
             )
         })
@@ -29,7 +28,7 @@ class JobCardsContainerPartial extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { jobs: state.jobs.jobs,  currentStage: state.jobs.currentStage }
+    return { jobs: state.jobs }
 }
 
 const colStyle = {

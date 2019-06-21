@@ -27,23 +27,9 @@ export default class App extends React.Component {
     return(
       <div>
         <Navbar/>
-        <ButtonClass/>
-        <JobStageCategory/>
-        <JobPostings postings={this.state.postings}/>
-        <JobCardsContainerPartial />
         <JobStageCard />
+        <JobCardsContainerPartial />
       </div>
     );
   }
 }
-
-      {/* <BrowserRouter>
-        <NavBar />
-        <div className="flex-container">
-          <Switch>
-            <Route exact path='/' component={DashboardPage} />
-            <Route path='/map' component ={MapPage} />
-            <Route path='/calendar' component={CalendarPage} />
-          </Switch>
-        </div>
-      </BrowserRouter> */}

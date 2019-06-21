@@ -6,9 +6,8 @@ import { connect } from 'react-redux';
 class JobCard extends Component {
   render() {
     const {id, title, company, statusID} = this.props
-
     return (
-      <div>
+      <div className="posting">
         <div>{ title }</div>
         <div>{ company }</div>
         <div>Status: { this.getStatus(statusID).description }</div>
