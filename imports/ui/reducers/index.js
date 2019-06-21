@@ -54,18 +54,31 @@ const jobsReducer = (state = initState, action) => {
 
     switch (action.type){
         case 'ADD_JOB':
-            return state;
+            return state.jobs;
         
         case 'REMOVE_JOB':
-            return state;
+            return state.jobs;
         
         case 'TOGGLE_JOB_CARD':
-            return state;
+            return state.jobs;
         
         default: 
-            return state;
+            return state.jobs;
     }
+}
 
+const statusReducer = (state = initState, action) => {
+    switch(action.type){
+        default:
+            return state.status;
+    }
+}
+
+const stagesReducer = (state = initState, action) => {
+    switch(action.type){
+        default:
+            return state.stages;
+    }
 }
 
 const counterReducer = (count = 0, action) => {
@@ -77,5 +90,7 @@ const counterReducer = (count = 0, action) => {
 
 export default combineReducers({
     count: counterReducer,
-    jobs: jobsReducer
+    jobs: jobsReducer,
+    stages: stagesReducer,
+    status: statusReducer
 });
