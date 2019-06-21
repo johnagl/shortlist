@@ -44,7 +44,7 @@ initState = {
     ],
     status: [
         {id: 1, description: 'In Progress'},
-        {id: 2, description: 'Accepted'},
+        {id: 2, description: 'HELLLOOOOOOO'},
         {id: 3, description: 'Rejected'}
     ]
 }
