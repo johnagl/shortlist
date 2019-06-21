@@ -5,8 +5,6 @@ export const increment = (amount) => {
     };
 };
 
-
-
 export const addJob = (job) => {
     return {
         type: 'ADD_JOB',

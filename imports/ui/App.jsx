@@ -10,6 +10,11 @@ import JobPostings from './components/JobPostings.jsx';
 import JobCard from './components/JobCard.jsx';
 import uuid from 'uuid';
 import ButtonClass from './components/ButtonClass.jsx';
+import NavBar from './components/NavBar';
+import DashboardPage from './components/DashboardPage';
+import MapPage from './components/MapPage';
+import CalendarPage from './components/CalendarPage';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx'
 import JobCardsContainerPartial from './components/JobCardsContainerPartial.jsx';
 import JobStageCard from './components/JobStageCard.jsx';
@@ -17,17 +22,8 @@ import JobStageCard from './components/JobStageCard.jsx';
 
 
 export default class App extends React.Component {
-  state = {
-    postings : [
-        {id: uuid.v4(), title: "Software Engineering Co-op", company: "Amazon", status: "Wishlist"},
-        {id: uuid.v4(), title: "Full Stack Developer Co-op", company: "IBM", status: "Wishlist"},
-        {id: uuid.v4(), title: "Front End Developer Co-op", company: "Google", status: "Wishlist"},
-        {id: uuid.v4(), title: "Analytics Developer Co-op", company: "SAP", status: "Wishlist"}
-    ]
-  };
 
   render() {
-    console.log(this.state.postings);
     return(
       <div>
         <Navbar/>
@@ -36,8 +32,18 @@ export default class App extends React.Component {
         <JobPostings postings={this.state.postings}/>
         <JobCardsContainerPartial />
         <JobStageCard />
-
       </div>
     );
   }
 }
+
+      {/* <BrowserRouter>
+        <NavBar />
+        <div className="flex-container">
+          <Switch>
+            <Route exact path='/' component={DashboardPage} />
+            <Route path='/map' component ={MapPage} />
+            <Route path='/calendar' component={CalendarPage} />
+          </Switch>
+        </div>
+      </BrowserRouter> */}

@@ -7,11 +7,11 @@ import uuid from 'uuid';
 export default class JobPostings extends Component {
  
     render() {
-        const { postings } = this.props;
-        const jobList = postings.map(posting => {
+        const { jobs } = this.props;
+        const jobList = jobs.map(job => {
            return(
-            <div className="posting" key={posting.id}>
-                <JobCard id={ posting.id }title={ posting.title } company={ posting.company } status={ posting.status }/>
+            <div className="posting" key={job.id}>
+                <JobCard id={ job.id } title={ job.title } company={ job.company } statusID={ job.statusID }/>
             </div>
            );
         })

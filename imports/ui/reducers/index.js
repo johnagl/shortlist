@@ -45,7 +45,7 @@ initState = {
     ],
     status: [
         {id: 1, description: 'In Progress'},
-        {id: 2, description: 'Accepted'},
+        {id: 2, description: 'Offer'},
         {id: 3, description: 'Rejected'}
     ]
 }
@@ -56,20 +56,32 @@ const jobsReducer = (state = initState, action) => {
     switch (action.type){
         case 'ADD_JOB':
             return {
-                ...state,
                 jobs:[...state.jobs, action.payload]
             }
         
         case 'REMOVE_JOB':
-            return state;
+            return state.jobs;
         
         case 'TOGGLE_JOB_CARD':
-            return state;
+            return state.jobs;
         
         default: 
-            return state;
+            return state.jobs;
     }
+}
 
+const statusReducer = (state = initState, action) => {
+    switch(action.type){
+        default:
+            return state.status;
+    }
+}
+
+const stagesReducer = (state = initState, action) => {
+    switch(action.type){
+        default:
+            return state.stages;
+    }
 }
 
 const counterReducer = (count = 0, action) => {
@@ -81,5 +93,7 @@ const counterReducer = (count = 0, action) => {
 
 export default combineReducers({
     count: counterReducer,
-    jobs: jobsReducer
+    jobs: jobsReducer,
+    stages: stagesReducer,
+    status: statusReducer
 });
