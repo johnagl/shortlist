@@ -17,7 +17,6 @@ export default class JobStageCategory extends Component {
   <div className="menu">
     <Popup
       trigger={<div className="menu-item"><FaArrowDown size={20}/></div>}
-      position="bottom"
       on="hover"
       closeOnDocumentClick
       mouseLeaveDelay={300}

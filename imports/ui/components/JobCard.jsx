@@ -5,21 +5,26 @@ import { connect } from 'react-redux';
 
 class JobCard extends Component {
   render() {
-    const {id, title, company, statusID} = this.props;
-    console.log("PROPS: " + JSON.stringify(this.state));
+    const {id, title, company, statusID} = this.props
 
     return (
       <div>
         <div>{ title }</div>
         <div>{ company }</div>
-        <div>Status: { statusID }</div>
+        <div>Status: { this.getStatus(statusID).description }</div>
       </div>
     );
+  }
+
+  getStatus(statusID) {
+    let result =  this.props.status.filter(status => {
+        return statusID == status.id
+    });
+    return result[0];
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log(JSON.stringify(state.status));
   return { 
       status: state.status
   };
