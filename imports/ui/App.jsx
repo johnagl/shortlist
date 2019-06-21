@@ -15,6 +15,9 @@ import DashboardPage from './components/DashboardPage';
 import MapPage from './components/MapPage';
 import CalendarPage from './components/CalendarPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Navbar from './components/Navbar.jsx'
+import JobCardsContainerPartial from './components/JobCardsContainerPartial.jsx';
+import JobStageCard from './components/JobStageCard.jsx';
 // import '../../../client/main.css';
 
 
@@ -22,7 +25,19 @@ export default class App extends React.Component {
 
   render() {
     return(
-      <BrowserRouter>
+      <div>
+        <Navbar/>
+        <ButtonClass/>
+        <JobStageCategory/>
+        <JobPostings postings={this.state.postings}/>
+        <JobCardsContainerPartial />
+        <JobStageCard />
+      </div>
+    );
+  }
+}
+
+      {/* <BrowserRouter>
         <NavBar />
         <div className="flex-container">
           <Switch>
@@ -31,7 +46,4 @@ export default class App extends React.Component {
             <Route path='/calendar' component={CalendarPage} />
           </Switch>
         </div>
-      </BrowserRouter>
-    );
-  }
-}
+      </BrowserRouter> */}
