@@ -36,8 +36,9 @@ class JobForm extends React.Component {
             isExpanded: false,
             statusID: 1
         }
+        // console.log(this.props.jobs);
         this.props.addJob(job);
-        this.props.toggle();
+        // this.props.toggle();
     }
   render() {
     return (

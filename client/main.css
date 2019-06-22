@@ -9,6 +9,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+   /* min-height: 100vh; */
+}
+
+html {
+  /* min-height: 100vh; */
+  
 }
 
 code {
@@ -17,7 +23,7 @@ code {
 }
 
 .posting {
-  background-color: #D9D9D9;
+  background-color: #ff2e63;
   padding: 20px;
   border-radius: 5px;
   margin: 10px;
@@ -81,4 +87,10 @@ nav a:hover {
 
 .dashboard {
   margin: 30px;
+}
+
+.appStyle {
+  /* background-color: #eaeaea; */
+  /* min-height: 100vh;
+  z-index: 0; */
 }

@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import uuid from 'uuid';
 
 initState = {
-    currentStage: 'Applied',
     jobs: [
         {
             id: uuid.v4(),
@@ -55,45 +54,40 @@ const jobsReducer = (state = initState, action) => {
 
     switch (action.type){
         case 'ADD_JOB':
-            return {
-                jobs:[...state.jobs, action.payload]
+            return {                
+                jobs: [...state.jobs, action.payload]
             }
         
         case 'REMOVE_JOB':
-            return state.jobs.filter(job => {
-                return job.id !== action.id
-            });        
+            return {
+                jobs: [...state.jobs.filter(job => job.id !== action.id)]
+            }
+                   
         case 'TOGGLE_JOB_CARD':
-            return state.jobs;
+            return state;
         
         default: 
-            return state.jobs;
+            return state;
     }
 }
 
 const statusReducer = (state = initState, action) => {
     switch(action.type){
         default:
-            return state.status;
+            return state;
     }
 }
 
 const stagesReducer = (state = initState, action) => {
     switch(action.type){
         default:
-            return state.stages;
+            return state;
     }
 }
 
-const counterReducer = (count = 0, action) => {
-    if (action.type === 'INCREMENT_COUNTER'){
-        return count + action.payload;
-    }
-    return count;
-}
+
 
 export default combineReducers({
-    count: counterReducer,
     jobs: jobsReducer,
     stages: stagesReducer,
     status: statusReducer

@@ -18,14 +18,14 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx'
 import JobCardsContainerPartial from './components/JobCardsContainerPartial.jsx';
 import JobStageCard from './components/JobStageCard.jsx';
-// import '../../../client/main.css';
+import '../../client/main.css';
 
 
 export default class App extends React.Component {
 
   render() {
     return(
-      <div>
+      <div >
         <Navbar/>
         <JobStageCard />
         <JobCardsContainerPartial />

@@ -29,11 +29,11 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light color="info" expand="md">
+        <Navbar style={navStyle} light expand="md">
           <NavbarBrand href="/">Dashboard</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav className="ml-left" navbar>
               <NavItem>
                 <NavLink href="/components/">Map</NavLink>
               </NavItem>
@@ -63,4 +63,10 @@ export default class Example extends React.Component {
       </div>
     );
   }
+}
+
+{/* <Navbar color="light" light color="info" expand="md"></Navbar> */}
+
+navStyle = {
+  backgroundColor: '#08d9d6'
 }
