@@ -20,8 +20,8 @@ const mapStateToProps = (state) => {
     return { jobs: state.jobs };
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({removeJob : removeJob}, dispatch)
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return bindActionCreators({removeJob : removeJob}, dispatch)
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteButton);
+export default connect(mapStateToProps, {removeJob})(DeleteButton);
