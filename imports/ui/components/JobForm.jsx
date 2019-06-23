@@ -72,9 +72,9 @@ const mapStateToProps = (state) => {
     return { jobs: state.jobs.jobs }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({addJob : addJob}, dispatch)
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return bindActionCreators({addJob : addJob}, dispatch)
+// }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobForm);
+export default connect(mapStateToProps, {addJob})(JobForm);

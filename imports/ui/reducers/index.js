@@ -23,7 +23,7 @@ initState = {
             salary: null,
             dateAdded: new Date(),
             isExpanded: false,
-            statusID: 2
+            statusID: 1
         },
         {
             id: uuid.v4(),
@@ -34,7 +34,7 @@ initState = {
             salary: 4100,
             dateAdded: new Date(),
             isExpanded: false,
-            statusID: 3
+            statusID: 1
         }
     ],
     stages: [

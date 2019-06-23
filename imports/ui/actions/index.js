@@ -1,22 +1,15 @@
-export const increment = (amount) => {
-    return {
-        type: 'INCREMENT_COUNTER',
-        payload: amount
-    };
-};
-
-export const addJob = (job) => {
-    return {
+export const addJob = (job) => dispatch => {
+    dispatch({
         type: 'ADD_JOB',
         payload: job
-    };
+    });
 };
 
-export const removeJob = (id) => {
-    return {
+export const removeJob = (id) => dispatch => {
+    dispatch({
         type: 'REMOVE_JOB',
         id: id
-    };
+    }); 
 };
 
 export const toggleJobCard = (id) => {
