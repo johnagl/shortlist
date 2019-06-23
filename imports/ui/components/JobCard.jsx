@@ -13,28 +13,37 @@ class JobCard extends Component {
       <div className="posting">
         <div>{ title }</div>
         <div>{ company }</div>
-        <div>Status: { this.getStatus(statusID).description }</div>
         <DeleteButton jobID={id} />
       </div>
     );
   }
 
-  getStatus(statusID) {
-    let result =  this.props.status.filter(status => {
-        return statusID == status.id
-    });
-    return result[0];
-  }
+  // getStatus(statusID) {
+  //   let result =  this.props.status.filter(status => {
+  //       return statusID == status.id
+  //   });
+  //   return result[0];
+  // }
 }
 
-const mapStateToProps = (state) => {
-  return { 
-      status: state.status.status
-  };
-}
+// const mapStateToProps = (state) => {
+//   return { 
+//       status: state.status.status
+//   };
+// }
 
 // const mapDispatchToProps = (dispatch) => {
 //     return bindActionCreators({addTodo: addTodo, updateDraft: updateDraft}, dispatch);
 // }
 
-export default connect(mapStateToProps)(JobCard);
+// const {id, title, company, statusID} = this.props;
+// return (
+//   <div className="posting">
+//     <div>{ title }</div>
+//     <div>{ company }</div>
+//     <div>Status: { this.getStatus(statusID).description }</div>
+//     <DeleteButton jobID={id} />
+//   </div>
+// );
+
+export default connect()(JobCard);

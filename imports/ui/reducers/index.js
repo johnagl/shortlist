@@ -7,46 +7,59 @@ initState = {
             id: uuid.v4(),
             company: 'Amazon',
             title: 'Software Developer Co-op',
-            stageID: 1,
+            stage: 'Shortlist',
             url: null,
             salary: null,
-            dateAdded: new Date(),
             isExpanded: false,
-            statusID: 1
+            dates: {
+                dateAdded: new Date(),
+                applicationDeadline: 'set date',
+                applied: 'set date',
+                phoneInterview: 'set date',
+                onSiteInterview: 'set date',
+                offer: 'set date',
+                rejected: 'set date'
+            }
         },
         {
             id: uuid.v4(),
             company: 'Hootsuite',
-            title: 'Full Stack Developer Co-op',
-            stageID: 3,
-            url: 'https://careers.hootsuite.com/global/en/job/1738832/Junior-Software-Developer',
+            title: 'Software Developer Co-op',
+            stage: 'Shortlist',
+            url: null,
             salary: null,
-            dateAdded: new Date(),
             isExpanded: false,
-            statusID: 1
-        },
+            dates: {
+                dateAdded: new Date(),
+                applicationDeadline: 'set date',
+                applied: 'set date',
+                phoneInterview: 'set date',
+                onSiteInterview: 'set date',
+                offer: 'set date',
+                rejected: 'set date'
+            }
+        }, 
         {
             id: uuid.v4(),
             company: 'SAP',
-            title: 'Agile Developer Intern',
-            stageID: 2,
+            title: 'Software Developer Co-op',
+            stage: 'Shortlist',
             url: null,
-            salary: 4100,
-            dateAdded: new Date(),
+            salary: null,
             isExpanded: false,
-            statusID: 1
+            dates: {
+                dateAdded: new Date(),
+                applicationDeadline: 'set date',
+                applied: 'set date',
+                phoneInterview: 'set date',
+                onSiteInterview: 'set date',
+                offer: 'set date',
+                rejected: 'set date'
+            }
         }
-    ],
-    stages: [
-        {id: 1, description: 'Shortlist'},
-        {id: 2, description: 'Phone Interview'},
-        {id: 3, description: 'Applied'}
-    ],
-    status: [
-        {id: 1, description: 'In Progress'},
-        {id: 2, description: 'Offer'},
-        {id: 3, description: 'Rejected'}
     ]
+
+
 }
 
 
@@ -71,24 +84,24 @@ const jobsReducer = (state = initState, action) => {
     }
 }
 
-const statusReducer = (state = initState, action) => {
-    switch(action.type){
-        default:
-            return state;
-    }
-}
+// const statusReducer = (state = initState, action) => {
+//     switch(action.type){
+//         default:
+//             return state;
+//     }
+// }
 
-const stagesReducer = (state = initState, action) => {
-    switch(action.type){
-        default:
-            return state;
-    }
-}
+// const stagesReducer = (state = initState, action) => {
+//     switch(action.type){
+//         default:
+//             return state;
+//     }
+// }
 
 
 
 export default combineReducers({
     jobs: jobsReducer,
-    stages: stagesReducer,
-    status: statusReducer
+    // stages: stagesReducer,
+    // status: statusReducer
 });
