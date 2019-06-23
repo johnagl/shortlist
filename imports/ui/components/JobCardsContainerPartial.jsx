@@ -11,7 +11,7 @@ class JobCardsContainerPartial extends Component {
         let jobCards = this.props.jobs.map(jobCard => {
             return (
                 <Col xs="6" sm="3" key={jobCard.id}>
-                    <JobCard id={jobCard.id} title={jobCard.title} company={jobCard.company} statusID={jobCard.statusID}/>
+                    <JobCard id={jobCard.id} title={jobCard.title} company={jobCard.company}/>
                 </Col>
             )
         })
