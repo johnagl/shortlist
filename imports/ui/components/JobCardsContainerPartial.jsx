@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { Container, Row, Col } from 'reactstrap';
 import JobCard from './JobCard.jsx';
+import JobStageCard from './JobStageCard.jsx';
 
 class JobCardsContainerPartial extends Component {
 
@@ -19,6 +20,7 @@ class JobCardsContainerPartial extends Component {
         return (
             <div>
                 <Container fluid style= {containerStyle}>
+                    <JobStageCard />
                     <Row>
                         {jobCards} 
                     </Row>

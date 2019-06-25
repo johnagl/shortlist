@@ -1,0 +1,19 @@
+.jobCardsContainerFull  {
+    background-color: #eaeaea;
+    /* white-space:nowrap; */
+    overflow-x: scroll;
+
+    
+
+
+}
+
+.noFlexWrap {
+    flex-wrap: nowrap;
+}
+
+.columnStyle {
+    border-right: 1px solid black;
+    height: 100vh;
+    overflow-y: auto;
+}

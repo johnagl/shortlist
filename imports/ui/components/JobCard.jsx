@@ -7,7 +7,7 @@ import DeleteButton from './DeleteButton';
 class JobCard extends Component {
 
   render() {
-    console.log(JSON.stringify(this.props));
+    // console.log(JSON.stringify(this.props));
     const {id, title, company, statusID} = this.props;
     return (
       <div className="posting">

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Hello from './components/Hello.jsx';
 import Info from './components/Info.jsx';
 import Login from './components/Login.jsx';
@@ -17,19 +18,46 @@ import CalendarPage from './components/CalendarPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx'
 import JobCardsContainerPartial from './components/JobCardsContainerPartial.jsx';
+import JobCardsContainerFull from './components/JobCardsContainerFull.jsx';
 import JobStageCard from './components/JobStageCard.jsx';
 import '../../client/main.css';
 
 
-export default class App extends React.Component {
+class App extends React.Component {
+
 
   render() {
+
+
+    let CurrentView = () => {
+      if (this.props.view === 'Full'){
+        return (<JobCardsContainerFull />)
+      }
+      if (this.props.view === 'Partial'){
+        return (<JobCardsContainerPartial />)
+      }
+    }
+      
     return(
-      <div >
+      <div className='bigContainer'>
         <Navbar/>
-        <JobStageCard />
-        <JobCardsContainerPartial />
+        <CurrentView/>
+        
+
       </div>
     );
   }
 }
+
+{/* <Navbar/> */}
+{/* <JobStageCard />
+<JobCardsContainerPartial /> */}
+{/* <JobCardsContainerFull /> */}
+
+const mapStateToProps = (state) => {
+  return{
+    view: state.jobs.view
+  }
+}
+
+export default connect(mapStateToProps)(App);
