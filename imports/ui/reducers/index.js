@@ -2,6 +2,10 @@ import { combineReducers } from 'redux';
 import uuid from 'uuid';
 
 initState = {
+    view: 'Full',
+    stages: [
+        {description: 'Shortlist'},{description: 'Applied'}, {description: 'Phone Interview'},{description: 'On Site Interview'},{description: 'Offer'},{description: 'Rejected'}
+    ],
     jobs: [
         {
             id: uuid.v4(),
@@ -25,7 +29,7 @@ initState = {
             id: uuid.v4(),
             company: 'Hootsuite',
             title: 'Software Developer Co-op',
-            stage: 'Shortlist',
+            stage: 'Applied',
             url: null,
             salary: null,
             isExpanded: false,
@@ -67,12 +71,14 @@ const jobsReducer = (state = initState, action) => {
 
     switch (action.type){
         case 'ADD_JOB':
-            return {                
+            return {
+                ...state,                
                 jobs: [...state.jobs, action.payload]
             }
         
         case 'REMOVE_JOB':
             return {
+                ...state,
                 jobs: [...state.jobs.filter(job => job.id !== action.id)]
             }
                    

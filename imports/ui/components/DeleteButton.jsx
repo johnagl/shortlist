@@ -6,6 +6,7 @@ import { removeJob } from '../actions/index';
 class DeleteButton extends React.Component {
 
     handleRemove = () => {
+        console.log(this.props.jobID);
         this.props.removeJob(this.props.jobID);
     }
 
@@ -17,7 +18,7 @@ class DeleteButton extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { jobs: state.jobs };
+    return { jobs: state.jobs.jobs };
 }
 
 // const mapDispatchToProps = (dispatch) => {

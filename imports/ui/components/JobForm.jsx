@@ -25,17 +25,25 @@ class JobForm extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const job = {
-            id: uuid.v4(),
-            company: this.state.name,
-            title: this.state.title,
-            stageID: 1,
-            url: null,
-            salary: null,
-            dateAdded: new Date(),
-            isExpanded: false,
-            statusID: 1
-        }
+        const job =         {
+          id: uuid.v4(),
+          company: this.state.name,
+          title: this.state.title,
+          stage: this.state.select,
+          url: null,
+          salary: null,
+          isExpanded: false,
+          dates: {
+              dateAdded: new Date(),
+              applicationDeadline: 'set date',
+              applied: 'set date',
+              phoneInterview: 'set date',
+              onSiteInterview: 'set date',
+              offer: 'set date',
+              rejected: 'set date'
+          }
+      }
+        console.log(this.state.select);
         // console.log(this.props.jobs);
         this.props.addJob(job);
         // this.props.toggle();
