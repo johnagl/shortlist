@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import uuid from 'uuid';
 
 initState = {
-    view: 'Full',
+    view: 'Partial',
     stages: [
         {description: 'Shortlist'},{description: 'Applied'}, {description: 'Phone Interview'},{description: 'On Site Interview'},{description: 'Offer'},{description: 'Rejected'}
     ],

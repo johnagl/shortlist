@@ -1,7 +1,7 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 import { FaPlus } from 'react-icons/fa';
-import AddJobForm from './AddJobForm.jsx'
+import JobForm from './JobForm.jsx';
 
 const AddJobPopup =  () => (
   <Popup
@@ -9,7 +9,7 @@ const AddJobPopup =  () => (
     modal
     closeOnDocumentClick
   >
-    <span><AddJobForm/></span>
+    <span><JobForm/></span>
   </Popup>
 )
 
