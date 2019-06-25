@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {bindActionCreators} from 'redux';
 import { Container, Row, Col } from 'reactstrap';
 import JobCard from './JobCard.jsx';
 import JobStageCard from './JobStageCard.jsx';

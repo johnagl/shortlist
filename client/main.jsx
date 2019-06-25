@@ -7,7 +7,7 @@ import store from '../imports/ui/store/store.js';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../imports/ui/reducers';
-// import './main.css';
+import './main.css';
 
 
 Meteor.startup(() => {
