@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { Card, Button, CardBody, CardTitle, CardText } from 'reactstrap';
 import DeleteButton from './DeleteButton';
 // import '../../../client/main.css';
 
@@ -10,13 +11,21 @@ class JobCard extends Component {
     // console.log(JSON.stringify(this.props));
     const {id, title, company, statusID} = this.props;
     return (
-      <div className="posting">
-        <div>{ title }</div>
-        <div>{ company }</div>
-        <DeleteButton jobID={id} />
-      </div>
+      <Card className="job-card">
+        <CardBody>
+          <DeleteButton jobID={ id }/>
+          <CardTitle className="title">{ company }</CardTitle>
+          <CardText>{ title }</CardText>
+        </CardBody>
+      </Card>
     );
   }
+
+//   <div className="posting">
+//   <DeleteButton className="delete-button" jobID={id} />
+//   <div>{ title }</div>
+//   <div>{ company }</div>
+// </div>
 
   // getStatus(statusID) {
   //   let result =  this.props.status.filter(status => {

@@ -18,7 +18,7 @@ class JobCardsContainerFull extends Component {
             return (
                 <Col className='columnStyle' xs="6" sm="3">
                     <JobStageCardFull stage={stage.description}/>
-                    {jobCards}
+                    { jobCards }
                 </Col>
             )
         })

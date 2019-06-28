@@ -37,7 +37,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(App);
 
 
-<BrowserRouter>
+{/* <BrowserRouter>
 <Navbar/>
 <div className="App flex-container">
   <Switch>
@@ -46,4 +46,4 @@ export default connect(mapStateToProps)(App);
     <Route path='/calendar' component={CalendarPage} />
   </Switch>
 </div>
-</BrowserRouter>
+</BrowserRouter> */}

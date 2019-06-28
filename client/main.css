@@ -107,7 +107,32 @@ nav a:hover {
 .bigContainer  {
   overflow-x: auto;
   height: 100vh;
-  
+}
 
+.job-card {
+  position: relative;
+}
 
+.delete-button {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border-style: none;
+  visibility: hidden;
+}
+
+.job-card:hover .delete-button {
+  visibility: visible;
+}
+
+.delete-button:hover {
+  background: red;
+}
+
+.job-card .title {
+  font-weight: bold;
+  font-size: 14pt;
 }
