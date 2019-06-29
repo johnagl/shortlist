@@ -16,4 +16,5 @@
     border-right: 1px solid black;
     height: 100vh;
     overflow-y: auto;
+    min-width: 300px;
 }

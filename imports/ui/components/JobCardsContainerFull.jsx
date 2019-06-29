@@ -3,22 +3,21 @@ import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import JobCard from './JobCard.jsx';
 import JobStageCardFull from './JobStageCardFull.jsx';
+import JobCardsContainer from './JobCardsContainer.jsx';
 import './JobCardsContainerFull.css';
 
 class JobCardsContainerFull extends Component {
     render() {
         let jobStageCards = this.props.stages.map(stage => {
-            let jobCards = this.props.jobs.map(jobCard => {
-                if (jobCard.stage === stage.description){
-                    return (
-                        <JobCard id={jobCard.id} title={jobCard.title} company={jobCard.company}/>                
-                    )
-                }
-            })
+            // let jobCards = this.props.jobs.map(jobCard => {
+            //     return (
+            //         <JobCardsContainer key={stage.id} id={stage.id} stage={stage.description} />               
+            //     )
+            // })
             return (
                 <Col className='columnStyle' xs="6" sm="3">
                     <JobStageCardFull stage={stage.description}/>
-                    { jobCards }
+                    <JobCardsContainer key={stage.id} id={stage.id} stage={stage.description} /> 
                 </Col>
             )
         })
@@ -30,7 +29,6 @@ class JobCardsContainerFull extends Component {
                         {jobStageCards}                       
                     </Row>
                 </Container>  
- 
             </div>
         )
     }
@@ -48,6 +46,35 @@ const containerStyle = {
     padding: '10px',
     backgroundColor: 'red'
 }
+
+// render() {
+//     let jobStageCards = this.props.stages.map(stage => {
+//         let jobCards = this.props.jobs.map(jobCard => {
+//             if (jobCard.stage === stage.description){
+//                 return (
+//                     <JobCard id={jobCard.id} title={jobCard.title} company={jobCard.company}/>                
+//                 )
+//             }
+//         })
+//         return (
+//             <Col className='columnStyle' xs="6" sm="3">
+//                 <JobStageCardFull stage={stage.description}/>
+//                 { jobCards }
+//             </Col>
+//         )
+//     })
+//     return (
+        
+//         <div className="jobCardsContainerFull" >
+//             <Container fluid >
+//                 <Row className='noFlexWrap'>
+//                     {jobStageCards}                       
+//                 </Row>
+//             </Container>  
+
+//         </div>
+//     )
+// }
 
 export default connect(mapStateToProps)(JobCardsContainerFull);
 

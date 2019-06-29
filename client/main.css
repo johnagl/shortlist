@@ -111,6 +111,8 @@ nav a:hover {
 
 .job-card {
   position: relative;
+  margin-top: 5px;
+  border-radius: 10px;
 }
 
 .delete-button {
@@ -118,8 +120,8 @@ nav a:hover {
   width: 30px;
   border-radius: 50%;
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 10px;
+  right: 10px;
   border-style: none;
   visibility: hidden;
 }
