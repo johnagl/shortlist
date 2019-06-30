@@ -1,23 +1,29 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, Button, CardBody, CardTitle, CardText } from 'reactstrap';
 import DeleteButton from './DeleteButton';
-// import '../../../client/main.css';
+import { Draggable } from 'react-beautiful-dnd';
+import '../../../client/main.css';
 
-class JobCard extends Component {
-
-  render() {
-    // console.log(JSON.stringify(this.props));
-    const {id, title, company, statusID} = this.props;
+const JobCard = ({ id, title, company, index }) => {
     return (
-      <Card className="job-card">
-        <CardBody>
-          <DeleteButton jobID={ id }/>
-          <CardTitle className="title">{ company }</CardTitle>
-          <CardText>{ title }</CardText>
-        </CardBody>
-      </Card>
+      <Draggable draggableId={String(id)} index={index}>
+        {provided => (
+          <div 
+            {...provided.draggableProps} 
+            {...provided.dragHandleProps} 
+            ref={provided.innerRef}
+          >
+            <Card className="job-card">
+              <CardBody>
+                <DeleteButton jobID={ id }/>
+                <CardTitle className="title">{ company }</CardTitle>
+                <CardText>{ title }</CardText>
+              </CardBody>
+            </Card>
+          </div>
+        )}
+      </Draggable>
     );
   }
 
@@ -33,7 +39,7 @@ class JobCard extends Component {
   //   });
   //   return result[0];
   // }
-}
+// }
 
 // const mapStateToProps = (state) => {
 //   return { 
@@ -55,4 +61,4 @@ class JobCard extends Component {
 //   </div>
 // );
 
-export default connect()(JobCard);
+export default JobCard;

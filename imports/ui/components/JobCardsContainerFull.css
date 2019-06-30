@@ -1,11 +1,6 @@
 .jobCardsContainerFull  {
     background-color: #eaeaea;
     /* white-space:nowrap; */
-    overflow-x: scroll;
-
-    
-
-
 }
 
 .noFlexWrap {
@@ -14,7 +9,7 @@
 
 .columnStyle {
     border-right: 1px solid black;
-    height: 100vh;
     overflow-y: auto;
-    min-width: 300px;
+    min-width: 350px;
+    height: 100vh;
 }

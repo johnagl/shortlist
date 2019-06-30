@@ -138,3 +138,8 @@ nav a:hover {
   font-weight: bold;
   font-size: 14pt;
 }
+
+.jobCardsContainer {
+  max-height: 60vh;
+  overflow-y: auto;
+}

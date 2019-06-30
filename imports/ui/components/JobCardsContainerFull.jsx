@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
-import JobCard from './JobCard.jsx';
 import JobStageCardFull from './JobStageCardFull.jsx';
 import JobCardsContainer from './JobCardsContainer.jsx';
 import './JobCardsContainerFull.css';
 
 class JobCardsContainerFull extends Component {
     render() {
+
         let jobStageCards = this.props.stages.map(stage => {
-            // let jobCards = this.props.jobs.map(jobCard => {
-            //     return (
-            //         <JobCardsContainer key={stage.id} id={stage.id} stage={stage.description} />               
-            //     )
-            // })
+            let jobs = this.props.jobs.filter(job => job.stage === stage.description)
+
             return (
-                <Col className='columnStyle' xs="6" sm="3">
+                <Col key={stage.id} className='columnStyle' xs="6" sm="3">
                     <JobStageCardFull stage={stage.description}/>
-                    <JobCardsContainer key={stage.id} id={stage.id} stage={stage.description} /> 
+                    <JobCardsContainer stage={stage} jobs={jobs}/> 
                 </Col>
             )
         })
+
         return (
             
-            <div className="jobCardsContainerFull" >
+            <div className="jobCardsContainerFull">
                 <Container fluid >
                     <Row className='noFlexWrap'>
                         {jobStageCards}                       
