@@ -86,6 +86,21 @@ const jobsReducer = (state = initState, action) => {
                 ...state,
                 jobs: [...state.jobs.filter(job => job.id !== action.id)]
             }
+        
+        case 'DRAG_HAPPENED' :
+            const {
+                droppableIdStart,
+                droppableIdEnd,
+                droppableIndexStart,
+                droppableIndexEnd,
+                draggableId
+            } = action.payload;
+
+            const newState = [...state];
+
+            // if(droppableIdStart === droppableIdEnd) {
+
+            // }
                    
         case 'TOGGLE_JOB_CARD':
             return state;

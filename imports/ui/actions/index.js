@@ -18,3 +18,22 @@ export const toggleJobCard = (id) => {
         payload: id
     };
 };
+
+export const sort = (
+        droppableIdStart, 
+        droppableIdEnd, 
+        droppableIndexStart, 
+        droppableIndexEnd, 
+        draggableId
+    ) => dispatch => {
+        dispatch({
+            type: 'DRAG_HAPPENED',
+            payload: {
+                droppableIdStart,
+                droppableIdEnd,
+                droppableIndexStart,
+                droppableIndexEnd,
+                draggableId
+            }
+        });
+};

@@ -3,11 +3,24 @@ import { connect } from 'react-redux';
 import JobCardsContainerFull from './JobCardsContainerFull.jsx';
 import JobCardsContainerPartial from './JobCardsContainerPartial.jsx';
 import { DragDropContext } from "react-beautiful-dnd";
+import { sort } from '../actions';
 
 class DashboardPage extends React.Component {
 
-  onDragEnd = () => {
+  onDragEnd = (result) => {
     // TODO: reordering logic
+    const { destination, source, draggableId } = result;
+
+    if(!destination) return;
+    
+    this.props.sort(
+      source.droppableId,
+      destination.droppableId,
+      source.index,
+      destination.index,
+      draggableId
+    );
+
   }
 
     render() {
