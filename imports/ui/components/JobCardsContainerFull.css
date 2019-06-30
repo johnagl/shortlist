@@ -1,5 +1,7 @@
 .jobCardsContainerFull  {
-    background-color: #eaeaea;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
     /* white-space:nowrap; */
 }
 
@@ -8,8 +10,9 @@
 }
 
 .columnStyle {
+    background: #E8E9F3;
     border-right: 1px solid black;
-    overflow-y: auto;
+    overflow-y: none;
     min-width: 350px;
-    height: 100vh;
+    padding: 0px 25px;
 }

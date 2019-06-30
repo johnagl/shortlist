@@ -3,6 +3,13 @@
 }
 
 #react-target {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+html, body {
+  margin: 0;
 }
 
 body {
@@ -12,12 +19,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-}
-
-html {
-  
-  
 }
 
 code {
@@ -25,18 +26,18 @@ code {
     monospace;
 }
 
-.posting {
-  background-color: #ff2e63;
-  padding: 20px;
-  border-radius: 5px;
-  margin: 10px;
+/* App */
+#App {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
 }
 
 /* Navigation Bar */
 nav {
-  padding: 16px;
+  /* padding: 16px;
   background-color: #EFEFEF;
-  color: #4484CE;
+  color: #4484CE; */
   overflow: hidden;
   display: flex;
   width: 100%;
@@ -63,11 +64,11 @@ nav a {
   text-decoration: none;
   font-family: Helvetica;
   font-size: 18px;
-  color: #4484CE;
-  transition: 0.5s;
+  /* color: #4484CE;
+  transition: 0.5s; */
 }
 
-nav a:hover {
+/* nav a:hover {
   background-color: #4484CE;
   color: white;
 }
@@ -75,18 +76,18 @@ nav a:hover {
 .active {
   color: #4484CE;
   background-color: #D9D9D9;
-}
+} */
 
 /* Page Content */
 .flex-container {
-  display: flex;
+  /* display: flex; */
   /* flex-direction: column;
   justify-content: center;
   min-width: 500px; */
   /* margin:0px auto; */
   /* margin-bottom: 20px; */
-  flex-wrap: nowrap;
-  overflow: auto;
+  /* flex-wrap: nowrap; */
+  flex-grow: 1;
 }
 
 .dashboard {
@@ -104,15 +105,18 @@ nav a:hover {
 }
 
 
-.bigContainer  {
+.dashboardContainer  {
   overflow-x: auto;
-  height: 100vh;
+  height: 100%
 }
 
 .job-card {
   position: relative;
   margin-top: 5px;
-  border-radius: 10px;
+}
+
+.card {
+    border-radius: 1rem;
 }
 
 .delete-button {

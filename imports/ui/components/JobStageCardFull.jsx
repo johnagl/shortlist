@@ -8,11 +8,9 @@ export default class JobStageCardFull extends Component {
     render() {
         return (
             <div className="jobStageCardContainer">
-                <Card body inverse className='jobStageCardStyle' >
-                    <CardTitle className = "jobStageText">{this.props.stage}</CardTitle>
-                    <CardText className="jobStageText">0 Jobs</CardText>
-                    <AddButtonModal />
-                </Card>
+                <div className = "jobStageText">{this.props.stage}</div>
+                <div className="jobStageText">0 Jobs</div>
+                <AddButtonModal />
             </div>                                    
         )
     }

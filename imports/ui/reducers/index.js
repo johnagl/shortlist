@@ -88,15 +88,15 @@ const jobsReducer = (state = initState, action) => {
             }
         
         case 'DRAG_HAPPENED' :
-            const {
-                droppableIdStart,
-                droppableIdEnd,
-                droppableIndexStart,
-                droppableIndexEnd,
-                draggableId
-            } = action.payload;
+            // const {
+            //     droppableIdStart,
+            //     droppableIdEnd,
+            //     droppableIndexStart,
+            //     droppableIndexEnd,
+            //     draggableId
+            // } = action.payload;
 
-            const newState = [...state];
+            // const newState = [...state];
 
             // if(droppableIdStart === droppableIdEnd) {
 

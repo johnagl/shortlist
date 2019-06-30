@@ -37,7 +37,7 @@ class DashboardPage extends React.Component {
           
         return(
           <DragDropContext onDragEnd={this.onDragEnd}>
-            <div className='bigContainer'>
+            <div className='dashboardContainer'>
               <CurrentView/>
             </div>
           </DragDropContext>
@@ -52,25 +52,4 @@ class DashboardPage extends React.Component {
       }
     }
     
-    export default connect(mapStateToProps)(DashboardPage);
-
-
-// render() {
-//     let CurrentView = () => {
-//       if (this.props.view === 'Full'){
-//         return (<JobCardsContainerFull />)
-//       }
-//       if (this.props.view === 'Partial'){
-//         return (<JobCardsContainerPartial />)
-//       }
-//     }
-      
-//     return(
-//       <div className='bigContainer'>
-//         <Navbar/>
-//         <CurrentView/>
-        
-
-//       </div>
-//     );
-//   }
+    export default connect(mapStateToProps, { sort })(DashboardPage);

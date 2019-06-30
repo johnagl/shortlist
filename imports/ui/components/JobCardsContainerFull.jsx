@@ -7,26 +7,20 @@ import './JobCardsContainerFull.css';
 
 class JobCardsContainerFull extends Component {
     render() {
-
         let jobStageCards = this.props.stages.map(stage => {
             let jobs = this.props.jobs.filter(job => job.stage === stage.description)
 
             return (
-                <Col key={stage.id} className='columnStyle' xs="6" sm="3">
+                <div key={stage.id} className='columnStyle'>
                     <JobStageCardFull stage={stage.description}/>
-                    <JobCardsContainer stage={stage} jobs={jobs}/> 
-                </Col>
+                    <JobCardsContainer stage={stage} jobs={jobs}/>
+                </div>
             )
         })
 
         return (
-            
             <div className="jobCardsContainerFull">
-                <Container fluid >
-                    <Row className='noFlexWrap'>
-                        {jobStageCards}                       
-                    </Row>
-                </Container>  
+                {jobStageCards}                       
             </div>
         )
     }
@@ -73,6 +67,21 @@ const containerStyle = {
 //         </div>
 //     )
 // }
+
+
+
+
+
+// return (
+            
+//     <div className="jobCardsContainerFull">
+//         <Container fluid >
+//             <Row className='noFlexWrap'>
+//                 {jobStageCards}                       
+//             </Row>
+//         </Container>  
+//     </div>
+// )
 
 export default connect(mapStateToProps)(JobCardsContainerFull);
 

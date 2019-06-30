@@ -13,16 +13,18 @@ class App extends React.Component {
 
   render() {
     return(
-      <BrowserRouter>
-        <Navbar/>
-        <div className="App flex-container">
-          <Switch>
-            <Route exact path='/' component={DashboardPage} />
-            <Route path='/map' component={MapPage} />
-            <Route path='/calendar' component={CalendarPage} />
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <div id="App">
+        <BrowserRouter>
+          <Navbar/>
+          <div className="flex-container">
+            <Switch>
+              <Route exact path='/' component={DashboardPage} />
+              <Route path='/map' component={MapPage} />
+              <Route path='/calendar' component={CalendarPage} />
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </div>
     );
   }
 }

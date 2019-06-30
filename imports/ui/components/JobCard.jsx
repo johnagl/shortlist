@@ -14,7 +14,7 @@ const JobCard = ({ id, title, company, index }) => {
             {...provided.dragHandleProps} 
             ref={provided.innerRef}
           >
-            <Card className="job-card">
+            <Card className="job-card" onClick={handleEdit}>
               <CardBody>
                 <DeleteButton jobID={ id }/>
                 <CardTitle className="title">{ company }</CardTitle>
@@ -25,6 +25,10 @@ const JobCard = ({ id, title, company, index }) => {
         )}
       </Draggable>
     );
+  }
+
+  handleEdit = () => {
+    console.log("YOOOOOO");
   }
 
 //   <div className="posting">
