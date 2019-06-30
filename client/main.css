@@ -120,6 +120,8 @@ nav a {
   background: #FFFFFF;
   position: relative;
   margin-top: 5px;
+  border-radius: 10px;
+  border-style: solid;
 }
 
 .delete-button {
@@ -143,14 +145,9 @@ nav a {
   opacity: 75%;
 }
 
-.job-card .title {
+.job-card .card-title {
   font-weight: bold;
   font-size: 14pt;
-}
-
-.card-body {
-  border-radius: 15px;
-  border-style: solid;
 }
 
 .jobCardsContainer {

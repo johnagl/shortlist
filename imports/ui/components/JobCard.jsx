@@ -14,8 +14,8 @@ const JobCard = ({ id, title, company, index, color }) => {
             {...provided.dragHandleProps} 
             ref={provided.innerRef}
           >
-            <div className="job-card" onClick={handleEdit}>
-              <div className="card-body" style={{"borderColor": color}}>
+            <div className="job-card" style={{"borderColor": color}} onClick={handleEdit}>
+              <div className="card-body" >
                 <DeleteButton jobID={ id } color={ color }/>
                 <div className="card-title">{ company }</div>
                 <p className="card-text">{ title }</p>
