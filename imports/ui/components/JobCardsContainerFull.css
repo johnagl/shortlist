@@ -12,6 +12,10 @@
 .columnStyle {
     background: #E8E9F3;
     border-right: 1px solid black;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    height: 100%;
     overflow-y: none;
     min-width: 350px;
     padding: 0px 25px;
