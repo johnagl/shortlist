@@ -9,8 +9,19 @@
     color: #272635;
 }
 
-.addJobButton {
+.addButton {
     text-align: center;
+    width: 100%;
+    margin: 10px 0px;
+    background:  #272635;
+    color: #FFFFFF;
+    border-style: solid;
+    border-color: #272635;
+}
+
+.addButton:hover {
+    background: #FFFFFF;
+    color: #272635;
 }
 
 .jobStageCardStyle  {
@@ -18,17 +29,12 @@
     border: none;
 }
 
-.addButton {
+/* .addButton {
     width: 100%;
     margin: 10px 0px;
     background: #FFFFFF;
     border: none;
     color: #272635;
-}
-
-.addButton:hover {
-    background:  #272635;
-    color: #FFFFFF;
-}
+} */
 
 

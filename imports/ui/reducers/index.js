@@ -4,12 +4,12 @@ import uuid from 'uuid';
 initState = {
     view: 'Full',
     stages: [
-        {id: uuid.v4(), description: 'Shortlist'},
-        {id: uuid.v4(), description: 'Applied'},
-        {id: uuid.v4(), description: 'Phone Interview'},
-        {id: uuid.v4(), description: 'On Site Interview'},
-        {id: uuid.v4(), description: 'Offer'},
-        {id: uuid.v4(), description: 'Rejected'}
+        {id: uuid.v4(), description: 'Shortlist', color: "#EE6352"},
+        {id: uuid.v4(), description: 'Applied', color: "#FFB43D"},
+        {id: uuid.v4(), description: 'Phone Interview', color: "#46B4A4"},
+        {id: uuid.v4(), description: 'On Site Interview', color: "#1A80E0"},
+        {id: uuid.v4(), description: 'Offer', color: "#7A00D8"},
+        {id: uuid.v4(), description: 'Rejected', color: "#000000"}
     ],
     jobs: [
         {

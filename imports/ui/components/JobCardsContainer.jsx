@@ -12,6 +12,7 @@ const JobCardsContainer = ({ stage, jobs }) => {
                 id={jobCard.id} 
                 title={jobCard.title} 
                 company={jobCard.company}
+                color={stage.color}
                 index={index}
             />
         )               

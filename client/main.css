@@ -36,8 +36,8 @@ code {
 /* Navigation Bar */
 nav {
   /* padding: 16px;
-  background-color: #EFEFEF;
   color: #4484CE; */
+  background-color: #B1E5F2;
   overflow: hidden;
   display: flex;
   width: 100%;
@@ -66,6 +66,10 @@ nav a {
   font-size: 18px;
   /* color: #4484CE;
   transition: 0.5s; */
+}
+
+.dropdown-toggle {
+  transition: 1s;
 }
 
 /* nav a:hover {
@@ -113,15 +117,14 @@ nav a {
 }
 
 .job-card {
+  background: #FFFFFF;
   position: relative;
   margin-top: 5px;
 }
 
-.card {
-    border-radius: 1rem;
-}
-
 .delete-button {
+  display: table-cell;
+  vertical-align: middle;
   height: 30px;
   width: 30px;
   border-radius: 50%;
@@ -137,12 +140,17 @@ nav a {
 }
 
 .delete-button:hover {
-  background: red;
+  opacity: 75%;
 }
 
 .job-card .title {
   font-weight: bold;
   font-size: 14pt;
+}
+
+.card-body {
+  border-radius: 15px;
+  border-style: solid;
 }
 
 .jobCardsContainer {
