@@ -2,9 +2,14 @@ import { combineReducers } from 'redux';
 import uuid from 'uuid';
 
 initState = {
-    view: 'Partial',
+    view: 'Full',
     stages: [
-        {description: 'Shortlist'},{description: 'Applied'}, {description: 'Phone Interview'},{description: 'On Site Interview'},{description: 'Offer'},{description: 'Rejected'}
+        {id: uuid.v4(), description: 'Shortlist', color: "#EE6352"},
+        {id: uuid.v4(), description: 'Applied', color: "#FFB43D"},
+        {id: uuid.v4(), description: 'Phone Interview', color: "#46B4A4"},
+        {id: uuid.v4(), description: 'On Site Interview', color: "#1A80E0"},
+        {id: uuid.v4(), description: 'Offer', color: "#7A00D8"},
+        {id: uuid.v4(), description: 'Rejected', color: "#000000"}
     ],
     jobs: [
         {
@@ -81,6 +86,21 @@ const jobsReducer = (state = initState, action) => {
                 ...state,
                 jobs: [...state.jobs.filter(job => job.id !== action.id)]
             }
+        
+        case 'DRAG_HAPPENED' :
+            // const {
+            //     droppableIdStart,
+            //     droppableIdEnd,
+            //     droppableIndexStart,
+            //     droppableIndexEnd,
+            //     draggableId
+            // } = action.payload;
+
+            // const newState = [...state];
+
+            // if(droppableIdStart === droppableIdEnd) {
+
+            // }
                    
         case 'TOGGLE_JOB_CARD':
             return state;

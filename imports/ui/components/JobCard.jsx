@@ -1,22 +1,41 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Card, Button, CardBody, CardTitle, CardText } from 'reactstrap';
 import DeleteButton from './DeleteButton';
-// import '../../../client/main.css';
+import { Draggable } from 'react-beautiful-dnd';
+import '../../../client/main.css';
 
-class JobCard extends Component {
-
-  render() {
-    // console.log(JSON.stringify(this.props));
-    const {id, title, company, statusID} = this.props;
+const JobCard = ({ id, title, company, index, color }) => {
     return (
-      <div className="posting">
-        <div>{ title }</div>
-        <div>{ company }</div>
-        <DeleteButton jobID={id} />
-      </div>
+      <Draggable draggableId={String(id)} index={index}>
+        {provided => (
+          <div 
+            {...provided.draggableProps} 
+            {...provided.dragHandleProps} 
+            ref={provided.innerRef}
+          >
+            <div className="job-card" style={{"borderColor": color}} onClick={handleEdit}>
+              <div className="card-body" >
+                <DeleteButton jobID={ id } color={ color }/>
+                <div className="card-title">{ company }</div>
+                <p className="card-text">{ title }</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </Draggable>
     );
   }
+
+  handleEdit = () => {
+    console.log("YOOOOOO");
+  }
+
+//   <div className="posting">
+//   <DeleteButton className="delete-button" jobID={id} />
+//   <div>{ title }</div>
+//   <div>{ company }</div>
+// </div>
 
   // getStatus(statusID) {
   //   let result =  this.props.status.filter(status => {
@@ -24,7 +43,7 @@ class JobCard extends Component {
   //   });
   //   return result[0];
   // }
-}
+// }
 
 // const mapStateToProps = (state) => {
 //   return { 
@@ -46,4 +65,4 @@ class JobCard extends Component {
 //   </div>
 // );
 
-export default connect()(JobCard);
+export default JobCard;

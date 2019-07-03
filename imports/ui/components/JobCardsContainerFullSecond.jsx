@@ -3,23 +3,23 @@ import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import JobStageCardFull from './JobStageCardFull.jsx';
 import JobCardsContainer from './JobCardsContainer.jsx';
-import './JobCardsContainerFull.css';
+import './JobCardsContainerFullSecond.css';
 
-class JobCardsContainerFull extends Component {
+class JobCardsContainerFullSecond extends Component {
     render() {
         let jobStageCards = this.props.stages.map(stage => {
             let jobs = this.props.jobs.filter(job => job.stage === stage.description)
 
             return (
-                <div key={stage.id} className='columnStyle'>
-                    <JobStageCardFull stage={stage.description}/>
-                    <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
+                <div key={stage.id} className='rowStyle'>
+                    <JobStageCardFull  style={jobStageCardStyle} stage={stage.description}/>
+                    <JobCardsContainer  stage={stage} jobs={jobs} direction={this.props.direction}/>
                 </div>
             )
         })
 
         return (
-            <div className="jobCardsContainerFull">
+            <div className="jobCardsContainerFullSecond">
                 {jobStageCards}                       
             </div>
         )
@@ -27,9 +27,13 @@ class JobCardsContainerFull extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { stages: state.jobs.stages, jobs: state.jobs.jobs, view: state.jobs.view }
+    return { stages: state.jobs.stages, jobs: state.jobs.jobs }
 }
 
+jobStageCardStyle = {
+    width: '250px',
+    marginRight: '50px'
+}
 
 // render() {
 //     let jobStageCards = this.props.stages.map(stage => {
@@ -75,5 +79,5 @@ const mapStateToProps = (state) => {
 //     </div>
 // )
 
-export default connect(mapStateToProps)(JobCardsContainerFull);
+export default connect(mapStateToProps)(JobCardsContainerFullSecond);
 

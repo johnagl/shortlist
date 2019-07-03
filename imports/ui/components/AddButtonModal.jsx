@@ -23,7 +23,7 @@ class AddButtonModal extends React.Component {
   render() {
     return (
       <React.Fragment>
-                <Button style = {style} onClick={this.toggle}>Add Job</Button>
+                <Button className="addButton" onClick={this.toggle}>Add Job</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Add a Job</ModalHeader>
           <ModalBody>
@@ -35,11 +35,6 @@ class AddButtonModal extends React.Component {
 
     );
   }
-}
-
-style = {
-  backgroundColor: '#08d9d6',
-  fontColor: '252a34'
 }
 
 {/* <Button color="danger" onClick={this.toggle}>Add Job</Button> */}

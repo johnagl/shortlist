@@ -9,7 +9,6 @@ export default class JobStageCard extends Component {
         return (
             <div className="jobStageCardContainer">
                 <Card body inverse className='jobStageCardStyle' >
-                    {/* <CardTitle  className="jobStageText">Shortlist</CardTitle> */}
                     <JobStageDropdown style={{margin: 'auto'}} />
                     <CardText></CardText>
                     <AddButtonModal />
