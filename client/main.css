@@ -122,6 +122,9 @@ nav a {
   margin-top: 5px;
   border-radius: 10px;
   border-style: solid;
+
+  width: 299px;
+  height: 109px;
 }
 
 .delete-button {
@@ -154,4 +157,13 @@ nav a {
   width: 100%;
   flex: 1;
   overflow-y: auto;
+
+}
+
+.jobCardsContainerSecond {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  display: inline-flex;
+
 }

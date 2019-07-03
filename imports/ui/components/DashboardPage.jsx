@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import JobCardsContainerFull from './JobCardsContainerFull.jsx';
+import JobCardsContainerFullSecond from './JobCardsContainerFullSecond.jsx';
 import JobCardsContainerPartial from './JobCardsContainerPartial.jsx';
 import { DragDropContext } from "react-beautiful-dnd";
 import { sort } from '../actions';
@@ -24,14 +25,20 @@ class DashboardPage extends React.Component {
   }
 
     render() {
+      
         let CurrentView = () => {
           if (this.props.view === 'Full'){
             return (
-              <JobCardsContainerFull />
+              <JobCardsContainerFull direction="vertical"/>
+            )
+          }
+          if (this.props.view === 'FullSecond'){
+            return (
+              <JobCardsContainerFullSecond direction="horizontal"/>
             )
           }
           if (this.props.view === 'Partial'){
-            return (<JobCardsContainerPartial />)
+            return (<JobCardsContainerPartial direction="horizontal"/>)
           }
         }
           

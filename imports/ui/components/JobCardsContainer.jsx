@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import JobCard from './JobCard.jsx';
 import { Droppable } from "react-beautiful-dnd";
 
-const JobCardsContainer = ({ stage, jobs }) => {
+const JobCardsContainer = ({ stage, jobs, view, direction }) => {
     
     let jobCards = jobs.map((jobCard,index) => {
         return(
@@ -19,12 +19,13 @@ const JobCardsContainer = ({ stage, jobs }) => {
     })
 
     return (
-        <Droppable droppableId={String(stage.id)}>
+        <Droppable droppableId={String(stage.id)} direction={direction}>
             {provided => (
                 <div 
                     {...provided.droppableProps} 
                     ref={provided.innerRef} 
-                    className="jobCardsContainer"
+                    className= {view === 'Full' ? 'jobCardsContainer' : 'jobCardsContainerSecond'}
+                    
                 >
                     { jobCards }
                     { provided.placeholder }
@@ -34,10 +35,30 @@ const JobCardsContainer = ({ stage, jobs }) => {
     )
 }
 
-export default JobCardsContainer;
+const inlineFlex = {
+    display: 'inline-flex'
+}
+
+
+const mapStateToProps = (state) => {
+    return { view: state.jobs.view }
+}
+
+export default connect(mapStateToProps)(JobCardsContainer);
+// export default JobCardsContainer;
 
 // const mapStateToProps = (state) => {
 //     return { jobs: state.jobs.jobs }
 // }
 
 // export default connect(mapStateToProps)(JobCardsContainer);
+
+{/* <div 
+{...provided.droppableProps} 
+ref={provided.innerRef} 
+className="jobCardsContainer"
+
+>
+{ jobCards }
+{ provided.placeholder }
+</div> */}
