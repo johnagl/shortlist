@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import  Links  from '../api/links.js';
+import  Jobs  from '../api/jobs.js';
 import DashboardPage from './components/DashboardPage';
 import MapPage from './components/MapPage';
 import CalendarPage from './components/CalendarPage';
@@ -15,7 +15,11 @@ class App extends React.Component {
 
 
   render() {
-    console.log(Links.find({}).fetch());
+    // if (jobsDB){
+    //   console.log(this.props.jobsDB);
+    // }
+    
+  
     return(
       <div id="App">
         <BrowserRouter>
@@ -40,21 +44,21 @@ const mapStateToProps = (state) => {
   }
 }
 
-// const withTracker = () => {
+// let withTracker = () => {
 //   return {
-//     links: Links.find({}).fetch(),
+//     jobsDB: Jobs.find({}).fetch(),
 //   };
 // }
 
 
 
-// export default withTracker(() => {
-//   return {
-//     links: Links.find({}).fetch(),
-//   };
-// })(App);
+export default withTracker(() => {
+  return {
+    jobsDB: Jobs.find({}).fetch(),
+  };
+})(App);
 
-export default connect(mapStateToProps)(App);
+// export default connect(mapStateToProps)(App);
 
 
 

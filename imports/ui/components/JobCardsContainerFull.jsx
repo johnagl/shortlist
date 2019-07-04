@@ -4,9 +4,42 @@ import { Container, Row, Col } from 'reactstrap';
 import JobStageCardFull from './JobStageCardFull.jsx';
 import JobCardsContainer from './JobCardsContainer.jsx';
 import './JobCardsContainerFull.css';
+import Jobs from '../../api/jobs.js';
+import { Meteor } from 'meteor/meteor';
+import { Tracker } from 'meteor/tracker';
+import { fetchJobs } from '../actions/index';
+
 
 class JobCardsContainerFull extends Component {
+    componentWillMount(){
+
+        let jobsDB;
+        Tracker.autorun(() => {
+            jobsDB = Jobs.find({}).fetch();
+        })
+        console.log(jobsDB);
+        this.props.fetchJobs(jobsDB);
+        
+    }
+
+    
+
     render() {
+        // console.log(Jobs.find({}).fetch());
+
+        // Tracker.autorun(() => {
+        //     const oldest = _.max(Monkeys.find().fetch(), (monkey) => {
+        //       return monkey.age;
+        //     });
+          
+        //     if (oldest) {
+        //       Session.set('oldest', oldest.name);
+        //     }
+        //   });
+
+        // Tracker.autorun(() => {
+        
+        // })
         let jobStageCards = this.props.stages.map(stage => {
             let jobs = this.props.jobs.filter(job => job.stage === stage.description)
 
@@ -75,5 +108,5 @@ const mapStateToProps = (state) => {
 //     </div>
 // )
 
-export default connect(mapStateToProps)(JobCardsContainerFull);
+export default connect(mapStateToProps, { fetchJobs })(JobCardsContainerFull);
 

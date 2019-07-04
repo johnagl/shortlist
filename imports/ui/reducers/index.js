@@ -17,60 +17,60 @@ initState = {
     ],
     
     jobs: [
-        {
-            _id: uuid.v4(),
-            company: 'Amazon',
-            title: 'Software Developer Co-op',
-            stage: 'Shortlist',
-            url: null,
-            salary: null,
-            isExpanded: false,
-            dates: {
-                dateAdded: new Date(),
-                applicationDeadline: 'set date',
-                applied: 'set date',
-                phoneInterview: 'set date',
-                onSiteInterview: 'set date',
-                offer: 'set date',
-                rejected: 'set date'
-            }
-        },
-        {
-            _id: uuid.v4(),
-            company: 'Hootsuite',
-            title: 'Software Developer Co-op',
-            stage: 'Applied',
-            url: null,
-            salary: null,
-            isExpanded: false,
-            dates: {
-                dateAdded: new Date(),
-                applicationDeadline: 'set date',
-                applied: 'set date',
-                phoneInterview: 'set date',
-                onSiteInterview: 'set date',
-                offer: 'set date',
-                rejected: 'set date'
-            }
-        }, 
-        {
-            _id: uuid.v4(),
-            company: 'SAP',
-            title: 'Software Developer Co-op',
-            stage: 'Shortlist',
-            url: null,
-            salary: null,
-            isExpanded: false,
-            dates: {
-                dateAdded: new Date(),
-                applicationDeadline: 'set date',
-                applied: 'set date',
-                phoneInterview: 'set date',
-                onSiteInterview: 'set date',
-                offer: 'set date',
-                rejected: 'set date'
-            }
-        }
+        // {
+        //     _id: uuid.v4(),
+        //     company: 'Amazon',
+        //     title: 'Software Developer Co-op',
+        //     stage: 'Shortlist',
+        //     url: null,
+        //     salary: null,
+        //     isExpanded: false,
+        //     dates: {
+        //         dateAdded: new Date(),
+        //         applicationDeadline: 'set date',
+        //         applied: 'set date',
+        //         phoneInterview: 'set date',
+        //         onSiteInterview: 'set date',
+        //         offer: 'set date',
+        //         rejected: 'set date'
+        //     }
+        // },
+        // {
+        //     _id: uuid.v4(),
+        //     company: 'Hootsuite',
+        //     title: 'Software Developer Co-op',
+        //     stage: 'Applied',
+        //     url: null,
+        //     salary: null,
+        //     isExpanded: false,
+        //     dates: {
+        //         dateAdded: new Date(),
+        //         applicationDeadline: 'set date',
+        //         applied: 'set date',
+        //         phoneInterview: 'set date',
+        //         onSiteInterview: 'set date',
+        //         offer: 'set date',
+        //         rejected: 'set date'
+        //     }
+        // }, 
+        // {
+        //     _id: uuid.v4(),
+        //     company: 'SAP',
+        //     title: 'Software Developer Co-op',
+        //     stage: 'Shortlist',
+        //     url: null,
+        //     salary: null,
+        //     isExpanded: false,
+        //     dates: {
+        //         dateAdded: new Date(),
+        //         applicationDeadline: 'set date',
+        //         applied: 'set date',
+        //         phoneInterview: 'set date',
+        //         onSiteInterview: 'set date',
+        //         offer: 'set date',
+        //         rejected: 'set date'
+        //     }
+        // }
     ]
 
 
@@ -80,8 +80,14 @@ initState = {
 const jobsReducer = (state = initState, action) => {
 
     switch (action.type){
+
+        case 'FETCH_JOBS':
+            return {
+                ...state,
+                jobs: action.payload
+            }
         case 'ADD_JOB':
-            console.log(Jobs.find({}).fetch());
+            // console.log(Jobs.find({}).toArray(());
             // console.log(initState2);
             return {
                 ...state,                

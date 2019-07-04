@@ -1,5 +1,12 @@
 import Jobs from '../../api/jobs.js';
 
+export const fetchJobs = (jobs) => dispatch => {
+    dispatch({
+        type: 'FETCH_JOBS',
+        payload: jobs
+    })
+}
+
 export const addJob = (job) => dispatch => {
     // console.log(Jobs.find({}).fetch());
     let id = Jobs.insert(job);
@@ -10,6 +17,8 @@ export const addJob = (job) => dispatch => {
         payload: j
     });
 };
+
+
 
 export const removeJob = (id) => dispatch => {
     dispatch({
