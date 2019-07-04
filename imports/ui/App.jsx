@@ -1,17 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import  Links  from '../api/links.js';
 import DashboardPage from './components/DashboardPage';
 import MapPage from './components/MapPage';
 import CalendarPage from './components/CalendarPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx'
 import '../../client/main.css';
+import { withTracker } from 'meteor/react-meteor-data';
+
 
 
 class App extends React.Component {
 
 
   render() {
+    console.log(Links.find({}).fetch());
     return(
       <div id="App">
         <BrowserRouter>
@@ -36,7 +40,23 @@ const mapStateToProps = (state) => {
   }
 }
 
+// const withTracker = () => {
+//   return {
+//     links: Links.find({}).fetch(),
+//   };
+// }
+
+
+
+// export default withTracker(() => {
+//   return {
+//     links: Links.find({}).fetch(),
+//   };
+// })(App);
+
 export default connect(mapStateToProps)(App);
+
+
 
 
 {/* <BrowserRouter>

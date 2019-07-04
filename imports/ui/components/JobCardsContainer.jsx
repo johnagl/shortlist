@@ -8,8 +8,8 @@ const JobCardsContainer = ({ stage, jobs, view, direction }) => {
     let jobCards = jobs.map((jobCard,index) => {
         return(
             <JobCard 
-                key={jobCard.id} 
-                id={jobCard.id} 
+                key={jobCard._id} 
+                id={jobCard._id} 
                 title={jobCard.title} 
                 company={jobCard.company}
                 color={stage.color}

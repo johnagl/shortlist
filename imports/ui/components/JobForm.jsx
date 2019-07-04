@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import uuid from 'uuid';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { addJob } from '../actions/index';
+import Jobs from '../../api/jobs.js';
 
 class JobForm extends React.Component {
     state = {
@@ -25,8 +26,7 @@ class JobForm extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const job =         {
-          id: uuid.v4(),
+        const job =  {
           company: this.state.name,
           title: this.state.title,
           stage: this.state.select,
@@ -43,10 +43,12 @@ class JobForm extends React.Component {
               rejected: 'set date'
           }
       }
-        console.log(this.state.select);
+        // console.log(this.state.select);
         // console.log(this.props.jobs);
+        // Jobs.insert(job);
         this.props.addJob(job);
         // this.props.toggle();
+        
     }
   render() {
     return (

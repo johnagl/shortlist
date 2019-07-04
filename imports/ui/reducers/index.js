@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux';
 import uuid from 'uuid';
+import Jobs from '../../api/jobs.js';
+
+// let initState2 = Jobs.find({}).fetch();
+// Jobs.find({}).fetch();
 
 initState = {
     view: 'Full',
@@ -11,9 +15,10 @@ initState = {
         {id: uuid.v4(), description: 'Offer', color: "#7A00D8"},
         {id: uuid.v4(), description: 'Rejected', color: "#000000"}
     ],
+    
     jobs: [
         {
-            id: uuid.v4(),
+            _id: uuid.v4(),
             company: 'Amazon',
             title: 'Software Developer Co-op',
             stage: 'Shortlist',
@@ -31,7 +36,7 @@ initState = {
             }
         },
         {
-            id: uuid.v4(),
+            _id: uuid.v4(),
             company: 'Hootsuite',
             title: 'Software Developer Co-op',
             stage: 'Applied',
@@ -49,7 +54,7 @@ initState = {
             }
         }, 
         {
-            id: uuid.v4(),
+            _id: uuid.v4(),
             company: 'SAP',
             title: 'Software Developer Co-op',
             stage: 'Shortlist',
@@ -76,6 +81,8 @@ const jobsReducer = (state = initState, action) => {
 
     switch (action.type){
         case 'ADD_JOB':
+            console.log(Jobs.find({}).fetch());
+            // console.log(initState2);
             return {
                 ...state,                
                 jobs: [...state.jobs, action.payload]
