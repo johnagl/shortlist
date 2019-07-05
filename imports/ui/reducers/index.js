@@ -121,7 +121,11 @@ const stagesReducer = (state = initState, action) => {
             // console.log(Jobs.find({}).toArray(());
             // console.log(initState2);
             let byIdStages = state.stages.byId;
+            // console.log("BY ID STAGES: " + json.stringify(byIdStages));
             let allIdsStages = state.stages.allIds;
+            // console.log("ALLID STAGES: " + json.stringify(byIdStages));
+            // console.log("ACTION" + json.stringify(action));
+            console.log("stageID: " + json.stringify(action.stageId));
             byIdStages[action.stageId].jobs.push(action.payload._id);
 
             let byIdJobs = state.jobs.byId;
