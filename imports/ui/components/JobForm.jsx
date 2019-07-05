@@ -10,17 +10,20 @@ class JobForm extends React.Component {
   state = {
       name: '',
       title: '',
-      select: 'Shortlist'
+      select: this.props.stages.allIds[0]
   }
 
   onChangeCompanyName = (e) => this.setState(
-      { [e.target.name]: e.target.value });
+    { [e.target.name]: e.target.value }
+  );
   
   onChangeJobTitle = (e) => this.setState(
-      { [e.target.name]: e.target.value });
+    { [e.target.name]: e.target.value }
+  );
   
   onChangeJobStage = (e) => this.setState(
-      { [e.target.name]: e.target.value });
+    { [e.target.name]: e.target.value }
+  );
 
 
 
@@ -37,7 +40,8 @@ class JobForm extends React.Component {
       // console.log(this.state.select);
       // console.log(this.props.jobs);
       // Jobs.insert(job);
-      this.props.addJob(job);
+      console.log("SELECTED: " + this.state.select);
+      this.props.addJob(job, this.state.select);
       // this.props.toggle();
   }
 
@@ -74,7 +78,7 @@ class JobForm extends React.Component {
         </FormGroup>
         <FormGroup>
           <Label for="jobStageSelect">Select</Label>
-          <Input type="select" name="select" id="jobStageSelect" value={this.state.select} onChange = {this.onChangeJobStage} >
+          <Input required defaultValue="" type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeJobStage} >
             {this.renderOptions()}
           </Input>
         </FormGroup>

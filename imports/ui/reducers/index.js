@@ -81,7 +81,6 @@ const stagesReducer = (state = initState, action) => {
         case 'FETCH_STAGES':
             let byId = {};
             let allIds = [];
-
             // console.log("PAYLOAD: " + JSON.stringify(action.payload));
 
             for(let stage of action.payload) {
