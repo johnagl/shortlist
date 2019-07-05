@@ -35,14 +35,14 @@ class JobCardsContainerFull extends Component {
             // console.log("line 35: " + stageId);
             // console.log("line 36" + JSON.stringify(this.props.stages.byId[stageId]));
             let jobIds = this.props.stages.byId[stageId].jobs;
-            console.log("JOBIDS: " + JSON.stringify(jobIds));
+            // console.log("JOBIDS: " + JSON.stringify(jobIds));
             let stage = this.props.stages.byId[stageId];
             let jobs = [];
             for(let id of jobIds) {
-                console.log("in loop " + JSON.stringify(this.props.jobs.byId[id]));
+                // console.log("in loop " + JSON.stringify(this.props.jobs.byId[id]));
                 jobs.push(this.props.jobs.byId[id]);
             }
-            console.log("JOBSSSS: " + JSON.stringify(jobs));
+            // console.log("JOBSSSS: " + JSON.stringify(jobs));
             // let jobs = this.props.jobs.allIds.filter(job => job.stage === stage.description)
 
             return (
