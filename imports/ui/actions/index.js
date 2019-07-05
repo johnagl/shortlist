@@ -7,17 +7,24 @@ export const fetchJobs = (jobs) => dispatch => {
     })
 }
 
-export const addJob = (job) => dispatch => {
+export const fetchStages = (stages) => dispatch => {
+    dispatch({
+        type: 'FETCH_STAGES',
+        payload: stages
+    })
+}
+
+export const addJob = (job, stageId) => dispatch => {
     // console.log(Jobs.find({}).fetch());
     let id = Jobs.insert(job);
     let j = Jobs.findOne({_id: id});
-    // console.log("JOB: " + JSON.stringify(j));
+    console.log("JOB: " + JSON.stringify(j));
     dispatch({
         type: 'ADD_JOB',
-        payload: j
+        payload: j,
+        stageId: stageId
     });
 };
-
 
 
 export const removeJob = (id) => dispatch => {

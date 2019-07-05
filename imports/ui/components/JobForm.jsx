@@ -7,50 +7,61 @@ import { addJob } from '../actions/index';
 import Jobs from '../../api/jobs.js';
 
 class JobForm extends React.Component {
-    state = {
-        name: '',
-        title: '',
-        select: 'Shortlist'
+  state = {
+      name: '',
+      title: '',
+      select: 'Shortlist'
+  }
+
+  onChangeCompanyName = (e) => this.setState(
+      { [e.target.name]: e.target.value });
+  
+  onChangeJobTitle = (e) => this.setState(
+      { [e.target.name]: e.target.value });
+  
+  onChangeJobStage = (e) => this.setState(
+      { [e.target.name]: e.target.value });
+
+
+
+  onSubmit = (e) => {
+      e.preventDefault();
+      const job =  {
+        company: this.state.name,
+        title: this.state.title,
+        stage: this.state.select,
+        dates: {
+            createdAt: new Date(),
+        }
+    }
+      // console.log(this.state.select);
+      // console.log(this.props.jobs);
+      // Jobs.insert(job);
+      this.props.addJob(job);
+      // this.props.toggle();
+  }
+
+  renderOptions() {
+    let stagesIds = this.props.stages.allIds;
+    let stages = [];
+    for(let id of stagesIds) {
+      stages.push(
+        {
+          _id: id,
+          title: this.props.stages.byId[id].title
+        });
     }
 
-    onChangeCompanyName = (e) => this.setState(
-        { [e.target.name]: e.target.value });
-    
-    onChangeJobTitle = (e) => this.setState(
-        { [e.target.name]: e.target.value });
-    
-    onChangeJobStage = (e) => this.setState(
-        { [e.target.name]: e.target.value });
+    let options = stages.map(stage => {
+      return(<option key={stage._id} value={stage._id}>{stage.title}</option>)              
+    });
+
+    return options;
+  }
 
 
-
-    onSubmit = (e) => {
-        e.preventDefault();
-        const job =  {
-          company: this.state.name,
-          title: this.state.title,
-          stage: this.state.select,
-          url: null,
-          salary: null,
-          isExpanded: false,
-          dates: {
-              dateAdded: new Date(),
-              applicationDeadline: 'set date',
-              applied: 'set date',
-              phoneInterview: 'set date',
-              onSiteInterview: 'set date',
-              offer: 'set date',
-              rejected: 'set date'
-          }
-      }
-        // console.log(this.state.select);
-        // console.log(this.props.jobs);
-        // Jobs.insert(job);
-        this.props.addJob(job);
-        // this.props.toggle();
-        
-    }
   render() {
+
     return (
       <Form onSubmit={this.onSubmit}>
         <FormGroup>
@@ -64,12 +75,7 @@ class JobForm extends React.Component {
         <FormGroup>
           <Label for="jobStageSelect">Select</Label>
           <Input type="select" name="select" id="jobStageSelect" value={this.state.select} onChange = {this.onChangeJobStage} >
-            <option>Shortlist</option>
-            <option>Applied</option>
-            <option>Phone Interview</option>
-            <option>On Site Interview</option>
-            <option>Offer</option>
-            <option>Rejected</option>
+            {this.renderOptions()}
           </Input>
         </FormGroup>
         <Button>Submit</Button>
@@ -79,7 +85,7 @@ class JobForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { jobs: state.jobs.jobs }
+    return { jobs: state.jobs.jobs, stages: state.stages.stages }
 }
 
 // const mapDispatchToProps = (dispatch) => {

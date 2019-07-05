@@ -1,16 +1,37 @@
 import { Meteor } from 'meteor/meteor';
 import Links from '../imports/api/links.js';
 import Jobs from '../imports/api/jobs.js';
+import Stages from '../imports/api/stages.js';
 
 function insertJob(company, title) {
-  Jobs.insert({ company, title, createdAt: new Date() });
+  Jobs.insert(
+    { 
+      company, 
+      title, 
+      createdAt: new Date() 
+    });
 }
 
-function insertLink(title, url) {
-  Links.insert({ title, url, createdAt: new Date() });
+function insertStage(title, color) {
+  Stages.insert(
+    { 
+      title, 
+      color, 
+      jobs:[] 
+    });
 }
 
 Meteor.startup(() => {
+
+  // If the Stages collection is empty, add some data.
+  if (Stages.find().count() === 0) {
+    insertStage("Shortlist", "#EE6352");
+    insertStage("Applied", "#FFB43D");
+    insertStage("Phone Interview", "#46B4A4");
+    insertStage("On Site Interview", "#1A80E0");
+    insertStage("Offer","#7A00D8");
+    insertStage("Rejected", "#000000");
+  }
 
   // If the Jobs collection is empty, add some data.
   // if (Jobs.find().count() === 0) {
@@ -32,29 +53,6 @@ Meteor.startup(() => {
   //   insertJob(
   //     'Apple',
   //     'Software Engineering Intern'
-  //   );
-  // }
-
-  // // If the Links collection is empty, add some data.
-  // if (Links.find().count() === 0) {
-  //   insertLink(
-  //     'Do the Tutorial',
-  //     'https://www.meteor.com/tutorials/react/creating-an-app'
-  //   );
-
-  //   insertLink(
-  //     'Follow the Guide',
-  //     'http://guide.meteor.com'
-  //   );
-
-  //   insertLink(
-  //     'Read the Docs',
-  //     'https://docs.meteor.com'
-  //   );
-
-  //   insertLink(
-  //     'Discussions',
-  //     'https://forums.meteor.com'
   //   );
   // }
 });

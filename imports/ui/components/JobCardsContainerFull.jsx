@@ -5,47 +5,44 @@ import JobStageCardFull from './JobStageCardFull.jsx';
 import JobCardsContainer from './JobCardsContainer.jsx';
 import './JobCardsContainerFull.css';
 import Jobs from '../../api/jobs.js';
+import Stages from '../../api/stages.js';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
-import { fetchJobs } from '../actions/index';
+import { fetchJobs, fetchStages } from '../actions/index';
 
 
 class JobCardsContainerFull extends Component {
     componentWillMount(){
-
-        let jobsDB;
+        let stagesList;
         Tracker.autorun(() => {
-            jobsDB = Jobs.find({}).fetch();
-        })
-        console.log(jobsDB);
-        this.props.fetchJobs(jobsDB);
-        
+            stagesList = Stages.find({}).fetch();
+            console.log("STAGES LIST: " + JSON.stringify(stagesList));
+            this.props.fetchStages(stagesList);
+        });
+
+        let jobsList;
+        Tracker.autorun(() => {
+            jobsList = Jobs.find({}).fetch();
+            console.log("JOBS LIST: " + JSON.stringify(jobsList));
+            this.props.fetchJobs(jobsList);
+        });
     }
 
-    
-
     render() {
-        // console.log(Jobs.find({}).fetch());
-
-        // Tracker.autorun(() => {
-        //     const oldest = _.max(Monkeys.find().fetch(), (monkey) => {
-        //       return monkey.age;
-        //     });
-          
-        //     if (oldest) {
-        //       Session.set('oldest', oldest.name);
-        //     }
-        //   });
-
-        // Tracker.autorun(() => {
-        
-        // })
-        let jobStageCards = this.props.stages.map(stage => {
-            let jobs = this.props.jobs.filter(job => job.stage === stage.description)
+        console.log("JobCardsContainerFull line 32: " + JSON.stringify(this.props.stages.allIds));
+        let jobStageCards = this.props.stages.allIds.map(stageId => {
+            let jobIds = this.props.stages.byId[stageId].jobs;
+            let stage = this.props.stages.byId[stageId];
+            let jobs = [];
+            for(let id of jobIds) {
+                jobs.push(this.props.jobs.byId[id]);
+            }
+            console.log("JOBSSSS: " + JSON.stringify(jobs));
+            // let jobs = this.props.jobs.allIds.filter(job => job.stage === stage.description)
 
             return (
-                <div key={stage.id} className='columnStyle'>
-                    <JobStageCardFull stage={stage.description}/>
+                <div key={stage._id} className='columnStyle'>
+                    <JobStageCardFull stage={stage}/>
                     <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
                 </div>
             )
@@ -60,53 +57,8 @@ class JobCardsContainerFull extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { stages: state.jobs.stages, jobs: state.jobs.jobs, view: state.jobs.view }
+    return { stages: state.stages.stages, jobs: state.jobs.jobs, view: state.view.view }
 }
 
-
-// render() {
-//     let jobStageCards = this.props.stages.map(stage => {
-//         let jobCards = this.props.jobs.map(jobCard => {
-//             if (jobCard.stage === stage.description){
-//                 return (
-//                     <JobCard id={jobCard.id} title={jobCard.title} company={jobCard.company}/>                
-//                 )
-//             }
-//         })
-//         return (
-//             <Col className='columnStyle' xs="6" sm="3">
-//                 <JobStageCardFull stage={stage.description}/>
-//                 { jobCards }
-//             </Col>
-//         )
-//     })
-//     return (
-        
-//         <div className="jobCardsContainerFull" >
-//             <Container fluid >
-//                 <Row className='noFlexWrap'>
-//                     {jobStageCards}                       
-//                 </Row>
-//             </Container>  
-
-//         </div>
-//     )
-// }
-
-
-
-
-
-// return (
-            
-//     <div className="jobCardsContainerFull">
-//         <Container fluid >
-//             <Row className='noFlexWrap'>
-//                 {jobStageCards}                       
-//             </Row>
-//         </Container>  
-//     </div>
-// )
-
-export default connect(mapStateToProps, { fetchJobs })(JobCardsContainerFull);
+export default connect(mapStateToProps, { fetchJobs, fetchStages })(JobCardsContainerFull);
 
