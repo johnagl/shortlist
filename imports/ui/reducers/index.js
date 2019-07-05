@@ -41,18 +41,28 @@ const jobsReducer = (state = initState, action) => {
         case 'ADD_JOB':
             // console.log(Jobs.find({}).toArray(());
             // console.log(initState2);
+            let byIdStages = state.stages.byId;
+            let allIdsStages = state.stages.allIds;
+            console.log(JSON.stringify(action.stageId));
+            console.log(JSON.stringify(byIdStages));
+            console.log(JSON.stringify(byIdStages[action.stageId]));
+            byIdStages[action.stageId].jobs.push(action.payload._id);
 
-            let newById = state.jobs.byId;
-            let newAllIds = state.jobs.allIds;
+            let byIdJobs = state.jobs.byId;
+            let allIdsJobs = state.jobs.allIds;
 
-            newById[action.payload._id] = action.payload;
-            newAllIds.push(action.payload._id);
+            byIdJobs[action.payload._id] = action.payload;
+            allIdsJobs.push(action.payload._id);
 
             return {
-                ...state,                
+                ...state,
+                stages: {
+                    byId: byIdStages,
+                    allIds: allIdsStages
+                },                
                 jobs: {
-                    byId: newById,
-                    allIds: newAllIds
+                    byId: byIdJobs,
+                    allIds: allIdsJobs
                 }
             }
         
@@ -108,15 +118,27 @@ const stagesReducer = (state = initState, action) => {
             }
 
         case 'ADD_JOB':
-            let newById = state.stages.byId;
-            let newAllIds = state.stages.allIds;
-            newById[action.stageId].jobs.push(action.payload._id);
+            // console.log(Jobs.find({}).toArray(());
+            // console.log(initState2);
+            let byIdStages = state.stages.byId;
+            let allIdsStages = state.stages.allIds;
+            byIdStages[action.stageId].jobs.push(action.payload._id);
+
+            let byIdJobs = state.jobs.byId;
+            let allIdsJobs = state.jobs.allIds;
+
+            byIdJobs[action.payload._id] = action.payload;
+            allIdsJobs.push(action.payload._id);
 
             return {
-                ...state,                
+                ...state,
                 stages: {
-                    byId: newById,
-                    allIds: newAllIds
+                    byId: byIdStages,
+                    allIds: allIdsStages
+                },                
+                jobs: {
+                    byId: byIdJobs,
+                    allIds: allIdsJobs
                 }
             }
         default:

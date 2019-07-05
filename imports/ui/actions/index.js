@@ -1,4 +1,5 @@
 import Jobs from '../../api/jobs.js';
+import Stages from '../../api/stages.js';
 
 export const fetchJobs = (jobs) => dispatch => {
     dispatch({
@@ -17,6 +18,15 @@ export const fetchStages = (stages) => dispatch => {
 export const addJob = (job, stageId) => dispatch => {
     // console.log(Jobs.find({}).fetch());
     let id = Jobs.insert(job);
+
+    console.log("Actions line 21: " + JSON.stringify(job));
+    console.log("id " + id);
+    console.log("Actions line 22: " + JSON.stringify(stageId));
+    Stages.update(
+    { _id : stageId},
+    { $push: {"jobs": id}}
+    );
+
     let j = Jobs.findOne({_id: id});
     console.log("JOB: " + JSON.stringify(j));
     dispatch({
