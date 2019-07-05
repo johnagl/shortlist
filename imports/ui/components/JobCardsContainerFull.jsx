@@ -26,6 +26,14 @@ class JobCardsContainerFull extends Component {
             // console.log("JOBS LIST: " + JSON.stringify(jobsList));
             this.props.fetchJobs(jobsList);
         });
+
+        // stagesList = Stages.find({}).fetch();
+
+        // this.props.fetchStages(stagesList);
+        // jobsList = Jobs.find({}).fetch();
+  
+        // this.props.fetchJobs(jobsList);
+        
     }
 
     render() {

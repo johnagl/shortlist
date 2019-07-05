@@ -85,11 +85,12 @@ const jobsReducer = (state = initState, action) => {
             }
         
         case 'REMOVE_JOB':
-            
-            return {
-                ...state,
-                jobs: [...state.jobs.filter(job => job._id !== action._id)]
-            }
+            console.log('_id : ' + action._id);
+            console.log('stageID :' + action.stageID);
+            // return {
+            //     ...state,
+            //     jobs: [...state.jobs.filter(job => job._id !== action._id)]
+            // }
         
         case 'DRAG_HAPPENED' :
             // const {

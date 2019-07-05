@@ -38,12 +38,13 @@ export const addJob = (job, stageId) => dispatch => {
 
 
 export const removeJob = (id , stageID) => dispatch => {
-    Jobs.remove({_id : id})
-    Stages.update({$pull : {jobs: id}})
-    // dispatch({
-    //     type: 'REMOVE_JOB',
-    //     _id: id
-    // }); 
+    Jobs.remove({_id : id});
+    Stages.update({_id : stageID }, { $pull: {"jobs": id}});
+    dispatch({
+        type: 'REMOVE_JOB',
+        _id: id,
+        stageID: stageID
+    }); 
 };
 
 export const toggleJobCard = (id) => {

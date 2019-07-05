@@ -16,7 +16,7 @@ const JobCard = ({ id, title, company, index, color, stage }) => {
           >
             <div className="job-card" style={{"borderColor": color}} onClick={handleEdit}>
               <div className="card-body" >
-                <DeleteButton stageID = {stage} jobID={ id } color={ color }/>
+                <DeleteButton stage = {stage} jobID={ id } color={ color }/>
                 <div className="card-title">{ company }</div>
                 <p className="card-text">{ title }</p>
               </div>
