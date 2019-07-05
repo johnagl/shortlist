@@ -15,6 +15,7 @@ const JobCardsContainer = ({ stage, jobs, view, direction }) => {
                 company={job.company}
                 color={stage.color}
                 index={index}
+                stage ={stage}
             />
         )               
     })

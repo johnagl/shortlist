@@ -85,9 +85,10 @@ const jobsReducer = (state = initState, action) => {
             }
         
         case 'REMOVE_JOB':
+            
             return {
                 ...state,
-                jobs: [...state.jobs.filter(job => job.id !== action.id)]
+                jobs: [...state.jobs.filter(job => job._id !== action._id)]
             }
         
         case 'DRAG_HAPPENED' :
