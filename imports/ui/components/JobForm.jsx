@@ -88,7 +88,7 @@ class JobForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { jobs: state.jobs.jobs, stages: state.stages.stages }
+    return { jobs: state.jobs.jobs, stages: state.jobs.stages }
 }
 
 // const mapDispatchToProps = (dispatch) => {

@@ -19,6 +19,7 @@ function insertStage(title, color) {
       color, 
       jobs:[] 
     });
+    
 }
 
 Meteor.startup(() => {
