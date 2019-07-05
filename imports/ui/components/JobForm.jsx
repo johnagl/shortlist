@@ -32,7 +32,6 @@ class JobForm extends React.Component {
       const job =  {
         company: this.state.name,
         title: this.state.title,
-        stage: this.state.select,
         dates: {
             createdAt: new Date(),
         }

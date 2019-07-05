@@ -20,7 +20,6 @@ initState = {
 const jobsReducer = (state = initState, action) => {
 
     switch (action.type){
-
         case 'FETCH_JOBS':
             let byId = {};
             let allIds = [];
@@ -29,8 +28,8 @@ const jobsReducer = (state = initState, action) => {
                 byId[job._id] = job;
                 allIds.push(job._id);
             }
-            console.log("BY ID: " + JSON.stringify(byId));
-            console.log("BY ALLIDS: " + JSON.stringify(allIds));
+            // console.log("BY ID: " + JSON.stringify(byId));
+            // console.log("BY ALLIDS: " + JSON.stringify(allIds));
 
             return {
                 ...state,
@@ -42,9 +41,19 @@ const jobsReducer = (state = initState, action) => {
         case 'ADD_JOB':
             // console.log(Jobs.find({}).toArray(());
             // console.log(initState2);
+
+            let newById = state.jobs.byId;
+            let newAllIds = state.jobs.allIds;
+
+            newById[action.payload._id] = action.payload;
+            newAllIds.push(action.payload._id);
+
             return {
                 ...state,                
-                jobs: [...state.jobs, action.payload]
+                jobs: {
+                    byId: newById,
+                    allIds: newAllIds
+                }
             }
         
         case 'REMOVE_JOB':
@@ -95,6 +104,19 @@ const stagesReducer = (state = initState, action) => {
                 stages: {
                     byId: byId,
                     allIds: allIds
+                }
+            }
+
+        case 'ADD_JOB':
+            let newById = state.stages.byId;
+            let newAllIds = state.stages.allIds;
+            newById[action.stageId].jobs.push(action.payload._id);
+
+            return {
+                ...state,                
+                stages: {
+                    byId: newById,
+                    allIds: newAllIds
                 }
             }
         default:
