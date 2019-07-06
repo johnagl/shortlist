@@ -23,6 +23,7 @@ class App extends React.Component {
     
   
     return(
+      <div>
       <div id="App">
         <BrowserRouter>
           <Navbar/>
@@ -33,8 +34,9 @@ class App extends React.Component {
               <Route path='/calendar' component={CalendarPage} />
             </Switch>
           </div>
-          <Footer/>
         </BrowserRouter>
+      </div>
+      <Footer/>
       </div>
     );
   }

@@ -75,15 +75,14 @@ nav a {
 }
 
 .dropdown-toggle {
-  transition: 1s;
+  transition: 0.5s;
 }
 
-/* nav a:hover {
-  background-color: #4484CE;
-  color: white;
+nav a:hover {
+  /* border-bottom: 2px solid #ff671F */
 }
 
-.active {
+/* .active {
   color: #4484CE;
   background-color: #D9D9D9;
 } */
@@ -177,5 +176,25 @@ nav a {
   flex: 1;
   overflow-y: auto;
   display: inline-flex;
+}
 
+/* Footer */
+.footer {
+  border-top: 1px solid #EEEEEE;
+  display: flex;
+  padding: 10px 40px;
+  height: 60px;
+  background: #003DA5;
+}
+
+.footer a {
+  color: #FFFFFF;
+  padding: 2px;
+}
+
+.footer a:hover {
+  color: #FFFFFF;
+  border-bottom: none;
+  text-decoration: none;
+  border-bottom: 2px solid#FF671F;
 }
