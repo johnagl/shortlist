@@ -18,7 +18,7 @@ class App extends React.Component {
 
   render() {
     // if (jobsDB){
-    console.log(this.props.jobsDB);
+    // console.log(this.props.jobsDB);
     // }
     
   

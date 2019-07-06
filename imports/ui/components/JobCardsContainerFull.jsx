@@ -33,7 +33,6 @@ class JobCardsContainerFull extends Component {
         // jobsList = Jobs.find({}).fetch();
   
         // this.props.fetchJobs(jobsList);
-        
     }
 
     render() {

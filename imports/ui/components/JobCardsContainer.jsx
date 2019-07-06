@@ -6,7 +6,7 @@ import { Droppable } from "react-beautiful-dnd";
 const JobCardsContainer = ({ stage, jobs, view, direction }) => {
     
     let jobCards = jobs.map((job, index) => {
-        console.log("Job cards container line 9 " + JSON.stringify(job));
+        // console.log("Job cards container line 9 " + JSON.stringify(job));
         return(
             <JobCard 
                 key={job._id} 
@@ -21,7 +21,7 @@ const JobCardsContainer = ({ stage, jobs, view, direction }) => {
     })
 
     return (
-        <Droppable droppableId={String(stage.id)} direction={direction}>
+        <Droppable droppableId={String(stage._id)} direction={direction}>
             {provided => (
                 <div 
                     {...provided.droppableProps} 

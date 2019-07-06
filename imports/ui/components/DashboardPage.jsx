@@ -11,9 +11,10 @@ class DashboardPage extends React.Component {
   onDragEnd = (result) => {
     // TODO: reordering logic
     const { destination, source, draggableId } = result;
+    console.log("sup");
 
     if(!destination) return;
-    
+    console.log("yo");
     this.props.sort(
       source.droppableId,
       destination.droppableId,
@@ -21,7 +22,6 @@ class DashboardPage extends React.Component {
       destination.index,
       draggableId
     );
-
   }
 
     render() {

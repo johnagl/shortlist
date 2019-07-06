@@ -30,7 +30,7 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Navbar class = "change" dark expand="md" style={{"color": "white", "background":"#003DA5"}}>
+        <Navbar className= "change" dark expand="md">
           <NavbarBrand href="/">shortlist</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -65,5 +65,6 @@ export default class Example extends React.Component {
     );
   }
 }
+// style={{"color": "white", "background":"#003DA5"}}
 
 {/* <Navbar color="light" light color="info" expand="md"></Navbar> */}

@@ -54,21 +54,36 @@ export const toggleJobCard = (id) => {
     };
 };
 
-export const sort = (
-        droppableIdStart, 
-        droppableIdEnd, 
-        droppableIndexStart, 
-        droppableIndexEnd, 
-        draggableId
-    ) => dispatch => {
-        dispatch({
-            type: 'DRAG_HAPPENED',
-            payload: {
-                droppableIdStart,
-                droppableIdEnd,
-                droppableIndexStart,
-                droppableIndexEnd,
-                draggableId
-            }
-        });
+export const sort = (droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId) => dispatch => {
+        let sourceJobs = Stages.findOne({_id: droppableIdStart}).jobs; 
+        // sourceJobs = JSON.parse(sourceJobs);   
+        console.log("Source jobs before: " + JSON.stringify(sourceJobs));
+
+        let destJobs = Stages.findOne({_id: droppableIdEnd}).jobs;
+        console.log("Dest jobs before: " + JSON.stringify(destJobs));
+
+        if(droppableIdStart === droppableIdEnd) {
+            console.log("hi");
+            const jobId = destJobs.splice(droppableIndexStart, 1);
+            destJobs.splice(droppableIndexEnd, 0, ...jobId);
+            console.log("Dest jobs after: " + JSON.stringify(destJobs));
+            Stages.update({_id: droppableIdEnd}, {jobs: destJobs});
+        } else {
+            console.log("yolo");
+            const jobId = sourceJobs.splice(droppableIndexStart, 1);
+            destJobs.splice(droppableIndexEnd, 0, ...jobId);
+            Stages.update({_id: droppableIdStart}, {jobs: sourceJobs});
+            Stages.update({_id: droppableIdEnd}, {jobs: destJobs});
+        }
+
+        // dispatch({
+        //     type: 'DRAG_HAPPENED',
+        //     payload: {
+        //         droppableIdStart,
+        //         droppableIdEnd,
+        //         droppableIndexStart,
+        //         droppableIndexEnd,
+        //         draggableId
+        //     }
+        // });
 };

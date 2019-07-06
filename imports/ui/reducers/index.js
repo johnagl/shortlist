@@ -93,19 +93,23 @@ const jobsReducer = (state = initState, action) => {
             // }
         
         case 'DRAG_HAPPENED' :
-            // const {
-            //     droppableIdStart,
-            //     droppableIdEnd,
-            //     droppableIndexStart,
-            //     droppableIndexEnd,
-            //     draggableId
-            // } = action.payload;
+            const {
+                droppableIdStart,
+                droppableIdEnd,
+                droppableIndexStart,
+                droppableIndexEnd,
+                draggableId
+            } = action.payload;
 
-            // const newState = [...state];
+            const newState = [...state];
 
-            // if(droppableIdStart === droppableIdEnd) {
+            if(droppableIdStart === droppableIdEnd) {
+                const stage = state.jobs.byId[droppableIdEnd];
+                const jobId = stage.jobs.splice(droppableIndexStart, 1);
+                stage.jobs.splice(droppableIndexEnd, 0, ...jobId);
+            }
 
-            // }
+            return newState;
                    
         case 'TOGGLE_JOB_CARD':
             return state;
