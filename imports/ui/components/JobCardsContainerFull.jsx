@@ -55,7 +55,7 @@ class JobCardsContainerFull extends Component {
 
             return (
                 <div key={stage._id} className='columnStyle'>
-                    <JobStageCardFull stage={stage}/>
+                    <JobStageCardFull stage={stage} jobs={jobs}/>
                     <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
                 </div>
             )
