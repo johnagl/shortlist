@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.change {
+  color: #003DA5;
+  background-color: #003DA5;
+}
 #react-target {
   display: flex;
   flex-flow: column;
@@ -37,7 +41,9 @@ code {
 nav {
   /* padding: 16px;
   color: #4484CE; */
-  background-color: #B1E5F2;
+  /* background-color: #B1E5F2; */
+  background-color:#FFFFFF;
+  color: #003DA5;
   overflow: hidden;
   display: flex;
   width: 100%;

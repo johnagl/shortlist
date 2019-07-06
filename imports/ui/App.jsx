@@ -6,6 +6,8 @@ import MapPage from './components/MapPage';
 import CalendarPage from './components/CalendarPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx'
+import Footer from './components/Footer.jsx'
+
 import '../../client/main.css';
 import { withTracker } from 'meteor/react-meteor-data';
 
@@ -31,6 +33,7 @@ class App extends React.Component {
               <Route path='/calendar' component={CalendarPage} />
             </Switch>
           </div>
+          <Footer/>
         </BrowserRouter>
       </div>
     );

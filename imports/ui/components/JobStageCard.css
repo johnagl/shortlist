@@ -1,8 +1,9 @@
 .jobStageCardContainer {
-    width: 299px;
+    width: 100%;
     padding: 30px 0px 10px 0px;
     margin: 0;
     height: 146px;
+    background: white;
 }
 
 .jobStageText {
@@ -14,15 +15,16 @@
     text-align: center;
     width: 100%;
     margin: 10px 0px;
-    background:  #272635;
-    color: #FFFFFF;
-    border-style: solid;
-    border-color: #272635;
+    background: #E8E8E8;
+    color: grey;
+    border: none;
+    /* border-style: solid; */
+    /* border-color: #272635; */
 }
 
 .addButton:hover {
     background: #FFFFFF;
-    color: #272635;
+    color: #ff671f;
 }
 
 .jobStageCardStyle  {
