@@ -30,8 +30,8 @@ export default class Example extends React.Component {
   render() {
     return (
       <div style = {{"text-align":"right"}}>
-        <Navbar class = "change" dark expand="md" style={{"color": "white", "background":"#FF671F", "text-align":"right"}}>
-          <NavbarBrand style = {{"text-align": "right"}} href="/">contact us</NavbarBrand>
+        <Navbar class = "change" dark expand="md" style={{"color": "white", "background":"#fcb18d" , "text-align":"right"}}>
+          <NavbarBrand style = {{"text-align": "right", "color":"grey"}} href="/">contact us</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-left" navbar>
