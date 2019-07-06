@@ -22,14 +22,16 @@ class AddButtonModal extends React.Component {
 
   render() {
     return (
-      <React.Fragment style = {{"text-align":"center"}}>
-        <Button className="addButton" onClick={this.toggle}>Add Job</Button>
-            <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-            <ModalHeader toggle={this.toggle}>Add a Job</ModalHeader>
-            <ModalBody>
-              <JobForm toggle={this.toggle}/>
-            </ModalBody>
-        </Modal>
+      <React.Fragment /*style = {{"textAlign":"center"}}*/>
+        <div className = "add-button-container">
+          <Button className="addButton" onClick={this.toggle}>Add Job</Button>
+              <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+              <ModalHeader toggle={this.toggle}>Add a Job</ModalHeader>
+              <ModalBody>
+                <JobForm toggle={this.toggle}/>
+              </ModalBody>
+          </Modal>
+        </div>
       </React.Fragment>
 
     );

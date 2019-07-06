@@ -77,7 +77,7 @@ class JobForm extends React.Component {
         </FormGroup>
         <FormGroup>
           <Label for="jobStageSelect">Select</Label>
-          <Input required defaultValue="" type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeJobStage} >
+          <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeJobStage} >
             {this.renderOptions()}
           </Input>
         </FormGroup>

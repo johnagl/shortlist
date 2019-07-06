@@ -125,12 +125,11 @@ nav a {
 .job-card {
   background: #FFFFFF;
   position: relative;
-  margin-top: 5px;
+  margin-bottom: 10px;
   border-radius: 10px;
   border-style: solid;
-
-  width: 299px;
-  height: 109px;
+  width: 100%;
+  min-height: 109px;
 }
 
 .delete-button {
@@ -154,16 +153,23 @@ nav a {
   opacity: 75%;
 }
 
+.job-card .card-text {
+  white-space: nowrap; 
+  width: 80%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+
 .job-card .card-title {
   font-weight: bold;
   font-size: 14pt;
+  text-overflow: ellipsis;
 }
 
 .jobCardsContainer {
   width: 100%;
   flex: 1;
   overflow-y: auto;
-
 }
 
 .jobCardsContainerSecond {

@@ -10,7 +10,7 @@ export default class JobStageCardFull extends Component {
     render() {
         return (
             <div className="jobStageCardContainer">
-                <div className = "jobStageText">{this.props.stage.title}</div>
+                <div className = "jobStageTitle jobStageText">{this.props.stage.title}</div>
                 <div className="jobStageText"> {this.props.jobs.length} Job(s) </div>
                 <AddButtonModal />
             </div>                                    
