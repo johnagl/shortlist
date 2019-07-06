@@ -96,20 +96,23 @@ const jobsReducer = (state = initState, action) => {
             const {
                 droppableIdStart,
                 droppableIdEnd,
-                droppableIndexStart,
-                droppableIndexEnd,
-                draggableId
+                sourceJobs,
+                destJobs,
             } = action.payload;
 
-            const newState = [...state];
+            const newStages = state.stages;
 
             if(droppableIdStart === droppableIdEnd) {
-                const stage = state.jobs.byId[droppableIdEnd];
-                const jobId = stage.jobs.splice(droppableIndexStart, 1);
-                stage.jobs.splice(droppableIndexEnd, 0, ...jobId);
+                newStages.byId[droppableIdEnd] = destJobs;
+            } else {
+                newStages.byId[droppableIdStart] = sourceJobs;
+                newStages.byId[droppableIdEnd] = endJobs; 
             }
 
-            return newState;
+            return {
+                ...state,
+                stages: newStages
+            }
                    
         case 'TOGGLE_JOB_CARD':
             return state;

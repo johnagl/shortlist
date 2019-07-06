@@ -63,27 +63,26 @@ export const sort = (droppableIdStart, droppableIdEnd, droppableIndexStart, drop
         console.log("Dest jobs before: " + JSON.stringify(destJobs));
 
         if(droppableIdStart === droppableIdEnd) {
-            console.log("hi");
+            // console.log("hi");
             const jobId = destJobs.splice(droppableIndexStart, 1);
             destJobs.splice(droppableIndexEnd, 0, ...jobId);
             console.log("Dest jobs after: " + JSON.stringify(destJobs));
-            Stages.update({_id: droppableIdEnd}, {jobs: destJobs});
+            Stages.update({_id: droppableIdEnd}, {$set: {jobs: destJobs}});
         } else {
-            console.log("yolo");
+            // console.log("yolo");
             const jobId = sourceJobs.splice(droppableIndexStart, 1);
             destJobs.splice(droppableIndexEnd, 0, ...jobId);
-            Stages.update({_id: droppableIdStart}, {jobs: sourceJobs});
-            Stages.update({_id: droppableIdEnd}, {jobs: destJobs});
+            Stages.update({_id: droppableIdStart}, {$set: {jobs: sourceJobs}});
+            Stages.update({_id: droppableIdEnd}, {$set: {jobs: destJobs}});
         }
 
-        // dispatch({
-        //     type: 'DRAG_HAPPENED',
-        //     payload: {
-        //         droppableIdStart,
-        //         droppableIdEnd,
-        //         droppableIndexStart,
-        //         droppableIndexEnd,
-        //         draggableId
-        //     }
-        // });
+        dispatch({
+            type: 'DRAG_HAPPENED',
+            payload: {
+                droppableIdStart,
+                droppableIdEnd,
+                sourceJobs,
+                destJobs
+            }
+        });
 };
