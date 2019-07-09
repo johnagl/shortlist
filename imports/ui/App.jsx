@@ -59,6 +59,8 @@ class App extends React.Component {
 
 
 export default withTracker(() => {
+  Meteor.subscribe('jobs');
+  Meteor.subscribe('stages');
   return {
     jobsList: Jobs.find({}).fetch(),
     stagesList: Stages.find({}).fetch(),

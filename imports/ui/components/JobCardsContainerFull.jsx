@@ -42,7 +42,7 @@ class JobCardsContainerFull extends Component {
 
 
     render() {
-        console.log(this.props.jobsList);
+        // console.log(this.props.jobsList);
         // console.log("STAGES: " + JSON.stringify(this.props.stages.allIds));
         // console.log("JobCardsContainerFull line 32: " + JSON.stringify(this.props.stages.allIds));
         let jobStageCards = this.props.stages.allIds.map(stageId => {

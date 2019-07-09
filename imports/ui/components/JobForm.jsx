@@ -30,6 +30,7 @@ class JobForm extends React.Component {
   onSubmit = (e) => {
       e.preventDefault();
       const job =  {
+        _id: uuid(),
         company: this.state.name,
         title: this.state.title,
         dates: {
