@@ -25,11 +25,12 @@ class DashboardPage extends React.Component {
   }
 
     render() {
+      // console.log(this.props.jobsList);
       
         let CurrentView = () => {
           if (this.props.view === 'Full'){
             return (
-              <JobCardsContainerFull direction="vertical"/>
+              <JobCardsContainerFull direction="vertical" jobsList={this.props.jobsList} stagesList={this.props.stagesList}/>
             )
           }
           if (this.props.view === 'FullSecond'){

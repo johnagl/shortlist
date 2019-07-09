@@ -12,30 +12,37 @@ import { fetchJobs, fetchStages } from '../actions/index';
 
 
 class JobCardsContainerFull extends Component {
-    componentWillMount(){
-        let stagesList;
-        Tracker.autorun(() => {
-            stagesList = Stages.find({}).fetch();
-            // console.log("STAGES LIST: " + JSON.stringify(stagesList));
-            this.props.fetchStages(stagesList);
-        });
+    
+    // componentWillMount(){
+    //     // let stagesList;
+    //     // Tracker.autorun(() => {
+    //     //     stagesList = Stages.find({}).fetch();
+    //     //     // console.log("STAGES LIST: " + JSON.stringify(stagesList));
+    //     //     this.props.fetchStages(stagesList);
+    //     // });
 
-        let jobsList;
-        Tracker.autorun(() => {
-            jobsList = Jobs.find({}).fetch();
-            // console.log("JOBS LIST: " + JSON.stringify(jobsList));
-            this.props.fetchJobs(jobsList);
-        });
+    //     // let jobsList;
+    //     // Tracker.autorun(() => {
+    //     //     jobsList = Jobs.find({}).fetch();
+    //     //     // console.log("JOBS LIST: " + JSON.stringify(jobsList));
+    //     //     this.props.fetchJobs(jobsList);
+    //     // });
 
-        // stagesList = Stages.find({}).fetch();
+    //     this.props.fetchStages(this.props.stagesList);
+    //     this.props.fetchJobs(this.props.jobsList);
 
-        // this.props.fetchStages(stagesList);
-        // jobsList = Jobs.find({}).fetch();
-  
-        // this.props.fetchJobs(jobsList);
+    // }
+
+    componentDidMount(){
+        this.props.fetchStages(this.props.stagesList);
+        this.props.fetchJobs(this.props.jobsList);
+
     }
 
+
+
     render() {
+        console.log(this.props.jobsList);
         // console.log("STAGES: " + JSON.stringify(this.props.stages.allIds));
         // console.log("JobCardsContainerFull line 32: " + JSON.stringify(this.props.stages.allIds));
         let jobStageCards = this.props.stages.allIds.map(stageId => {

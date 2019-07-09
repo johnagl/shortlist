@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import  Jobs  from '../api/jobs.js';
+import Stages from '../api/stages.js';
 import DashboardPage from './components/DashboardPage';
 import MapPage from './components/MapPage';
 import CalendarPage from './components/CalendarPage';
@@ -29,7 +30,14 @@ class App extends React.Component {
           <Navbar/>
           <div className="flex-container">
             <Switch>
-              <Route exact path='/' component={DashboardPage} />
+              <Route 
+                exact path='/' 
+                render={(routeProps) => (
+                  <DashboardPage {...routeProps} jobsList={this.props.jobsList} stagesList={this.props.stagesList} />
+                )}
+                // component={DashboardPage} 
+              
+              />
               <Route path='/map' component={MapPage} />
               <Route path='/calendar' component={CalendarPage} />
             </Switch>
@@ -43,38 +51,21 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = (state) => {
-  return{
-    view: state.jobs.view
-  }
-}
-
-// let withTracker = () => {
-//   return {
-//     jobsDB: Jobs.find({}).fetch(),
-//   };
+// const mapStateToProps = (state) => {
+//   return{
+//     view: state.jobs.view
+//   }
 // }
-
 
 
 export default withTracker(() => {
   return {
-    jobsDB: Jobs.find({}).fetch(),
+    jobsList: Jobs.find({}).fetch(),
+    stagesList: Stages.find({}).fetch(),
   };
 })(App);
 
-// export default connect(mapStateToProps)(App);
 
 
 
 
-{/* <BrowserRouter>
-<Navbar/>
-<div className="App flex-container">
-  <Switch>
-    <Route exact path='/' component={DashboardPage} />
-    <Route path='/map' component={MapPage} />
-    <Route path='/calendar' component={CalendarPage} />
-  </Switch>
-</div>
-</BrowserRouter> */}
