@@ -18,30 +18,30 @@ export const fetchStages = (stages) => dispatch => {
 
 export const addJob = (job, stageId) => dispatch => {
  
-    let id = job._id;
-    Meteor.call('jobs.insert', job);
+    // let id = job._id;
+    // Meteor.call('jobs.insert', job);
     
-    Meteor.call('stages.insertJob', stageId, id);
+    // Meteor.call('stages.insertJob', stageId, id);
 
-    let allJobs = Meteor.call('jobs.listAll');
-    console.log('ALL JOBS : ' + allJobs)
+    // let allJobs = Meteor.call('jobs.listAll');
+    // console.log('ALL JOBS : ' + allJobs)
 
-    // dispatch({
-    //     type: 'ADD_JOB',
-    //     payload: job,
-    //     stageId: stageId
-    // });
+    dispatch({
+        type: 'ADD_JOB',
+        payload: job,
+        stageId: stageId
+    });
 };
 
 
 export const removeJob = (id , stageID) => dispatch => {
-    Meteor.call('jobs.remove', id);
-    Meteor.call('stages.removeJob', stageID, id);
-    // dispatch({
-    //     type: 'REMOVE_JOB',
-    //     _id: id,
-    //     stageID: stageID
-    // }); 
+    // Meteor.call('jobs.remove', id);
+    // Meteor.call('stages.removeJob', stageID, id);
+    dispatch({
+        type: 'REMOVE_JOB',
+        _id: id,
+        stageID: stageID
+    }); 
 };
 
 export const toggleJobCard = (id) => {
