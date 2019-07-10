@@ -8,8 +8,21 @@ import Jobs from '../../api/jobs.js';
 initState = {
     view : 'Full',
     stages : {
-        byId : {},
-        allIds : []
+        byId : {
+            "0": {
+                _id: "0",
+                jobs: [],
+                color: "#FFFFFF",
+                title: "Shortlist"
+            },
+            "1": {
+                _id: "1",
+                jobs: [],
+                color: "#CCCCCC",
+                title: "Applied"
+            }
+        },
+        allIds : ["0", "1"]
     },
     jobs : {
         byId : {},
@@ -57,32 +70,32 @@ const jobsReducer = (state = initState, action) => {
                 }
             }
         case 'ADD_JOB':
-            // console.log(Jobs.find({}).toArray(());
-            // console.log(initState2);
-            var byIdStages = state.stages.byId;
-            var allIdsStages = state.stages.allIds;
-            // console.log(JSON.stringify(action.stageId));
-            // console.log(JSON.stringify(byIdStages));
-            // console.log(JSON.stringify(byIdStages[action.stageId]));
-            byIdStages[action.stageId].jobs.push(action.payload._id);
+            // // console.log(Jobs.find({}).toArray(());
+            // // console.log(initState2);
+            // var byIdStages = state.stages.byId;
+            // var allIdsStages = state.stages.allIds;
+            // // console.log(JSON.stringify(action.stageId));
+            // // console.log(JSON.stringify(byIdStages));
+            // // console.log(JSON.stringify(byIdStages[action.stageId]));
+            // byIdStages[action.stageId].jobs.push(action.payload._id);
 
-            var byIdJobs = state.jobs.byId;
-            var allIdsJobs = state.jobs.allIds;
+            // var byIdJobs = state.jobs.byId;
+            // var allIdsJobs = state.jobs.allIds;
 
-            byIdJobs[action.payload._id] = action.payload;
-            allIdsJobs.push(action.payload._id);
+            // byIdJobs[action.payload._id] = action.payload;
+            // allIdsJobs.push(action.payload._id);
 
-            return {
-                ...state,
-                stages: {
-                    byId: byIdStages,
-                    allIds: allIdsStages
-                },                
-                jobs: {
-                    byId: byIdJobs,
-                    allIds: allIdsJobs
-                }
-            }
+            // return {
+            //     ...state,
+            //     stages: {
+            //         byId: byIdStages,
+            //         allIds: allIdsStages
+            //     },                
+            //     jobs: {
+            //         byId: byIdJobs,
+            //         allIds: allIdsJobs
+            //     }
+            // }
         
         case 'REMOVE_JOB':
             console.log('_id : ' + action._id);
@@ -93,26 +106,38 @@ const jobsReducer = (state = initState, action) => {
             // }
         
         case 'DRAG_HAPPENED' :
-            // const {
-            //     droppableIdStart,
-            //     droppableIdEnd,
-            //     sourceJobs,
-            //     destJobs,
-            // } = action.payload;
+            const {
+                droppableIdStart,
+                droppableIdEnd,
+                droppableIndexStart, 
+                droppableIndexEnd, 
+                draggableId
+            } = action.payload;
 
-            // const newStages = state.stages;
+            const newStages = state.stages;
+            console.log("BEFORE: " + JSON.stringify(newStages));
 
-            // if(droppableIdStart === droppableIdEnd) {
-            //     newStages.byId[droppableIdEnd] = destJobs;
-            // } else {
-            //     newStages.byId[droppableIdStart] = sourceJobs;
-            //     newStages.byId[droppableIdEnd] = endJobs; 
-            // }
+            if(droppableIdStart === droppableIdEnd) {
+                const list = newStages.byId[droppableIdStart].jobs;
+                const jobId = list.splice(droppableIndexStart, 1);
+                list.splice(droppableIndexEnd, 0, ...jobId);
 
-            // return {
-            //     ...state,
-            //     stages: newStages
-            // }
+                newStages.byId[droppableIdEnd] = {
+                    ...newStages.byId[droppableIdEnd],
+                    jobs: list,
+                };
+
+            } else {
+                newStages.byId[droppableIdStart] = sourceJobs;
+                newStages.byId[droppableIdEnd] = destJobs; 
+            }
+
+            console.log("AFTER: " + JSON.stringify(newStages));
+
+            return {
+                ...state,
+                stages: newStages
+            }
                    
         case 'TOGGLE_JOB_CARD':
             return state;

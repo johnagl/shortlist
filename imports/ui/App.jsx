@@ -21,6 +21,7 @@ class App extends React.Component {
     // if (jobsDB){
     // console.log(this.props.jobsDB);
     // }
+    console.log("actually rendered app");
     
   
     return(
@@ -57,15 +58,17 @@ class App extends React.Component {
 //   }
 // }
 
+export default App;
 
-export default withTracker(() => {
-  Meteor.subscribe('jobs');
-  Meteor.subscribe('stages');
-  return {
-    jobsList: Jobs.find({}).fetch(),
-    stagesList: Stages.find({}).fetch(),
-  };
-})(App);
+
+// export default withTracker(() => {
+//   Meteor.subscribe('jobs');
+//   Meteor.subscribe('stages');
+//   return {
+//     jobsList: Jobs.find({}).fetch(),
+//     stagesList: Stages.find({}).fetch(),
+//   };
+// })(App);
 
 
 

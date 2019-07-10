@@ -5,16 +5,22 @@ import JobCardsContainerFullSecond from './JobCardsContainerFullSecond.jsx';
 import JobCardsContainerPartial from './JobCardsContainerPartial.jsx';
 import { DragDropContext } from "react-beautiful-dnd";
 import { sort } from '../actions';
+import { Meteor } from 'meteor/meteor';
 
 class DashboardPage extends React.Component {
 
   onDragEnd = (result) => {
     // TODO: reordering logic
     const { destination, source, draggableId } = result;
-    console.log("sup");
 
     if(!destination) return;
-    console.log("yo");
+
+    if(destination.droppableId === source.droppableId &&
+      source.index === destination.index
+    ) {
+      return;
+    }
+
     this.props.sort(
       source.droppableId,
       destination.droppableId,
@@ -26,6 +32,7 @@ class DashboardPage extends React.Component {
 
     render() {
       // console.log(this.props.jobsList);
+      console.log("actually rendered dashboardpage");
       
         let CurrentView = () => {
           if (this.props.view === 'Full'){
@@ -56,7 +63,8 @@ class DashboardPage extends React.Component {
     
     const mapStateToProps = (state) => {
       return{
-        view: state.jobs.view
+        view: state.jobs.view,
+        // stages: state.jobs.stages /* this causes infinite loops */
       }
     }
     

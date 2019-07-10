@@ -73,15 +73,16 @@ export const sort = (droppableIdStart, droppableIdEnd, droppableIndexStart, drop
         //     Stages.update({_id: droppableIdEnd}, {$set: {jobs: destJobs}});
         // }
 
-        Meteor.call('stages.drag', droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId);
+        dispatch({
+            type: 'DRAG_HAPPENED',
+            payload: {
+                droppableIdStart,
+                droppableIdEnd,
+                droppableIndexStart, 
+                droppableIndexEnd, 
+                draggableId
+            }
+        });
 
-        // dispatch({
-        //     type: 'DRAG_HAPPENED',
-        //     payload: {
-        //         droppableIdStart,
-        //         droppableIdEnd,
-        //         sourceJobs,
-        //         destJobs
-        //     }
-        // });
+        // Meteor.call('stages.drag', droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId);
 };

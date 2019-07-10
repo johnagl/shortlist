@@ -34,28 +34,49 @@ class JobCardsContainerFull extends Component {
     // }
 
     componentDidMount(){
-        this.props.fetchStages(this.props.stagesList);
-        this.props.fetchJobs(this.props.jobsList);
+        // let stages = [];
+        // this.props.stages.allIds.forEach(stageId => {
+        //     stages.push(this.props.stages.byId[stageId]);
+        // });
+        // this.props.fetchStages(this.props.stages.allIds);
+        // this.props.fetchJobs(this.props.jobsList);
+    }
 
+    shouldComponentUpdate(nextProps) {
+        console.log("should component update:  " + JSON.stringify(nextProps));
+        // console.log("should component update meteor: " + JSON.stringify(nextProps.stagesList));
+        // console.log("should component update redux:  " + JSON.stringify(nextProps.stages))
+        // // return this.props.stagesList != this.props.stages;
+        return true;
     }
 
 
 
     render() {
+        console.log("actually rendered jobcardscontainerfull");
+        console.log("ALL STAGES: " + JSON.stringify(this.props.stages));
         // console.log(this.props.jobsList);
         // console.log("STAGES: " + JSON.stringify(this.props.stages.allIds));
         // console.log("JobCardsContainerFull line 32: " + JSON.stringify(this.props.stages.allIds));
         let jobStageCards = this.props.stages.allIds.map(stageId => {
-            // console.log("line 35: " + stageId);
-            // console.log("line 36" + JSON.stringify(this.props.stages.byId[stageId]));
             let jobIds = this.props.stages.byId[stageId].jobs;
-            // console.log("JOBIDS: " + JSON.stringify(jobIds));
             let stage = this.props.stages.byId[stageId];
             let jobs = [];
             for(let id of jobIds) {
-                // console.log("in loop " + JSON.stringify(this.props.jobs.byId[id]));
                 jobs.push(this.props.jobs.byId[id]);
             }
+
+        // let jobStageCards = this.props.stages.allIds.map(stageId => {
+        //     // console.log("line 35: " + stageId);
+        //     // console.log("line 36" + JSON.stringify(this.props.stages.byId[stageId]));
+        //     let jobIds = this.props.stages.byId[stageId].jobs;
+        //     // console.log("JOBIDS: " + JSON.stringify(jobIds));
+        //     let stage = this.props.stages.byId[stageId];
+        //     let jobs = [];
+        //     for(let id of jobIds) {
+        //         // console.log("in loop " + JSON.stringify(this.props.jobs.byId[id]));
+        //         jobs.push(this.props.jobs.byId[id]);
+        //     }
             // console.log("JOBSSSS: " + JSON.stringify(jobs));
             // let jobs = this.props.jobs.allIds.filter(job => job.stage === stage.description)
 

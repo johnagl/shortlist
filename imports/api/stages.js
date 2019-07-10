@@ -24,7 +24,6 @@ Meteor.methods({
     },
     'stages.drag'(droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId){
         let sourceJobs = Stages.findOne({_id: droppableIdStart}).jobs; 
-
         let destJobs = Stages.findOne({_id: droppableIdEnd}).jobs;
 
         if(droppableIdStart === droppableIdEnd) {
