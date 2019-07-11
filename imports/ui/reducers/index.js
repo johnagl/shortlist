@@ -121,11 +121,11 @@ const jobsReducer = (state = initState, action) => {
                 draggableId
             } = action.payload;
 
-            const newStages = state.stages;
-            console.log("BEFORE: " + JSON.stringify(newStages));
+            const newStages = Object.assign({}, state.stages);
+            // console.log("BEFORE: " + JSON.stringify(newStages));
 
             if(droppableIdStart === droppableIdEnd) {
-                const list = newStages.byId[droppableIdStart].jobs;
+                const list = state.stages.byId[droppableIdStart].jobs;
                 const jobId = list.splice(droppableIndexStart, 1);
                 list.splice(droppableIndexEnd, 0, ...jobId);
 
@@ -151,47 +151,47 @@ const jobsReducer = (state = initState, action) => {
                 }
             }
 
-            console.log("AFTER: " + JSON.stringify(newStages));
+            // console.log("AFTER: " + JSON.stringify(newStages));
 
-            // return {
-            //     ...state,
-            //     stages: newStages
-            // }
             return {
-                view : 'Full',
-                stages : {
-                    byId : {
-                        "0": {
-                            _id: "0",
-                            jobs: ["0", "1"],
-                            color: "#000000",
-                            title: "Shortlist"
-                        },
-                        "1": {
-                            _id: "1",
-                            jobs: [],
-                            color: "#CCCCCC",
-                            title: "Applied"
-                        }
-                    },
-                    allIds : ["0", "1"]
-                },
-                jobs : {
-                    byId : {
-                        "0": {
-                            _id: "0",
-                            company: "Amazon",
-                            title: "Software Engineer",
-                        },
-                        "1": {
-                            _id: "1",
-                            company: "Microsoft",
-                            title: "Software Developer",
-                        }
-                    },
-                    allIds: ["0", "1"]
-                }
-            }        
+                ...state,
+                stages: newStages
+            }
+            // return {
+            //     view : 'Full',
+            //     stages : {
+            //         byId : {
+            //             "0": {
+            //                 _id: "0",
+            //                 jobs: ["0", "1"],
+            //                 color: "#000000",
+            //                 title: "Shortlist"
+            //             },
+            //             "1": {
+            //                 _id: "1",
+            //                 jobs: [],
+            //                 color: "#CCCCCC",
+            //                 title: "Applied"
+            //             }
+            //         },
+            //         allIds : ["0", "1"]
+            //     },
+            //     jobs : {
+            //         byId : {
+            //             "0": {
+            //                 _id: "0",
+            //                 company: "Amazon",
+            //                 title: "Software Engineer",
+            //             },
+            //             "1": {
+            //                 _id: "1",
+            //                 company: "Microsoft",
+            //                 title: "Software Developer",
+            //             }
+            //         },
+            //         allIds: ["0", "1"]
+            //     }
+            // }        
         default: 
             return state;
     }
