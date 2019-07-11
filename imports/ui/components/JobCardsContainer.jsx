@@ -3,36 +3,32 @@ import { connect } from 'react-redux';
 import JobCard from './JobCard.jsx';
 import { Droppable } from "react-beautiful-dnd";
 
-const JobCardsContainer = ({ stage, jobs, view, direction }) => {
+class JobCardsContainer extends Component {
     
-    let jobCards = jobs.map((jobCard,index) => {
-        return(
-            <JobCard 
-                key={jobCard.id} 
-                id={jobCard.id} 
-                title={jobCard.title} 
-                company={jobCard.company}
-                color={stage.color}
-                index={index}
-            />
-        )               
-    })
+    render() {
+        const { stage, jobs, view, direction } = this.props;
 
-    return (
-        <Droppable droppableId={String(stage.id)} direction={direction}>
-            {provided => (
-                <div 
-                    {...provided.droppableProps} 
-                    ref={provided.innerRef} 
-                    className= {view === 'Full' ? 'jobCardsContainer' : 'jobCardsContainerSecond'}
-                    
-                >
-                    { jobCards }
-                    { provided.placeholder }
-                </div>
-            )}
-        </Droppable>
-    )
+        let jobCards = jobs.map((job, index) => {
+            return(
+                <JobCard key={job._id} id={job._id} title={job.title} company={job.company} 
+                    color={stage.color} index={index} stage ={stage} />
+            )               
+        })
+    
+        return (
+            <Droppable droppableId={String(stage._id)} direction={direction}>
+                {provided => (
+                    <div 
+                        {...provided.droppableProps} 
+                        ref={provided.innerRef} 
+                        className= {view === 'Full' ? 'jobCardsContainer' : 'jobCardsContainerSecond'}>
+                        { jobCards }
+                        { provided.placeholder }
+                    </div>
+                )}
+            </Droppable>
+        );
+    }
 }
 
 const inlineFlex = {
@@ -41,24 +37,10 @@ const inlineFlex = {
 
 
 const mapStateToProps = (state) => {
-    return { view: state.jobs.view }
+    return { 
+        view: state.jobs.view,
+        stages: state.jobs.stages
+    }
 }
 
 export default connect(mapStateToProps)(JobCardsContainer);
-// export default JobCardsContainer;
-
-// const mapStateToProps = (state) => {
-//     return { jobs: state.jobs.jobs }
-// }
-
-// export default connect(mapStateToProps)(JobCardsContainer);
-
-{/* <div 
-{...provided.droppableProps} 
-ref={provided.innerRef} 
-className="jobCardsContainer"
-
->
-{ jobCards }
-{ provided.placeholder }
-</div> */}

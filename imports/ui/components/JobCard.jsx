@@ -5,7 +5,7 @@ import DeleteButton from './DeleteButton';
 import { Draggable } from 'react-beautiful-dnd';
 import '../../../client/main.css';
 
-const JobCard = ({ id, title, company, index, color }) => {
+const JobCard = ({ id, title, company, index, color, stage }) => {
     return (
       <Draggable draggableId={String(id)} index={index}>
         {provided => (
@@ -16,8 +16,8 @@ const JobCard = ({ id, title, company, index, color }) => {
           >
             <div className="job-card" style={{"borderColor": color}} onClick={handleEdit}>
               <div className="card-body" >
-                <DeleteButton jobID={ id } color={ color }/>
-                <div className="card-title">{ company }</div>
+                <DeleteButton stage = {stage} jobID={ id } color={ color }/>
+                <div className="card-text card-title">{ company }</div>
                 <p className="card-text">{ title }</p>
               </div>
             </div>

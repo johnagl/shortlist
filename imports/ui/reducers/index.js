@@ -1,133 +1,153 @@
 import { combineReducers } from 'redux';
 import uuid from 'uuid';
+import Jobs from '../../api/jobs.js';
+
+// let initState2 = Jobs.find({}).fetch();
+// Jobs.find({}).fetch();
 
 initState = {
-    view: 'Full',
-    stages: [
-        {id: uuid.v4(), description: 'Shortlist', color: "#EE6352"},
-        {id: uuid.v4(), description: 'Applied', color: "#FFB43D"},
-        {id: uuid.v4(), description: 'Phone Interview', color: "#46B4A4"},
-        {id: uuid.v4(), description: 'On Site Interview', color: "#1A80E0"},
-        {id: uuid.v4(), description: 'Offer', color: "#7A00D8"},
-        {id: uuid.v4(), description: 'Rejected', color: "#000000"}
-    ],
-    jobs: [
-        {
-            id: uuid.v4(),
-            company: 'Amazon',
-            title: 'Software Developer Co-op',
-            stage: 'Shortlist',
-            url: null,
-            salary: null,
-            isExpanded: false,
-            dates: {
-                dateAdded: new Date(),
-                applicationDeadline: 'set date',
-                applied: 'set date',
-                phoneInterview: 'set date',
-                onSiteInterview: 'set date',
-                offer: 'set date',
-                rejected: 'set date'
-            }
-        },
-        {
-            id: uuid.v4(),
-            company: 'Hootsuite',
-            title: 'Software Developer Co-op',
-            stage: 'Applied',
-            url: null,
-            salary: null,
-            isExpanded: false,
-            dates: {
-                dateAdded: new Date(),
-                applicationDeadline: 'set date',
-                applied: 'set date',
-                phoneInterview: 'set date',
-                onSiteInterview: 'set date',
-                offer: 'set date',
-                rejected: 'set date'
-            }
-        }, 
-        {
-            id: uuid.v4(),
-            company: 'SAP',
-            title: 'Software Developer Co-op',
-            stage: 'Shortlist',
-            url: null,
-            salary: null,
-            isExpanded: false,
-            dates: {
-                dateAdded: new Date(),
-                applicationDeadline: 'set date',
-                applied: 'set date',
-                phoneInterview: 'set date',
-                onSiteInterview: 'set date',
-                offer: 'set date',
-                rejected: 'set date'
-            }
-        }
-    ]
-
-
+    view : 'Full',
+    stages : {
+        byId : {},
+        allIds : []
+    },
+    jobs : {
+        byId : {},
+        allIds: []
+    }
 }
 
-
 const jobsReducer = (state = initState, action) => {
-
     switch (action.type){
-        case 'ADD_JOB':
+        case 'FETCH_JOBS':
+            var byId = {};
+            var allIds = [];
+
+            for(let job of action.payload) {
+                byId[job._id] = Object.assign({}, job);
+                allIds.push(job._id);
+            }
+            // console.log("BY ID: " + JSON.stringify(byId));
+            // console.log("BY ALLIDS: " + JSON.stringify(allIds));
+
             return {
-                ...state,                
-                jobs: [...state.jobs, action.payload]
+                ...state,
+                jobs: {
+                    ...state.jobs,
+                    byId: byId,
+                    allIds: allIds
+                }
+            }
+        case 'FETCH_STAGES':
+            var byId = {};
+            var allIds = [];
+            // console.log("PAYLOAD: " + JSON.stringify(action.payload));
+
+            for(let stage of action.payload) {
+                byId[stage._id] = Object.assign({}, stage);
+                allIds.push(stage._id);
+            }
+            // console.log("BY ID: " + JSON.stringify(byId));
+            // console.log("BY ALLIDS: " + JSON.stringify(allIds));
+
+            return {
+                ...state,
+                stages: {
+                    ...state.stages,
+                    byId: byId,
+                    allIds: allIds
+                }
+            }
+        case 'ADD_JOB':
+            var byIdStages = Object.assign({}, state.stages.byId);
+            byIdStages[action.stageId].jobs.push(action.payload._id);
+
+            var byIdJobs = Object.assign({}, state.jobs.byId);
+            var allIdsJobs = Object.assign([], state.jobs.allIds);
+
+            byIdJobs[action.payload._id] = action.payload;
+            allIdsJobs.push(action.payload._id);
+
+            return {
+                ...state,
+                stages: {
+                    ...state.stages,
+                    byId: byIdStages,
+                },                
+                jobs: {
+                    ...state.jobs,
+                    byId: byIdJobs,
+                    allIds: allIdsJobs
+                }
             }
         
         case 'REMOVE_JOB':
+            var newStagesById = Object.assign({}, state.stages.byId);
+            newStagesById[action.stageID].jobs = newStagesById[action.stageID].jobs.filter(jobId => jobId !== action._id);
+
+            var newJobsById = Object.assign({}, state.jobs.byId);
+            delete newJobsById[action._id];
+
             return {
                 ...state,
-                jobs: [...state.jobs.filter(job => job.id !== action.id)]
+                stages: {
+                    ...state.stages,
+                    byId: newStagesById,
+                },
+                jobs: {
+                    ...state.jobs,
+                    byId: newJobsById,
+                    allIds: state.jobs.allIds.filter(jobId => jobId !== action._id)
+                }
             }
         
         case 'DRAG_HAPPENED' :
-            // const {
-            //     droppableIdStart,
-            //     droppableIdEnd,
-            //     droppableIndexStart,
-            //     droppableIndexEnd,
-            //     draggableId
-            // } = action.payload;
+            const {
+                droppableIdStart,
+                droppableIdEnd,
+                droppableIndexStart, 
+                droppableIndexEnd, 
+                draggableId
+            } = action.payload;
 
-            // const newState = [...state];
+            const newStages = Object.assign({}, state.stages);
 
-            // if(droppableIdStart === droppableIdEnd) {
+            if(droppableIdStart === droppableIdEnd) {
+                const list = state.stages.byId[droppableIdStart].jobs;
+                const jobId = list.splice(droppableIndexStart, 1);
+                list.splice(droppableIndexEnd, 0, ...jobId);
 
-            // }
-                   
-        case 'TOGGLE_JOB_CARD':
-            return state;
-        
+                newStages.byId[droppableIdEnd] = {
+                    ...newStages.byId[droppableIdEnd],
+                    jobs: list,
+                };
+
+            } else {
+                const listStart = newStages.byId[droppableIdStart].jobs;
+                const jobId = listStart.splice(droppableIndexStart, 1);
+                const listEnd = newStages.byId[droppableIdEnd].jobs;
+                listEnd.splice(droppableIndexEnd, 0, ...jobId);
+
+                newStages.byId[droppableIdStart] = {
+                    ...newStages.byId[droppableIdStart],
+                    jobs: listStart
+                }
+
+                newStages.byId[droppableIdEnd] = {
+                    ...newStages.byId[droppableIdEnd],
+                    jobs: listEnd
+                }
+            }
+
+            return {
+                ...state,
+                stages: newStages
+            }        
         default: 
             return state;
     }
 }
 
-// const statusReducer = (state = initState, action) => {
-//     switch(action.type){
-//         default:
-//             return state;
-//     }
-// }
-
-// const stagesReducer = (state = initState, action) => {
-//     switch(action.type){
-//         default:
-//             return state;
-//     }
-// }
-
-
-
 export default combineReducers({
     jobs: jobsReducer,
-    // stages: stagesReducer,
-    // status: statusReducer
 });

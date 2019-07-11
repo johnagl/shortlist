@@ -5,15 +5,22 @@ import JobCardsContainerFullSecond from './JobCardsContainerFullSecond.jsx';
 import JobCardsContainerPartial from './JobCardsContainerPartial.jsx';
 import { DragDropContext } from "react-beautiful-dnd";
 import { sort } from '../actions';
+import { Meteor } from 'meteor/meteor';
+import AddButtonModal from './AddButtonModal.jsx';
 
 class DashboardPage extends React.Component {
 
   onDragEnd = (result) => {
-    // TODO: reordering logic
     const { destination, source, draggableId } = result;
 
     if(!destination) return;
-    
+
+    if(destination.droppableId === source.droppableId &&
+      source.index === destination.index
+    ) {
+      return;
+    }
+
     this.props.sort(
       source.droppableId,
       destination.droppableId,
@@ -21,15 +28,13 @@ class DashboardPage extends React.Component {
       destination.index,
       draggableId
     );
-
   }
 
-    render() {
-      
+    render() {      
         let CurrentView = () => {
           if (this.props.view === 'Full'){
             return (
-              <JobCardsContainerFull direction="vertical"/>
+              <JobCardsContainerFull direction="vertical" jobsList={this.props.jobsList} stagesList={this.props.stagesList}/>
             )
           }
           if (this.props.view === 'FullSecond'){
@@ -46,6 +51,9 @@ class DashboardPage extends React.Component {
           <DragDropContext onDragEnd={this.onDragEnd}>
             <div className='dashboardContainer'>
               <CurrentView/>
+              <div className="floating-add-button"> 
+                <AddButtonModal /> 
+              </div>
             </div>
           </DragDropContext>
         );
@@ -55,7 +63,8 @@ class DashboardPage extends React.Component {
     
     const mapStateToProps = (state) => {
       return{
-        view: state.jobs.view
+        view: state.jobs.view,
+        // stages: state.jobs.stages /* this causes infinite loops */
       }
     }
     

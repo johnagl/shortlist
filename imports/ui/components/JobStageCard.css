@@ -1,5 +1,6 @@
 .jobStageCardContainer {
-    width: 299px;
+    position: relative;
+    width: 100%;
     padding: 30px 0px 10px 0px;
     margin: 0;
     height: 146px;
@@ -10,19 +11,31 @@
     color: #272635;
 }
 
+.jobStageTitle {
+    font-size: 14pt;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.add-button-container {
+    text-align: center;
+}
+
 .addButton {
     text-align: center;
-    width: 100%;
+    width: 50%;
     margin: 10px 0px;
-    background:  #272635;
+    background: #003DA5;
+    /* background: #E8E8E8; */
     color: #FFFFFF;
-    border-style: solid;
-    border-color: #272635;
+    border-radius: 2px;
+    border: 2px solid #003DA5;
 }
 
 .addButton:hover {
     background: #FFFFFF;
-    color: #272635;
+    color: #003DA5;
+    border: 2px solid #003DA5;
 }
 
 .jobStageCardStyle  {

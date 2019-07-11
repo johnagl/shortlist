@@ -10,8 +10,8 @@
 }
 
 .columnStyle {
-    background: #FFFFFF;
-    border-right: 1px solid #E8E9F3;
+    background: #FAFAFA;
+    border-right: 1px solid #D8D8D8;
     display: flex;
     flex-flow: column;
     align-items: flex-start;

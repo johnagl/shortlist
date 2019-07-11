@@ -4,15 +4,32 @@ import { Container, Row, Col } from 'reactstrap';
 import JobStageCardFull from './JobStageCardFull.jsx';
 import JobCardsContainer from './JobCardsContainer.jsx';
 import './JobCardsContainerFull.css';
+import Jobs from '../../api/jobs.js';
+import Stages from '../../api/stages.js';
+import { Meteor } from 'meteor/meteor';
+import { Tracker } from 'meteor/tracker';
+import { fetchJobs, fetchStages } from '../actions/index';
+
 
 class JobCardsContainerFull extends Component {
+
+    componentDidMount(){
+        this.props.fetchStages(this.props.stagesList);
+        this.props.fetchJobs(this.props.jobsList);
+    }
+
     render() {
-        let jobStageCards = this.props.stages.map(stage => {
-            let jobs = this.props.jobs.filter(job => job.stage === stage.description)
+        let jobStageCards = this.props.stages.allIds.map(stageId => {
+            let jobIds = this.props.stages.byId[stageId].jobs;
+            let stage = this.props.stages.byId[stageId];
+            let jobs = [];
+            for(let _id of jobIds) {
+                jobs.push(this.props.jobs.byId[_id]);
+            }
 
             return (
-                <div key={stage.id} className='columnStyle'>
-                    <JobStageCardFull stage={stage.description}/>
+                <div key={stage._id} className='columnStyle'>
+                    <JobStageCardFull stage={stage} jobs={jobs}/>
                     <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
                 </div>
             )
@@ -20,7 +37,7 @@ class JobCardsContainerFull extends Component {
 
         return (
             <div className="jobCardsContainerFull">
-                {jobStageCards}                       
+                {jobStageCards}                      
             </div>
         )
     }
@@ -30,50 +47,5 @@ const mapStateToProps = (state) => {
     return { stages: state.jobs.stages, jobs: state.jobs.jobs, view: state.jobs.view }
 }
 
-
-// render() {
-//     let jobStageCards = this.props.stages.map(stage => {
-//         let jobCards = this.props.jobs.map(jobCard => {
-//             if (jobCard.stage === stage.description){
-//                 return (
-//                     <JobCard id={jobCard.id} title={jobCard.title} company={jobCard.company}/>                
-//                 )
-//             }
-//         })
-//         return (
-//             <Col className='columnStyle' xs="6" sm="3">
-//                 <JobStageCardFull stage={stage.description}/>
-//                 { jobCards }
-//             </Col>
-//         )
-//     })
-//     return (
-        
-//         <div className="jobCardsContainerFull" >
-//             <Container fluid >
-//                 <Row className='noFlexWrap'>
-//                     {jobStageCards}                       
-//                 </Row>
-//             </Container>  
-
-//         </div>
-//     )
-// }
-
-
-
-
-
-// return (
-            
-//     <div className="jobCardsContainerFull">
-//         <Container fluid >
-//             <Row className='noFlexWrap'>
-//                 {jobStageCards}                       
-//             </Row>
-//         </Container>  
-//     </div>
-// )
-
-export default connect(mapStateToProps)(JobCardsContainerFull);
+export default connect(mapStateToProps, { fetchJobs, fetchStages })(JobCardsContainerFull);
 

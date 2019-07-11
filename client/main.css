@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.change {
+  color: #003DA5;
+  background-color: #003DA5;
+}
 #react-target {
   display: flex;
   flex-flow: column;
@@ -37,7 +41,9 @@ code {
 nav {
   /* padding: 16px;
   color: #4484CE; */
-  background-color: #B1E5F2;
+  /* background-color: #B1E5F2; */
+  background-color:#FFFFFF;
+  color: #003DA5;
   overflow: hidden;
   display: flex;
   width: 100%;
@@ -69,15 +75,18 @@ nav a {
 }
 
 .dropdown-toggle {
-  transition: 1s;
+  transition: 0.5s;
 }
 
-/* nav a:hover {
-  background-color: #4484CE;
-  color: white;
+nav a:hover {
+  /* border-bottom: 2px solid #ff671F */
 }
 
-.active {
+.nav-bar {
+  /* box-shadow: 0 0px 40px rgba(0,0,0,.075); */
+}
+
+/* .active {
   color: #4484CE;
   background-color: #D9D9D9;
 } */
@@ -119,12 +128,14 @@ nav a {
 .job-card {
   background: #FFFFFF;
   position: relative;
-  margin-top: 5px;
-  border-radius: 10px;
+  margin-bottom: 12px;
+  border-radius: 3px;
   border-style: solid;
-
-  width: 299px;
-  height: 109px;
+  width: 95%;
+  min-height: 109px;
+  /* box-shadow: 4px 4px 2px rgba(0,0,0,.20); */
+  display: inline-block;
+  text-align: left;
 }
 
 .delete-button {
@@ -148,16 +159,24 @@ nav a {
   opacity: 75%;
 }
 
+.job-card .card-text {
+  white-space: nowrap; 
+  width: 80%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+
 .job-card .card-title {
   font-weight: bold;
   font-size: 14pt;
+  text-overflow: ellipsis;
 }
 
 .jobCardsContainer {
+  text-align: center;
   width: 100%;
   flex: 1;
   overflow-y: auto;
-
 }
 
 .jobCardsContainerSecond {
@@ -165,5 +184,70 @@ nav a {
   flex: 1;
   overflow-y: auto;
   display: inline-flex;
-
 }
+
+.count-bubble {
+  font-weight: bold;
+  position: absolute;
+  top: 16%;
+  right: 3%;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  background: #FF671F;
+  color: #FFFFFF;
+}
+
+.floating-add-button {
+  position: fixed;
+  height: 70px;
+  width: 100px;
+  bottom: 3%;
+  right: 4%;
+}
+
+.floating-add-button .addButton {
+  background: #FF671F;
+  width: 100%;
+  padding: 5px;
+  border: 2px solid #FF671F;
+  border-radius: 2px;
+  box-shadow: 3px 3px 3px rgba(0,0,0,.40);
+}
+
+.floating-add-button .addButton:hover {
+  background: #000000;
+  width: 100%;
+  padding: 5px;
+  border: 2px solid #000000;
+  border-radius: 2px;
+  color: #FFFFFF;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #EEEEEE;
+  display: flex;
+  padding: 10px 40px;
+  height: 60px;
+  background: #003DA5;
+}
+
+.footer a {
+  color: #FFFFFF;
+  padding: 2px;
+}
+
+.footer a:hover {
+  color: #FFFFFF;
+  border-bottom: none;
+  text-decoration: none;
+  border-bottom: 2px solid#FF671F;
+}
+
+/* [data-react-beautiful-dnd-placeholder="0"] {
+  background: black;
+  transform: translate(0px, -109px);
+} */

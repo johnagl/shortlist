@@ -7,8 +7,9 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 class DeleteButton extends React.Component {
 
     handleRemove = () => {
-        console.log(this.props.jobID);
-        this.props.removeJob(this.props.jobID);
+        // console.log(this.props.jobID);
+        // console.log(this.props.stageID);
+        this.props.removeJob(this.props.jobID, this.props.stage._id);
     }
 
     render() {
