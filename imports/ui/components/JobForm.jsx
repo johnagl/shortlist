@@ -35,9 +35,7 @@ class JobForm extends React.Component {
         title: this.state.title,
         dates: {
             createdAt: new Date(),
-        },
-        owner: Meteor.userId(),
-        userEmail: Meteor.user().emails[0].address
+        }
     }
       // console.log(this.state.select);
       // console.log(this.props.jobs);

@@ -6,10 +6,7 @@ export default Jobs = new Mongo.Collection('jobs');
 
 if (Meteor.isServer) {
     Meteor.publish('jobs', function jobsPublication(){
-        // console.log(Jobs.find({}));
-        return Jobs.find({});
-        // return Jobs.find({owner:this.userId});
-        // console.log("HELP" + JSON.stringify(Jobs.find({owner:this.userId}).fetch()));
+        return Jobs.find();
     })
 }
 
