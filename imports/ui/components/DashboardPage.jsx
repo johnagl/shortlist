@@ -30,10 +30,7 @@ class DashboardPage extends React.Component {
     );
   }
 
-    render() {
-      // console.log(this.props.jobsList);
-      console.log("actually rendered dashboardpage");
-      
+    render() {      
         let CurrentView = () => {
           if (this.props.view === 'Full'){
             return (

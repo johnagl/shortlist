@@ -18,12 +18,6 @@ class App extends React.Component {
 
 
   render() {
-    // if (jobsDB){
-    // console.log(this.props.jobsDB);
-    // }
-    console.log("actually rendered app");
-    
-  
     return(
       <div>
       <div id="App">

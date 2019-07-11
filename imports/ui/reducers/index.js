@@ -100,14 +100,14 @@ const jobsReducer = (state = initState, action) => {
         case 'REMOVE_JOB':
             var newStagesById = Object.assign({}, state.stages.byId);
             var newJobsById = Object.assign({}, state.jobs.byId);
-            delete newJobsById.action._id;
+            delete newJobsById[action._id];
+            console.log("jobs allIds: " + JSON.stringify(state.jobs.allIds.filter(jobId => jobId !== action._id)));
 
             return {
                 ...state,
                 stages: {
                     ...state.stages,
                     byId: newStagesById,
-                    allIds: [...state.stages.allIds,]
                 },
                 jobs: {
                     ...state.jobs,

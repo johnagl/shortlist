@@ -12,26 +12,6 @@ import { fetchJobs, fetchStages } from '../actions/index';
 
 
 class JobCardsContainerFull extends Component {
-    
-    // componentWillMount(){
-    //     // let stagesList;
-    //     // Tracker.autorun(() => {
-    //     //     stagesList = Stages.find({}).fetch();
-    //     //     // console.log("STAGES LIST: " + JSON.stringify(stagesList));
-    //     //     this.props.fetchStages(stagesList);
-    //     // });
-
-    //     // let jobsList;
-    //     // Tracker.autorun(() => {
-    //     //     jobsList = Jobs.find({}).fetch();
-    //     //     // console.log("JOBS LIST: " + JSON.stringify(jobsList));
-    //     //     this.props.fetchJobs(jobsList);
-    //     // });
-
-    //     this.props.fetchStages(this.props.stagesList);
-    //     this.props.fetchJobs(this.props.jobsList);
-
-    // }
 
     componentDidMount(){
         // let stages = [];
@@ -42,18 +22,7 @@ class JobCardsContainerFull extends Component {
         // this.props.fetchJobs(this.props.jobsList);
     }
 
-    // shouldComponentUpdate(nextProps) {
-    //     console.log("should component update:  " + JSON.stringify(nextProps));
-    //     // console.log("should component update meteor: " + JSON.stringify(nextProps.stagesList));
-    //     // console.log("should component update redux:  " + JSON.stringify(nextProps.stages))
-    //     // // return this.props.stagesList != this.props.stages;
-    //     return true;
-    // }
-
-
-
     render() {
-        console.log("actually rendered jobcardscontainerfull");
         console.log("ALL STAGES: " + JSON.stringify(this.props.stages));
         // console.log(this.props.jobsList);
         // console.log("STAGES: " + JSON.stringify(this.props.stages.allIds));
@@ -62,8 +31,10 @@ class JobCardsContainerFull extends Component {
             let jobIds = this.props.stages.byId[stageId].jobs;
             let stage = this.props.stages.byId[stageId];
             let jobs = [];
-            for(let id of jobIds) {
-                jobs.push(this.props.jobs.byId[id]);
+            for(let _id of jobIds) {
+                if(this.props.jobs.byId[_id]) {
+                    jobs.push(this.props.jobs.byId[_id]);
+                }
             }
 
             console.log("JOBS line 69:" + JSON.stringify(jobs));

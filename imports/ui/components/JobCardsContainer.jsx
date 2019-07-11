@@ -13,7 +13,7 @@ class JobCardsContainer extends Component {
         console.log("actually rendered jobcardscontainer");
         const { stage, jobs, view, direction } = this.props;
         console.log("stage: " + JSON.stringify(stage));
-        console.log("jobs: " + JSON.stringify(jobs));
+        console.log("jobs 16: " + JSON.stringify(jobs));
 
         let jobCards = jobs.map((job, index) => {
             // console.log("Job cards container line 9 " + JSON.stringify(job));
