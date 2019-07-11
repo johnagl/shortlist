@@ -30,7 +30,6 @@ export const addJob = (job, stageId) => dispatch => {
     Meteor.call('stages.insertJob', stageId, id);
 
     let allJobs = Meteor.call('jobs.listAll');
-    console.log('ALL JOBS : ' + allJobs)
 };
 
 
@@ -53,27 +52,6 @@ export const toggleJobCard = (id) => {
 };
 
 export const sort = (droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId) => dispatch => {
-        // let sourceJobs = Stages.findOne({_id: droppableIdStart}).jobs; 
-        // // sourceJobs = JSON.parse(sourceJobs);   
-        // console.log("Source jobs before: " + JSON.stringify(sourceJobs));
-
-        // let destJobs = Stages.findOne({_id: droppableIdEnd}).jobs;
-        // console.log("Dest jobs before: " + JSON.stringify(destJobs));
-
-        // if(droppableIdStart === droppableIdEnd) {
-        //     // console.log("hi");
-        //     const jobId = destJobs.splice(droppableIndexStart, 1);
-        //     destJobs.splice(droppableIndexEnd, 0, ...jobId);
-        //     console.log("Dest jobs after: " + JSON.stringify(destJobs));
-        //     Stages.update({_id: droppableIdEnd}, {$set: {jobs: destJobs}});
-        // } else {
-        //     // console.log("yolo");
-        //     const jobId = sourceJobs.splice(droppableIndexStart, 1);
-        //     destJobs.splice(droppableIndexEnd, 0, ...jobId);
-        //     Stages.update({_id: droppableIdStart}, {$set: {jobs: sourceJobs}});
-        //     Stages.update({_id: droppableIdEnd}, {$set: {jobs: destJobs}});
-        // }
-
         dispatch({
             type: 'DRAG_HAPPENED',
             payload: {
@@ -85,5 +63,5 @@ export const sort = (droppableIdStart, droppableIdEnd, droppableIndexStart, drop
             }
         });
 
-        // Meteor.call('stages.drag', droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId);
+        Meteor.call('stages.drag', droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId);
 };
