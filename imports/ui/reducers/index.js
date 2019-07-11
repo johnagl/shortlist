@@ -8,21 +8,8 @@ import Jobs from '../../api/jobs.js';
 initState = {
     view : 'Full',
     stages : {
-        byId : {
-            "0": {
-                _id: "0",
-                jobs: [],
-                color: "#000000",
-                title: "Shortlist"
-            },
-            "1": {
-                _id: "1",
-                jobs: [],
-                color: "#CCCCCC",
-                title: "Applied"
-            }
-        },
-        allIds : ["0", "1"]
+        byId : {},
+        allIds : []
     },
     jobs : {
         byId : {},
@@ -37,7 +24,7 @@ const jobsReducer = (state = initState, action) => {
             var allIds = [];
 
             for(let job of action.payload) {
-                byId[job._id] = job;
+                byId[job._id] = Object.assign({}, job);
                 allIds.push(job._id);
             }
             // console.log("BY ID: " + JSON.stringify(byId));
@@ -46,6 +33,7 @@ const jobsReducer = (state = initState, action) => {
             return {
                 ...state,
                 jobs: {
+                    ...state.jobs,
                     byId: byId,
                     allIds: allIds
                 }
@@ -56,7 +44,7 @@ const jobsReducer = (state = initState, action) => {
             // console.log("PAYLOAD: " + JSON.stringify(action.payload));
 
             for(let stage of action.payload) {
-                byId[stage._id] = stage;
+                byId[stage._id] = Object.assign({}, stage);
                 allIds.push(stage._id);
             }
             // console.log("BY ID: " + JSON.stringify(byId));
@@ -65,6 +53,7 @@ const jobsReducer = (state = initState, action) => {
             return {
                 ...state,
                 stages: {
+                    ...state.stages,
                     byId: byId,
                     allIds: allIds
                 }
@@ -122,7 +111,6 @@ const jobsReducer = (state = initState, action) => {
             } = action.payload;
 
             const newStages = Object.assign({}, state.stages);
-            // console.log("BEFORE: " + JSON.stringify(newStages));
 
             if(droppableIdStart === droppableIdEnd) {
                 const list = state.stages.byId[droppableIdStart].jobs;
@@ -151,47 +139,10 @@ const jobsReducer = (state = initState, action) => {
                 }
             }
 
-            // console.log("AFTER: " + JSON.stringify(newStages));
-
             return {
                 ...state,
                 stages: newStages
-            }
-            // return {
-            //     view : 'Full',
-            //     stages : {
-            //         byId : {
-            //             "0": {
-            //                 _id: "0",
-            //                 jobs: ["0", "1"],
-            //                 color: "#000000",
-            //                 title: "Shortlist"
-            //             },
-            //             "1": {
-            //                 _id: "1",
-            //                 jobs: [],
-            //                 color: "#CCCCCC",
-            //                 title: "Applied"
-            //             }
-            //         },
-            //         allIds : ["0", "1"]
-            //     },
-            //     jobs : {
-            //         byId : {
-            //             "0": {
-            //                 _id: "0",
-            //                 company: "Amazon",
-            //                 title: "Software Engineer",
-            //             },
-            //             "1": {
-            //                 _id: "1",
-            //                 company: "Microsoft",
-            //                 title: "Software Developer",
-            //             }
-            //         },
-            //         allIds: ["0", "1"]
-            //     }
-            // }        
+            }        
         default: 
             return state;
     }

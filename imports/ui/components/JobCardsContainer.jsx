@@ -4,19 +4,11 @@ import JobCard from './JobCard.jsx';
 import { Droppable } from "react-beautiful-dnd";
 
 class JobCardsContainer extends Component {
-
-    // shouldComponentUpdate(nextProps) {
-    //     return true;
-    // }
     
     render() {
-        console.log("actually rendered jobcardscontainer");
         const { stage, jobs, view, direction } = this.props;
-        console.log("stage: " + JSON.stringify(stage));
-        console.log("jobs 16: " + JSON.stringify(jobs));
 
         let jobCards = jobs.map((job, index) => {
-            // console.log("Job cards container line 9 " + JSON.stringify(job));
             return(
                 <JobCard 
                     key={job._id} 

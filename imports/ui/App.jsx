@@ -46,23 +46,23 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = (state) => {
-  return{
-    view: state.jobs.view
-  }
-}
+// const mapStateToProps = (state) => {
+//   return{
+//     view: state.jobs.view
+//   }
+// }
 
-export default connect(mapStateToProps)(App);
+// export default connect(mapStateToProps)(App);
 
 
-// export default withTracker(() => {
-//   Meteor.subscribe('jobs');
-//   Meteor.subscribe('stages');
-//   return {
-//     jobsList: Jobs.find({}).fetch(),
-//     stagesList: Stages.find({}).fetch(),
-//   };
-// })(App);
+export default withTracker(() => {
+  Meteor.subscribe('jobs');
+  Meteor.subscribe('stages');
+  return {
+    jobsList: Jobs.find({}).fetch(),
+    stagesList: Stages.find({}).fetch(),
+  };
+})(App);
 
 
 

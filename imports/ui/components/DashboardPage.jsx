@@ -10,7 +10,6 @@ import { Meteor } from 'meteor/meteor';
 class DashboardPage extends React.Component {
 
   onDragEnd = (result) => {
-    // TODO: reordering logic
     const { destination, source, draggableId } = result;
 
     if(!destination) return;
@@ -61,7 +60,7 @@ class DashboardPage extends React.Component {
     const mapStateToProps = (state) => {
       return{
         view: state.jobs.view,
-        stages: state.jobs.stages /* this causes infinite loops */
+        // stages: state.jobs.stages /* this causes infinite loops */
       }
     }
     
