@@ -70,11 +70,11 @@ class JobForm extends React.Component {
       <Form onSubmit={this.onSubmit}>
         <FormGroup>
           <Label for="companyName">Company Name</Label>
-          <Input type="text" name="name" id="companyName" placeholder="Company name ..." value = {this.state.name} onChange = {this.onChangeCompanyName}/>
+          <Input type="text hidden" name="name" autocomplete="off" id="companyName" placeholder="Company Name" value = {this.state.name} onChange = {this.onChangeCompanyName}/>
         </FormGroup>
         <FormGroup>
           <Label for="jobTitle">Job Title</Label>
-          <Input type="text" name="title" id="jobTitle" placeholder="Job title ..." value = {this.state.title} onChange = {this.onChangeJobTitle} />
+          <Input type="text hidden" name="title" autocomplete="off" id="jobTitle" placeholder="Job Title" value = {this.state.title} onChange = {this.onChangeJobTitle} />
         </FormGroup>
         <FormGroup>
           <Label for="jobStageSelect">Select</Label>
