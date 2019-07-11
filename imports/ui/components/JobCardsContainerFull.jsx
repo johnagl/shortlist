@@ -42,13 +42,13 @@ class JobCardsContainerFull extends Component {
         // this.props.fetchJobs(this.props.jobsList);
     }
 
-    shouldComponentUpdate(nextProps) {
-        console.log("should component update:  " + JSON.stringify(nextProps));
-        // console.log("should component update meteor: " + JSON.stringify(nextProps.stagesList));
-        // console.log("should component update redux:  " + JSON.stringify(nextProps.stages))
-        // // return this.props.stagesList != this.props.stages;
-        return true;
-    }
+    // shouldComponentUpdate(nextProps) {
+    //     console.log("should component update:  " + JSON.stringify(nextProps));
+    //     // console.log("should component update meteor: " + JSON.stringify(nextProps.stagesList));
+    //     // console.log("should component update redux:  " + JSON.stringify(nextProps.stages))
+    //     // // return this.props.stagesList != this.props.stages;
+    //     return true;
+    // }
 
 
 
@@ -65,6 +65,8 @@ class JobCardsContainerFull extends Component {
             for(let id of jobIds) {
                 jobs.push(this.props.jobs.byId[id]);
             }
+
+            console.log("JOBS line 69:" + JSON.stringify(jobs));
 
         // let jobStageCards = this.props.stages.allIds.map(stageId => {
         //     // console.log("line 35: " + stageId);

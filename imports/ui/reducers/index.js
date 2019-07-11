@@ -98,29 +98,46 @@ const jobsReducer = (state = initState, action) => {
             }
         
         case 'REMOVE_JOB':
-            console.log('_id : ' + action._id);
-            console.log('stageID :' + action.stageID);
-            var newState = state;
+            var newStagesById = Object.assign({}, state.stages.byId);
+            var newJobsById = Object.assign({}, state.jobs.byId);
+            delete newJobsById.action._id;
 
-            console.log("BEFORE:" + JSON.stringify(newState.stages.byId[action.stageID].jobs));
+            return {
+                ...state,
+                stages: {
+                    ...state.stages,
+                    byId: newStagesById,
+                    allIds: [...state.stages.allIds,]
+                },
+                jobs: {
+                    ...state.jobs,
+                    byId: newJobsById,
+                    allIds: state.jobs.allIds.filter(jobId => jobId !== action._id)
+                }
+            }
+            // console.log('_id : ' + action._id);
+            // console.log('stageID :' + action.stageID);
+            // var newState = state;
 
-            var filter1 = newState.stages.byId[action.stageID].jobs.filter(jobId => jobId !== action._id);
-            newState.stages.byId[action.stageID].jobs = filter1;
+            // console.log("BEFORE:" + JSON.stringify(newState.stages.byId[action.stageID].jobs));
 
-            console.log("AFTER:" + JSON.stringify(newState.stages.byId[action.stageID].jobs));
+            // var filter1 = state.stages.byId[action.stageID].jobs.filter(jobId => jobId !== action._id);
+            // // newState.stages.byId[action.stageID].jobs = filter1;
 
-            let filter2 = newState.jobs.allIds.filter(jobId => jobId !== action._id);
-            newState.jobs.allIds = filter2;
+            // console.log("AFTER:" + JSON.stringify(newState.stages.byId[action.stageID].jobs));
 
-            delete newState.jobs.byId[action._id];
+            // let filter2 = newState.jobs.allIds.filter(jobId => jobId !== action._id);
+            // // newState.jobs.allIds = filter2;
 
-            console.log(JSON.stringify(newState));
+            // delete newState.jobs.byId[action._id];
 
-            return newState;
-            // return {
-            //     ...state,
-            //     jobs: [...state.jobs.filter(job => job._id !== action._id)]
-            // }
+            // console.log("NEW STATE:" + JSON.stringify(newState));
+
+            // return newState;
+            // // return {
+            // //     ...state,
+            // //     jobs: [...state.jobs.filter(job => job._id !== action._id)]
+            // // }
         
         case 'DRAG_HAPPENED' :
             const {
@@ -145,15 +162,62 @@ const jobsReducer = (state = initState, action) => {
                 };
 
             } else {
-                newStages.byId[droppableIdStart] = sourceJobs;
-                newStages.byId[droppableIdEnd] = destJobs; 
+                const listStart = newStages.byId[droppableIdStart].jobs;
+                const jobId = listStart.splice(droppableIndexStart, 1);
+                const listEnd = newStages.byId[droppableIdEnd].jobs;
+                listEnd.splice(droppableIndexEnd, 0, ...jobId);
+
+                newStages.byId[droppableIdStart] = {
+                    ...newStages.byId[droppableIdStart],
+                    jobs: listStart
+                }
+
+                newStages.byId[droppableIdEnd] = {
+                    ...newStages.byId[droppableIdEnd],
+                    jobs: listEnd
+                }
             }
 
             console.log("AFTER: " + JSON.stringify(newStages));
 
+            // return {
+            //     ...state,
+            //     stages: newStages
+            // }
             return {
-                ...state,
-                stages: newStages
+                view : 'Full',
+                stages : {
+                    byId : {
+                        "0": {
+                            _id: "0",
+                            jobs: ["0", "1"],
+                            color: "#000000",
+                            title: "Shortlist"
+                        },
+                        "1": {
+                            _id: "1",
+                            jobs: [],
+                            color: "#CCCCCC",
+                            title: "Applied"
+                        }
+                    },
+                    allIds : ["0", "1"]
+                },
+                jobs : {
+                    byId : {
+                        "0": {
+                            _id: "0",
+                            company: "Amazon",
+                            title: "Software Engineer",
+                        },
+                        "1": {
+                            _id: "1",
+                            company: "Microsoft",
+                            title: "Software Developer",
+                        }
+                    },
+                    allIds: ["0", "1"]
+                }
             }
                    
         case 'TOGGLE_JOB_CARD':

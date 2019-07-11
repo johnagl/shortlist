@@ -52,13 +52,13 @@ class App extends React.Component {
 }
 
 
-// const mapStateToProps = (state) => {
-//   return{
-//     view: state.jobs.view
-//   }
-// }
+const mapStateToProps = (state) => {
+  return{
+    view: state.jobs.view
+  }
+}
 
-export default App;
+export default connect(mapStateToProps)(App);
 
 
 // export default withTracker(() => {

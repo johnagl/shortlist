@@ -5,13 +5,15 @@ import { Droppable } from "react-beautiful-dnd";
 
 class JobCardsContainer extends Component {
 
-    shouldComponentUpdate(nextProps) {
-        return true;
-    }
+    // shouldComponentUpdate(nextProps) {
+    //     return true;
+    // }
     
     render() {
         console.log("actually rendered jobcardscontainer");
         const { stage, jobs, view, direction } = this.props;
+        console.log("stage: " + JSON.stringify(stage));
+        console.log("jobs: " + JSON.stringify(jobs));
 
         let jobCards = jobs.map((job, index) => {
             // console.log("Job cards container line 9 " + JSON.stringify(job));
@@ -90,7 +92,7 @@ const mapStateToProps = (state) => {
     return { 
         view: state.jobs.view,
         stages: state.jobs.stages
-     }
+    }
 }
 
 export default connect(mapStateToProps)(JobCardsContainer);
