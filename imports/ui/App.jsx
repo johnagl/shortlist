@@ -8,6 +8,9 @@ import CalendarPage from './components/CalendarPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
+import LoginForm from './components/LoginForm.jsx'
+import RegisterForm from './components/RegisterForm.jsx'
+
 
 import '../../client/main.css';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -15,12 +18,14 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 
 class App extends React.Component {
-
-
+  onClick() {
+    Meteor.logout();
+  }
   render() {
     return(
       <div>
       <div id="App">
+        {this.props.currentUser  ? 
         <BrowserRouter>
           <Navbar/>
           <div className="flex-container">
@@ -31,14 +36,17 @@ class App extends React.Component {
                   <DashboardPage {...routeProps} jobsList={this.props.jobsList} stagesList={this.props.stagesList} />
                 )}
                 // component={DashboardPage} 
-              
               />
               <Route path='/map' component={MapPage} />
               <Route path='/calendar' component={CalendarPage} />
             </Switch>
           </div>
-        </BrowserRouter>
+        </BrowserRouter> : <LoginForm/>
+        }
       </div>
+      
+      {/* <RegisterForm/> */}
+      {/* <LoginForm/> */}
       <Footer/>
       </div>
     );
@@ -61,6 +69,7 @@ export default withTracker(() => {
   return {
     jobsList: Jobs.find({}).fetch(),
     stagesList: Stages.find({}).fetch(),
+    currentUser: Meteor.user()
   };
 })(App);
 
