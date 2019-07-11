@@ -4,6 +4,7 @@ import './JobStageCard.css';
 import AddButtonModal from './AddButtonModal.jsx';
 import JobStageDropdown from './JobStageDropdown.jsx'
 import Stages from '../../api/stages.js';
+import CountBubble from './CountBubble';
 
 
 export default class JobStageCardFull extends Component {
@@ -11,7 +12,11 @@ export default class JobStageCardFull extends Component {
         return (
             <div className="jobStageCardContainer">
                 <div className = "jobStageTitle jobStageText">{this.props.stage.title}</div>
-                <div className="jobStageText"> {this.props.jobs.length} Job(s) </div>
+                {
+                    this.props.jobs.length > 0 ?
+                    <CountBubble count={this.props.jobs.length} /> :
+                    null
+                }
                 <AddButtonModal />
             </div>                                    
         )

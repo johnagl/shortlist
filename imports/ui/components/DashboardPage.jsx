@@ -6,6 +6,7 @@ import JobCardsContainerPartial from './JobCardsContainerPartial.jsx';
 import { DragDropContext } from "react-beautiful-dnd";
 import { sort } from '../actions';
 import { Meteor } from 'meteor/meteor';
+import AddButtonModal from './AddButtonModal.jsx';
 
 class DashboardPage extends React.Component {
 
@@ -50,6 +51,9 @@ class DashboardPage extends React.Component {
           <DragDropContext onDragEnd={this.onDragEnd}>
             <div className='dashboardContainer'>
               <CurrentView/>
+              <div className="floating-add-button"> 
+                <AddButtonModal /> 
+              </div>
             </div>
           </DragDropContext>
         );

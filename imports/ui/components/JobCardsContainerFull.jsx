@@ -37,7 +37,7 @@ class JobCardsContainerFull extends Component {
 
         return (
             <div className="jobCardsContainerFull">
-                {jobStageCards}                       
+                {jobStageCards}                      
             </div>
         )
     }

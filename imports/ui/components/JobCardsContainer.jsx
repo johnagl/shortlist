@@ -21,9 +21,7 @@ class JobCardsContainer extends Component {
                     <div 
                         {...provided.droppableProps} 
                         ref={provided.innerRef} 
-                        className= {view === 'Full' ? 'jobCardsContainer' : 'jobCardsContainerSecond'}
-                        
-                    >
+                        className= {view === 'Full' ? 'jobCardsContainer' : 'jobCardsContainerSecond'}>
                         { jobCards }
                         { provided.placeholder }
                     </div>
