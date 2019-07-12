@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Meteor } from 'meteor/meteor';
 
 export default class RegisterForm extends React.Component {
     onSubmit(e) {
@@ -15,13 +16,16 @@ export default class RegisterForm extends React.Component {
                 email: email,
                 password: password
             };
-            Accounts.createUser(accountInfo, function (er) {
+            Accounts.createUser(accountInfo, function (er, result) {
                 if (er) {
                     alert("There was an error making your account")
                 }
                 else {
+                    // console.log(result);
                     //redirect
-                    console.log("success")
+                    //Meteor method that creates stages
+                    // console.log("success");
+                    Meteor.call('stages.createStages');
                 }
             });
         } else {

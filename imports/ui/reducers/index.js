@@ -44,8 +44,8 @@ const jobsReducer = (state = initState, action) => {
             // console.log("PAYLOAD: " + JSON.stringify(action.payload));
 
             for(let stage of action.payload) {
-                byId[stage._id] = Object.assign({}, stage);
-                allIds.push(stage._id);
+                byId[stage.stageId] = Object.assign({}, stage);
+                allIds.push(stage.stageId);
             }
             // console.log("BY ID: " + JSON.stringify(byId));
             // console.log("BY ALLIDS: " + JSON.stringify(allIds));

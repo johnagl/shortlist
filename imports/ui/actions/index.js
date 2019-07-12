@@ -17,6 +17,8 @@ export const fetchStages = (stages) => dispatch => {
 }
 
 export const addJob = (job, stageId) => dispatch => {
+    // console.log(job);
+    // console.log(stageId);
 
     dispatch({
         type: 'ADD_JOB',
@@ -29,11 +31,13 @@ export const addJob = (job, stageId) => dispatch => {
     
     Meteor.call('stages.insertJob', stageId, id);
 
-    let allJobs = Meteor.call('jobs.listAll');
+    // let allJobs = Meteor.call('jobs.listAll');
 };
 
 
 export const removeJob = (id , stageID) => dispatch => {
+    console.log(id);
+    console.log(stageID);
     dispatch({
         type: 'REMOVE_JOB',
         _id: id,
@@ -51,17 +55,22 @@ export const toggleJobCard = (id) => {
     };
 };
 
-export const sort = (droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId) => dispatch => {
-        dispatch({
-            type: 'DRAG_HAPPENED',
-            payload: {
-                droppableIdStart,
-                droppableIdEnd,
-                droppableIndexStart, 
-                droppableIndexEnd, 
-                draggableId
-            }
-        });
+export const sort = (droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId) => dispatch => {    
+    console.log('droppableIdStart: ' + droppableIdStart);
+    console.log('droppableIdEnd: ' + droppableIdEnd);
+    console.log('droppableIndexStart: ' + droppableIndexStart);
+    console.log('droppableIndexEnd: ' + droppableIndexEnd);
+    console.log('draggableId: ' + draggableId);
+    // dispatch({
+    //         type: 'DRAG_HAPPENED',
+    //         payload: {
+    //             droppableIdStart,
+    //             droppableIdEnd,
+    //             droppableIndexStart, 
+    //             droppableIndexEnd, 
+    //             draggableId
+    //         }
+    //     });
 
-        Meteor.call('stages.drag', droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId);
+        // Meteor.call('stages.drag', droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId);
 };

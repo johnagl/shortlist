@@ -22,9 +22,12 @@ class App extends React.Component {
     Meteor.logout();
   }
   render() {
+    // Meteor.call('stages.createStages');
     // if (jobsDB){
     // console.log(this.props.jobsDB);
     // }
+  // console.log("CURRENT USER: " + this.props.currentUser)
+  console.log("App.jsx STAGESLIST: " + JSON.stringify(this.props.stagesList));
     
   
     return(
@@ -46,7 +49,7 @@ class App extends React.Component {
               <Route path='/calendar' component={CalendarPage} />
             </Switch>
           </div>
-        </BrowserRouter> : <LoginForm/>
+        </BrowserRouter> : <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
         }
       </div>
       

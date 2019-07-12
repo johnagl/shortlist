@@ -27,7 +27,8 @@ export default class LoginForm extends React.Component {
       if (er) {
         alert(er.reason);
       } else {
-        console.log("success")
+        // console.log("success")
+        // console.log(this.props.currentUser);
       }
     });
   }
@@ -43,6 +44,8 @@ export default class LoginForm extends React.Component {
     opacity: "0.9"
     }
   render() {
+    // console.log('LOGIN FORM CURRENTUSER: ' + this.props.currentUser);
+    // console.log('LOGIN FORM STAGESLIST: ' + this.props.stagesList);
     return (
       <div style = {this.aroundLogin}>
       <Container>
