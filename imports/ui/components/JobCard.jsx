@@ -5,7 +5,7 @@ import DeleteButton from './DeleteButton';
 import { Draggable } from 'react-beautiful-dnd';
 import '../../../client/main.css';
 
-const JobCard = ({ id, title, company, index, color, stage }) => {
+const JobCard = ({ id, title, company, index, color, stage, stageId }) => {
     return (
       <Draggable draggableId={String(id)} index={index}>
         {provided => (
