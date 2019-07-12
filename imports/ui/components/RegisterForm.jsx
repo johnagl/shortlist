@@ -6,7 +6,6 @@ export default class RegisterForm extends React.Component {
         e.preventDefault();
         const ele = $(e.target);
         
-
         const email = ele.find("#email").val();
         const password = ele.find("#password").val();
         const confirmPassword = ele.find("#confirmPassword").val();
