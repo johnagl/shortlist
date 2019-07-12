@@ -52,6 +52,11 @@ export const toggleJobCard = (id) => {
 };
 
 export const sort = (droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId) => dispatch => {
+        console.log('droppableIdStart: ' + droppableIdStart);
+        console.log('droppableIdEnd: ' + droppableIdEnd);
+        console.log('droppableIndexStart: ' + droppableIndexStart);
+        console.log('droppableIndexEnd: ' + droppableIndexEnd);
+        console.log('draggableId: ' + draggableId);
         dispatch({
             type: 'DRAG_HAPPENED',
             payload: {
