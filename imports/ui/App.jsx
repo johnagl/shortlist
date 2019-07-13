@@ -22,14 +22,7 @@ class App extends React.Component {
     Meteor.logout();
   }
   render() {
-    // Meteor.call('stages.createStages');
-    // if (jobsDB){
-    // console.log(this.props.jobsDB);
-    // }
-  // console.log("CURRENT USER: " + this.props.currentUser)
-  console.log("App.jsx STAGESLIST: " + JSON.stringify(this.props.stagesList));
-    
-  
+      
     return(
       <div>
       <div id="App">

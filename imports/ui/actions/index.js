@@ -16,14 +16,11 @@ export const fetchStages = (stages) => dispatch => {
     })
 }
 
-export const addJob = (job, stageId) => dispatch => {
-    // console.log(job);
-    // console.log(stageId);
-
+export const addJob = (job, stageIdUnique, stageId) => dispatch => {
     dispatch({
         type: 'ADD_JOB',
         payload: job,
-        stageId: stageId
+        stageId: stageIdUnique
     });
  
     let id = job._id;
@@ -35,13 +32,11 @@ export const addJob = (job, stageId) => dispatch => {
 };
 
 
-export const removeJob = (id , stageID) => dispatch => {
-    console.log(id);
-    console.log(stageID);
+export const removeJob = (id , stageID, stageIdUnique) => dispatch => {
     dispatch({
         type: 'REMOVE_JOB',
         _id: id,
-        stageID: stageID
+        stageIdUnique: stageIdUnique
     });
 
     Meteor.call('jobs.remove', id);
@@ -56,11 +51,6 @@ export const toggleJobCard = (id) => {
 };
 
 export const sort = (droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId) => dispatch => {
-        console.log('droppableIdStart: ' + droppableIdStart);
-        console.log('droppableIdEnd: ' + droppableIdEnd);
-        console.log('droppableIndexStart: ' + droppableIndexStart);
-        console.log('droppableIndexEnd: ' + droppableIndexEnd);
-        console.log('draggableId: ' + draggableId);
         dispatch({
             type: 'DRAG_HAPPENED',
             payload: {
@@ -72,5 +62,5 @@ export const sort = (droppableIdStart, droppableIdEnd, droppableIndexStart, drop
             }
         });
 
-        // Meteor.call('stages.drag', droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId);
+        Meteor.call('stages.drag', droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId);
 };

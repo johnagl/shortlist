@@ -44,8 +44,8 @@ const jobsReducer = (state = initState, action) => {
             // console.log("PAYLOAD: " + JSON.stringify(action.payload));
 
             for(let stage of action.payload) {
-                byId[stage.stageId] = Object.assign({}, stage);
-                allIds.push(stage.stageId);
+                byId[stage._id] = Object.assign({}, stage);
+                allIds.push(stage._id);
             }
             // console.log("BY ID: " + JSON.stringify(byId));
             // console.log("BY ALLIDS: " + JSON.stringify(allIds));
@@ -83,7 +83,7 @@ const jobsReducer = (state = initState, action) => {
         
         case 'REMOVE_JOB':
             var newStagesById = Object.assign({}, state.stages.byId);
-            newStagesById[action.stageID].jobs = newStagesById[action.stageID].jobs.filter(jobId => jobId !== action._id);
+            newStagesById[action.stageIdUnique].jobs = newStagesById[action.stageIdUnique].jobs.filter(jobId => jobId !== action._id);
 
             var newJobsById = Object.assign({}, state.jobs.byId);
             delete newJobsById[action._id];

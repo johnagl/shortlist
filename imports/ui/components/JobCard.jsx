@@ -6,6 +6,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import '../../../client/main.css';
 
 const JobCard = ({ id, title, company, index, color, stage, stageId }) => {
+    console.log('STAGE IN JOBCARD :' + JSON.stringify(stage));
     return (
       <Draggable draggableId={String(id)} index={index}>
         {provided => (
