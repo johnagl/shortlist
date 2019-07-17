@@ -39,7 +39,7 @@ class JobCard extends React.Component {
   addDefaultSrc = (name) => {
     console.log("NAME!!! " + name);
     return(
-      <div className="default-logo">
+      <div className="logo default-logo">
         {name.charAt(0).toUpperCase()}
       </div>
     )
