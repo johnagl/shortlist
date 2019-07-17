@@ -5,17 +5,33 @@ import uuid from 'uuid';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { addJob } from '../actions/index';
 import Jobs from '../../api/jobs.js';
+import { domainToASCII } from 'url';
+import CompanySuggestion from './CompanySuggestion';
 
 class JobForm extends React.Component {
   state = {
       name: '',
       title: '',
       select: this.props.stages.allIds[0],
+      suggestions: [],
   }
 
-  onChangeCompanyName = (e) => this.setState(
-    { [e.target.name]: e.target.value }
-  );
+  onChangeCompanyName = async (e) => {
+    await this.setState({ [e.target.name]: e.target.value });
+
+    try {
+      let response = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=:${this.state.name}`, {
+          method: "GET"
+      });
+      let suggestions = await response.json();
+
+    await this.setState({ suggestions });
+    console.log("SUGGESTIONS:" + JSON.stringify(this.state.suggestions));
+
+    } catch(e) {
+        console.log(e);
+    }
+  }
   
   onChangeJobTitle = (e) => this.setState(
     { [e.target.name]: e.target.value }
@@ -41,6 +57,15 @@ class JobForm extends React.Component {
     }
       this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
       // this.props.toggle();
+  }
+
+  renderSuggestions() {
+    let suggestions = this.state.suggestions.map(suggestion => {
+      return(<CompanySuggestion name={suggestion.name} logo={suggestion.logo} />);
+    })
+
+    return suggestions;
+
   }
 
   renderOptions() {
@@ -77,8 +102,9 @@ class JobForm extends React.Component {
         <FormGroup>
           <Label for="jobStageSelect">Select</Label>
           <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeJobStage} >
-            {this.renderOptions()}
+            { this.renderOptions() }
           </Input>
+          { this.renderSuggestions() }
         </FormGroup>
         <Button>Submit</Button>
       </Form>

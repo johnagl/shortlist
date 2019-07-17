@@ -66,7 +66,7 @@ class EditJobForm extends React.Component {
     return (
       <Form onSubmit={this.onSubmit}>
         <FormGroup>
-          <Label for="companyName">Company Name</Label>
+          <Label for="companyName">Company</Label>
           <Input type="text hidden" name="company" autoComplete="off" id="companyName" placeholder="Company" value = {this.state.company} onChange = {this.onChangeCompanyName}/>
         </FormGroup>
         <FormGroup>
