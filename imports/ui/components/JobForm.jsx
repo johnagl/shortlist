@@ -15,6 +15,7 @@ class JobForm extends React.Component {
       select: this.props.stages.allIds[0],
       suggestions: [],
       selectedSuggestion: null,
+      companyFocused: false,
   }
 
   onChangeCompanyName = async (e) => {
@@ -44,34 +45,50 @@ class JobForm extends React.Component {
 
 
   onSubmit = (e) => {
-      e.preventDefault();
-      const job =  {
-        _id: uuid(),
-        company: this.state.name,
-        title: this.state.title,
-        dates: {
-            createdAt: new Date(),
-        },
-        owner: Meteor.userId(),
-        userEmail: Meteor.user().emails[0].address
-    }
-      this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
+    //   e.preventDefault();
+    //   const job =  {
+    //     _id: uuid(),
+    //     company: this.state.name,
+    //     title: this.state.title,
+    //     dates: {
+    //         createdAt: new Date(),
+    //     },
+    //     owner: Meteor.userId(),
+    //     userEmail: Meteor.user().emails[0].address
+    // }
+    //   this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
       // this.props.toggle();
   }
 
   renderSuggestions() {
     let suggestions = this.state.suggestions.map(suggestion => {
       return(
-        <div key={suggestion.domain} onClick={ () => {this.selectSuggestion(suggestion)} }>
+        <div key={suggestion.domain} onMouseDown={ () => {this.selectSuggestion(suggestion)} } >
           <CompanySuggestion key={suggestion.domain} name={suggestion.name} logo={suggestion.logo} />
         </div>
       );
     })
+
+    if(this.state.companyFocused) {
+      return (
+        <div className="suggestions">
+          { suggestions }
+        </div>
+      );
+    }
     return (
-      <div className="suggestions">
+      <div className="suggestions hide">
         { suggestions }
       </div>
     );
+  }
+
+  handleFocus = () => {
+    this.setState({companyFocused: true});
+  }
+
+  handleBlur = () => {
+    this.setState({companyFocused: false});
   }
 
   async selectSuggestion(suggestion) {
@@ -105,7 +122,7 @@ class JobForm extends React.Component {
       <Form onSubmit={this.onSubmit}>
         <FormGroup className="suggestions-container">
           <Label for="companyName">Company Name</Label>
-          <Input type="text hidden" name="name" autoComplete="off" id="companyName" placeholder="Company Name" value = {this.state.name} onChange = {this.onChangeCompanyName}/>
+          <Input type="text hidden" name="name" autoComplete="off" id="companyName" placeholder="Company Name" value={this.state.name} onChange={this.onChangeCompanyName} onFocus={this.handleFocus} onBlur={this.handleBlur} />
           { this.renderSuggestions() }
         </FormGroup>
         <FormGroup>
