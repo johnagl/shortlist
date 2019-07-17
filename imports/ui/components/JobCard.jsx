@@ -5,6 +5,7 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import DeleteButton from './DeleteButton';
 import EditJobForm from './EditJobForm';
 import { Draggable } from 'react-beautiful-dnd';
+import Avatar from '@material-ui/core/Avatar';
 import '../../../client/main.css';
 
 class JobCard extends React.Component {
@@ -27,12 +28,31 @@ class JobCard extends React.Component {
     console.log("YOOOOOO");
   }
 
+  renderLogo = (logoURL, name) => {
+    // return(<Avatar src={logoURL} className="logo" children={name} />);
+    if(logoURL) {
+      return(<img  className="logo" src={logoURL} onError={(e)=>{e.target.onerror = null; e.target.src="https://cdn.bulbagarden.net/upload/thumb/0/0d/025Pikachu.png/1200px-025Pikachu.png"}}/>);
+    }
+    return this.addDefaultSrc(name);
+  }
+
+  addDefaultSrc = (name) => {
+    console.log("NAME!!! " + name);
+    return(
+      <div className="default-logo">
+        {name.charAt(0).toUpperCase()}
+      </div>
+    )
+  }
+
   render() {
-    const { id, title, company, index, color, stage, stageId } = this.props;
+    const { job, index, color, stage } = this.props;
+    const logo = this.renderLogo(job.logo, job.company);
 
     return (
+      
       <React.Fragment >
-        <Draggable draggableId={String(id)} index={index}>
+        <Draggable draggableId={String(job._id)} index={index}>
           {provided => (
             <div 
               {...provided.draggableProps} 
@@ -41,13 +61,16 @@ class JobCard extends React.Component {
             >
               <div className="job-card" style={{"borderColor": color}} onClick={this.toggle}>
                 <div className="card-body" >
-                  <DeleteButton stage={ stage } jobID={ id } color={ color }/>
-                  <div className="card-text card-title">{ company }</div>
-                  <p className="card-text">{ title }</p>
+                  <DeleteButton stage={ stage } jobID={ job._id } color={ color }/>
+                  <div className="card-text card-title">
+                    { logo }
+                    { job.company }
+                  </div>
+                  <p className="card-text">{ job.title }</p>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                         <ModalHeader toggle={this.toggle}>Edit Job</ModalHeader>
                         <ModalBody>
-                          <EditJobForm job={ {id, company, title} } stage={stage} />
+                          <EditJobForm job={ job } stage={stage} />
                         </ModalBody>
                     </Modal>
                 </div>
@@ -61,32 +84,3 @@ class JobCard extends React.Component {
 }
 
 export default JobCard;
-
-// const JobCard = ({ id, title, company, index, color, stage, stageId }) => {
-//     console.log('STAGE IN JOBCARD :' + JSON.stringify(stage));
-//     return (
-//       <Draggable draggableId={String(id)} index={index}>
-//         {provided => (
-//           <div 
-//             {...provided.draggableProps} 
-//             {...provided.dragHandleProps} 
-//             ref={provided.innerRef}
-//           >
-//             <div className="job-card" style={{"borderColor": color}} onClick={handleEdit}>
-//               <div className="card-body" >
-//                 <DeleteButton stage = {stage} jobID={ id } color={ color }/>
-//                 <div className="card-text card-title">{ company }</div>
-//                 <p className="card-text">{ title }</p>
-//               </div>
-//             </div>
-//           </div>
-//         )}
-//       </Draggable>
-//     );
-//   }
-
-//   handleEdit = () => {
-//     console.log("YOOOOOO");
-//   }
-
-// export default JobCard;

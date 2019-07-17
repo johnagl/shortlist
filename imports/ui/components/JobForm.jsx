@@ -45,19 +45,25 @@ class JobForm extends React.Component {
 
 
   onSubmit = (e) => {
-    //   e.preventDefault();
-    //   const job =  {
-    //     _id: uuid(),
-    //     company: this.state.name,
-    //     title: this.state.title,
-    //     dates: {
-    //         createdAt: new Date(),
-    //     },
-    //     owner: Meteor.userId(),
-    //     userEmail: Meteor.user().emails[0].address
-    // }
-    //   this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
-      // this.props.toggle();
+      e.preventDefault();
+      const job =  {
+        _id: uuid(),
+        company: this.state.name,
+        title: this.state.title,
+        dates: {
+            createdAt: new Date(),
+        },
+        owner: Meteor.userId(),
+        userEmail: Meteor.user().emails[0].address
+    }
+    if(this.state.selectedSuggestion) {
+      job["domain"] = this.state.selectedSuggestion.domain;
+      job["logo"] = this.state.selectedSuggestion.logo;
+    }
+
+    console.log("NEW JOB: " + JSON.stringify(job));
+      this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
+      this.props.toggle();
   }
 
   renderSuggestions() {

@@ -138,6 +138,39 @@ nav a:hover {
   text-align: left;
 }
 
+.job-card .logo {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.default-logo {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: #003DA5;
+  color: #FFFFFF;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
 .delete-button {
   display: table-cell;
   vertical-align: middle;

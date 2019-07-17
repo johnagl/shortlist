@@ -25,7 +25,6 @@ export const addJob = (job, stageIdUnique, stageId) => dispatch => {
  
     let id = job._id;
     Meteor.call('jobs.insert', job);
-    
     Meteor.call('stages.insertJob', stageId, id);
 
     // let allJobs = Meteor.call('jobs.listAll');
