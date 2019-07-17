@@ -6,10 +6,9 @@ import DashboardPage from './components/DashboardPage';
 import MapPage from './components/MapPage';
 import CalendarPage from './components/CalendarPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Navbar from './components/Navbar.jsx'
-import Footer from './components/Footer.jsx'
-import LoginForm from './components/LoginForm.jsx'
-import RegisterForm from './components/RegisterForm.jsx'
+import Navbar from './components/Navbar.jsx';
+import Footer from './components/Footer.jsx';
+import LoginForm from './components/LoginForm.jsx';
 
 
 import '../../client/main.css';
@@ -22,15 +21,11 @@ class App extends React.Component {
     Meteor.logout();
   }
   render() {
-    // if (jobsDB){
-    // console.log(this.props.jobsDB);
-    // }
-    
-  
+      
     return(
       <div>
       <div id="App">
-        {this.props.currentUser  ? 
+        {Meteor.userId()  ? 
         <BrowserRouter>
           <Navbar/>
           <div className="flex-container">
@@ -46,7 +41,7 @@ class App extends React.Component {
               <Route path='/calendar' component={CalendarPage} />
             </Switch>
           </div>
-        </BrowserRouter> : <LoginForm/>
+        </BrowserRouter> : <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
         }
       </div>
       
@@ -57,14 +52,6 @@ class App extends React.Component {
     );
   }
 }
-
-
-// const mapStateToProps = (state) => {
-//   return{
-//     view: state.jobs.view
-//   }
-// }
-
 
 export default withTracker(() => {
   Meteor.subscribe('jobs');

@@ -9,7 +9,7 @@ class DeleteButton extends React.Component {
     handleRemove = () => {
         // console.log(this.props.jobID);
         // console.log(this.props.stageID);
-        this.props.removeJob(this.props.jobID, this.props.stage._id);
+        this.props.removeJob(this.props.jobID, this.props.stage.stageId, this.props.stage._id);
     }
 
     render() {

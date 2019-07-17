@@ -10,7 +10,7 @@ class JobForm extends React.Component {
   state = {
       name: '',
       title: '',
-      select: this.props.stages.allIds[0]
+      select: this.props.stages.allIds[0],
   }
 
   onChangeCompanyName = (e) => this.setState(
@@ -35,13 +35,11 @@ class JobForm extends React.Component {
         title: this.state.title,
         dates: {
             createdAt: new Date(),
-        }
+        },
+        owner: Meteor.userId(),
+        userEmail: Meteor.user().emails[0].address
     }
-      // console.log(this.state.select);
-      // console.log(this.props.jobs);
-      // Jobs.insert(job);
-      console.log("SELECTED: " + this.state.select);
-      this.props.addJob(job, this.state.select);
+      this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
       // this.props.toggle();
   }
 
@@ -52,7 +50,7 @@ class JobForm extends React.Component {
       stages.push(
         {
           _id: id,
-          title: this.props.stages.byId[id].title
+          title: this.props.stages.byId[id].title,
         });
     }
 

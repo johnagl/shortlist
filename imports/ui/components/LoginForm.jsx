@@ -1,14 +1,17 @@
 import React from 'react';
 import { Container, Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import RegisterForm from './RegisterForm.jsx'
+import RegisterForm from './RegisterForm.jsx';
+import { Redirect } from 'react-router-dom';
 
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      dashboard: false,
     };
     this.toggle = this.toggle.bind(this);
+
   }
 
   toggle() {
@@ -27,7 +30,7 @@ export default class LoginForm extends React.Component {
       if (er) {
         alert(er.reason);
       } else {
-        console.log("success")
+        console.log('success');
       }
     });
   }
@@ -43,6 +46,8 @@ export default class LoginForm extends React.Component {
     opacity: "0.9"
     }
   render() {
+    // console.log('LOGIN FORM CURRENTUSER: ' + this.props.currentUser);
+    // console.log('LOGIN FORM STAGESLIST: ' + this.props.stagesList);
     return (
       <div style = {this.aroundLogin}>
       <Container>

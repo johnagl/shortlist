@@ -83,7 +83,7 @@ const jobsReducer = (state = initState, action) => {
         
         case 'REMOVE_JOB':
             var newStagesById = Object.assign({}, state.stages.byId);
-            newStagesById[action.stageID].jobs = newStagesById[action.stageID].jobs.filter(jobId => jobId !== action._id);
+            newStagesById[action.stageIdUnique].jobs = newStagesById[action.stageIdUnique].jobs.filter(jobId => jobId !== action._id);
 
             var newJobsById = Object.assign({}, state.jobs.byId);
             delete newJobsById[action._id];
