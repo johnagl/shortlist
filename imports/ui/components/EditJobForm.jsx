@@ -8,8 +8,8 @@ import { addJob } from '../actions/index';
 class EditJobForm extends React.Component {
   state = {
       company: this.props.job.company,
-      title: '',
-      select: this.props.stages.allIds[0],
+      title: this.props.job.title,
+      select: this.props.stage._id,
   }
 
   onChangeCompanyName = (e) => this.setState(
@@ -25,18 +25,20 @@ class EditJobForm extends React.Component {
   );
 
   onSubmit = (e) => {
-      e.preventDefault();
-      const job =  {
-        _id: uuid(),
-        company: this.state.name,
-        title: this.state.title,
-        dates: {
-            createdAt: new Date(),
-        },
-        owner: Meteor.userId(),
-        userEmail: Meteor.user().emails[0].address
-    }
-      this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
+    //   e.preventDefault();
+    //   const job =  {
+    //     _id: uuid(),
+    //     company: this.state.name,
+    //     title: this.state.title,
+    //     dates: {
+    //         createdAt: new Date(),
+    //     },
+    //     owner: Meteor.userId(),
+    //     userEmail: Meteor.user().emails[0].address
+    // }
+    // TODO: add this.props.editJob(job);
+    //   this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
+    //   this.props.editJob(job);
       // this.props.toggle();
   }
 
@@ -65,14 +67,14 @@ class EditJobForm extends React.Component {
       <Form onSubmit={this.onSubmit}>
         <FormGroup>
           <Label for="companyName">Company Name</Label>
-          <Input type="text hidden" name="name" autoComplete="off" id="companyName" placeholder="Company Name" value = {this.state.name} onChange = {this.onChangeCompanyName}/>
+          <Input type="text hidden" name="company" autoComplete="off" id="companyName" placeholder="Company" value = {this.state.company} onChange = {this.onChangeCompanyName}/>
         </FormGroup>
         <FormGroup>
           <Label for="jobTitle">Job Title</Label>
           <Input type="text hidden" name="title" autoComplete="off" id="jobTitle" placeholder="Job Title" value = {this.state.title} onChange = {this.onChangeJobTitle} />
         </FormGroup>
         <FormGroup>
-          <Label for="jobStageSelect">Select</Label>
+          <Label for="jobStageSelect">Move Job</Label>
           <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeJobStage} >
             {this.renderOptions()}
           </Input>
