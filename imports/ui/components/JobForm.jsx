@@ -14,6 +14,7 @@ class JobForm extends React.Component {
       title: '',
       select: this.props.stages.allIds[0],
       suggestions: [],
+      selectedSuggestion: null,
   }
 
   onChangeCompanyName = async (e) => {
@@ -25,8 +26,7 @@ class JobForm extends React.Component {
       });
       let suggestions = await response.json();
 
-    await this.setState({ suggestions });
-    console.log("SUGGESTIONS:" + JSON.stringify(this.state.suggestions));
+    await this.setState({ suggestions, selectedSuggestion: null });
 
     } catch(e) {
         console.log(e);
@@ -61,11 +61,23 @@ class JobForm extends React.Component {
 
   renderSuggestions() {
     let suggestions = this.state.suggestions.map(suggestion => {
-      return(<CompanySuggestion key={suggestion.domain} name={suggestion.name} logo={suggestion.logo} />);
+      return(
+        <div key={suggestion.domain} onClick={ () => {this.selectSuggestion(suggestion)} }>
+          <CompanySuggestion key={suggestion.domain} name={suggestion.name} logo={suggestion.logo} />
+        </div>
+      );
     })
+    return (
+      <div className="suggestions">
+        { suggestions }
+      </div>
+    );
+  }
 
-    return suggestions;
-
+  async selectSuggestion(suggestion) {
+    await this.setState({selectedSuggestion: suggestion, name: suggestion.name });
+    console.log("SELECTED: " + JSON.stringify(suggestion));
+    console.log("NAME: " + suggestion.name);
   }
 
   renderOptions() {
@@ -91,9 +103,10 @@ class JobForm extends React.Component {
 
     return (
       <Form onSubmit={this.onSubmit}>
-        <FormGroup>
+        <FormGroup className="suggestions-container">
           <Label for="companyName">Company Name</Label>
           <Input type="text hidden" name="name" autoComplete="off" id="companyName" placeholder="Company Name" value = {this.state.name} onChange = {this.onChangeCompanyName}/>
+          { this.renderSuggestions() }
         </FormGroup>
         <FormGroup>
           <Label for="jobTitle">Job Title</Label>
@@ -104,7 +117,6 @@ class JobForm extends React.Component {
           <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeJobStage} >
             { this.renderOptions() }
           </Input>
-          { this.renderSuggestions() }
         </FormGroup>
         <Button>Submit</Button>
       </Form>
