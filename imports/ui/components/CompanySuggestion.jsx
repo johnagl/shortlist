@@ -9,7 +9,7 @@ class CompanySuggestion extends React.Component {
     return (
         <div className="suggestion">
             <img src={logo} />
-            <p>{ name }</p>
+            <span className="truncate">{ name }</span>
         </div>
     )
   }

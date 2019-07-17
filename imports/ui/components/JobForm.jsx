@@ -61,7 +61,7 @@ class JobForm extends React.Component {
 
   renderSuggestions() {
     let suggestions = this.state.suggestions.map(suggestion => {
-      return(<CompanySuggestion name={suggestion.name} logo={suggestion.logo} />);
+      return(<CompanySuggestion key={suggestion.domain} name={suggestion.name} logo={suggestion.logo} />);
     })
 
     return suggestions;
