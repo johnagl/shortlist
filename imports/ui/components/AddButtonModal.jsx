@@ -24,7 +24,7 @@ class AddButtonModal extends React.Component {
     return (
       <React.Fragment>
         <div className = "add-button-container">
-          <Button className="addButton" onClick={this.toggle}>Add Job</Button>
+          { this.props.job ? null : <Button className="addButton" onClick={this.toggle}>Add Job</Button> }
             <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
               <ModalHeader toggle={this.toggle}>Add a Job</ModalHeader>
               <ModalBody>

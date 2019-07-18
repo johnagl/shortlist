@@ -7,6 +7,7 @@ import JobForm from './JobForm';
 import { Draggable } from 'react-beautiful-dnd';
 import Avatar from '@material-ui/core/Avatar';
 import '../../../client/main.css';
+import AddButtonModal from './AddButtonModal';
 
 class JobCard extends React.Component {
   constructor(props) {
@@ -50,39 +51,53 @@ class JobCard extends React.Component {
     const logo = this.renderLogo(job.logo, job.company);
 
     return (
+      <div>
         <Draggable draggableId={String(job._id)} index={index}>
-          {provided => (
-            <div 
-              {...provided.draggableProps} 
-              {...provided.dragHandleProps} 
-              ref={provided.innerRef}
-            >
-              <div className="job-card" style={{"borderColor": color}} onClick={this.toggle}>
-                <div className="card-body" >
-                  <DeleteButton stage={ stage } jobID={ job._id } color={ color }/>
-                  <div className="card-text card-title">
-                    { logo }
-                    { job.company }
+            {provided => (
+              <div 
+                {...provided.draggableProps} 
+                {...provided.dragHandleProps} 
+                ref={provided.innerRef}
+              >
+                <div className="job-card" style={{"borderColor": color}} onClick={this.toggle}>
+                  <div className="card-body" >
+                    <DeleteButton stage={ stage } jobID={ job._id } color={ color }/>
+                    <div className="card-text card-title">
+                      { logo }
+                      { job.company }
+                    </div>
+                    <p className="card-text">{ job.title }</p>
                   </div>
-                  <p className="card-text">{ job.title }</p>
-
-                    <React.Fragment>
-                      <div className = "add-button-container">
-                          <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                            <ModalHeader toggle={this.toggle}>Add a Job</ModalHeader>
-                            <ModalBody>
-                              <JobForm job={ job } stage={this.props.stage} toggle={this.toggle}/>
-                            </ModalBody>
-                        </Modal>
-                      </div>
-                    </React.Fragment>
                 </div>
               </div>
+            )}
+          </Draggable>
+          
+          <React.Fragment>
+            <div className = "add-button-container">
+              {/* <Button className="addButton" onClick={this.toggle}>Add Job</Button> */}
+                <Modal isOpen={this.state.modal} toggle={this.toggle} >
+                  <ModalHeader toggle={this.toggle}>Edit a Job</ModalHeader>
+                  <ModalBody>
+                    <JobForm job={job} stage={this.props.stage} toggle={this.toggle}/>
+                  </ModalBody>
+              </Modal>
             </div>
-          )}
-        </Draggable>
+          </React.Fragment>
+      </div>
     );
   }
 }
+
+// <React.Fragment>
+//                         <div className = "add-button-container">
+//                             <Modal isOpen={this.state.modal} toggle={this.toggle}>
+//                               <ModalHeader toggle={this.toggle}>Add a Job</ModalHeader>
+//                               <ModalBody>
+//                                 <JobForm job={ job } stage={this.props.stage} toggle={this.toggle}/>
+//                               </ModalBody>
+//                           </Modal>
+//                         </div>
+//                       </React.Fragment>
 
 export default JobCard;
