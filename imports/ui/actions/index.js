@@ -31,7 +31,7 @@ export const addJob = (job, stageIdUnique, stageId) => dispatch => {
 };
 
 
-export const removeJob = (id , stageID, stageIdUnique) => dispatch => {
+export const removeJob = (id, stageID, stageIdUnique) => dispatch => {
     dispatch({
         type: 'REMOVE_JOB',
         _id: id,
@@ -41,6 +41,13 @@ export const removeJob = (id , stageID, stageIdUnique) => dispatch => {
     Meteor.call('jobs.remove', id);
     Meteor.call('stages.removeJob', stageID, id);
 };
+
+export const editJob = (job) => dispatch => {
+    dispatch({
+        type: 'EDIT_JOB',
+        
+    })
+}
 
 export const toggleJobCard = (id) => {
     return {

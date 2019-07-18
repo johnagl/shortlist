@@ -4,15 +4,14 @@ import {bindActionCreators} from 'redux';
 import uuid from 'uuid';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { addJob } from '../actions/index';
-import Jobs from '../../api/jobs.js';
-import { domainToASCII } from 'url';
 import CompanySuggestion from './CompanySuggestion';
 
 class JobForm extends React.Component {
+
   state = {
-      name: '',
-      title: '',
-      select: this.props.stages.allIds[0],
+      name: (this.props.job ? this.props.job.company : ''),
+      title: (this.props.job ? this.props.job.company : ''),
+      select: (this.props.stage ? this.props.stage._id : this.props.stages.allIds[0]),
       suggestions: [],
       selectedSuggestion: null,
       companyFocused: false,
@@ -42,11 +41,15 @@ class JobForm extends React.Component {
     { [e.target.name]: e.target.value }
   );
 
-
-
+  // Adds a job if one did not exist, otherwise edits existing job
   onSubmit = (e) => {
-      e.preventDefault();
-      const job =  {
+    e.preventDefault();
+    const job;
+
+    if(this.props.job) {
+
+    } else {
+      job =  {
         _id: uuid(),
         company: this.state.name,
         title: this.state.title,
@@ -60,9 +63,8 @@ class JobForm extends React.Component {
       job["domain"] = this.state.selectedSuggestion.domain;
       job["logo"] = this.state.selectedSuggestion.logo;
     }
-
-    console.log("NEW JOB: " + JSON.stringify(job));
       this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
+    }
       this.props.toggle();
   }
 
@@ -136,7 +138,7 @@ class JobForm extends React.Component {
           <Input type="text hidden" name="title" autoComplete="off" id="jobTitle" placeholder="Job Title" value = {this.state.title} onChange = {this.onChangeJobTitle} />
         </FormGroup>
         <FormGroup>
-          <Label for="jobStageSelect">Select</Label>
+          <Label for="jobStageSelect">Stage</Label>
           <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeJobStage} >
             { this.renderOptions() }
           </Input>

@@ -28,7 +28,7 @@ class AddButtonModal extends React.Component {
             <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
               <ModalHeader toggle={this.toggle}>Add a Job</ModalHeader>
               <ModalBody>
-                <JobForm toggle={this.toggle}/>
+                <JobForm stage={this.props.stage} toggle={this.toggle}/>
               </ModalBody>
           </Modal>
         </div>
