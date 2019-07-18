@@ -12,7 +12,7 @@ class JobCardsContainer extends Component {
 
         let jobCards = jobs.map((job, index) => {
             return(
-                <JobCard key={job._id} job={job} color={stage.color} index={index} stage ={stage} />
+                <JobCard key={job._id} job={job} color={stage.color} index={index} stage={stage} />
             )               
         })
     

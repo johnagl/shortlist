@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Card, Button, CardBody, CardTitle, CardText } from 'reactstrap';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import DeleteButton from './DeleteButton';
-import JobForm from './EditJobForm';
+import JobForm from './JobForm';
 import { Draggable } from 'react-beautiful-dnd';
 import Avatar from '@material-ui/core/Avatar';
 import '../../../client/main.css';
@@ -70,7 +70,7 @@ class JobCard extends React.Component {
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                         <ModalHeader toggle={this.toggle}>Edit Job</ModalHeader>
                         <ModalBody>
-                          <JobForm job={ job } stage={stage} />
+                          <JobForm job={ job } stage={stage} toggle={this.toggle}/>
                         </ModalBody>
                     </Modal>
                 </div>

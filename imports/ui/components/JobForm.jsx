@@ -10,7 +10,7 @@ class JobForm extends React.Component {
 
   state = {
       name: (this.props.job ? this.props.job.company : ''),
-      title: (this.props.job ? this.props.job.company : ''),
+      title: (this.props.job ? this.props.job.title : ''),
       select: (this.props.stage ? this.props.stage._id : this.props.stages.allIds[0]),
       suggestions: [],
       selectedSuggestion: null,
@@ -44,7 +44,9 @@ class JobForm extends React.Component {
   // Adds a job if one did not exist, otherwise edits existing job
   onSubmit = (e) => {
     e.preventDefault();
-    const job;
+    let job;
+
+    // TODO: add guards here if mandatory fields have not been completed
 
     if(this.props.job) {
 
@@ -77,18 +79,14 @@ class JobForm extends React.Component {
       );
     })
 
-    if(this.state.companyFocused) {
+    let className;
+    this.state.companyFocused? className="suggestions" : className="suggestions hide"
+
       return (
-        <div className="suggestions">
+        <div className={className}>
           { suggestions }
         </div>
       );
-    }
-    return (
-      <div className="suggestions hide">
-        { suggestions }
-      </div>
-    );
   }
 
   handleFocus = () => {
@@ -96,6 +94,7 @@ class JobForm extends React.Component {
   }
 
   handleBlur = () => {
+    console.log("IN HANDLE BLUR");
     this.setState({companyFocused: false});
   }
 
@@ -152,10 +151,5 @@ class JobForm extends React.Component {
 const mapStateToProps = (state) => {
     return { jobs: state.jobs.jobs, stages: state.jobs.stages }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return bindActionCreators({addJob : addJob}, dispatch)
-// }
-
 
 export default connect(mapStateToProps, {addJob})(JobForm);
