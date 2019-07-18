@@ -25,14 +25,30 @@ export const addJob = (job, stageIdUnique, stageId) => dispatch => {
  
     let id = job._id;
     Meteor.call('jobs.insert', job);
-    
     Meteor.call('stages.insertJob', stageId, id);
 
     // let allJobs = Meteor.call('jobs.listAll');
 };
 
+export const editJob = (job, oldStageId, newStageId, indexStart) => dispatch => {
+    dispatch({
+        type: 'EDIT_JOB',
+        payload: job,
+        oldStageId: oldStageId,
+        newStageId: newStageId,     
+    });
 
-export const removeJob = (id , stageID, stageIdUnique) => dispatch => {
+    console.log("JOB: " + JSON.stringify(job));
+
+    Meteor.call('jobs.update', job);
+
+    if(oldStageId != newStageId) {
+        Meteor.call('stages.drag', oldStageId, newStageId, indexStart, 0, job._id);
+    }
+}
+
+
+export const removeJob = (id, stageID, stageIdUnique) => dispatch => {
     dispatch({
         type: 'REMOVE_JOB',
         _id: id,

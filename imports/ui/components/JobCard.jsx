@@ -1,69 +1,105 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, Button, CardBody, CardTitle, CardText } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import DeleteButton from './DeleteButton';
+import JobForm from './JobForm';
 import { Draggable } from 'react-beautiful-dnd';
+import Avatar from '@material-ui/core/Avatar';
 import '../../../client/main.css';
+import AddButtonModal from './AddButtonModal';
 
-const JobCard = ({ id, title, company, index, color, stage, stageId }) => {
-    console.log('STAGE IN JOBCARD :' + JSON.stringify(stage));
-    return (
-      <Draggable draggableId={String(id)} index={index}>
-        {provided => (
-          <div 
-            {...provided.draggableProps} 
-            {...provided.dragHandleProps} 
-            ref={provided.innerRef}
-          >
-            <div className="job-card" style={{"borderColor": color}} onClick={handleEdit}>
-              <div className="card-body" >
-                <DeleteButton stage = {stage} jobID={ id } color={ color }/>
-                <div className="card-text card-title">{ company }</div>
-                <p className="card-text">{ title }</p>
-              </div>
-            </div>
-          </div>
-        )}
-      </Draggable>
-    );
+class JobCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false
+    };
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
   }
 
   handleEdit = () => {
     console.log("YOOOOOO");
   }
 
-//   <div className="posting">
-//   <DeleteButton className="delete-button" jobID={id} />
-//   <div>{ title }</div>
-//   <div>{ company }</div>
-// </div>
+  renderLogo = (logoURL, name) => {
+    // return(<Avatar src={logoURL} className="logo" children={name} />);
+    if(logoURL) {
+      return(<img  className="logo" src={logoURL} onError={(e)=>{e.target.onerror = null; e.target.src="https://cdn.bulbagarden.net/upload/thumb/0/0d/025Pikachu.png/1200px-025Pikachu.png"}}/>);
+    }
+    return this.addDefaultSrc(name);
+  }
 
-  // getStatus(statusID) {
-  //   let result =  this.props.status.filter(status => {
-  //       return statusID == status.id
-  //   });
-  //   return result[0];
-  // }
-// }
+  addDefaultSrc = (name) => {
+    console.log("NAME!!! " + name);
+    return(
+      <div className="logo default-logo">
+        {name.charAt(0).toUpperCase()}
+      </div>
+    )
+  }
 
-// const mapStateToProps = (state) => {
-//   return { 
-//       status: state.status.status
-//   };
-// }
+  render() {
+    const { job, index, color, stage } = this.props;
+    const logo = this.renderLogo(job.logo, job.company);
 
-// const mapDispatchToProps = (dispatch) => {
-//     return bindActionCreators({addTodo: addTodo, updateDraft: updateDraft}, dispatch);
-// }
+    return (
+      <div>
+        <Draggable draggableId={String(job._id)} index={index}>
+            {provided => (
+              <div 
+                {...provided.draggableProps} 
+                {...provided.dragHandleProps} 
+                ref={provided.innerRef}
+              >
+                <div className="job-card" style={{"borderColor": color}} onClick={this.toggle}>
+                  <div className="card-body" >
+                    <DeleteButton stage={ stage } jobID={ job._id } color={ color }/>
+                    <div className="card-text card-title">
+                      { logo }
+                      { job.company }
+                    </div>
+                    <p className="card-text">{ job.title }</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </Draggable>
+          
+          <React.Fragment>
+            <div className = "add-button-container">
+              {/* <Button className="addButton" onClick={this.toggle}>Add Job</Button> */}
+                <Modal isOpen={this.state.modal} toggle={this.toggle} >
+                  <ModalHeader toggle={this.toggle}>Edit a Job</ModalHeader>
+                  <ModalBody>
+                    <JobForm job={job} jobIndex={index} stage={this.props.stage} toggle={this.toggle}/>
+                  </ModalBody>
+              </Modal>
+            </div>
+          </React.Fragment>
+      </div>
+    );
+  }
+}
 
-// const {id, title, company, statusID} = this.props;
-// return (
-//   <div className="posting">
-//     <div>{ title }</div>
-//     <div>{ company }</div>
-//     <div>Status: { this.getStatus(statusID).description }</div>
-//     <DeleteButton jobID={id} />
-//   </div>
-// );
+{/* <React.Fragment>
+            <div className = "add-button-container">
+
+              {/* <Button className="addButton" onClick={this.toggle}>Add Job</Button> */}
+                {/* <Modal isOpen={this.state.modal} toggle={this.toggle} >
+                  <ModalHeader toggle={this.toggle}>Edit a Job</ModalHeader>
+                  <ModalBody>
+                    <JobForm job={job} stage={this.props.stage} toggle={this.toggle}/>
+                  </ModalBody>
+              </Modal>
+            </div>
+          </React.Fragment> */}
 
 export default JobCard;

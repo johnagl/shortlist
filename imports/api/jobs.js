@@ -28,4 +28,7 @@ Meteor.methods({
         Jobs.remove({_id : id});
 
     },
+    'jobs.update'(job){
+        Jobs.update(job._id, job);
+    }
 })
