@@ -30,16 +30,21 @@ export const addJob = (job, stageIdUnique, stageId) => dispatch => {
     // let allJobs = Meteor.call('jobs.listAll');
 };
 
-export const editJob = (job, oldStageId, newStageId) => dispatch => {
+export const editJob = (job, oldStageId, newStageId, indexStart) => dispatch => {
     dispatch({
         type: 'EDIT_JOB',
         payload: job,
         oldStageId: oldStageId,
-        newStageId: newStageId         
+        newStageId: newStageId,     
     });
 
+    console.log("JOB: " + JSON.stringify(job));
+
     Meteor.call('jobs.update', job);
-    Meteor.call('stages.')
+
+    if(oldStageId != newStageId) {
+        Meteor.call('stages.drag', oldStageId, newStageId, indexStart, 0, job._id);
+    }
 }
 
 

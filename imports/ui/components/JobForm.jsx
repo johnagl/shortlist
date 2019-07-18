@@ -37,9 +37,11 @@ class JobForm extends React.Component {
     { [e.target.name]: e.target.value }
   );
   
-  onChangeJobStage = (e) => this.setState(
-    { [e.target.name]: e.target.value }
-  );
+  onChangeJobStage = async (e) => {
+    console.log("OLD STAGE: " + JSON.stringify(this.props.stage));
+    await this.setState({ [e.target.name]: e.target.value });
+    console.log("NEW STAGE ID: " + JSON.stringify(this.state.select))
+  }
 
   // Adds a job if one did not exist, otherwise edits existing job
   onSubmit = (e) => {
@@ -57,7 +59,7 @@ class JobForm extends React.Component {
         job["logo"] = this.state.selectedSuggestion.logo;
       }
 
-      this.props.editJob(job, this.props.stage._id, this.props.select);
+      this.props.editJob(job, this.props.stage._id, this.state.select, this.props.jobIndex);
 
     } else {
       job =  {
@@ -104,7 +106,6 @@ class JobForm extends React.Component {
   }
 
   handleBlur = () => {
-    console.log("IN HANDLE BLUR");
     this.setState({companyFocused: false});
   }
 
@@ -132,7 +133,6 @@ class JobForm extends React.Component {
 
 
   render() {
-
     return (
       <Form onSubmit={this.onSubmit}>
         <FormGroup className="suggestions-container">

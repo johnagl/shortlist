@@ -79,7 +79,7 @@ class JobCard extends React.Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} >
                   <ModalHeader toggle={this.toggle}>Edit a Job</ModalHeader>
                   <ModalBody>
-                    <JobForm job={job} stage={this.props.stage} toggle={this.toggle}/>
+                    <JobForm job={job} jobIndex={index} stage={this.props.stage} toggle={this.toggle}/>
                   </ModalBody>
               </Modal>
             </div>
