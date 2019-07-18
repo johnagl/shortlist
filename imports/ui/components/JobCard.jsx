@@ -50,8 +50,6 @@ class JobCard extends React.Component {
     const logo = this.renderLogo(job.logo, job.company);
 
     return (
-      
-      <React.Fragment >
         <Draggable draggableId={String(job._id)} index={index}>
           {provided => (
             <div 
@@ -67,18 +65,22 @@ class JobCard extends React.Component {
                     { job.company }
                   </div>
                   <p className="card-text">{ job.title }</p>
-                    <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                        <ModalHeader toggle={this.toggle}>Edit Job</ModalHeader>
-                        <ModalBody>
-                          <JobForm job={ job } stage={stage} toggle={this.toggle}/>
-                        </ModalBody>
-                    </Modal>
+
+                    <React.Fragment>
+                      <div className = "add-button-container">
+                          <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                            <ModalHeader toggle={this.toggle}>Add a Job</ModalHeader>
+                            <ModalBody>
+                              <JobForm job={ job } stage={this.props.stage} toggle={this.toggle}/>
+                            </ModalBody>
+                        </Modal>
+                      </div>
+                    </React.Fragment>
                 </div>
               </div>
             </div>
           )}
         </Draggable>
-      </React.Fragment>
     );
   }
 }

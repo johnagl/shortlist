@@ -99,9 +99,7 @@ class JobForm extends React.Component {
   }
 
   async selectSuggestion(suggestion) {
-    await this.setState({selectedSuggestion: suggestion, name: suggestion.name });
-    console.log("SELECTED: " + JSON.stringify(suggestion));
-    console.log("NAME: " + suggestion.name);
+    await this.setState({selectedSuggestion: suggestion, name: suggestion.name});
   }
 
   renderOptions() {
