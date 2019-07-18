@@ -89,15 +89,17 @@ class JobCard extends React.Component {
   }
 }
 
-// <React.Fragment>
-//                         <div className = "add-button-container">
-//                             <Modal isOpen={this.state.modal} toggle={this.toggle}>
-//                               <ModalHeader toggle={this.toggle}>Add a Job</ModalHeader>
-//                               <ModalBody>
-//                                 <JobForm job={ job } stage={this.props.stage} toggle={this.toggle}/>
-//                               </ModalBody>
-//                           </Modal>
-//                         </div>
-//                       </React.Fragment>
+{/* <React.Fragment>
+            <div className = "add-button-container">
+
+              {/* <Button className="addButton" onClick={this.toggle}>Add Job</Button> */}
+                {/* <Modal isOpen={this.state.modal} toggle={this.toggle} >
+                  <ModalHeader toggle={this.toggle}>Edit a Job</ModalHeader>
+                  <ModalBody>
+                    <JobForm job={job} stage={this.props.stage} toggle={this.toggle}/>
+                  </ModalBody>
+              </Modal>
+            </div>
+          </React.Fragment> */}
 
 export default JobCard;

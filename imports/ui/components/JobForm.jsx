@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import uuid from 'uuid';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import { addJob } from '../actions/index';
+import { addJob, editJob } from '../actions/index';
 import CompanySuggestion from './CompanySuggestion';
 
 class JobForm extends React.Component {
@@ -47,8 +47,17 @@ class JobForm extends React.Component {
     let job;
 
     // TODO: add guards here if mandatory fields have not been completed
-
     if(this.props.job) {
+      job = this.props.job;
+      job["company"] = this.state.name;
+      job["title"] = this.state.title;
+
+      if(this.state.selectedSuggestion) {
+        job["domain"] = this.state.selectedSuggestion.domain;
+        job["logo"] = this.state.selectedSuggestion.logo;
+      }
+
+      this.props.editJob(job, this.props.stage._id, this.props.select);
 
     } else {
       job =  {
@@ -61,6 +70,7 @@ class JobForm extends React.Component {
         owner: Meteor.userId(),
         userEmail: Meteor.user().emails[0].address
     }
+
     if(this.state.selectedSuggestion) {
       job["domain"] = this.state.selectedSuggestion.domain;
       job["logo"] = this.state.selectedSuggestion.logo;
@@ -150,4 +160,4 @@ const mapStateToProps = (state) => {
     return { jobs: state.jobs.jobs, stages: state.jobs.stages }
 }
 
-export default connect(mapStateToProps, {addJob})(JobForm);
+export default connect(mapStateToProps, {addJob, editJob})(JobForm);
