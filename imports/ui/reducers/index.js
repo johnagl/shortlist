@@ -80,7 +80,29 @@ const jobsReducer = (state = initState, action) => {
                     allIds: allIdsJobs
                 }
             }
-        
+        case 'EDIT_JOB':
+            var byIdJobs = Object.assign({}, state.jobs.byId);
+            byIdJobs[action.payload._id] = action.payload;
+
+            var byIdStages = Object.assign({}, state.stages.byId);
+
+            if(action.oldStageId !== action.newStageId) {
+                byIdStages[action.oldStageId].jobs = byIdStages[action.oldStageId].jobs.filter(jobId => jobId !== action.payload._id);
+                byIdStages[action.newStageId].jobs.unshift(action.payload._id);
+            }
+
+            return {
+                ...state,
+                stages: {
+                    ...state.stages,
+                    byId: byIdStages,
+                },                
+                jobs: {
+                    ...state.jobs,
+                    byId: byIdJobs,
+                }
+            }
+    
         case 'REMOVE_JOB':
             var newStagesById = Object.assign({}, state.stages.byId);
             newStagesById[action.stageIdUnique].jobs = newStagesById[action.stageIdUnique].jobs.filter(jobId => jobId !== action._id);

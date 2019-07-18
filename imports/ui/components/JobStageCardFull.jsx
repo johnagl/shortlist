@@ -19,7 +19,7 @@ export default class JobStageCardFull extends Component {
                     <CountBubble count={this.props.jobs.length} /> :
                     null
                 }
-                <AddButtonModal stage={this.props.stage.stageId}stageTitle={this.props.stage.title}stagesList={this.props.stagesList} />
+                <AddButtonModal stage={this.props.stage} stageTitle={this.props.stage.title}stagesList={this.props.stagesList} />
             </div>                                    
         )
     }

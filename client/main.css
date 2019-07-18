@@ -138,6 +138,22 @@ nav a:hover {
   text-align: left;
 }
 
+.default-logo {
+  background: #003DA5;
+  color: #FFFFFF;
+  /* position: relative; */
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
 .delete-button {
   display: table-cell;
   vertical-align: middle;
@@ -224,6 +240,61 @@ nav a:hover {
   border: 2px solid #000000;
   border-radius: 2px;
   color: #FFFFFF;
+}
+
+.suggestion {
+  padding: 10px;
+  border-bottom: 1px solid #EEEEEE;
+  text-align: left;
+  cursor: pointer;
+}
+
+.suggestion img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestion span {
+  vertical-align: middle;
+  margin: 0px 9px;
+}
+
+.suggestions {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  width: 100%;
+  font-size: 13px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 4px;
+  z-index: 1;
+  max-height: 150px;
+  overflow-y: scroll;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(221, 221, 221);
+  border-image: initial;
+}
+
+.suggestions-container {
+  position: relative;
+}
+
+.suggestion .truncate {
+  /* width: 185px; */
+  display: inline-block;
+}
+
+.hide {
+  visibility: hidden;
 }
 
 /* Footer */
