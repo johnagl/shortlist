@@ -1,6 +1,6 @@
 # Shortlist
 
-## 2 Sentence High-Level Description for Industry Guests
+## Two Sentence High-Level Description for Industry Guests
 - Shortlist is for job seekers who want to keep track of their job applications and progress with their job search. Users will have the ability to track the details of all of their job applications without having to use cluttered spread sheets and/or a complicated local file folder system.
 
 ## Project Description
