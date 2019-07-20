@@ -30,5 +30,8 @@ Meteor.methods({
     },
     'jobs.update'(job){
         Jobs.update(job._id, job);
+    },
+    'jobs.insertfile'(coverletter, id, owner) {
+        Jobs.insert({data: coverletter, _id: id, owner: owner})
     }
 })

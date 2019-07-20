@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import  Jobs  from '../api/jobs.js';
 import Stages from '../api/stages.js';
+import Files from '../api/files.js';
 import DashboardPage from './components/DashboardPage';
 import MapPage from './components/MapPage';
 import CalendarPage from './components/CalendarPage';
+import FilesList from './components/FilesList';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
@@ -39,6 +41,7 @@ class App extends React.Component {
               />
               <Route path='/map' component={MapPage} />
               <Route path='/calendar' component={CalendarPage} />
+              <Route path='/files' component={FilesList} filesList={this.props.filesList}/>
             </Switch>
           </div>
         </BrowserRouter> : <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
@@ -56,9 +59,11 @@ class App extends React.Component {
 export default withTracker(() => {
   Meteor.subscribe('jobs');
   Meteor.subscribe('stages');
+  Meteor.subscribe('files');
   return {
     jobsList: Jobs.find({}).fetch(),
     stagesList: Stages.find({}).fetch(),
-    currentUser: Meteor.user()
+    currentUser: Meteor.user(),
+    filesList: Files.find({}).fetch()
   };
 })(App);

@@ -47,6 +47,9 @@ export default class Example extends React.Component {
               <NavItem>
                 <NavLink href="https://www.google.com/search?q=google+job+search&oq=google+job+search&aqs=&ibp=htl;jobs&sa=X&ved=2ahUKEwibzr-K_vriAhU7CTQIHTuIBS0QiYsCKAB6BAgHEAM#fpstate=tldetail&htidocid=hG5i5uLtYe8QnZ98AAAAAA%3D%3D&htivrt=jobs" target ="_blank">job search</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/files">documents</NavLink>
+              </NavItem>
               <NavItem >              
                 <NavLink onClick = {this.onClick}>logout</NavLink>
                 {/* {/* <button onClick = {this.onClick}>Logout</button> */}

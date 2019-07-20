@@ -5,6 +5,9 @@ import uuid from 'uuid';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { addJob, editJob } from '../actions/index';
 import CompanySuggestion from './CompanySuggestion';
+import { Meteor } from 'meteor/meteor';
+// import Files from '..api/files.js';
+
 
 class JobForm extends React.Component {
 
@@ -100,7 +103,7 @@ class JobForm extends React.Component {
         </div>
       );
   }
-
+  
   handleFocus = () => {
     this.setState({companyFocused: true});
   }
@@ -146,7 +149,7 @@ class JobForm extends React.Component {
         </FormGroup>
         <FormGroup>
           <Label for="jobStageSelect">Stage</Label>
-          <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeJobStage} >
+          <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeJobStage} value={this.state.onChange}>
             { this.renderOptions() }
           </Input>
         </FormGroup>
