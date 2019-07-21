@@ -1,11 +1,13 @@
 import React from 'react';
+import BigCalendar from './BigCalendar.jsx';
 
 export default class CalendarPage extends React.Component {
 
     render() {
+        // console.log('EVENTS: ' + JSON.stringify(this.props.eventsList))
         return (
             <div className="calendar">
-                <p>This is the calendar</p>
+                <BigCalendar eventsList={this.props.eventsList} />
             </div>
           );
     }

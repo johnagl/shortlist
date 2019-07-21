@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import Links from '../imports/api/links.js';
 import Jobs from '../imports/api/jobs.js';
 import Stages from '../imports/api/stages.js';
+import Events from '../imports/api/events.js';
 
 function insertJob(company, title) {
   Jobs.insert(
