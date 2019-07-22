@@ -12,9 +12,9 @@ import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import LoginForm from './components/LoginForm.jsx';
 
-
 import '../../client/main.css';
 import { withTracker } from 'meteor/react-meteor-data';
+import FileUpload from './components/files/FileUpload.jsx';
 
 
 
@@ -39,17 +39,20 @@ class App extends React.Component {
                 )}
                 // component={DashboardPage} 
               />
+              {/* <Route 
+                exact path='/files' 
+                render={(routeProps) => (
+                  <FilesList {...routeProps} filesList={this.props.filesList} />
+                )}
+              /> */}
+              <Route path='/files' component={FileUpload}/>
               <Route path='/map' component={MapPage} />
               <Route path='/calendar' component={CalendarPage} />
-              <Route path='/files' component={FilesList} filesList={this.props.filesList}/>
             </Switch>
           </div>
         </BrowserRouter> : <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
         }
       </div>
-      
-      {/* <RegisterForm/> */}
-      {/* <LoginForm/> */}
       <Footer/>
       </div>
     );
@@ -64,6 +67,6 @@ export default withTracker(() => {
     jobsList: Jobs.find({}).fetch(),
     stagesList: Stages.find({}).fetch(),
     currentUser: Meteor.user(),
-    filesList: Files.find({}).fetch()
+    // filesList: Files.find({}).fetch()
   };
 })(App);
