@@ -167,7 +167,7 @@ export default withTracker( ( props ) => {
   console.log(filesHandle);
   const docsReadyYet = filesHandle.ready();
   console.log(docsReadyYet);
-  const files = UserFiles.find({}, {sort: {name: 1}}).fetch();
+  const files = UserFiles.find({'meta.userId':Meteor.userId()}, {sort: {name: 1}}).fetch();
 
   return {
     docsReadyYet,
