@@ -1,5 +1,8 @@
 # Shortlist
 
+## Two Sentence High-Level Description for Industry Guests
+- Shortlist is for job seekers who want to keep track of their applications and job search progress. Users can update dates, details, and the status of each job application with a clean user interface, without ever having to use and maintain cluttered spreadsheets.
+
 ## Project Description
 - #### Who is it for?
   - Shortlist is for job seekers who want to keep track of their job applications and progress with their job search.
