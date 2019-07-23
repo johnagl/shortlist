@@ -3,7 +3,8 @@ import Links from '../imports/api/links.js';
 import Jobs from '../imports/api/jobs.js';
 import Stages from '../imports/api/stages.js';
 import Files from '../imports/api/files.js'
-import '../imports/api/files.js';
+import UserFiles from '../imports/api/filesCol.js'
+// import '../imports/api/filesCol.js';
 
 function insertJob(company, title) {
   Jobs.insert(

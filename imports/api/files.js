@@ -1,32 +1,32 @@
-import UserFiles from './FilesCol.js'
-import { Meteor } from 'meteor/meteor';
+// import UserFiles fro./filesCol.js.js'
+// import { Meteor } from 'meteor/meteor';
 
-if (Meteor.isClient) {
-    Meteor.subscribe('files.images.all');
-}
+// if (Meteor.isClient) {
+//     Meteor.subscribe('files.images.all');
+// }
   
-if (Meteor.isServer) {
-    Meteor.publish('files.all', function () {
-    return UserFiles.find().cursor;
-    });
-}
+// if (Meteor.isServer) {
+//     Meteor.publish('files.all', function () {
+//     return UserFiles.find().cursor;
+//     });
+// }
 
-Meteor.methods({
+// Meteor.methods({
 
-    'RenameFile'(id, newName){
-        UserFiles.update({'_id':id},{$set:{'name': newName}})
-    },
+//     'RenameFile'(id, newName){
+//         UserFiles.update({'_id':id},{$set:{'name': newName}})
+//     },
 
-    'RemoveFile'(id) {
+//     'RemoveFile'(id) {
        
-        UserFiles.remove({_id: id}, function (error) {
-            if (error) {
-              console.error("File wasn't removed, error: " + error.reason)
-            } else {
-              console.info("File successfully removed");
-            }
-        });
+//         UserFiles.remove({_id: id}, function (error) {
+//             if (error) {
+//               console.error("File wasn't removed, error: " + error.reason)
+//             } else {
+//               console.info("File successfully removed");
+//             }
+//         });
 
-    },
+//     },
     
-});
+// });

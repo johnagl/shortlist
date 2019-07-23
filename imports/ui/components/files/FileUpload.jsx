@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import IndividualFile from './IndividualFile.jsx';
-import UserFiles from '../../../api/FilesCol.js'
+import UserFiles from '../../../api/filesCol.js'
 
 class FileUploadComponent extends Component {
   constructor(props) {
@@ -144,7 +144,7 @@ class FileUploadComponent extends Component {
           <div style = {this.uploadStyle} className="col-md-12">
             <input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput"
               onChange={this.uploadIt} style = {{"display":"none"}}></input>
-            <label style={this.uploadPStyle} for="fileinput">Click to Upload</label>
+            <label style={this.uploadPStyle} htmlFor="fileinput">Click to Upload</label>
           </div>
         </div>
 

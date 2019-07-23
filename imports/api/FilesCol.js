@@ -1,6 +1,6 @@
 import { FilesCollection } from 'meteor/ostrio:files';
 
-const UserFiles = new FilesCollection({
+export default UserFiles = new FilesCollection({
   storagePath: 'assets/app/uploads/UserFiles',
   downloadRoute: '/files/UserFiles',
   collectionName: 'UserFiles',
@@ -33,5 +33,29 @@ const UserFiles = new FilesCollection({
   }
 });
 
-// Export FilesCollection instance, so it can be imported in other files
-export default UserFiles;
+
+if (Meteor.isServer) {
+  Meteor.publish('files.all', function () {
+  return UserFiles.find().cursor;
+  });
+}
+
+Meteor.methods({
+
+  'RenameFile'(id, newName){
+      UserFiles.update({'_id':id},{$set:{'name': newName}})
+  },
+
+  'RemoveFile'(id) {
+     
+      UserFiles.remove({_id: id}, function (error) {
+          if (error) {
+            console.error("File wasn't removed, error: " + error.reason)
+          } else {
+            console.info("File successfully removed");
+          }
+      });
+
+  },
+  
+});
