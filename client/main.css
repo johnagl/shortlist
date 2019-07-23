@@ -17,7 +17,7 @@ html, body {
 }
 
 body {
-  background-image: url(https://images.unsplash.com/photo-1536849460588-696219a9e98d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1016&q=80);
+  /* background-image: url(https://images.unsplash.com/photo-1536849460588-696219a9e98d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1016&q=80); */
   background-size: cover;
   resize: both;
   margin: 0;

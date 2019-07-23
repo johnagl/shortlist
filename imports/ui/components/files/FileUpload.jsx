@@ -139,7 +139,7 @@ class FileUploadComponent extends Component {
         </div>
       })
 
-      return <div>
+      return <div style={{"backgroundColor":"white"}}>
         <div className="row">
           <div style = {this.uploadStyle} className="col-md-12">
             <input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput"
