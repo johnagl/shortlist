@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-// import Picker from './Picker.jsx';
  
 const localizer = momentLocalizer(moment)
 
@@ -12,11 +11,6 @@ class BigCalendar extends Component {
     //   events: []
     // };
 
-    fetchEvents = () => this.setState(
-        { events: this.props.eventsList }
-    );
-
-    printEvents = () => console.log('PRINT EVENTS: ' + this.props.eventsList);
 
     componentDidMount() {
         // this.fetchEvents();
@@ -25,32 +19,49 @@ class BigCalendar extends Component {
     }
   
     render() {
+        // console.log('JOBSLIST IN rbc: ' + JSON.stringify(this.props.jobsList));
         var events = []
 
         // this.printEvents();
         // this.fetchEvents();
         // console.log('EVENTS IN BIGCALENDAR: ' + JSON.stringify(this.props.eventsList))
         // var eventsArray = [];
-        this.props.eventsList.map(event => {
-            events.push(event);
+        this.props.jobsList.map(job => {
+
+        
+            console.log(JSON.stringify(job.phoneInterview));
+            if (job.phoneInterview !== "" || job.phoneInterview !== null){
+                var phoneInterview = {
+                    start: job.phoneInterview,
+                    end: job.phoneInterview,
+                    title: 'Phone Interview  ' + job.company
+
+                }
+                events.push(phoneInterview);
+
+            }
+
+            if (job.onSiteInterview !== "" || job.onSiteInterview !== null){
+                var onSiteInterview = {
+                    start: job.onSiteInterview,
+                    end: job.onSiteInterview,
+                    title: 'On site ' + job.company
+
+                }
+                events.push(onSiteInterview);
+
+            }
         
         })
         
-        // console.log('EVENTS LIST :' + JSON.stringify(this.props.eventsList))
-        // console.log(this.state.events);
-        
-
-        
-  
       return (
         <div className="App">
-        {/* <Picker /> */}
           <Calendar
             localizer={localizer}
             defaultDate={new Date()}
             defaultView="month"
             events={events}
-            style={{ height: "70vh" }}
+            style={{ height: "85vh" }}
           />
           
         </div>

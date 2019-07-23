@@ -7,7 +7,7 @@ export default class CalendarPage extends React.Component {
         // console.log('EVENTS: ' + JSON.stringify(this.props.eventsList))
         return (
             <div className="calendar">
-                <BigCalendar eventsList={this.props.eventsList} />
+                <BigCalendar eventsList={this.props.eventsList} jobsList={this.props.jobsList} />
             </div>
           );
     }

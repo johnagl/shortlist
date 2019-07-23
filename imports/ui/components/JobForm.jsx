@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import uuid from 'uuid';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Container, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { addJob, editJob } from '../actions/index';
 import CompanySuggestion from './CompanySuggestion';
+import DateTimePicker from 'react-datetime-picker';
 
 class JobForm extends React.Component {
 
@@ -12,6 +13,8 @@ class JobForm extends React.Component {
       name: (this.props.job ? this.props.job.company : ''),
       title: (this.props.job ? this.props.job.title : ''),
       select: (this.props.stage ? this.props.stage._id : this.props.stages.allIds[0]),
+      phoneInterview: (this.props.job ? this.props.job.phoneInterview : ''),
+      onSiteInterview: (this.props.job ? this.props.job.onSiteInterview : ''),
       suggestions: [],
       selectedSuggestion: null,
       companyFocused: false,
@@ -36,6 +39,12 @@ class JobForm extends React.Component {
   onChangeJobTitle = (e) => this.setState(
     { [e.target.name]: e.target.value }
   );
+
+  // onChangePhoneInterview = (e) => this.setState(
+  //   { [e.target.name]: e.target.value }
+  // );
+
+ 
   
   onChangeJobStage = async (e) => {
     console.log("OLD STAGE: " + JSON.stringify(this.props.stage));
@@ -43,16 +52,23 @@ class JobForm extends React.Component {
     console.log("NEW STAGE ID: " + JSON.stringify(this.state.select))
   }
 
+  onChangePhoneInterview = phoneInterview => this.setState({ phoneInterview });
+  onChangeOnSiteInterview = onSiteInterview => this.setState({ onSiteInterview });
+
+
   // Adds a job if one did not exist, otherwise edits existing job
   onSubmit = (e) => {
     e.preventDefault();
     let job;
+    // this.addEvent();
 
     // TODO: add guards here if mandatory fields have not been completed
     if(this.props.job) {
       job = this.props.job;
       job["company"] = this.state.name;
       job["title"] = this.state.title;
+      job["phoneInterview"] = this.state.phoneInterview;
+      job["onSiteInterview"] = this.state.onSiteInterview;
 
       if(this.state.selectedSuggestion) {
         job["domain"] = this.state.selectedSuggestion.domain;
@@ -69,6 +85,11 @@ class JobForm extends React.Component {
         dates: {
             createdAt: new Date(),
         },
+        events: {
+          phoneInterview: this.state.phoneInterview,
+        },
+        phoneInterview: this.state.phoneInterview,
+        onSiteInterview: this.state.onSiteInterview,
         owner: Meteor.userId(),
         userEmail: Meteor.user().emails[0].address
     }
@@ -134,11 +155,15 @@ class JobForm extends React.Component {
 
   render() {
     return (
-      <Form onSubmit={this.onSubmit}>
+      
+        <Form  onSubmit={this.onSubmit}>
         <FormGroup className="suggestions-container">
           <Label for="companyName">Company Name</Label>
+        
           <Input type="text hidden" name="name" autoComplete="off" id="companyName" placeholder="Company Name" value={this.state.name} onChange={this.onChangeCompanyName} onFocus={this.handleFocus} onBlur={this.handleBlur} />
           { this.renderSuggestions() }
+         
+
         </FormGroup>
         <FormGroup>
           <Label for="jobTitle">Job Title</Label>
@@ -150,10 +175,36 @@ class JobForm extends React.Component {
             { this.renderOptions() }
           </Input>
         </FormGroup>
+      
+        <Row>
+          <Col xs="4" sm="4">Phone Interview: </Col>
+          <Col xs="4" sm="4">
+            <DateTimePicker onChange={this.onChangePhoneInterview} value={this.state.phoneInterview}/>
+          </Col>
+          
+        </Row>
+        <br></br>
+        <Row>
+          <Col xs="4" sm="4">On Site Interview: </Col>
+          <Col xs="4" sm="4"><DateTimePicker
+          onChange={this.onChangeOnSiteInterview}
+          value={this.state.onSiteInterview}
+        /></Col>
+          
+        </Row>
+        
+        
         <Button>Submit</Button>
       </Form>
+    
+      
     );
   }
+}
+
+position = {
+  position: 'relative',
+  left: '100px'
 }
 
 const mapStateToProps = (state) => {

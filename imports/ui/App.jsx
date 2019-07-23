@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import  Jobs  from '../api/jobs.js';
 import Stages from '../api/stages.js';
-import Events from '../api/events.js';
 import DashboardPage from './components/DashboardPage';
 import MapPage from './components/MapPage';
 import CalendarPage from './components/CalendarPage';
@@ -42,7 +41,7 @@ class App extends React.Component {
               <Route 
                 path='/calendar' 
                 render={(routeProps) => (
-                  <CalendarPage {...routeProps} eventsList={this.props.eventsList} />
+                  <CalendarPage {...routeProps} eventsList={this.props.eventsList} jobsList={this.props.jobsList} />
                 )}
                 // component={DashboardPage} 
               />
@@ -63,11 +62,9 @@ class App extends React.Component {
 export default withTracker(() => {
   Meteor.subscribe('jobs');
   Meteor.subscribe('stages');
-  Meteor.subscribe('events');
   return {
     jobsList: Jobs.find({}).fetch(),
     stagesList: Stages.find({}).fetch(),
-    eventsList: Events.find({}).fetch(),
     currentUser: Meteor.user()
   };
 })(App);
