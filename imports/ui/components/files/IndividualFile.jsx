@@ -48,9 +48,13 @@ class IndividualFile extends Component {
       })
     }
   }
+  styled = {
+    borderTop: "1px solid orange",
+    padding: "1%"
+  }
 
   render() {
-    return <div className="m-t-sm">
+    return <div className="m-t-sm" style={this.styled}>
       <div className="row">
         <div className="col-md-12">
           <strong>{this.props.fileName}</strong>
@@ -61,18 +65,18 @@ class IndividualFile extends Component {
 
       <div className="row">
         <div className="col-md-3">
-          <button onClick={this.renameFile} className="btn btn-outline btn-primary btn-sm">
+          <button style={{'backgroundColor':'#003DA5'}} onClick={this.renameFile} className="btn btn-outline btn-primary btn-sm">
             Rename
           </button>
         </div>
 
         <div className="col-md-3">
-          <a href={this.props.fileUrl} className="btn btn-outline btn-primary btn-sm"
+          <a style={{'backgroundColor':'#003DA5'}} href={this.props.fileUrl} className="btn btn-outline btn-primary btn-sm"
              target="_blank">View</a>
         </div>
 
         <div className="col-md-2">
-          <button onClick={this.removeFile} className="btn btn-outline btn-danger btn-sm">
+          <button style={{'backgroundColor':'#FF671F'}} onClick={this.removeFile} className="btn btn-outline btn-danger btn-sm">                
             Delete
           </button>
         </div>

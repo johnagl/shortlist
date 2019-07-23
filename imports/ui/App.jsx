@@ -53,7 +53,7 @@ class App extends React.Component {
         </BrowserRouter> : <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
         }
       </div>
-      <Footer/>
+      {/* <Footer/> */}
       </div>
     );
   }

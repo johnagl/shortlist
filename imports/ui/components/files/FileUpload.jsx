@@ -107,7 +107,15 @@ class FileUploadComponent extends Component {
       </div>
     }
   }
-
+  uploadStyle = {
+    display:"inline"
+  }
+  uploadPStyle = {
+    backgroundColor: "lightgrey",
+    display: "inline",
+    paddingRight:"7px",
+    paddingLeft:"7px"
+  }
   render() {
     
     if (this.props.files && this.props.docsReadyYet) {
@@ -133,10 +141,10 @@ class FileUploadComponent extends Component {
 
       return <div>
         <div className="row">
-          <div className="col-md-12">
-            <p>Upload New File:</p>
+          <div style = {this.uploadStyle} className="col-md-12">
             <input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput"
-                 onChange={this.uploadIt}/>
+              onChange={this.uploadIt} style = {{"display":"none"}}></input>
+            <label style={this.uploadPStyle} for="fileinput">Click to Upload</label>
           </div>
         </div>
 
