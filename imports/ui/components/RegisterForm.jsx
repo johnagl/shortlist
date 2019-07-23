@@ -34,7 +34,7 @@ export default class RegisterForm extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div style={{"padding":"10%"}}>
                 <h1 className="textC">Register</h1>
                 <Form onSubmit={this.onSubmit}>
                     <FormGroup>

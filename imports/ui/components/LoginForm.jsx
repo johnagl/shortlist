@@ -37,12 +37,12 @@ export default class LoginForm extends React.Component {
   aroundLogin = {
     background: "white",
     border: "1px",
-    padding: "10%",
+    padding: "5%",
     display : "inlineBlock",
     textAlign : "center",
     width: "50%",
     margin: "0 auto",
-    marginTop: "15px",
+    marginTop: "10%",
     opacity: "0.9"
     }
   render() {
@@ -64,7 +64,7 @@ export default class LoginForm extends React.Component {
         <Button>Submit</Button>
         <React.Fragment>
         <div className = "registerbuttoncontainer">
-          <a className="registerButton" onClick={this.toggle}>Register by clicking here</a>
+          <a className="registerButton" style = {{"color":"blue"}} onClick={this.toggle}>Register by clicking here</a>
               <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
               <ModalHeader toggle={this.toggle}></ModalHeader>
               <ModalBody>
