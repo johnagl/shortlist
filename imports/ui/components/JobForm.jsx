@@ -13,8 +13,8 @@ class JobForm extends React.Component {
       name: (this.props.job ? this.props.job.company : ''),
       title: (this.props.job ? this.props.job.title : ''),
       select: (this.props.stage ? this.props.stage._id : this.props.stages.allIds[0]),
-      phoneInterview: (this.props.job ? this.props.job.phoneInterview : ''),
-      onSiteInterview: (this.props.job ? this.props.job.onSiteInterview : ''),
+      phoneInterview: (this.props.job ? this.props.job.phoneInterview.start : ''),
+      onSiteInterview: (this.props.job ? this.props.job.onSiteInterview.start : ''),
       suggestions: [],
       selectedSuggestion: null,
       companyFocused: false,
@@ -67,8 +67,11 @@ class JobForm extends React.Component {
       job = this.props.job;
       job["company"] = this.state.name;
       job["title"] = this.state.title;
-      job["phoneInterview"] = this.state.phoneInterview;
-      job["onSiteInterview"] = this.state.onSiteInterview;
+      job["phoneInterview"]["start"] = this.state.phoneInterview;
+      job["phoneInterview"]["end"] = this.state.phoneInterview;
+      job["onSiteInterview"]["start"] = this.state.onSiteInterview;
+      job["onSiteInterview"]["end"] = this.state.onSiteInterview;
+      // job["onSiteInterview"] = this.state.onSiteInterview;
 
       if(this.state.selectedSuggestion) {
         job["domain"] = this.state.selectedSuggestion.domain;
@@ -86,10 +89,21 @@ class JobForm extends React.Component {
             createdAt: new Date(),
         },
         events: {
-          phoneInterview: this.state.phoneInterview,
+          phoneInterview:  this.state.phoneInterview,
         },
-        phoneInterview: this.state.phoneInterview,
-        onSiteInterview: this.state.onSiteInterview,
+        // phoneInterview: this.state.phoneInterview,
+        phoneInterview: {
+          start: this.state.phoneInterview,
+          end: this.state.phoneInterview,
+          title: 'Phone Interview  ' + this.state.name
+
+        },
+        // onSiteInterview: this.state.onSiteInterview,
+        onSiteInterview: {
+          start: this.state.onSiteInterview,
+          end: this.state.onSiteInterview,
+          title: 'On Site Interview  ' + this.state.name
+        },
         owner: Meteor.userId(),
         userEmail: Meteor.user().emails[0].address
     }

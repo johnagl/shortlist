@@ -12,43 +12,38 @@ class BigCalendar extends Component {
     // };
 
 
-    componentDidMount() {
-        // this.fetchEvents();
-        // console.log('Didmount: ' + this.props.eventsList)
+    // componentDidMount() {
+    //     // this.fetchEvents();
+    //     // console.log('Didmount: ' + this.props.eventsList)
 
-    }
+    // }
   
     render() {
-        // console.log('JOBSLIST IN rbc: ' + JSON.stringify(this.props.jobsList));
         var events = []
 
-        // this.printEvents();
-        // this.fetchEvents();
-        // console.log('EVENTS IN BIGCALENDAR: ' + JSON.stringify(this.props.eventsList))
-        // var eventsArray = [];
         this.props.jobsList.map(job => {
 
         
-            console.log(JSON.stringify(job.phoneInterview));
+            // console.log(JSON.stringify(job.phoneInterview));
             if (job.phoneInterview !== "" || job.phoneInterview !== null){
-                var phoneInterview = {
-                    start: job.phoneInterview,
-                    end: job.phoneInterview,
-                    title: 'Phone Interview  ' + job.company
+                // var phoneInterview = {
+                //     start: job.phoneInterview,
+                //     end: job.phoneInterview,
+                //     title: 'Phone Interview  ' + job.company
 
-                }
-                events.push(phoneInterview);
+                // }
+                events.push(job.phoneInterview);
 
             }
 
             if (job.onSiteInterview !== "" || job.onSiteInterview !== null){
-                var onSiteInterview = {
-                    start: job.onSiteInterview,
-                    end: job.onSiteInterview,
-                    title: 'On site ' + job.company
+                // var onSiteInterview = {
+                //     start: job.onSiteInterview,
+                //     end: job.onSiteInterview,
+                //     title: 'On site ' + job.company
 
-                }
-                events.push(onSiteInterview);
+                // }
+                events.push(job.onSiteInterview);
 
             }
         
@@ -62,8 +57,7 @@ class BigCalendar extends Component {
             defaultView="month"
             events={events}
             style={{ height: "85vh" }}
-          />
-          
+          />          
         </div>
       );
     }
