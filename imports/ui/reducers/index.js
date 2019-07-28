@@ -1,9 +1,4 @@
 import { combineReducers } from 'redux';
-import uuid from 'uuid';
-import Jobs from '../../api/jobs.js';
-
-// let initState2 = Jobs.find({}).fetch();
-// Jobs.find({}).fetch();
 
 initState = {
     view : 'Full',
@@ -14,7 +9,11 @@ initState = {
     jobs : {
         byId : {},
         allIds: []
+    },
+    events: {
+        events: [],
     }
+    
 }
 
 const jobsReducer = (state = initState, action) => {
@@ -27,8 +26,6 @@ const jobsReducer = (state = initState, action) => {
                 byId[job._id] = Object.assign({}, job);
                 allIds.push(job._id);
             }
-            // console.log("BY ID: " + JSON.stringify(byId));
-            // console.log("BY ALLIDS: " + JSON.stringify(allIds));
 
             return {
                 ...state,
@@ -36,6 +33,65 @@ const jobsReducer = (state = initState, action) => {
                     ...state.jobs,
                     byId: byId,
                     allIds: allIds
+                }
+            }
+        case 'FETCH_EVENTS':
+
+                var events =[];
+
+                for(let job of action.payload) {
+                    events.push(job)
+                }
+    
+                return {
+                    ...state,
+                    events: {
+                        ...state.events,
+                        events: events,
+                    }
+                }
+        case 'EDIT_JOB_EVENT':
+            let newPhoneInterview = {
+                id: action.jobId,
+                start: action.start,
+                end: action.end,
+                title: 'Phone Interview  ' + action.company,
+                type: 'phone interview',
+                company: action.company
+      
+            }
+
+            let newOnSiteInterview = {
+                id: action.jobId,
+                start: action.start,
+                end: action.end,
+                title: 'On Site Interview  ' + action.company,
+                type: 'on site interview',
+                company: action.company
+      
+            }
+
+            var events = [];
+            for(let job of action.jobs) {
+                if (job._id == action.jobId){
+                    
+                    if (action.payload.type == 'phone interview'){
+                        job.phoneInterview = newPhoneInterview;
+                    }
+
+                    if (action.payload.type == 'on site interview'){
+                        job.onSiteInterview = newOnSiteInterview;
+                    }
+                    
+                }
+                events.push(job);
+            }
+
+            return {
+                ...state,
+                events: {
+                    ...state.events,
+                    events: events,
                 }
             }
         case 'FETCH_STAGES':

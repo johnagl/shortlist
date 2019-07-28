@@ -38,7 +38,13 @@ class App extends React.Component {
                 // component={DashboardPage} 
               />
               <Route path='/map' component={MapPage} />
-              <Route path='/calendar' component={CalendarPage} />
+              <Route 
+                path='/calendar' 
+                render={(routeProps) => (
+                  <CalendarPage {...routeProps} eventsList={this.props.eventsList} jobsList={this.props.jobsList} />
+                )}
+                // component={DashboardPage} 
+              />
             </Switch>
           </div>
         </BrowserRouter> : <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>

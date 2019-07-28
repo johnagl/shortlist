@@ -3,6 +3,7 @@ import Stages from '../../api/stages.js';
 import { Meteor } from 'meteor/meteor';
 
 export const fetchJobs = (jobs) => dispatch => {
+    console.log('FETCH JOBS: ' + jobs);
     dispatch({
         type: 'FETCH_JOBS',
         payload: jobs
@@ -13,6 +14,14 @@ export const fetchStages = (stages) => dispatch => {
     dispatch({
         type: 'FETCH_STAGES',
         payload: stages
+    })
+}
+
+export const fetchEvents = (jobs) => dispatch => {
+    console.log('JOBS IN FETCH EVENTS ACTION: ' + jobs);
+    dispatch({
+        type: 'FETCH_EVENTS',
+        payload: jobs
     })
 }
 
@@ -45,6 +54,27 @@ export const editJob = (job, oldStageId, newStageId, indexStart) => dispatch => 
     if(oldStageId != newStageId) {
         Meteor.call('stages.drag', oldStageId, newStageId, indexStart, 0, job._id);
     }
+}
+
+export const editJobEvent = (event, jobId, start, end, company, jobsList) => dispatch => {
+    dispatch({
+        type: 'EDIT_JOB_EVENT',
+        payload: event,
+        jobId: jobId,
+        start: start,
+        end: end,
+        jobs: jobsList,
+        company: company
+    });
+
+    if (event.type == 'phone interview'){
+        Meteor.call('jobs.updatePhoneInterview', jobId, start, end, company);
+    }
+    if (event.type == 'on site interview'){
+        Meteor.call('jobs.updateOnSiteInterview', jobId, start, end, company);
+    }
+    
+
 }
 
 
