@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Row, Col } from 'reactstrap';
 import JobStageCardFull from './JobStageCardFull.jsx';
 import JobCardsContainer from './JobCardsContainer.jsx';
 import './JobCardsContainerFull.css';
-import Jobs from '../../api/jobs.js';
-import Stages from '../../api/stages.js';
-import { Meteor } from 'meteor/meteor';
-import { Tracker } from 'meteor/tracker';
 import { fetchJobs, fetchStages } from '../actions/index';
 
 

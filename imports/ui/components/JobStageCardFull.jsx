@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Card, Button, CardTitle, CardText } from 'reactstrap';
 import './JobStageCard.css';
 import AddButtonModal from './AddButtonModal.jsx';
-import JobStageDropdown from './JobStageDropdown.jsx'
-import Stages from '../../api/stages.js';
 import CountBubble from './CountBubble';
 
 

@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import Links from '../imports/api/links.js';
 import Jobs from '../imports/api/jobs.js';
 import Stages from '../imports/api/stages.js';
 
@@ -34,26 +33,4 @@ Meteor.startup(() => {
     insertStage("Rejected", "#000000");
   }
 
-  // If the Jobs collection is empty, add some data.
-  // if (Jobs.find().count() === 0) {
-  //   insertJob(
-  //     'SAP',
-  //     'Software Developer Co-op'
-  //   );
-
-  //   insertJob(
-  //     'Hootsuite',
-  //     'Full-Stack Developer'
-  //   );
-
-  //   insertJob(
-  //     'Amazon',
-  //     'Junior Developer'
-  //   );
-
-  //   insertJob(
-  //     'Apple',
-  //     'Software Engineering Intern'
-  //   );
-  // }
 });

@@ -37,6 +37,5 @@ class AddButtonModal extends React.Component {
   }
 }
 
-{/* <Button color="danger" onClick={this.toggle}>Add Job</Button> */}
 
 export default AddButtonModal;

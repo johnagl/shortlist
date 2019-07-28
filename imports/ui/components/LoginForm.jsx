@@ -1,7 +1,6 @@
 import React from 'react';
-import { Container, Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Container, Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import RegisterForm from './RegisterForm.jsx';
-import { Redirect } from 'react-router-dom';
 
 export default class LoginForm extends React.Component {
   constructor(props) {
@@ -30,7 +29,7 @@ export default class LoginForm extends React.Component {
       if (er) {
         alert(er.reason);
       } else {
-        console.log('success');
+        // console.log('success');
       }
     });
   }
