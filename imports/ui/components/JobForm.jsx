@@ -10,11 +10,12 @@ import DateTimePicker from 'react-datetime-picker';
 class JobForm extends React.Component {
 
   state = {
+      _id: (this.props.job ? this.props.job._id : ''),
       name: (this.props.job ? this.props.job.company : ''),
       title: (this.props.job ? this.props.job.title : ''),
       select: (this.props.stage ? this.props.stage._id : this.props.stages.allIds[0]),
-      phoneInterview: (this.props.job ? this.props.job.phoneInterview.start : ''),
-      onSiteInterview: (this.props.job ? this.props.job.onSiteInterview.start : ''),
+      phoneInterview: (this.props.job ? this.props.job.phoneInterview.start : null),
+      onSiteInterview: (this.props.job ? this.props.job.onSiteInterview.start : null),
       suggestions: [],
       selectedSuggestion: null,
       companyFocused: false,
@@ -81,8 +82,9 @@ class JobForm extends React.Component {
       this.props.editJob(job, this.props.stage._id, this.state.select, this.props.jobIndex);
 
     } else {
+      let id = uuid();
       job =  {
-        _id: uuid(),
+        _id: id,
         company: this.state.name,
         title: this.state.title,
         dates: {
@@ -93,16 +95,22 @@ class JobForm extends React.Component {
         },
         // phoneInterview: this.state.phoneInterview,
         phoneInterview: {
+          id: id,
           start: this.state.phoneInterview,
           end: this.state.phoneInterview,
-          title: 'Phone Interview  ' + this.state.name
+          title: 'Phone Interview  ' + this.state.name,
+          type: 'phone interview',
+          company: this.state.name,
 
         },
         // onSiteInterview: this.state.onSiteInterview,
         onSiteInterview: {
+          id, id,
           start: this.state.onSiteInterview,
           end: this.state.onSiteInterview,
-          title: 'On Site Interview  ' + this.state.name
+          title: 'On Site Interview  ' + this.state.name,
+          type: 'on site interview',
+          company: this.state.name,
         },
         owner: Meteor.userId(),
         userEmail: Meteor.user().emails[0].address
