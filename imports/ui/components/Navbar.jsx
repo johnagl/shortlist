@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
  
 import {
   Collapse,
@@ -14,9 +15,24 @@ export default class Example extends React.Component {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.setRedirect = this.setRedirect.bind(this);
+    this.onClick = this.onClick.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      redirect: false,
     };
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
+  }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
   }
   toggle() {
     this.setState({
@@ -24,11 +40,16 @@ export default class Example extends React.Component {
     });
   }
   onClick() {
-    Meteor.logout();
+    Meteor.logout(() => {
+      this.setRedirect();
+    });
+
+    
   }
   render() {
     return (
       <div>
+        {this.renderRedirect()}
         <Navbar className= "change" dark expand="md">
           <NavbarBrand href="/">shortlist</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -44,7 +65,7 @@ export default class Example extends React.Component {
                 <NavLink href="https://www.google.com/search?q=google+job+search&oq=google+job+search&aqs=&ibp=htl;jobs&sa=X&ved=2ahUKEwibzr-K_vriAhU7CTQIHTuIBS0QiYsCKAB6BAgHEAM#fpstate=tldetail&htidocid=hG5i5uLtYe8QnZ98AAAAAA%3D%3D&htivrt=jobs" target ="_blank">job search</NavLink>
               </NavItem>
               <NavItem >              
-                <NavLink href="/" onClick = {this.onClick}>logout</NavLink>
+                <NavLink onClick = {this.onClick}>logout</NavLink>
                 {/* {/* <button onClick = {this.onClick}>Logout</button> */}
                 </NavItem>
             </Nav>
