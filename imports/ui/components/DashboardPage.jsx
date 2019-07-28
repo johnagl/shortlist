@@ -11,7 +11,6 @@ import AddButtonModal from './AddButtonModal.jsx';
 class DashboardPage extends React.Component {
 
   onDragEnd = (result) => {
-    console.log('result: ' + JSON.stringify(result));
     const { destination, source, draggableId } = result;
     
 

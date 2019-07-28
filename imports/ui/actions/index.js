@@ -1,9 +1,6 @@
-import Jobs from '../../api/jobs.js';
-import Stages from '../../api/stages.js';
 import { Meteor } from 'meteor/meteor';
 
 export const fetchJobs = (jobs) => dispatch => {
-    console.log('FETCH JOBS: ' + jobs);
     dispatch({
         type: 'FETCH_JOBS',
         payload: jobs
@@ -18,7 +15,6 @@ export const fetchStages = (stages) => dispatch => {
 }
 
 export const fetchEvents = (jobs) => dispatch => {
-    console.log('JOBS IN FETCH EVENTS ACTION: ' + jobs);
     dispatch({
         type: 'FETCH_EVENTS',
         payload: jobs
@@ -36,7 +32,6 @@ export const addJob = (job, stageIdUnique, stageId) => dispatch => {
     Meteor.call('jobs.insert', job);
     Meteor.call('stages.insertJob', stageId, id);
 
-    // let allJobs = Meteor.call('jobs.listAll');
 };
 
 export const editJob = (job, oldStageId, newStageId, indexStart) => dispatch => {
@@ -47,7 +42,6 @@ export const editJob = (job, oldStageId, newStageId, indexStart) => dispatch => 
         newStageId: newStageId,     
     });
 
-    console.log("JOB: " + JSON.stringify(job));
 
     Meteor.call('jobs.update', job);
 

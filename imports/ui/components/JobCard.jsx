@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Card, Button, CardBody, CardTitle, CardText } from 'reactstrap';
+import React from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import DeleteButton from './DeleteButton';
 import JobForm from './JobForm';
 import { Draggable } from 'react-beautiful-dnd';
-import Avatar from '@material-ui/core/Avatar';
 import '../../../client/main.css';
-import AddButtonModal from './AddButtonModal';
 
 class JobCard extends React.Component {
   constructor(props) {
@@ -26,7 +22,6 @@ class JobCard extends React.Component {
   }
 
   handleEdit = () => {
-    console.log("YOOOOOO");
   }
 
   renderLogo = (logoURL, name) => {
@@ -38,7 +33,6 @@ class JobCard extends React.Component {
   }
 
   addDefaultSrc = (name) => {
-    console.log("NAME!!! " + name);
     return(
       <div className="logo default-logo">
         {name.charAt(0).toUpperCase()}

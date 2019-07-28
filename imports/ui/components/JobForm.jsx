@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {bindActionCreators} from 'redux';
 import uuid from 'uuid';
-import { Col, Container, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { addJob, editJob } from '../actions/index';
 import CompanySuggestion from './CompanySuggestion';
 import DateTimePicker from 'react-datetime-picker';
@@ -33,7 +32,7 @@ class JobForm extends React.Component {
     await this.setState({ suggestions, selectedSuggestion: null });
 
     } catch(e) {
-        console.log(e);
+        // console.log(e);
     }
   }
   
@@ -48,9 +47,9 @@ class JobForm extends React.Component {
  
   
   onChangeJobStage = async (e) => {
-    console.log("OLD STAGE: " + JSON.stringify(this.props.stage));
+    // console.log("OLD STAGE: " + JSON.stringify(this.props.stage));
     await this.setState({ [e.target.name]: e.target.value });
-    console.log("NEW STAGE ID: " + JSON.stringify(this.state.select))
+    // console.log("NEW STAGE ID: " + JSON.stringify(this.state.select))
   }
 
   onChangePhoneInterview = phoneInterview => this.setState({ phoneInterview });

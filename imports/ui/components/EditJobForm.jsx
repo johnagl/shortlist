@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {bindActionCreators} from 'redux';
-import uuid from 'uuid';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { addJob } from '../actions/index';
 

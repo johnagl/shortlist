@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import  Jobs  from '../api/jobs.js';
 import Stages from '../api/stages.js';
 import DashboardPage from './components/DashboardPage';
