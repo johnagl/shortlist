@@ -38,7 +38,7 @@ class App extends React.Component {
               />
               <Route path='/map' component={MapPage} />
               <Route 
-                path='/calendar' 
+                exact path='/calendar' 
                 render={(routeProps) => (
                   <CalendarPage {...routeProps} eventsList={this.props.eventsList} jobsList={this.props.jobsList} />
                 )}
