@@ -8,9 +8,6 @@ export default class MapPage extends React.Component {
   renderDocuments(){
     data=this.props.filesList[0].data
     console.log(data);
-    <object>
-    {this.props.filesList[0]}
-    </object>
   }
 
 
@@ -21,8 +18,7 @@ export default class MapPage extends React.Component {
         reader.readAsDataURL(files[0]);
 
         reader.onload = (e) => {
-          // e.preventDefault();
-          // console.log("data " + e.target.result);
+      
           e.preventDefault();
           Meteor.call('files.saveFile', e.target.result, uuid(), Meteor.userId())
         }
@@ -38,8 +34,6 @@ export default class MapPage extends React.Component {
                     <Input type="file" name="coverletter" id="coverletter" onChange={(e) => this.onCoverLetterUpload(e)} >
                     </Input>
                 </Form>
-                {/* console.log({this.props.filesList}) */}
-                {this.renderDocuments()}
             </div>
         );
     }

@@ -9,13 +9,10 @@ import CalendarPage from './components/CalendarPage';
 import FilesList from './components/FilesList';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
-import Footer from './components/Footer.jsx';
 import LoginForm from './components/LoginForm.jsx';
-import UserFiles from '../api/filesCol.js'
 
 import '../../client/main.css';
 import { withTracker } from 'meteor/react-meteor-data';
-import FileUpload from './components/files/FileUpload.jsx';
 
 
 
@@ -46,7 +43,7 @@ class App extends React.Component {
                   <FilesList {...routeProps} filesList={this.props.filesList} />
                 )}
               /> */}
-              <Route path='/files' component={FileUpload}/>
+              <Route path='/files' component={FilesList}/>
               <Route path='/map' component={MapPage} />
               <Route path='/calendar' component={CalendarPage} />
             </Switch>
@@ -63,11 +60,12 @@ class App extends React.Component {
 export default withTracker(() => {
   Meteor.subscribe('jobs');
   Meteor.subscribe('stages');
+  Meteor.subscribe('files');
   Meteor.subscribe('files.images.all');
   return {
     jobsList: Jobs.find({}).fetch(),
     stagesList: Stages.find({}).fetch(),
     currentUser: Meteor.user(),
-    // filesList: Files.find({}).fetch()
+    filesList: Files.find({}).fetch()
   };
 })(App);

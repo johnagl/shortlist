@@ -3,8 +3,8 @@ import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import IndividualFile from './IndividualFile.jsx';
-import UserFiles from '../../../api/filesCol.js'
+// import IndividualFile from './IndividualFile.jsx';
+// import UserFiles from '../../../api/filesCol.js'
 
 class FileUploadComponent extends Component {
   constructor(props) {

@@ -1,5 +1,6 @@
 import Jobs from '../../api/jobs.js';
 import Stages from '../../api/stages.js';
+import Files from '../../api/files.js';
 import { Meteor } from 'meteor/meteor';
 
 export const fetchJobs = (jobs) => dispatch => {

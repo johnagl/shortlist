@@ -1,32 +1,17 @@
-// import UserFiles fro./filesCol.js.js'
-// import { Meteor } from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 
-// if (Meteor.isClient) {
-//     Meteor.subscribe('files.images.all');
-// }
-  
-// if (Meteor.isServer) {
-//     Meteor.publish('files.all', function () {
-//     return UserFiles.find().cursor;
-//     });
-// }
+export default Files = new Mongo.Collection('files')
 
-// Meteor.methods({
+if (Meteor.isServer) {
+    Meteor.publish('files', function filesPublication(){
+        return Files.find();
+    });
+}
 
-//     'RenameFile'(id, newName){
-//         UserFiles.update({'_id':id},{$set:{'name': newName}})
-//     },
+Meteor.methods({
 
-//     'RemoveFile'(id) {
-       
-//         UserFiles.remove({_id: id}, function (error) {
-//             if (error) {
-//               console.error("File wasn't removed, error: " + error.reason)
-//             } else {
-//               console.info("File successfully removed");
-//             }
-//         });
-
-//     },
-    
-// });
+    'files.saveFile'(file, uuid, userid){
+        Files.insert({"id":uuid, "user": userid, "file":file})
+    }
+})
