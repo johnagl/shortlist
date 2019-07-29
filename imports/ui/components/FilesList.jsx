@@ -18,12 +18,10 @@ export default class MapPage extends React.Component {
         reader.readAsDataURL(files[0]);
 
         reader.onload = (e) => {
-      
           e.preventDefault();
           Meteor.call('files.saveFile', e.target.result, uuid(), Meteor.userId())
         }
-        // reader.readAsDataURL(e.target.result);
-      }
+    }
     
 
     render() {
