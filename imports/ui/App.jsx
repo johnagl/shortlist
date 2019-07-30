@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import LoginForm from './components/LoginForm.jsx';
+import DocumentsPage from './components/DocumentsPage.jsx';
 
 
 import '../../client/main.css';
@@ -37,6 +38,7 @@ class App extends React.Component {
                 // component={DashboardPage} 
               />
               <Route path='/map' component={MapPage} />
+              <Route path='/documents' component={DocumentsPage} />
               <Route 
                 exact path='/calendar' 
                 render={(routeProps) => (
