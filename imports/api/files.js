@@ -7,7 +7,7 @@ if (Meteor.isClient) {
   
 if (Meteor.isServer) {
     Meteor.publish('files.all', function () {
-    return UserFiles.find().cursor;
+    return UserFiles.find({meta: {userId: this.userId}}).cursor;
     });
 }
 
