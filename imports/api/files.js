@@ -12,7 +12,9 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-
+    'RenameFile'(id, newName){
+        UserFiles.update({'_id':id},{$set:{'name': newName}})
+    },
     'RemoveFile'(id) {
        
         UserFiles.remove({_id: id}, function (error) {

@@ -78,6 +78,7 @@ class JobCard extends React.Component {
               </Modal>
             </div>
           </React.Fragment>
+          
       </div>
     );
   }
