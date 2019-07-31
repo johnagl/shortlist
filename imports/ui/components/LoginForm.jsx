@@ -63,7 +63,7 @@ export default class LoginForm extends React.Component {
         <Button>Submit</Button>
         <React.Fragment>
         <div className = "registerbuttoncontainer">
-          <a className="registerButton" onClick={this.toggle}>Register by clicking here</a>
+          <a className="registerButton" style={{'cursor':'pointer', 'color':'blue'}} onClick={this.toggle}>Register by clicking here</a>
               <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
               <ModalHeader toggle={this.toggle}></ModalHeader>
               <ModalBody>
