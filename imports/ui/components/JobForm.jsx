@@ -112,7 +112,7 @@ class JobForm extends React.Component {
           company: this.state.name,
         },
         owner: Meteor.userId(),
-        userEmail: Meteor.user().emails[0].address
+        username: Meteor.user()
     }
 
     if(this.state.selectedSuggestion) {

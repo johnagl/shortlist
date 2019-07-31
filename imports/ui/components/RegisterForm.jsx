@@ -7,13 +7,13 @@ export default class RegisterForm extends React.Component {
         e.preventDefault();
         const ele = $(e.target);
         
-        const email = ele.find("#email").val();
+        const username = ele.find("#username").val();
         const password = ele.find("#password").val();
         const confirmPassword = ele.find("#confirmPassword").val();
 
         if (password === confirmPassword && password !== "" && confirmPassword !== "") {
             let accountInfo = {
-                email: email,
+                username: username,
                 password: password
             };
             Accounts.createUser(accountInfo, function (er, result) {
@@ -21,10 +21,6 @@ export default class RegisterForm extends React.Component {
                     alert("There was an error making your account")
                 }
                 else {
-                    // console.log(result);
-                    //redirect
-                    //Meteor method that creates stages
-                    // console.log("success");
                     Meteor.call('stages.createStages');
                 }
             });
@@ -38,8 +34,8 @@ export default class RegisterForm extends React.Component {
                 <h1 className="textC">Register</h1>
                 <Form onSubmit={this.onSubmit}>
                     <FormGroup>
-                        <Label for="exampleEmail">Email</Label>
-                        <Input type="email" name="email" id="email" placeholder="Enter your email address" />
+                        <Label for="username">Username</Label>
+                        <Input type="text" name="username" id="username" placeholder="Enter your username" />
                     </FormGroup>
               <FormGroup>
                   <Label for="examplePassword">Password</Label>

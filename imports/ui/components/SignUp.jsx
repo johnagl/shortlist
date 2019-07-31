@@ -20,8 +20,8 @@ class SignUp extends React.Component {
         return (
             <div style = {aroundSignUp}>
                 <h1>SIGNUP</h1>
-                <p>Email:</p>
-                <input type="text" placeholder="Enter a Valid Email Address"></input>
+                {/* <p>Email:</p>
+                <input type="text" placeholder="Enter a Valid Email Address"></input> */}
                 <p>Username:</p>
                 <input type="text" placeholder="Enter Username"></input>
                 <p>Password:</p>

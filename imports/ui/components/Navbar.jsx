@@ -56,21 +56,14 @@ export default class Example extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-left" navbar>
               <NavItem>
-                <NavLink href="/map">map</NavLink>
-              </NavItem>
-              <NavItem>
                 <NavLink href="/calendar">calendar</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://www.google.com/search?q=google+job+search&oq=google+job+search&aqs=&ibp=htl;jobs&sa=X&ved=2ahUKEwibzr-K_vriAhU7CTQIHTuIBS0QiYsCKAB6BAgHEAM#fpstate=tldetail&htidocid=hG5i5uLtYe8QnZ98AAAAAA%3D%3D&htivrt=jobs" target ="_blank">job search</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/documents">documents</NavLink>
               </NavItem>
               <NavItem >              
                 <NavLink onClick = {this.onClick}>logout</NavLink>
-                {/* {/* <button onClick = {this.onClick}>Logout</button> */}
-                </NavItem>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
@@ -78,6 +71,3 @@ export default class Example extends React.Component {
     );
   }
 }
-// style={{"color": "white", "background":"#003DA5"}}
-
-{/* <Navbar color="light" light color="info" expand="md"></Navbar> */}

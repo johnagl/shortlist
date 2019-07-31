@@ -20,6 +20,9 @@ class IndividualFile extends Component {
     fileId: PropTypes.string.isRequired
   }
 
+  printDate(){
+    this.props.fileDate.getDate();
+  }
   removeFile(){
     let conf = confirm('Are you sure you want to delete the file?') || false;
     if (conf == true) {
@@ -41,7 +44,7 @@ class IndividualFile extends Component {
       prompt.trim();
     }
 
-    if (!_.isEmpty(prompt)) {
+    if (prompt.length != 0) {
       Meteor.call('RenameFile', this.props.fileId, prompt, function (err, res) {
         if (err)
           console.log(err);
@@ -61,24 +64,28 @@ class IndividualFile extends Component {
 
       <div className="row">
         <div className="col-md-3">
-          <button onClick={this.renameFile} className="btn btn-outline btn-primary btn-sm">
+          <button style={{'backgroundColor':'#003DA5','borderColor':'#003DA5'}} onClick={this.renameFile} className="btn btn-outline btn-primary btn-sm">
             Rename
           </button>
         </div>
 
         <div className="col-md-3">
-          <a href={this.props.fileUrl} className="btn btn-outline btn-primary btn-sm"
+          <a style={{'backgroundColor':'#003DA5','borderColor':'#003DA5'}} href={this.props.fileUrl} className="btn btn-outline btn-primary btn-sm"
              target="_blank">View</a>
         </div>
 
         <div className="col-md-2">
-          <button onClick={this.removeFile} className="btn btn-outline btn-danger btn-sm">
+          <button style={{'backgroundColor':'red'}} onClick={this.removeFile} className="btn btn-outline btn-danger btn-sm">
             Delete
           </button>
         </div>
 
-        <div className="col-md-4">
+        {/* <div className="col-md-4">
           Size: {this.props.fileSize}
+        </div> */}
+
+        <div className="col-md-4">
+          Date Created: {this.props.fileDate.getDate()}/{this.props.fileDate.getMonth()+1}/{this.props.fileDate.getFullYear()}
         </div>
       </div>
     </div>
