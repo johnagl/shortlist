@@ -20,6 +20,9 @@ class IndividualFile extends Component {
     fileId: PropTypes.string.isRequired
   }
 
+  printDate(){
+    this.props.fileDate.getDate();
+  }
   removeFile(){
     let conf = confirm('Are you sure you want to delete the file?') || false;
     if (conf == true) {
@@ -77,8 +80,12 @@ class IndividualFile extends Component {
           </button>
         </div>
 
-        <div className="col-md-4">
+        {/* <div className="col-md-4">
           Size: {this.props.fileSize}
+        </div> */}
+
+        <div className="col-md-4">
+          Date Created: {this.props.fileDate.getDate()}/{this.props.fileDate.getMonth()+1}/{this.props.fileDate.getFullYear()}
         </div>
       </div>
     </div>

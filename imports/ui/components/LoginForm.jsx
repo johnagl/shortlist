@@ -22,10 +22,10 @@ export default class LoginForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     const el = $(e.target);
-    const email = el.find("#email").val();
+    const username = el.find("#username").val();
     const password = el.find("#password").val();
 
-    Meteor.loginWithPassword(email, password, (er) => {
+    Meteor.loginWithPassword(username, password, (er) => {
       if (er) {
         alert(er.reason);
       } else {
@@ -53,8 +53,8 @@ export default class LoginForm extends React.Component {
       <h1>Login</h1>
       <Form onSubmit = {this.onSubmit}>
         <FormGroup>
-          <Label for="exampleEmail">Email</Label>
-          <Input type="email" name="email" id="email" placeholder="Enter email" />
+          <Label for="username">Username</Label>
+          <Input type="text" name="username" id="username" placeholder="Enter username" />
         </FormGroup>
         <FormGroup>
           <Label for="examplePassword">Password</Label>

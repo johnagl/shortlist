@@ -127,6 +127,7 @@ class FileUploadComponent extends Component {
             fileUrl={link}
             fileId={aFile._id}
             fileSize={aFile.size}
+            fileDate={new Date()}
           />
         </div>
       })

@@ -23,7 +23,6 @@ class App extends React.Component {
   render() {
       
     return(
-      <div>
       <div id="App">
         {Meteor.userId()  ? 
         <BrowserRouter>
@@ -35,7 +34,6 @@ class App extends React.Component {
                 render={(routeProps) => (
                   <DashboardPage {...routeProps} jobsList={this.props.jobsList} stagesList={this.props.stagesList} />
                 )}
-                // component={DashboardPage} 
               />
               <Route path='/map' component={MapPage} />
               <Route path='/documents' component={DocumentsPage} />
@@ -50,11 +48,6 @@ class App extends React.Component {
           </div>
         </BrowserRouter> : <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
         }
-      </div>
-      
-      {/* <RegisterForm/> */}
-      {/* <LoginForm/> */}
-      <Footer/>
       </div>
     );
   }
