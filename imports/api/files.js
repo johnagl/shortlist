@@ -7,9 +7,12 @@ if (Meteor.isClient) {
   
 if (Meteor.isServer) {
     Meteor.publish('files.all', function () {
-    return UserFiles.find({meta: {userId: this.userId}}).cursor;
+    return UserFiles.find( {"meta.userId" : this.userId}).cursor;
     });
 }
+
+
+
 
 Meteor.methods({
     'RenameFile'(id, newName){
