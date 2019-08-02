@@ -11,8 +11,9 @@
 }
 
 .columnStyle {
-    background: #FAFAFA;
-    border-right: 1px solid #D8D8D8;
+    /* background: #FAFAFA; */
+    background: #FFFFFF;
+    border-right: 1px solid #DADADA;
     display: flex;
     flex-flow: column;
     align-items: flex-start;

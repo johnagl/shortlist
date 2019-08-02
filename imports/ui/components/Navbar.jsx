@@ -1,6 +1,5 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
- 
 import {
   Collapse,
   Navbar,
@@ -9,6 +8,12 @@ import {
   Nav,
   NavItem,
   NavLink, } from 'reactstrap';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTh } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { faFileAlt } from '@fortawesome/free-solid-svg-icons';
+<i class="fas fa-file-alt"></i>
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -56,13 +61,16 @@ export default class Example extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-left" navbar>
               <NavItem>
-                <NavLink href="/calendar">calendar</NavLink>
+                <NavLink href="/" ><FontAwesomeIcon icon={faTh}/> jobs</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/documents">documents</NavLink>
+                <NavLink href="/calendar"><FontAwesomeIcon icon={faCalendarAlt}/> calendar</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/documents"><FontAwesomeIcon icon={faFileAlt}/> documents</NavLink>
               </NavItem>
               <NavItem >              
-                <NavLink onClick = {this.onClick}>logout</NavLink>
+                <NavLink className="logout" onClick = {this.onClick}>logout</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
