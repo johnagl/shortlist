@@ -142,15 +142,22 @@ class FileUploadComponent extends Component {
           </div>
         </div>
 
-        <div className="row m-t-sm m-b-sm">
-          <div className="col-md-6">
-
-            {/* {this.showUploads()} */}
-
-          </div>
-          <div className="col-md-6">
-          </div>
-        </div>
+        <table className="documents">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date Added</th>
+              <th>Type</th>
+              <th>Size</th>
+              <th></th> {/*Rename*/}
+              <th></th> {/*View*/}
+              <th></th> {/*Delete*/}
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
 
         {display}
 
@@ -176,3 +183,14 @@ export default withTracker( ( props ) => {
     files,
   };
 })(FileUploadComponent);
+
+
+        // {/* <div className="row m-t-sm m-b-sm">
+        //   <div className="col-md-6">
+
+        //     {/* {this.showUploads()} */}
+
+        //   </div>
+        //   <div className="col-md-6">
+        //   </div>
+        // </div> */}

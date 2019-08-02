@@ -342,7 +342,19 @@ nav a:hover {
   text-align: center;
 }
 
-.document .svg-inline--fa {
+.document {
+  margin: 10px;
+  text-align: center;
+}
+
+.document p {
+  white-space: nowrap;
+  width: 25%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.document-icon .svg-inline--fa {
   font-size: 80pt !important;
 }
 

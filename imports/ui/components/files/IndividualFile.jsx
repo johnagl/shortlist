@@ -56,25 +56,26 @@ class IndividualFile extends Component {
   }
 
   render() {
-    let pdf = <FontAwesomeIcon icon={faFilePdf}/>
-    let word = <FontAwesomeIcon style={{fontSize: "42pt"}}icon={faFileWord} />
-    let img = <FontAwesomeIcon icon={faFileImage} />
+    let pdf =  <FontAwesomeIcon style={{color: "#D51B1E"}} icon={faFilePdf} />
+    let word = <FontAwesomeIcon style={{color: "#1565C0"}} icon={faFileWord} />
+    let img =  <FontAwesomeIcon style={{color: "#9A15BF"}} icon={faFileImage} />
 
     return (
-      <div className="m-t-sm">
-        <div className="document">
+      <div className="document">
+        <div className="document-icon">
           { this.props.fileExt === "pdf" ? pdf : this.props.fileExt === "docx" ? word : img }
         </div>
+        <p>{this.props.fileName}</p>
 
 
 
-      <div className="row">
+      {/* <div className="row">
         <div className="col-md-12">
-          <strong>{this.props.fileName}</strong>
+          <span>{this.props.fileName}</span>
           <div className="m-b-sm">
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="row">
         <div className="col-md-3">
