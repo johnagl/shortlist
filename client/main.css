@@ -336,6 +336,20 @@ nav a:hover {
   visibility: hidden;
 }
 
+/* Documents Page */
+.documents-page {
+  margin: 80px;
+  text-align: center;
+}
+
+.document .svg-inline--fa {
+  font-size: 80pt !important;
+}
+
+/* .documents {
+  font-size: 60pt;
+} */
+
 /* Footer
 .footer {
   border-top: 1px solid #EEEEEE;

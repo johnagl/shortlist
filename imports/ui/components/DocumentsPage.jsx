@@ -12,9 +12,9 @@ export default class DocumentsPage extends Component {
 
 	render() {
 		return(
-			<div>
-				<h1>Documents Page</h1>
-				<hr/>
+			<div className="documents-page">
+				
+				<h2>Documents Page</h2>
 				<FileUploadComponent />
 			</div>
 		);

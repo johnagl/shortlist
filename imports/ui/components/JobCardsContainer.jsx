@@ -22,7 +22,7 @@ class JobCardsContainer extends Component {
                     <div 
                         {...provided.droppableProps} 
                         ref={provided.innerRef} 
-                        className= {view === 'Full' ? 'jobCardsContainer' : 'jobCardsContainerSecond'}>
+                        className= "jobCardsContainer">
                         { jobCards }
                         { provided.placeholder }
                     </div>
@@ -30,10 +30,6 @@ class JobCardsContainer extends Component {
             </Droppable>
         );
     }
-}
-
-const inlineFlex = {
-    display: 'inline-flex'
 }
 
 
