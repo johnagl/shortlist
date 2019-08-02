@@ -216,6 +216,12 @@ nav a:hover {
   overflow-y: none;
 }
 
+/* Add / Edit Job Modals */
+.modal-open{
+  padding:0 !important;
+  overflow-y: auto !important;
+ }
+
 /* .jobCardsContainerSecond {
   width: 100%;
   flex: 1;
@@ -318,7 +324,7 @@ nav a:hover {
   visibility: hidden;
 }
 
-/* Footer */
+/* Footer
 .footer {
   border-top: 1px solid #EEEEEE;
   display: flex;
@@ -337,7 +343,7 @@ nav a:hover {
   border-bottom: none;
   text-decoration: none;
   border-bottom: 2px solid#FF671F;
-}
+} */
 
 /* [data-react-beautiful-dnd-placeholder="0"] {
   background: black;
