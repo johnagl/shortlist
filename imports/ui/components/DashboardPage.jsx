@@ -1,11 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import JobCardsContainerFull from './JobCardsContainerFull.jsx';
-import JobCardsContainerFullSecond from './JobCardsContainerFullSecond.jsx';
-import JobCardsContainerPartial from './JobCardsContainerPartial.jsx';
 import { DragDropContext } from "react-beautiful-dnd";
 import { sort } from '../actions';
-import { Meteor } from 'meteor/meteor';
 import AddButtonModal from './AddButtonModal.jsx';
 
 class DashboardPage extends React.Component {

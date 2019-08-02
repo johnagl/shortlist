@@ -1,7 +1,7 @@
 .jobStageCardContainer {
     position: relative;
     width: 100%;
-    padding: 30px 0px 10px 0px;
+    padding: 30px 0px 30px 0px;
     margin: 0;
     height: 146px;
 }
@@ -44,7 +44,6 @@
     margin: 10px 0px;
     padding: 0;
     background: #003DA5;
-    /* background: #E8E8E8; */
     color: #FFFFFF;
     border-radius: 50%;
     border: 2px solid #003DA5;
@@ -60,13 +59,5 @@
     background-color: #E8E9F3;
     border: none;
 }
-
-/* .addButton {
-    width: 100%;
-    margin: 10px 0px;
-    background: #FFFFFF;
-    border: none;
-    color: #272635;
-} */
 
 
