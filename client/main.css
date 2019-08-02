@@ -34,7 +34,8 @@ code {
 #App {
   display: flex;
   flex-flow: column;
-  height: 100vh;
+  /* height: 100vh; */
+  min-height: 100vh;
 }
 
 /* Navigation Bar */
@@ -86,10 +87,17 @@ nav a:hover {
   /* box-shadow: 0 0px 40px rgba(0,0,0,.075); */
 }
 
-/* .active {
-  color: #4484CE;
-  background-color: #D9D9D9;
-} */
+.nav-link {
+  min-width: 90px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.logout {
+  cursor: pointer;
+  min-width: 0;
+  /* float: right; */
+}
 
 /* Page Content */
 .flex-container {
@@ -121,18 +129,25 @@ nav a:hover {
 
 
 .dashboardContainer  {
+  overflow-y: auto;
   overflow-x: auto;
-  height: 100%
+  /* height: 100%; */
+  flex: 1;
+  display: flex;
+  height: 100%;
 }
 
 .job-card {
   background: #FFFFFF;
   position: relative;
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
+  margin-top: 6px;
+  margin-bottom: 6px;
   border-radius: 3px;
   border-style: solid;
   width: 95%;
-  min-height: 109px;
+  /* min-height: 109px; */
+  min-height: 115px;
   /* box-shadow: 4px 4px 2px rgba(0,0,0,.20); */
   display: inline-block;
   text-align: left;
@@ -144,10 +159,26 @@ nav a:hover {
   /* position: relative; */
 }
 
+/* the padding: 0 in here is absolutely crucial.
+ * Without it, the content is just so slightly off center;
+ * not enough for any person to notice it, 
+ * or believe you when you say so,
+ * but enough for YOU to perceive it and know it's there
+ * and see it every time you look at it.
+ * It'll drive you crazy, because nobody else can see it,
+ * and how can they NOT see it, are you blind, look at it, LOOK, LOOK!!!!
+ * But don't let anyone tell you otherwise. You saw it and you found it
+ * And changing it MADE A DIFFERENCE
+ * All thanks to padding: 0
+ * So stick to your guns! Believe in yourself!
+ * Even if it's to just move 2 pixels, when nobody else could ever notice it
+ * Because you're a perfectionist. So seek out the best,
+ * right up until the point where you think you're going insane. */
 .logo {
   width: 30px;
   height: 30px;
   margin-right: 10px;
+  padding: 0;
   border-radius: 50%;
   display: inline-block;
   text-align: center;
@@ -192,21 +223,27 @@ nav a:hover {
   text-align: center;
   width: 100%;
   flex: 1;
-  overflow-y: auto;
+  overflow-y: none;
 }
 
-.jobCardsContainerSecond {
+/* Add / Edit Job Modals */
+.modal-open{
+  padding:0 !important;
+  overflow-y: auto !important;
+ }
+
+/* .jobCardsContainerSecond {
   width: 100%;
   flex: 1;
   overflow-y: auto;
   display: inline-flex;
-}
+} */
 
 .count-bubble {
   font-weight: bold;
-  position: absolute;
+  /* position: absolute;
   top: 16%;
-  right: 3%;
+  right: 3%; */
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -218,8 +255,8 @@ nav a:hover {
 
 .floating-add-button {
   position: fixed;
-  height: 70px;
-  width: 100px;
+  height: 80px;
+  width: 120px;
   bottom: 3%;
   right: 4%;
 }
@@ -227,6 +264,8 @@ nav a:hover {
 .floating-add-button .addButton {
   background: #FF671F;
   width: 100%;
+  height: 100%;
+  font-size: 14pt;
   padding: 5px;
   border: 2px solid #FF671F;
   border-radius: 2px;
@@ -297,7 +336,71 @@ nav a:hover {
   visibility: hidden;
 }
 
-/* Footer */
+/* Documents Page */
+.documents-page {
+  margin: 80px;
+  text-align: center;
+}
+
+.documents-table {
+  width:100%;
+  height:100%;
+  overflow-y: auto;
+  /* overflow-x: none; */
+}
+
+.documents-table table {
+  margin: auto;
+  margin-top: 30px;
+  min-width: 80%;
+  height: 10%;
+  overflow-y: auto;
+  text-align: left;
+}
+
+/* .document p {
+  white-space: nowrap;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
+
+td > div {
+  width: 90%;
+  margin: 0px 8px 0px 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* line-height: 16pt;
+  vertical-align: middle; */
+  /* padding: 0; */
+}
+
+td button {
+  margin: 0px 8px 0px 8px;
+}
+
+td a {
+  margin: 0px 8px 0px 8px;
+}
+
+th > div {
+  width: 90%;
+  margin: 0px 8px 0px 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.document-icon .svg-inline--fa {
+  font-size: 80pt !important;
+}
+
+/* .documents {
+  font-size: 60pt;
+} */
+
+/* Footer
 .footer {
   border-top: 1px solid #EEEEEE;
   display: flex;
@@ -316,7 +419,7 @@ nav a:hover {
   border-bottom: none;
   text-decoration: none;
   border-bottom: 2px solid#FF671F;
-}
+} */
 
 /* [data-react-beautiful-dnd-placeholder="0"] {
   background: black;

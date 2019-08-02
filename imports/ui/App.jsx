@@ -2,12 +2,11 @@ import React from 'react';
 import  Jobs  from '../api/jobs.js';
 import Stages from '../api/stages.js';
 import DashboardPage from './components/DashboardPage';
-import MapPage from './components/MapPage';
 import CalendarPage from './components/CalendarPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
-import Footer from './components/Footer.jsx';
 import LoginForm from './components/LoginForm.jsx';
+import LandingPage from './components/LandingPage.jsx';
 import DocumentsPage from './components/DocumentsPage.jsx';
 
 
@@ -35,18 +34,17 @@ class App extends React.Component {
                   <DashboardPage {...routeProps} jobsList={this.props.jobsList} stagesList={this.props.stagesList} />
                 )}
               />
-              <Route path='/map' component={MapPage} />
               <Route path='/documents' component={DocumentsPage} />
               <Route 
                 exact path='/calendar' 
                 render={(routeProps) => (
                   <CalendarPage {...routeProps} eventsList={this.props.eventsList} jobsList={this.props.jobsList} />
                 )}
-                // component={DashboardPage} 
               />
             </Switch>
           </div>
-        </BrowserRouter> : <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
+        </BrowserRouter> : 
+        <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
         }
       </div>
     );
@@ -62,3 +60,7 @@ export default withTracker(() => {
     currentUser: Meteor.user()
   };
 })(App);
+
+{/* <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
+
+<LandingPage currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/> */}

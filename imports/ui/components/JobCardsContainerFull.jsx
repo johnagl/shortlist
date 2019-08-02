@@ -14,7 +14,6 @@ class JobCardsContainerFull extends Component {
     }
 
     render() {
-        // console.log('props jobid :' + JSON.stringify(this.props.jobs));
         let jobStageCards = this.props.stages.allIds.map(stageId => {
             let jobIds = this.props.stages.byId[stageId].jobs;
             let stage = this.props.stages.byId[stageId];

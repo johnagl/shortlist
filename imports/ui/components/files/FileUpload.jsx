@@ -121,38 +121,40 @@ class FileUploadComponent extends Component {
         let link = UserFiles.findOne({_id: aFile._id}).link();  //The "view/download" link
 
         // Send out components that show details of each file
-        return <div key={'file' + key}>
-          <IndividualFile
+        return  <IndividualFile key={'file' + key}
             fileName={aFile.name}
             fileUrl={link}
             fileId={aFile._id}
             fileSize={aFile.size}
+            fileExt={aFile.ext}
             fileDate={new Date()}
           />
-        </div>
       })
 
       return <div>
-        <div className="row">
-          <div className="col-md-12">
-            <p>Upload New File:</p>
-            <input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput"
-                 onChange={this.uploadIt}/>
-          </div>
+        <div>
+					<p>Upload New File:</p>
+					<input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput" onChange={this.uploadIt}/>
+				</div>
+      
+        <div className="documents-table">
+          <table>
+            <thead>
+              <tr>
+                <th><div>Name</div></th>
+                <th><div>Date Added</div></th>
+                <th><div>File Type</div></th>
+                <th><div>Size</div></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {display}
+            </tbody>
+          </table>
         </div>
-
-        <div className="row m-t-sm m-b-sm">
-          <div className="col-md-6">
-
-            {/* {this.showUploads()} */}
-
-          </div>
-          <div className="col-md-6">
-          </div>
-        </div>
-
-        {display}
-
       </div>
     }
     else return <div>Loading file list</div>;
@@ -175,3 +177,14 @@ export default withTracker( ( props ) => {
     files,
   };
 })(FileUploadComponent);
+
+
+        // {/* <div className="row m-t-sm m-b-sm">
+        //   <div className="col-md-6">
+
+        //     {/* {this.showUploads()} */}
+
+        //   </div>
+        //   <div className="col-md-6">
+        //   </div>
+        // </div> */}
