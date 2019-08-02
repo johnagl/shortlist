@@ -58,38 +58,49 @@ class IndividualFile extends Component {
 
   render() {
     // const size = filesize();
-    let pdf =  <FontAwesomeIcon style={{color: "#D51B1E"}} icon={faFilePdf} />
-    let word = <FontAwesomeIcon style={{color: "#1565C0"}} icon={faFileWord} />
-    let img =  <FontAwesomeIcon style={{color: "#9A15BF"}} icon={faFileImage} />
+    let pdf =  <FontAwesomeIcon style={{color: "#D51B1E", fontSize: "14pt"}} icon={faFilePdf} />
+    let word = <FontAwesomeIcon style={{color: "#1565C0", fontSize: "14pt"}} icon={faFileWord} />
+    let img =  <FontAwesomeIcon style={{color: "#9A15BF", fontSize: "14pt"}} icon={faFileImage} />
+    // let pdf =  <FontAwesomeIcon style={{color: "#D51B1E", fontSize: "16pt", paddingTop: "5px"}} icon={faFilePdf} />
+    // let word = <FontAwesomeIcon style={{color: "#1565C0", fontSize: "16pt", paddingTop: "5px"}} icon={faFileWord} />
+    // let img =  <FontAwesomeIcon style={{color: "#9A15BF", fontSize: "16pt", paddingTop: "5px"}} icon={faFileImage} />
 
     return (
       <tr className="document">
         <td>
+          <div>
           { this.props.fileExt === "pdf" ? pdf : this.props.fileExt === "docx" ? word : img } {this.props.fileName}
+          </div>
         </td>
 
         <td>
+          <div>
           {this.props.fileDate.getDate()}/{this.props.fileDate.getMonth()+1}/{this.props.fileDate.getFullYear()}
+          </div>
         </td>
 
         <td>
+          <div>
           {this.props.fileExt}
+          </div>
         </td>
 
         <td>
+          <div>
           {prettyBytes(this.props.fileSize)}
+          </div>
         </td>
 
         <td>
-          <button style={{'backgroundColor':'#003DA5','borderColor':'#003DA5'}} onClick={this.renameFile} className="btn btn-outline btn-primary btn-sm">
-            Rename
-          </button>
+            <button style={{'backgroundColor':'#003DA5','borderColor':'#003DA5'}} onClick={this.renameFile} className="btn btn-outline btn-primary btn-sm">
+              Rename
+            </button>
         </td>
 
         <td>
-          <a style={{'backgroundColor':'#003DA5','borderColor':'#003DA5'}} href={this.props.fileUrl} className="btn btn-outline btn-primary btn-sm" target="_blank">
-            View
-          </a>
+            <a style={{'backgroundColor':'#003DA5','borderColor':'#003DA5'}} href={this.props.fileUrl} className="btn btn-outline btn-primary btn-sm" target="_blank">
+              View
+            </a>
         </td>
 
         <td>
@@ -97,6 +108,7 @@ class IndividualFile extends Component {
             Delete
           </button>
         </td>
+
       </tr>);
   }
 }

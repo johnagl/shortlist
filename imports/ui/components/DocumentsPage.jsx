@@ -14,7 +14,7 @@ export default class DocumentsPage extends Component {
 		return(
 			<div className="documents-page">
 				
-				<h2>Documents Page</h2>
+				<h2>My Documents</h2>
 				<FileUploadComponent />
 			</div>
 		);

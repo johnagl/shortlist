@@ -132,29 +132,29 @@ class FileUploadComponent extends Component {
       })
 
       return <div>
-        <div className="row">
-          <div className="col-md-12">
-            <p>Upload New File:</p>
-            <input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput" onChange={this.uploadIt}/>
-          </div>
+        <div>
+					<p>Upload New File:</p>
+					<input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput" onChange={this.uploadIt}/>
+				</div>
+      
+        <div className="documents-table">
+          <table>
+            <thead>
+              <tr>
+                <th><div>Name</div></th>
+                <th><div>Date Added</div></th>
+                <th><div>File Type</div></th>
+                <th><div>Size</div></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {display}
+            </tbody>
+          </table>
         </div>
-
-        <table className="documents">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Date Added</th>
-              <th>Type</th>
-              <th>Size</th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {display}
-          </tbody>
-        </table>
       </div>
     }
     else return <div>Loading file list</div>;
