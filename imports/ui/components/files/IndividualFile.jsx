@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import UserFiles from '../../../api/FilesCol.js'
 
 class IndividualFile extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class IndividualFile extends Component {
         if (err)
           console.log(err);
       })
+    
     }
   }
 
