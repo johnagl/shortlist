@@ -26,11 +26,11 @@ class JobCardsContainerFull extends Component {
     render() {
     
         // console.log('THIS PROPS STAGES : ' + JSON.stringify(this.props.stages));
-        console.log('THIS PROPS STAGES ALLID: ' + JSON.stringify(this.props.stages.allIds));
-        console.log('this.props.jobs :' + JSON.stringify(this.props.jobs));
+        // console.log('THIS PROPS STAGES ALLID: ' + JSON.stringify(this.props.stages.allIds));
+        // console.log('this.props.jobs :' + JSON.stringify(this.props.jobs));
         let jobStageCards = this.props.stages.allIds.map(stageId => {
             let jobIds = this.props.stages.byId[stageId].jobs;
-            console.log('this.props.stages.byId[stageId].jobs ' + JSON.stringify(jobIds));
+            // console.log('this.props.stages.byId[stageId].jobs ' + JSON.stringify(jobIds));
             let stage = this.props.stages.byId[stageId];
             let jobs = [];
             for(let _id of jobIds) {
