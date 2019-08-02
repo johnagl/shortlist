@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilePdf, faFileWord, faFileImage } from '@fortawesome/free-solid-svg-icons';
+const prettyBytes = require('pretty-bytes');
 
 class IndividualFile extends Component {
   constructor(props) {
@@ -16,12 +17,12 @@ class IndividualFile extends Component {
 
   }
 
-  propTypes = {
-    fileName: PropTypes.string.isRequired,
-    fileSize: PropTypes.number.isRequired,
-    fileUrl: PropTypes.string,
-    fileId: PropTypes.string.isRequired
-  }
+  // propTypes = {
+  //   fileName: PropTypes.string.isRequired,
+  //   fileSize: PropTypes.number.isRequired,
+  //   fileUrl: PropTypes.string,
+  //   fileId: PropTypes.string.isRequired
+  // }
 
   printDate(){
     this.props.fileDate.getDate();
@@ -56,54 +57,47 @@ class IndividualFile extends Component {
   }
 
   render() {
+    // const size = filesize();
     let pdf =  <FontAwesomeIcon style={{color: "#D51B1E"}} icon={faFilePdf} />
     let word = <FontAwesomeIcon style={{color: "#1565C0"}} icon={faFileWord} />
     let img =  <FontAwesomeIcon style={{color: "#9A15BF"}} icon={faFileImage} />
 
     return (
-      <div className="document">
-        <div className="document-icon">
-          { this.props.fileExt === "pdf" ? pdf : this.props.fileExt === "docx" ? word : img }
-        </div>
-        <p>{this.props.fileName}</p>
+      <tr className="document">
+        <td>
+          { this.props.fileExt === "pdf" ? pdf : this.props.fileExt === "docx" ? word : img } {this.props.fileName}
+        </td>
 
+        <td>
+          {this.props.fileDate.getDate()}/{this.props.fileDate.getMonth()+1}/{this.props.fileDate.getFullYear()}
+        </td>
 
+        <td>
+          {this.props.fileExt}
+        </td>
 
-      {/* <div className="row">
-        <div className="col-md-12">
-          <span>{this.props.fileName}</span>
-          <div className="m-b-sm">
-          </div>
-        </div>
-      </div> */}
+        <td>
+          {prettyBytes(this.props.fileSize)}
+        </td>
 
-      <div className="row">
-        <div className="col-md-3">
+        <td>
           <button style={{'backgroundColor':'#003DA5','borderColor':'#003DA5'}} onClick={this.renameFile} className="btn btn-outline btn-primary btn-sm">
             Rename
           </button>
-        </div>
+        </td>
 
-        <div className="col-md-3">
-          <a style={{'backgroundColor':'#003DA5','borderColor':'#003DA5'}} href={this.props.fileUrl} className="btn btn-outline btn-primary btn-sm"
-             target="_blank">View</a>
-        </div>
+        <td>
+          <a style={{'backgroundColor':'#003DA5','borderColor':'#003DA5'}} href={this.props.fileUrl} className="btn btn-outline btn-primary btn-sm" target="_blank">
+            View
+          </a>
+        </td>
 
-        <div className="col-md-2">
+        <td>
           <button style={{'backgroundColor':'red'}} onClick={this.removeFile} className="btn btn-outline btn-danger btn-sm">
             Delete
           </button>
-        </div>
-
-        {/* <div className="col-md-4">
-          Size: {this.props.fileSize}
-        </div> */}
-
-        <div className="col-md-4">
-          Date Created: {this.props.fileDate.getDate()}/{this.props.fileDate.getMonth()+1}/{this.props.fileDate.getFullYear()}
-        </div>
-      </div>
-    </div>);
+        </td>
+      </tr>);
   }
 }
 export default IndividualFile;
@@ -145,3 +139,63 @@ export default IndividualFile;
 //   </div>
 // </div>
 // </div>
+
+
+
+
+
+
+// let pdf =  <FontAwesomeIcon style={{color: "#D51B1E"}} icon={faFilePdf} />
+// let word = <FontAwesomeIcon style={{color: "#1565C0"}} icon={faFileWord} />
+// let img =  <FontAwesomeIcon style={{color: "#9A15BF"}} icon={faFileImage} />
+
+// return (
+//   <div className="document">
+//     <div className="document-icon">
+//       { this.props.fileExt === "pdf" ? pdf : this.props.fileExt === "docx" ? word : img }
+//     </div>
+//     <p>{this.props.fileName}</p>
+
+
+
+//   {/* <div className="row">
+//     <div className="col-md-12">
+//       <span>{this.props.fileName}</span>
+//       <div className="m-b-sm">
+//       </div>
+//     </div>
+//   </div> */}
+
+//   <div className="row">
+//     <div className="col-md-3">
+//       <button style={{'backgroundColor':'#003DA5','borderColor':'#003DA5'}} onClick={this.renameFile} className="btn btn-outline btn-primary btn-sm">
+//         Rename
+//       </button>
+//     </div>
+
+//     <div className="col-md-3">
+//       <button style={{'backgroundColor':'#003DA5','borderColor':'#003DA5'}} onClick={this.renameFile} className="btn btn-outline btn-primary btn-sm">
+//         Rename
+//       </button>
+//     </div>
+
+//     <div className="col-md-3">
+//       <a style={{'backgroundColor':'#003DA5','borderColor':'#003DA5'}} href={this.props.fileUrl} className="btn btn-outline btn-primary btn-sm"
+//          target="_blank">View</a>
+//     </div>
+
+//     <div className="col-md-2">
+//       <button style={{'backgroundColor':'red'}} onClick={this.removeFile} className="btn btn-outline btn-danger btn-sm">
+//         Delete
+//       </button>
+//     </div>
+
+//     {/* <div className="col-md-4">
+//       Size: {this.props.fileSize}
+//     </div> */}
+
+//     <div className="col-md-4">
+//       Date Created: {this.props.fileDate.getDate()}/{this.props.fileDate.getMonth()+1}/{this.props.fileDate.getFullYear()}
+//     </div>
+//   </div>
+// </div>);

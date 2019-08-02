@@ -342,6 +342,14 @@ nav a:hover {
   text-align: center;
 }
 
+.documents table {
+  width: 200px;
+}
+
+th {
+  text-align: left;
+}
+
 .document {
   margin: 10px;
   text-align: center;

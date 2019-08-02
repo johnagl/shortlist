@@ -121,8 +121,7 @@ class FileUploadComponent extends Component {
         let link = UserFiles.findOne({_id: aFile._id}).link();  //The "view/download" link
 
         // Send out components that show details of each file
-        return <div key={'file' + key}>
-          <IndividualFile
+        return  <IndividualFile key={'file' + key}
             fileName={aFile.name}
             fileUrl={link}
             fileId={aFile._id}
@@ -130,15 +129,13 @@ class FileUploadComponent extends Component {
             fileExt={aFile.ext}
             fileDate={new Date()}
           />
-        </div>
       })
 
       return <div>
         <div className="row">
           <div className="col-md-12">
             <p>Upload New File:</p>
-            <input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput"
-                 onChange={this.uploadIt}/>
+            <input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput" onChange={this.uploadIt}/>
           </div>
         </div>
 
@@ -149,18 +146,15 @@ class FileUploadComponent extends Component {
               <th>Date Added</th>
               <th>Type</th>
               <th>Size</th>
-              <th></th> {/*Rename*/}
-              <th></th> {/*View*/}
-              <th></th> {/*Delete*/}
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            
+            {display}
           </tbody>
         </table>
-
-        {display}
-
       </div>
     }
     else return <div>Loading file list</div>;
