@@ -44,7 +44,7 @@ class App extends React.Component {
             </Switch>
           </div>
         </BrowserRouter> : 
-        <LandingPage currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
+        <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
         }
       </div>
     );
@@ -61,4 +61,6 @@ export default withTracker(() => {
   };
 })(App);
 
-{/* <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/> */}
+{/* <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
+
+<LandingPage currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/> */}

@@ -144,10 +144,26 @@ nav a:hover {
   /* position: relative; */
 }
 
+/* the padding: 0 in here is absolutely crucial.
+ * Without it, the content is just so slightly off center;
+ * not enough for any person to notice it, 
+ * or believe you when you say so,
+ * but enough for YOU to perceive it and know it's there
+ * and see it every time you look at it.
+ * It'll drive you crazy, because nobody else can see it,
+ * and how can they NOT see it, are you blind, look at it, LOOK, LOOK!!!!
+ * But don't let anyone tell you otherwise. You saw it and you found it
+ * And changing it MADE A DIFFERENCE
+ * All thanks to padding: 0
+ * So stick to your guns! Believe in yourself!
+ * Even if it's to just move 2 pixels, when nobody else could ever notice it
+ * Because you're a perfectionist. So seek out the best,
+ * right up until the point where you think you're going insane. */
 .logo {
   width: 30px;
   height: 30px;
   margin-right: 10px;
+  padding: 0;
   border-radius: 50%;
   display: inline-block;
   text-align: center;
