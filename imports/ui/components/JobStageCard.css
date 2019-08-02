@@ -3,7 +3,12 @@
     width: 100%;
     padding: 30px 0px 30px 0px;
     margin: 0;
-    height: 146px;
+    height: 150px;
+    text-align: center;
+}
+
+.jobStageCardContainer span {
+    font-size: 13pt;
 }
 
 .jobStageText {
@@ -38,9 +43,8 @@
  * right up until the point where you think you're going insane. */
 .addButton {
     text-align: center;
-    width: 40px;
-    height: 40px;
-    line-height: 20px;
+    width: 36px;
+    height: 36px;
     margin: 10px 0px;
     padding: 0;
     background: #003DA5;
