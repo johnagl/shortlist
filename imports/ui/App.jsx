@@ -43,9 +43,8 @@ class App extends React.Component {
               />
             </Switch>
           </div>
-        </BrowserRouter> : 
-        <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
-        }
+        </BrowserRouter> : <LandingPage currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
+        }{/* <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/> */}
       </div>
     );
   }

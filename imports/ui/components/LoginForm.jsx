@@ -61,7 +61,7 @@ export default class LoginForm extends React.Component {
           <Input type="password" name="password" id="password" placeholder="Enter password" />
         </FormGroup>
         <Button>Submit</Button>
-        <React.Fragment>
+        {/* <React.Fragment>
         <div className = "registerbuttoncontainer">
           <a className="registerButton" style={{'cursor':'pointer', 'color':'blue'}} onClick={this.toggle}>Register by clicking here</a>
               <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
@@ -71,7 +71,7 @@ export default class LoginForm extends React.Component {
               </ModalBody>
           </Modal>
         </div>
-      </React.Fragment>
+      </React.Fragment> */}
         
       </Form>
       </Container>

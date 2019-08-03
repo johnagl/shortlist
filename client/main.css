@@ -336,6 +336,11 @@ nav a:hover {
   visibility: hidden;
 }
 
+.landing-page {
+  margin: 150px;
+  text-align: center;
+}
+
 /* Documents Page */
 .documents-page {
   margin: 80px;
