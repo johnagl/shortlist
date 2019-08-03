@@ -18,7 +18,7 @@ export default class RegisterForm extends React.Component {
             };
             Accounts.createUser(accountInfo, function (er, result) {
                 if (er) {
-                    alert("There was an error making your account")
+                    alert(er.reason)
                 }
                 else {
                     Meteor.call('stages.createStages');
