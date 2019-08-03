@@ -5,13 +5,16 @@ import CountBubble from './CountBubble';
 
 
 export default class JobStageCardFull extends Component {
+
     render() {
+        let count = this.props.jobs.length + " " + (this.props.jobs.length === 1 ? "Job" : "Jobs");
+        
         return (
             <div className="jobStageCardContainer">
                 <div className = "jobStageTitle jobStageText">
                     {this.props.stage.title}
                 </div>
-                <span>{this.props.jobs.length} Job(s)</span>
+                <span>{ count }</span>
                 <div className = "job-stage-header">
                     <AddButtonModal stage={this.props.stage} stageTitle={this.props.stage.title}stagesList={this.props.stagesList} />
                     {/* <span>{this.props.jobs.length} Jobs</span> */}
