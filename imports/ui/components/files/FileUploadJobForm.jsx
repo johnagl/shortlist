@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 import IndividualFile from './IndividualFile.jsx';
 import UserFiles from '../../../api/FilesCol.js'
 
+
+//FileUploadJobform is placed in Job Form so that files can be uploaded within a job card.
+//Files uploaded in a job card are associated with a job
 class FileUploadJobForm extends Component {
   constructor(props) {
     super(props);

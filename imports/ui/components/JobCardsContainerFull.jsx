@@ -4,14 +4,23 @@ import JobStageCardFull from './JobStageCardFull.jsx';
 import JobCardsContainer from './JobCardsContainer.jsx';
 import './JobCardsContainerFull.css';
 import { fetchJobs, fetchStages } from '../actions/index';
+import { Input } from 'reactstrap';
 
 
 class JobCardsContainerFull extends Component {
+
+    state = {
+        search: ''
+    }
 
     componentDidMount(){
         this.props.fetchStages(this.props.stagesList);
         this.props.fetchJobs(this.props.jobsList);
     }
+
+    onChangeJobSearch = (e) => this.setState(
+        { [e.target.name]: e.target.value }
+      );
 
     render() {
         let jobStageCards = this.props.stages.allIds.map(stageId => {
@@ -19,14 +28,29 @@ class JobCardsContainerFull extends Component {
             let stage = this.props.stages.byId[stageId];
             let jobs = [];
             for(let _id of jobIds) {
-                jobs.push(this.props.jobs.byId[_id]);
+                if(this.props.jobs.byId[_id].company.toLowerCase().includes(this.state.search.toLowerCase())){
+                    jobs.push(this.props.jobs.byId[_id]);
+
+                };
+                
             }
 
             return (
                 <div key={stage._id} className='columnStyle'>
-                    <JobStageCardFull stage={stage} jobs={jobs}/>
-                    <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
-                </div>
+                    {stage.title == 'Shortlist' ?  
+                    <React.Fragment>
+                        <JobStageCardFull stage={stage} jobs={jobs}/>
+                        <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
+                        {/* This is the search input  */}
+                        <Input style={inputStyle} type="text hidden" name="search" autoComplete="off" id="search" placeholder="Filter Jobs" value = {this.state.search} onChange = {this.onChangeJobSearch} floating={true}/>
+                    </React.Fragment> : 
+                    <React.Fragment>
+                        <JobStageCardFull stage={stage} jobs={jobs}/>
+                        <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
+                    </React.Fragment>
+                    }
+
+                </div> 
             )
         })
 
@@ -38,9 +62,19 @@ class JobCardsContainerFull extends Component {
     }
 }
 
+//STYLE FOR SEARCH INPUT
+inputStyle = {
+    position: 'fixed',
+    width: '200px',
+    bottom: '16%',
+    right: '4%',
+
+}
+
 const mapStateToProps = (state) => {
     return { stages: state.jobs.stages, jobs: state.jobs.jobs, view: state.jobs.view }
 }
+
 
 export default connect(mapStateToProps, { fetchJobs, fetchStages })(JobCardsContainerFull);
 
