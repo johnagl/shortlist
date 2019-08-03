@@ -6,6 +6,8 @@ import { addJob, editJob } from '../actions/index';
 import CompanySuggestion from './CompanySuggestion';
 import DateTimePicker from 'react-datetime-picker';
 
+import FileUploadJobForm from './files/FileUploadJobForm.jsx';
+
 class JobForm extends React.Component {
 
   state = {
@@ -213,6 +215,8 @@ class JobForm extends React.Component {
         /></Col>
           
         </Row>
+        {/* This component allows us to upload documents in the JobForm, jobId prop must be passed down */}
+        <FileUploadJobForm jobId={this.state._id}/>
         
         
         <Button>Submit</Button>
@@ -225,7 +229,7 @@ class JobForm extends React.Component {
 
 position = {
   position: 'relative',
-  left: '100px'
+  left: '100px',
 }
 
 const mapStateToProps = (state) => {
