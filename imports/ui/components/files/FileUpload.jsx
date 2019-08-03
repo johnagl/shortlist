@@ -29,7 +29,8 @@ class FileUploadComponent extends Component {
       // there was multiple files selected
       var file = e.currentTarget.files[0];
 
-      if (file) {
+      // if (file && (file.type == "image/jpeg" | file.type == 'application/pdf' | file.type == 'doc')) {
+        if (file) {
         let uploadInstance = UserFiles.insert({
           file: file,
           meta: {
