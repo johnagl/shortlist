@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
-import { Label, Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import { addJob, editJob } from '../actions/index';
 import CompanySuggestion from './CompanySuggestion';
 import DateTimePicker from 'react-datetime-picker';
@@ -24,12 +24,25 @@ class InputWithLogo extends React.Component {
     library.add(icon);
 
     return (
-        <div className="input-group input-group-unstyled">
-            <input type="text" className="form-control" />
-            <span className="input-group-addon">
-                <i className="fa fa-search"></i>
-            </span>
-        </div>
+        <InputGroup>
+            <Input className="py-2 border-right-0 border"
+                type="search" 
+                placeholder={ placeholder } 
+                value = { this.state.content }
+                onChange={ this.onChangeText }
+            />
+
+            <InputGroupAddon addonType="append">
+                {/* { logo ? 
+                    <div className="input-logo">
+                        <img src={ logo }/>
+                    </div> : */}
+                    <div className="bg-transparent input-group-text border border-left-0">
+                        <FontAwesomeIcon icon={icon}/> 
+                    </div>
+                {/* } */}
+            </InputGroupAddon>
+        </InputGroup>
     );
   }
 }
@@ -57,3 +70,11 @@ export default connect(mapStateToProps, )(InputWithLogo);
                 }
             </InputGroupAddon>
         </InputGroup> */}
+
+
+        {/* <div className="input-group input-group-unstyled">
+            <input type="text" className="form-control" />
+            <span className="input-group-addon">
+                { icon }
+            </span>
+        </div> */}

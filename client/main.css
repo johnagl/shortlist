@@ -314,6 +314,14 @@ nav a:hover {
   color: #FFFFFF;
 }
 
+.input-logo > img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+}
+
 .suggestion {
   padding: 10px;
   border-bottom: 1px solid #EEEEEE;
