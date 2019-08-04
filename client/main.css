@@ -207,6 +207,8 @@ nav a:hover {
 }
 
 .job-card .card-body {
+  margin: 15px 20px;
+  padding: 0;
   text-align: left;
 }
 
@@ -227,7 +229,7 @@ nav a:hover {
   margin: 0;
   border: none !important;
   box-sizing: border-box; /* here */
-  border-radius: 0px 0px 2px 2px !important; /* to apply the same that the parent */
+  border-radius: 0px 0px 1.5px 1.5px !important; /* to apply the same that the parent */
   /* height: 100%; to make all height */
   /* border-radius: 0 !important; */
 }

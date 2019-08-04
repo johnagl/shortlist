@@ -95,7 +95,7 @@ class JobCard extends React.Component {
                     </div>
                     <p className="card-text">{ job.title }</p>
                   </div>
-                  <div style={footerStyle} className="card-text card-footer">Created { dateCreated }</div>
+                  <div /*style={footerStyle*/ className="card-text card-footer">Created { dateCreated }</div>
                 </div>
               </div>
             )}
