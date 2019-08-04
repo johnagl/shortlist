@@ -114,7 +114,8 @@ class FileUploadComponent extends Component {
     backgroundColor: "lightgrey",
     display: "inline",
     paddingRight:"7px",
-    paddingLeft:"7px"
+    paddingLeft:"7px",
+    cursor
   }
   render() {
     

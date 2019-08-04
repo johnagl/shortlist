@@ -150,7 +150,7 @@ nav a:hover {
   min-height: 115px;
   /* box-shadow: 4px 4px 2px rgba(0,0,0,.20); */
   display: inline-block;
-  text-align: left;
+  text-align: right;
 }
 
 .default-logo {
@@ -206,12 +206,43 @@ nav a:hover {
   opacity: 75%;
 }
 
+.job-card .card-body {
+  text-align: left;
+}
+
 .job-card .card-text {
   white-space: nowrap; 
   width: 80%;
   overflow: hidden;
   text-overflow:ellipsis;
 }
+
+.job-card .card-footer {
+  position: absolute;
+  bottom: 0;
+  font-size: 7pt;
+  width: 100%;
+  padding: 2px;
+  padding-right: 8px;
+  margin: 0;
+  border: none !important;
+  box-sizing: border-box; /* here */
+  border-radius: 0px 0px 2px 2px !important; /* to apply the same that the parent */
+  /* height: 100%; to make all height */
+  /* border-radius: 0 !important; */
+}
+
+/* .job-card > .card-footer {
+  text-align: left;
+} */
+
+/* .card-footer:last-child {
+  border-radius: 0;
+}
+
+.card-text:last-child {
+  margin-bottom: 0;
+} */
 
 .job-card .card-title {
   font-weight: bold;
