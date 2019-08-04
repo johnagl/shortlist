@@ -26,6 +26,7 @@ class JobCardsContainerFull extends Component {
         let jobStageCards = this.props.stages.allIds.map(stageId => {
             let jobIds = this.props.stages.byId[stageId].jobs;
             let stage = this.props.stages.byId[stageId];
+            console.log('STAGE : ' + JSON.stringify(stage));
             let jobs = [];
             for(let _id of jobIds) {
                 if(this.props.jobs.byId[_id].company.toLowerCase().includes(this.state.search.toLowerCase())){
@@ -37,7 +38,7 @@ class JobCardsContainerFull extends Component {
 
             return (
                 <div key={stage._id} className='columnStyle'>
-                    {stage.title == 'Shortlist' ?  
+                    {stage.title == 'Interested' ?  
                     <React.Fragment>
                         <JobStageCardFull stage={stage} jobs={jobs}/>
                         <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
