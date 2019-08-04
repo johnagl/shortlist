@@ -35,6 +35,8 @@ class App extends React.Component {
                 )}
               />
               <Route path='/documents' component={DocumentsPage} />
+              {/* <Route path='/login' component={LoginForm} />
+              <Route path='/register' component={LoginForm} /> */}
               <Route 
                 exact path='/calendar' 
                 render={(routeProps) => (
