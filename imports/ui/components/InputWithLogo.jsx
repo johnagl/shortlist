@@ -26,21 +26,21 @@ class InputWithLogo extends React.Component {
     return (
         <InputGroup>
             <Input className="py-2 border-right-0 border"
-                type="search" 
+                type="text hidden" 
                 placeholder={ placeholder } 
                 value = { this.state.content }
                 onChange={ this.onChangeText }
             />
 
             <InputGroupAddon addonType="append">
-                {/* { logo ? 
-                    <div className="input-logo">
+                { logo ? 
+                    <div className="input-logo bg-transparent input-group-text border border-left-0">
                         <img src={ logo }/>
-                    </div> : */}
+                    </div> :
                     <div className="bg-transparent input-group-text border border-left-0">
                         <FontAwesomeIcon icon={icon}/> 
                     </div>
-                {/* } */}
+                }
             </InputGroupAddon>
         </InputGroup>
     );
