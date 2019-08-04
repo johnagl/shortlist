@@ -56,7 +56,7 @@ export default withTracker(() => {
   Meteor.subscribe('stages');
   return {
     jobsList: Jobs.find({}).fetch(),
-    stagesList: Stages.find({}).fetch(),
+    stagesList: Stages.find({}, { sort: { index: 1 } }).fetch(),
     currentUser: Meteor.user()
   };
 })(App);
