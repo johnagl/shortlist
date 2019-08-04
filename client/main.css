@@ -376,6 +376,9 @@ nav a:hover {
 
 .hide {
   visibility: hidden;
+}
+
+.hide-border > .suggestions {
   border: none;
 }
 

@@ -7,7 +7,7 @@ class SearchAutocomplete extends React.Component {
     state = {
         suggestions: [],
         selectedSuggestion: null,
-        companyFocused: true,
+        companyFocused: false,
     }
 
     handleFocus = () => {
@@ -32,11 +32,13 @@ class SearchAutocomplete extends React.Component {
         })
 
         let className;
-        this.state.companyFocused? className="suggestions" : className="suggestions hide"
+        className = suggestions.length == 0 ? "hide-border" : this.state.companyFocused ? "" : "hide";
 
         return (
         <div className={className}>
-            { suggestions }
+            <div className="suggestions">
+                { suggestions }
+            </div>
         </div>
         );
     }
@@ -55,8 +57,8 @@ class SearchAutocomplete extends React.Component {
                 selection={ selection} 
                 value={ value }
                 onChange={ (e) => this.props.onChange(e)}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
+                onFocus={() => this.handleFocus()}
+                onBlur={() => this.handleBlur()}
             />
             { this.renderSuggestions() }
         </div>
