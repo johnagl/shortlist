@@ -10,6 +10,7 @@ import FileUploadJobForm from './files/FileUploadJobForm.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import InputWithLogo from './InputWithLogo.jsx';
+import SearchAutocomplete from './SearchAutocomplete.jsx';
 
 class AddJobForm extends React.Component {
 
@@ -21,17 +22,20 @@ class AddJobForm extends React.Component {
       onSiteInterview: null,
       suggestions: [],
       selectedSuggestion: null,
-      companyFocused: false,
+    //   companyFocused: false,
   }
 
-  onChangeText = (e) => this.setState({ [e.target.name]: e.target.value });
+  onChangeText = async (e) => {
+      await this.setState({ [e.target.name]: e.target.value });
+  }
+
   onChangePhoneInterview = (phoneInterview) => this.setState({ phoneInterview });
   onChangeOnSiteInterview = (onSiteInterview) => this.setState({ onSiteInterview });
 
   onChangeCompanyName = async (e) => {
-    await this.onChangeText(e);
-
     try {
+        await this.onChangeText(e);
+
       let response = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=:${this.state.company}`, {
           method: "GET"
       });
@@ -100,36 +104,36 @@ class AddJobForm extends React.Component {
     return job;
   }
 
-  handleFocus = () => {
-    this.setState({companyFocused: true});
-  }
+//   handleFocus = () => {
+//     this.setState({companyFocused: true});
+//   }
 
-  handleBlur = () => {
-    this.setState({companyFocused: false});
-  }
+//   handleBlur = () => {
+//     this.setState({companyFocused: false});
+//   }
 
   async selectSuggestion(suggestion) {
     await this.setState({selectedSuggestion: suggestion, company: suggestion.name});
   }
 
-  renderSuggestions() {
-    let suggestions = this.state.suggestions.map(suggestion => {
-      return(
-        <div key={suggestion.domain} onMouseDown={ () => {this.selectSuggestion(suggestion)} } >
-          <CompanySuggestion key={suggestion.domain} name={suggestion.name} logo={suggestion.logo} />
-        </div>
-      );
-    })
+//   renderSuggestions() {
+//     let suggestions = this.state.suggestions.map(suggestion => {
+//       return(
+//         <div key={suggestion.domain} onMouseDown={ () => {this.selectSuggestion(suggestion)} } >
+//           <CompanySuggestion key={suggestion.domain} name={suggestion.name} logo={suggestion.logo} />
+//         </div>
+//       );
+//     })
 
-    let className;
-    this.state.companyFocused? className="suggestions" : className="suggestions hide"
+//     let className;
+//     this.state.companyFocused? className="suggestions" : className="suggestions hide"
 
-      return (
-        <div className={className}>
-          { suggestions }
-        </div>
-      );
-  }
+//       return (
+//         <div className={className}>
+//           { suggestions }
+//         </div>
+//       );
+//   }
 
   renderOptions() {
     let stagesIds = this.props.stages.allIds;
@@ -155,21 +159,29 @@ class AddJobForm extends React.Component {
 
             <FormGroup className="suggestions-container">
                 <Label for="companyName">Company Name</Label>
-                    <InputWithLogo 
-                        name="company" 
+                    <SearchAutocomplete
+                        name="company"
                         id="companyName" 
                         placeholder="Company Name" 
                         icon={ faSearch }
-                        selection={ this.state.selectSuggestion } 
                         value={ this.state.company }
-                        onChange={ (e) => this.onChangeText(e)}/>
-                    {/* <Input type="text hidden" name="company" autoComplete="off" id="companyName" placeholder="Company Name" value={this.state.company} onChange={this.onChangeCompanyName} onFocus={this.handleFocus} onBlur={this.handleBlur} /> */}
-                { this.renderSuggestions() }
+                        onChange={ (e) => this.onChangeCompanyName(e) }
+                        suggestions = { this.state.suggestions }
+                        selection={ this.state.selectedSuggestion } 
+                        selectSuggestion = { (suggestion) => this.selectSuggestion(suggestion) }
+                    />
             </FormGroup>
 
             <FormGroup>
                 <Label for="jobTitle">Job Title</Label>
-                <InputWithLogo name="title" id="jobTitle" placeholder="Job Title" icon={faBriefcase} selection={ this.state.selectSuggestion } />
+                <InputWithLogo 
+                    name="title" 
+                    id="jobTitle" 
+                    placeholder="Job Title" 
+                    icon={ faBriefcase } 
+                    selection={ this.state.selectSuggestion }
+                    value={ this.state.title }
+                    onChange={ (e) => this.onChangeText(e)} />
             </FormGroup>
 
             <FormGroup>
@@ -213,3 +225,19 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {addJob})(AddJobForm);
+
+                        {/* suggestions = { this.state.suggestions }
+                        selectedSuggestion = { this.state.selectedSuggestion }
+                        companyFocused = { this.state.companyFocused } */}
+                    {/* <Input type="text hidden" name="company" autoComplete="off" id="companyName" placeholder="Company Name" value={this.state.company} onChange={this.onChangeCompanyName} onFocus={this.handleFocus} onBlur={this.handleBlur} /> */}
+
+                                        {/* <InputWithLogo 
+                        name="company" 
+                        id="companyName" 
+                        placeholder="Company Name" 
+                        icon={ faSearch }
+                        selection={ this.state.selectSuggestion } 
+                        value={ this.state.company }
+                        onChange={ (e) => this.onChangeCompanyName(e) }
+                        {/* onFocus={ this.handleFocus } 
+                        onBlur={ this.handleBlur } */}

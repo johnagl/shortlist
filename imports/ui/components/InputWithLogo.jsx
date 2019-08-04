@@ -12,15 +12,8 @@ import FileUploadJobForm from './files/FileUploadJobForm.jsx';
 
 
 class InputWithLogo extends React.Component {
-
-  state = {
-      value: this.props.value,
-  }
-
-  onChangeText = (e) => this.setState({ value: e.target.value });
-
   render() {
-    const { id, name, placeholder, value, icon, selection } = this.props;
+    const { id, name, placeholder, value, icon, selection, onChange } = this.props;
     library.add(icon);
 
     return (
@@ -28,10 +21,11 @@ class InputWithLogo extends React.Component {
             <Input className="py-2 border-right-0"
                 type="text hidden"
                 autoComplete="off"
-                id = {this.props.id}
+                name= { name }
+                id = { id }
                 placeholder={ placeholder } 
-                value = { this.state.value }
-                onChange = { this.props.onChange }
+                value = { this.props.value }
+                onChange = { onChange }
             />
 
             <InputGroupAddon addonType="append">

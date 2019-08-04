@@ -376,6 +376,7 @@ nav a:hover {
 
 .hide {
   visibility: hidden;
+  border: none;
 }
 
 /* Documents Page */
