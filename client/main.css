@@ -375,6 +375,10 @@ nav a:hover {
   text-align: center;
 }
 
+.documents-page > h2 {
+  margin-bottom: 30px;
+}
+
 .documents-table {
   width:100%;
   height:100%;
@@ -427,6 +431,20 @@ th > div {
 
 .document-icon .svg-inline--fa {
   font-size: 80pt !important;
+}
+
+.fileinput {
+  background-color: #003DA5;
+  padding: 4px 8px 4px 8px;
+  color: #FFFFFF;
+  display: inline;
+  border: 2px solid #003DA5;
+  cursor: pointer;
+}
+
+.fileinput:hover {
+  background-color: #FFFFFF;
+  color: #003DA5;
 }
 
 /* .documents {
