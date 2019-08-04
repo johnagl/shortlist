@@ -152,45 +152,50 @@ class AddJobForm extends React.Component {
   render() {
     return (
         <Form  onSubmit={this.onSubmit}>
-        <FormGroup className="suggestions-container">
-          <Label for="companyName">Company Name</Label>
-          <Input type="text hidden" name="company" autoComplete="off" id="companyName" placeholder="Company Name" value={this.state.company} onChange={this.onChangeCompanyName} onFocus={this.handleFocus} onBlur={this.handleBlur} />
-          { this.renderSuggestions() }
-        </FormGroup>
-        <FormGroup>
-          <Label for="jobTitle">Job Title</Label>
-          <Input type="text hidden" name="title" autoComplete="off" id="jobTitle" placeholder="Job Title" value = {this.state.title} onChange = {this.onChangeText} />
-        </FormGroup>
-        <FormGroup>
-          <Label for="jobStageSelect">Stage</Label>
-          <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeText} >
-            { this.renderOptions() }
-          </Input>
-        </FormGroup>
 
-        <FormGroup>
-            <Label for="test">Test</Label>
-            <InputWithLogo name="test" placeholder="Test" icon={faSearch} logo="https://logo.clearbit.com/amazon.com"/>
-        </FormGroup>
+            <FormGroup className="suggestions-container">
+                <Label for="companyName">Company Name</Label>
+                    <InputWithLogo 
+                        name="company" 
+                        id="companyName" 
+                        placeholder="Company Name" 
+                        icon={ faSearch }
+                        selection={ this.state.selectSuggestion } 
+                        value={ this.state.company }
+                        onChange={ (e) => this.onChangeText(e)}/>
+                    {/* <Input type="text hidden" name="company" autoComplete="off" id="companyName" placeholder="Company Name" value={this.state.company} onChange={this.onChangeCompanyName} onFocus={this.handleFocus} onBlur={this.handleBlur} /> */}
+                { this.renderSuggestions() }
+            </FormGroup>
+
+            <FormGroup>
+                <Label for="jobTitle">Job Title</Label>
+                <InputWithLogo name="title" id="jobTitle" placeholder="Job Title" icon={faBriefcase} selection={ this.state.selectSuggestion } />
+            </FormGroup>
+
+            <FormGroup>
+            <Label for="jobStageSelect">Stage</Label>
+            <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeText} >
+                { this.renderOptions() }
+            </Input>
+            </FormGroup>
       
-        <Row>
-          <Col xs="4" sm="4">Phone Interview: </Col>
-          <Col xs="4" sm="4">
-            <DateTimePicker name="phoneInterview" onChange={this.onChangePhoneInterview} value={this.state.phoneInterview}/>
-          </Col>
-          
-        </Row>
-        <br></br>
-        <Row>
-          <Col xs="4" sm="4">On Site Interview: </Col>
-          <Col xs="4" sm="4">
-            <DateTimePicker name="onSiteInterview" onChange={this.onChangeOnSiteInterview} value={this.state.onSiteInterview} /></Col>
-        </Row>
-        {/* This component allows us to upload documents in the JobForm, jobId prop must be passed down */}
-        {/* <FileUploadJobForm jobId={this.state._id}/> */}
-        
-        
-        <Button>Submit</Button>
+            <Row>
+            <Col xs="4" sm="4">Phone Interview: </Col>
+            <Col xs="4" sm="4">
+                <DateTimePicker name="phoneInterview" onChange={this.onChangePhoneInterview} value={this.state.phoneInterview}/>
+            </Col>
+            
+            </Row>
+            
+            <br></br>
+            
+            <Row>
+            <Col xs="4" sm="4">On Site Interview: </Col>
+            <Col xs="4" sm="4">
+                <DateTimePicker name="onSiteInterview" onChange={this.onChangeOnSiteInterview} value={this.state.onSiteInterview} /></Col>
+            </Row>
+
+            <Button>Submit</Button>
       </Form>
     
       

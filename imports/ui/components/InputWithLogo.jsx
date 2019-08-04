@@ -14,30 +14,32 @@ import FileUploadJobForm from './files/FileUploadJobForm.jsx';
 class InputWithLogo extends React.Component {
 
   state = {
-      content: this.props.content,
+      value: this.props.value,
   }
 
-  onChangeText = (e) => this.setState({ [e.target.name]: e.target.value });
+  onChangeText = (e) => this.setState({ value: e.target.value });
 
   render() {
-    const { name, placeholder, content, icon, logo } = this.props;
+    const { id, name, placeholder, value, icon, selection } = this.props;
     library.add(icon);
 
     return (
         <InputGroup>
-            <Input className="py-2 border-right-0 border"
-                type="text hidden" 
+            <Input className="py-2 border-right-0"
+                type="text hidden"
+                autoComplete="off"
+                id = {this.props.id}
                 placeholder={ placeholder } 
-                value = { this.state.content }
-                onChange={ this.onChangeText }
+                value = { this.state.value }
+                onChange = { this.props.onChange }
             />
 
             <InputGroupAddon addonType="append">
-                { logo ? 
-                    <div className="input-logo bg-transparent input-group-text border border-left-0">
+                { (selection && selection.logo) ? 
+                    <div className="input-logo bg-transparent input-group-text border-left-0">
                         <img src={ logo }/>
                     </div> :
-                    <div className="bg-transparent input-group-text border border-left-0">
+                    <div className="bg-transparent input-group-text border-left-0">
                         <FontAwesomeIcon icon={icon}/> 
                     </div>
                 }
