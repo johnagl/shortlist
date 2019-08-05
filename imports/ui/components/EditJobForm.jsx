@@ -1,90 +1,163 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import { addJob } from '../actions/index';
+import uuid from 'uuid';
+import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { editJob } from '../actions/index';
+import CompanySuggestion from './CompanySuggestion';
+import DateTimePicker from 'react-datetime-picker';
+
+import FileUploadJobForm from './files/FileUploadJobForm.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import InputWithLogo from './InputWithLogo.jsx';
+import SearchAutocomplete from './SearchAutocomplete.jsx';
 
 class EditJobForm extends React.Component {
   state = {
-      company: this.props.job.company,
-      title: this.props.job.title,
-      select: this.props.stage._id,
-  }
+    _id: this.props.job._id,
+    company: this.props.job.company,
+    title: this.props.job.title,
+    select: this.props.stage._id,
+    phoneInterview: this.props.job.phoneInterview.start,
+    onSiteInterview: this.props.job.onSiteInterview.start,
+    suggestions: [],
+    selectedSuggestion: null,
+}
 
-  onChangeCompanyName = (e) => this.setState(
-    { [e.target.name]: e.target.value }
-  );
-  
-  onChangeJobTitle = (e) => this.setState(
-    { [e.target.name]: e.target.value }
-  );
-  
-  onChangeJobStage = (e) => this.setState(
-    { [e.target.name]: e.target.value }
-  );
+onChangeText = async (e) => {
+  await this.setState({ [e.target.name]: e.target.value });
+}
 
-  onSubmit = (e) => {
-    //   e.preventDefault();
-    //   const job =  {
-    //     _id: uuid(),
-    //     company: this.state.name,
-    //     title: this.state.title,
-    //     dates: {
-    //         createdAt: new Date(),
-    //     },
-    //     owner: Meteor.userId(),
-    //     userEmail: Meteor.user().emails[0].address
-    // }
-    // TODO: add this.props.editJob(job);
-    //   this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
-    //   this.props.editJob(job);
-      // this.props.toggle();
-  }
+onChangePhoneInterview = (phoneInterview) => this.setState({ phoneInterview });
+onChangeOnSiteInterview = (onSiteInterview) => this.setState({ onSiteInterview });
 
-  renderOptions() {
-    let stagesIds = this.props.stages.allIds;
-    let stages = [];
-    for(let id of stagesIds) {
-      stages.push(
-        {
-          _id: id,
-          title: this.props.stages.byId[id].title,
-        });
-    }
+onChangeCompanyName = async (e) => {
+  try {
+    await this.onChangeText(e);
 
-    let options = stages.map(stage => {
-      return(<option key={stage._id} value={stage._id}>{stage.title}</option>)              
+    let response = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=:${this.state.company}`, {
+        method: "GET"
     });
+    let suggestions = await response.json();
+    await this.setState({ suggestions, selectedSuggestion: null });
 
-    return options;
+  } catch(e) {
+      console.log(e);
+  }
+}
+
+
+// Adds a job if one did not exist, otherwise edits existing job
+onSubmit = (e) => {
+  e.preventDefault();
+  let job = this.props.job;
+  this.updateJob(job);
+  this.props.toggle();
+}
+
+updateJob = (job) => {
+  job["company"] = this.state.company;
+  job["title"] = this.state.title;
+  job["phoneInterview"]["start"] = this.state.phoneInterview;
+  job["phoneInterview"]["end"] = this.state.phoneInterview;
+  job["onSiteInterview"]["start"] = this.state.onSiteInterview;
+  job["onSiteInterview"]["end"] = this.state.onSiteInterview;
+
+  if(this.state.selectedSuggestion) {
+    job["domain"] = this.state.selectedSuggestion.domain;
+    job["logo"] = this.state.selectedSuggestion.logo;
   }
 
+  this.props.editJob(job, this.props.stage._id, this.state.select, this.props.jobIndex);
+}
 
-  render() {
+async selectSuggestion(suggestion) {
+  await this.setState({selectedSuggestion: suggestion, name: suggestion.name});
+}
 
-    return (
-      <Form onSubmit={this.onSubmit}>
-        <FormGroup>
-          <Label for="companyName">Company</Label>
-          <Input type="text hidden" name="company" autoComplete="off" id="companyName" placeholder="Company" value = {this.state.company} onChange = {this.onChangeCompanyName}/>
-        </FormGroup>
-        <FormGroup>
-          <Label for="jobTitle">Job Title</Label>
-          <Input type="text hidden" name="title" autoComplete="off" id="jobTitle" placeholder="Job Title" value = {this.state.title} onChange = {this.onChangeJobTitle} />
-        </FormGroup>
-        <FormGroup>
-          <Label for="jobStageSelect">Move Job</Label>
-          <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeJobStage} >
-            {this.renderOptions()}
-          </Input>
-        </FormGroup>
-        <Button>Submit</Button>
-      </Form>
-    );
+renderOptions() {
+  let stagesIds = this.props.stages.allIds;
+  let stages = [];
+  for(let id of stagesIds) {
+    stages.push(
+      {
+        _id: id,
+        title: this.props.stages.byId[id].title,
+      });
   }
+
+  let options = stages.map(stage => {
+    return(<option key={stage._id} value={stage._id}>{stage.title}</option>)              
+  });
+
+  return options;
+}
+
+render() {
+  return (
+    <Form  onSubmit={this.onSubmit}>
+        <FormGroup className="suggestions-container">
+            <Label for="companyName">Company Name</Label>
+                <SearchAutocomplete
+                    name="company"
+                    id="companyName" 
+                    placeholder="Company Name" 
+                    icon={ faSearch }
+                    value={ this.state.company }
+                    onChange={ (e) => this.onChangeCompanyName(e) }
+                    suggestions = { this.state.suggestions }
+                    selection={ this.state.selectedSuggestion } 
+                    selectSuggestion = { (suggestion) => this.selectSuggestion(suggestion) }
+                />
+        </FormGroup>
+
+        <FormGroup>
+            <Label for="jobTitle">Job Title</Label>
+            <InputWithLogo 
+                name="title" 
+                id="jobTitle" 
+                placeholder="Job Title" 
+                icon={ faBriefcase } 
+                selection={ this.state.selectSuggestion }
+                value={ this.state.title }
+                onChange={ (e) => this.onChangeText(e)} />
+        </FormGroup>
+
+        <FormGroup>
+        <Label for="jobStageSelect">Stage</Label>
+        <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeText} >
+            { this.renderOptions() }
+        </Input>
+        </FormGroup>
+  
+        <Row>
+        <Col xs="4" sm="4">Phone Interview: </Col>
+        <Col xs="4" sm="4">
+            <DateTimePicker name="phoneInterview" onChange={this.onChangePhoneInterview} value={this.state.phoneInterview}/>
+        </Col>
+        
+        </Row>
+        
+        <br></br>
+        
+        <Row>
+        <Col xs="4" sm="4">On Site Interview: </Col>
+        <Col xs="4" sm="4">
+            <DateTimePicker name="onSiteInterview" onChange={this.onChangeOnSiteInterview} value={this.state.onSiteInterview} /></Col>
+        </Row>
+
+        <FileUploadJobForm jobId={this.state._id}/>
+
+        <div className="button">
+            <Button>Submit</Button>
+        </div>
+  </Form>
+);
+}
 }
 
 const mapStateToProps = (state) => {
-    return { jobs: state.jobs.jobs, stages: state.jobs.stages }
+  return { jobs: state.jobs.jobs, stages: state.jobs.stages }
 }
 
-export default connect(mapStateToProps, {addJob})(EditJobForm);
+export default connect(mapStateToProps, {editJob})(EditJobForm);

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import DeleteButton from './DeleteButton';
 import JobForm from './JobForm';
+import EditJobForm from './EditJobForm';
 import { Draggable } from 'react-beautiful-dnd';
 import '../../../client/main.css';
 var moment = require('moment');
@@ -107,8 +108,13 @@ class JobCard extends React.Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} >
                   <ModalHeader toggle={this.toggle}>Edit a Job</ModalHeader>
                   <ModalBody>
-                    <JobForm job={job} jobIndex={index} stage={this.props.stage} toggle={this.toggle}/>
+                    <EditJobForm job={job} jobIndex={index} stage={this.props.stage} toggle={this.toggle}/>
                   </ModalBody>
+                  <ModalFooter>
+                    <div className="clearbit">
+                      Company suggestions courtesy of <a href="https://clearbit.com/" target="_blank">Clearbit Autocomplete API</a>
+                    </div>
+                  </ModalFooter>
               </Modal>
             </div>
           </React.Fragment>
@@ -116,18 +122,5 @@ class JobCard extends React.Component {
     );
   }
 }
-
-{/* <React.Fragment>
-            <div className = "add-button-container">
-
-              {/* <Button className="addButton" onClick={this.toggle}>Add Job</Button> */}
-                {/* <Modal isOpen={this.state.modal} toggle={this.toggle} >
-                  <ModalHeader toggle={this.toggle}>Edit a Job</ModalHeader>
-                  <ModalBody>
-                    <JobForm job={job} stage={this.props.stage} toggle={this.toggle}/>
-                  </ModalBody>
-              </Modal>
-            </div>
-          </React.Fragment> */}
 
 export default JobCard;

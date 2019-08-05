@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { addJob, editJob } from '../actions/index';
+import { addJob } from '../actions/index';
 import CompanySuggestion from './CompanySuggestion';
 import DateTimePicker from 'react-datetime-picker';
 
@@ -50,16 +50,8 @@ class AddJobForm extends React.Component {
   // Adds a job if one did not exist, otherwise edits existing job
   onSubmit = (e) => {
     e.preventDefault();
-    let job;
-
-    if(this.props.job) {
-      job = this.props.job;
-      this.updateJob(job);
-    } else {
-      job = this.createNewJob();
-      this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
-    }
-
+    let job = this.createNewJob();
+    this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
     this.props.toggle();
   }
 
@@ -104,7 +96,6 @@ class AddJobForm extends React.Component {
   }
 
   async selectSuggestion(suggestion) {
-    console.log("In correct suggestion block: " + JSON.stringify(suggestion));
     await this.setState({selectedSuggestion: suggestion, company: suggestion.name});
   }
 
@@ -192,19 +183,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {addJob})(AddJobForm);
-
-                        {/* suggestions = { this.state.suggestions }
-                        selectedSuggestion = { this.state.selectedSuggestion }
-                        companyFocused = { this.state.companyFocused } */}
-                    {/* <Input type="text hidden" name="company" autoComplete="off" id="companyName" placeholder="Company Name" value={this.state.company} onChange={this.onChangeCompanyName} onFocus={this.handleFocus} onBlur={this.handleBlur} /> */}
-
-                                        {/* <InputWithLogo 
-                        name="company" 
-                        id="companyName" 
-                        placeholder="Company Name" 
-                        icon={ faSearch }
-                        selection={ this.state.selectSuggestion } 
-                        value={ this.state.company }
-                        onChange={ (e) => this.onChangeCompanyName(e) }
-                        {/* onFocus={ this.handleFocus } 
-                        onBlur={ this.handleBlur } */}

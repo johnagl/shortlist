@@ -221,6 +221,7 @@ nav a:hover {
 
 .job-card .card-footer {
   position: absolute;
+  background: #FFFFFF;
   bottom: 0;
   font-size: 7pt;
   width: 100%;
@@ -260,8 +261,14 @@ nav a:hover {
 }
 
 /* Add / Edit Job Modals */
+
 .modal-open{
   padding:0 !important;
+  overflow-y: auto !important;
+ }
+
+ .modal-body {
+  max-height: 70vh !important;
   overflow-y: auto !important;
  }
 
