@@ -1,9 +1,11 @@
 import React from 'react';
-import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import DeleteButton from './DeleteButton';
 import JobForm from './JobForm';
+import EditJobForm from './EditJobForm';
 import { Draggable } from 'react-beautiful-dnd';
 import '../../../client/main.css';
+var moment = require('moment');
 
 class JobCard extends React.Component {
   constructor(props) {
@@ -40,9 +42,41 @@ class JobCard extends React.Component {
     )
   }
 
+  lightenDarkenColor = (col, amt) => {
+    var usePound = false;
+  
+    if (col[0] == "#") {
+        col = col.slice(1);
+        usePound = true;
+    }
+ 
+    var num = parseInt(col,16);
+    var r = (num >> 16) + amt;
+ 
+    if (r > 255) r = 255;
+    else if  (r < 0) r = 0;
+ 
+    var b = ((num >> 8) & 0x00FF) + amt;
+ 
+    if (b > 255) b = 255;
+    else if  (b < 0) b = 0;
+ 
+    var g = (num & 0x0000FF) + amt;
+ 
+    if (g > 255) g = 255;
+    else if (g < 0) g = 0;
+ 
+    return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+}
+
   render() {
     const { job, index, color, stage } = this.props;
     const logo = this.renderLogo(job.logo, job.company);
+    const dateCreated = moment(job.dates.createdAt).format("MMM D, YYYY");
+
+    const footerStyle = {
+      "background": this.lightenDarkenColor(color, 60),
+    }
 
     return (
       <div>
@@ -62,6 +96,7 @@ class JobCard extends React.Component {
                     </div>
                     <p className="card-text">{ job.title }</p>
                   </div>
+                  <div /*style={footerStyle*/ className="card-text card-footer">Created { dateCreated }</div>
                 </div>
               </div>
             )}
@@ -73,8 +108,14 @@ class JobCard extends React.Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} >
                   <ModalHeader toggle={this.toggle}>Edit a Job</ModalHeader>
                   <ModalBody>
-                    <JobForm job={job} jobIndex={index} stage={this.props.stage} toggle={this.toggle}/>
+                    <EditJobForm job={job} jobIndex={index} stage={this.props.stage} toggle={this.toggle}/>
                   </ModalBody>
+                  <ModalFooter>
+                    <div className="clearbit">
+                      Company autcompletion courtesy of <br/>
+                      <a href="https://clearbit.com/" target="_blank">Clearbit Autocomplete API</a>
+                    </div>
+                  </ModalFooter>
               </Modal>
             </div>
           </React.Fragment>
@@ -82,18 +123,5 @@ class JobCard extends React.Component {
     );
   }
 }
-
-{/* <React.Fragment>
-            <div className = "add-button-container">
-
-              {/* <Button className="addButton" onClick={this.toggle}>Add Job</Button> */}
-                {/* <Modal isOpen={this.state.modal} toggle={this.toggle} >
-                  <ModalHeader toggle={this.toggle}>Edit a Job</ModalHeader>
-                  <ModalBody>
-                    <JobForm job={job} stage={this.props.stage} toggle={this.toggle}/>
-                  </ModalBody>
-              </Modal>
-            </div>
-          </React.Fragment> */}
 
 export default JobCard;
