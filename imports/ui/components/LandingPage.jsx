@@ -95,17 +95,17 @@ export default class LandingPage extends React.Component {
                                             <h4>Shortlist supports job applicants - helping them keep track of job application status, dates and documents all in one place.</h4>
                                         </div>
                                         <div>
-                                            <Row style={{ "backgroundColor": "white", "padding": "30px", "alignItems": "center", "margin-right":"0", "margin-left":"0"}}>
-                                                <Col><img src="https://scontent.fcxh2-1.fna.fbcdn.net/v/t1.15752-9/67609771_710910519370211_4970681392439492608_n.jpg?_nc_cat=103&_nc_oc=AQlZa-eHrlV3AoO_GHshKDZ1q9Ox_5n2GlX8MmGfSUPh7lRpoQq-iNfV356TvSJoI4g&_nc_ht=scontent.fcxh2-1.fna&oh=41feb87cbffb91692a3f5fbc5278d22f&oe=5DEBC048" width="640" height="288" /></Col>
+                                            <Row style={{ "backgroundColor": "white", "padding": "30px", "alignItems": "center", "marginRight":"0", "marginLeft":"0"}}>
+                                                <Col><img src="https://scontent-sea1-1.xx.fbcdn.net/v/t1.15752-9/67777492_2431140800242262_3300235282355322880_n.jpg?_nc_cat=102&_nc_oc=AQly2roWMTp-AC6okIPs-B5s2OIDm24guEyQDjR0Ph1DxTsXOGWWu6KXtCkJfGtktAM&_nc_ht=scontent-sea1-1.xx&oh=05aa6c12aaa1bbaecdaab9deaac6319e&oe=5DE29940" width="640" height="288" /></Col>
                                                 <Col><h1 style={{ "textAlign": "center", "color": "black" }}>Visually organize and interact with your job applications</h1></Col>
                                             </Row>
-                                            <Row style={{ "backgroundColor": "orange", "padding": "30px", "alignItems": "center", "margin-right":"0", "margin-left":"0"}}>
+                                            <Row style={{ "backgroundColor": "orange", "padding": "30px", "alignItems": "center", "marginRight":"0", "marginLeft":"0"}}>
                                                 <Col><h1 style={{ "textAlign": "center" }}>Easily keep track of deadlines and interview dates.</h1></Col>
                                                 <Col>
-                                                    <img src='https://scontent.fcxh2-1.fna.fbcdn.net/v/t1.15752-9/68404459_2898500966889051_6414709483947163648_n.jpg?_nc_cat=101&_nc_oc=AQlZ-f8Op7q0fFHMJTeEKt8ZRcqClTUuH3Ymu_G26cp1DWK2wchklc8QpTHuGyVWfHk&_nc_ht=scontent.fcxh2-1.fna&oh=f94c5a833b90879d4056c5850feb84a8&oe=5DD16E8D' width="640" height="288"></img>
+                                                    <img src='https://scontent-sea1-1.xx.fbcdn.net/v/t1.15752-9/68505374_2369825873104732_4450220163203072000_n.jpg?_nc_cat=106&_nc_oc=AQmfLViejUCIthz7EqgnoQ2rvIpvOZv8DgaqgR_4GxLIRRAmMCXnX3K7hx7m-Uj6Gv8&_nc_ht=scontent-sea1-1.xx&oh=1d63f69bc7e9e3b47de5f8c9fec25179&oe=5DE8455C' width="640" height="288"></img>
                                                 </Col>
                                             </Row>
-                                            <Row style={{ "backgroundColor": "white", "padding": "30px", "alignItems": "center", "margin-right":"0", "margin-left":"0"}}>
+                                            <Row style={{ "backgroundColor": "white", "padding": "30px", "alignItems": "center", "marginRight":"0", "marginLeft":"0"}}>
                                                 <Col><img src="https://scontent.fcxh2-1.fna.fbcdn.net/v/t1.15752-9/67959135_1057421601122520_1079488743645118464_n.png?_nc_cat=103&_nc_oc=AQncNUc0sGVnwl6RkyAH1SvK7DWBU7Avi2JUNYwi5P8KcH0hKbPkzklQiS0ibwnTC3o&_nc_ht=scontent.fcxh2-1.fna&oh=40326c29c0d004bd4d851dd6e49093b0&oe=5DD10597" width="640" height="288"></img></Col>
                                                 <Col><h1 style={{ "textAlign": "center", "color": "black" }}>Keep track of all your important job documents with each application.</h1></Col>
                                             </Row>
@@ -117,7 +117,7 @@ export default class LandingPage extends React.Component {
                         <Route exact path='/register' render={
                             () => {
                                 return (
-                                    <Row>
+                                    <Row style={{"marginLeft":"0", "marginRight":"0"}}>
                                         <Col>
                                     <RegisterForm/></Col>
                                     <Col><img src="https://scontent.fcxh2-1.fna.fbcdn.net/v/t1.15752-9/s2048x2048/68598223_915139735488982_3361868058757955584_n.jpg?_nc_cat=104&_nc_oc=AQmTSTjZI_uvzBsYCl_q6_ZNe-MszHHjSnpMmQB-j8YFjvWgXy6-EeskQle7b24sAjA&_nc_ht=scontent.fcxh2-1.fna&oh=b4c535efdc892770a16ea1ac7f96e471&oe=5DD9CA3A" width="500" height="600"></img>
