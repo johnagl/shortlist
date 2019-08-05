@@ -4,6 +4,9 @@ import RegisterForm from './RegisterForm.jsx';
 import LoginForm from './LoginForm.jsx'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../../../client/main.css';
+// import './calendar.jpg';
+// import dashboard from 'dashboard.jpg'
+// import Documents from './documents.jpg'
 
 import {
     Collapse,
@@ -113,6 +116,20 @@ export default class LandingPage extends React.Component {
                 <Route exact path='/login'component ={LoginForm}/>
                 </div>
                 </BrowserRouter>
+                <Row style={{"backgroundColor":"white", "padding":"30px", "alignItems":"center"}}>
+                    <Col><img src="https://scontent.fcxh2-1.fna.fbcdn.net/v/t1.15752-9/67609771_710910519370211_4970681392439492608_n.jpg?_nc_cat=103&_nc_oc=AQlZa-eHrlV3AoO_GHshKDZ1q9Ox_5n2GlX8MmGfSUPh7lRpoQq-iNfV356TvSJoI4g&_nc_ht=scontent.fcxh2-1.fna&oh=41feb87cbffb91692a3f5fbc5278d22f&oe=5DEBC048" width="640" height="288"/></Col>
+                <Col><h1 style={{"textAlign":"center", "color":"black"}}>Visually organize and interact with your job applications</h1></Col>
+                </Row>
+                <Row style={{"backgroundColor":"orange", "padding":"30px", "alignItems":"center"}}>
+                <Col><h1 style={{"textAlign":"center"}}>Easily keep track of deadlines and interview dates.</h1></Col>
+                <Col>
+                <img src='https://scontent.fcxh2-1.fna.fbcdn.net/v/t1.15752-9/68404459_2898500966889051_6414709483947163648_n.jpg?_nc_cat=101&_nc_oc=AQlZ-f8Op7q0fFHMJTeEKt8ZRcqClTUuH3Ymu_G26cp1DWK2wchklc8QpTHuGyVWfHk&_nc_ht=scontent.fcxh2-1.fna&oh=f94c5a833b90879d4056c5850feb84a8&oe=5DD16E8D' width="640" height="288"></img>
+                </Col>
+                </Row>
+                <Row style = {{"backgroundColor":"white","padding":"30px", "alignItems":"center"}}>
+                <Col><img src="https://scontent.fcxh2-1.fna.fbcdn.net/v/t1.15752-9/67959135_1057421601122520_1079488743645118464_n.png?_nc_cat=103&_nc_oc=AQncNUc0sGVnwl6RkyAH1SvK7DWBU7Avi2JUNYwi5P8KcH0hKbPkzklQiS0ibwnTC3o&_nc_ht=scontent.fcxh2-1.fna&oh=40326c29c0d004bd4d851dd6e49093b0&oe=5DD10597" width="640" height="288"></img></Col>
+                <Col><h1 style={{"textAlign":"center", "color":"black"}}>Keep track of all your important job documents with each application.</h1></Col>
+                </Row>
                 </div>
         )};
 }
