@@ -19,7 +19,11 @@ class SearchAutocomplete extends React.Component {
     renderSuggestions() {
         let suggestions = this.props.suggestions.map(suggestion => {
             return(
-            <div key={suggestion.domain} onMouseDown={ (suggestion) => this.props.selectSuggestion(suggestion) } >
+            <div key={suggestion.domain} onMouseDown={ () => {
+                    console.log("Suggestion: " + JSON.stringify(suggestion));
+                    this.props.selectSuggestion(suggestion);
+                } 
+            }>
                 <CompanySuggestion key={suggestion.domain} name={suggestion.name} logo={suggestion.logo} />
             </div>
             );

@@ -33,7 +33,7 @@ class InputWithLogo extends React.Component {
             <InputGroupAddon addonType="append">
                 { (selection && selection.logo) ? 
                     <div className="input-logo bg-transparent input-group-text border-left-0">
-                        <img src={ logo }/>
+                        <img src={ selection.logo }/>
                     </div> :
                     <div className="bg-transparent input-group-text border-left-0">
                         <FontAwesomeIcon icon={icon}/> 

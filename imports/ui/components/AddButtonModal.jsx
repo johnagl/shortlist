@@ -36,7 +36,7 @@ class AddButtonModal extends React.Component {
               <ModalBody >
                 <AddJobForm stage={this.props.stage} toggle={this.toggle}/>
               </ModalBody>
-              <ModalFooter toggle={this.toggle}>
+              <ModalFooter>
                 <div className="clearbit">
                   Company suggestions courtesy of <a href="https://clearbit.com/" target="_blank">Clearbit Autocomplete API</a>
                 </div>

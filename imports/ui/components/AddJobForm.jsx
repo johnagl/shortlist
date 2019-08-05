@@ -104,6 +104,7 @@ class AddJobForm extends React.Component {
   }
 
   async selectSuggestion(suggestion) {
+    console.log("In correct suggestion block: " + JSON.stringify(suggestion));
     await this.setState({selectedSuggestion: suggestion, company: suggestion.name});
   }
 
