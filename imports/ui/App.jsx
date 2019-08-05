@@ -29,7 +29,7 @@ class App extends React.Component {
           <div className="flex-container">
             <Switch>
               <Route 
-                exact path='/' 
+                exact path='/home' 
                 render={(routeProps) => (
                   <DashboardPage {...routeProps} jobsList={this.props.jobsList} stagesList={this.props.stagesList} />
                 )}

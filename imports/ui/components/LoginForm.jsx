@@ -1,11 +1,13 @@
 import React from 'react';
 import { Container, Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import RegisterForm from './RegisterForm.jsx';
+import {Redirect} from 'react-router-dom';
 
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.setRedirect = this.setRedirect.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       modal: false,
@@ -17,7 +19,7 @@ export default class LoginForm extends React.Component {
   }
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/' />
+      return <Redirect to='/home' />
     }
   }
 
@@ -38,6 +40,7 @@ export default class LoginForm extends React.Component {
     const el = $(e.target);
     const username = el.find("#username").val();
     const password = el.find("#password").val();
+    console.log(this);
 
     Meteor.loginWithPassword(username, password, (er) => {
       if (er) {

@@ -94,22 +94,6 @@ export default class LandingPage extends React.Component {
                                             <h1>We help job seekers stay organized.</h1>
                                             <h4>Shortlist supports job applicants - helping them keep track of job application status, dates and documents all in one place.</h4>
                                         </div>
-                                        {/* <Row>
-                                    <Col>
-                                        <h2>Already registered?</h2>
-                                        <Button href='/login'>Login</Button>
-                                        {/* <NavItem>
-                                            <NavLink href='/login'> Login</NavLink>
-                                        </NavItem> */}
-                                        {/* </Col> */}
-                                        {/* <Col>
-                                        <h2>New?</h2>
-                                        <Button href='/register'>Register</Button> */}
-                                        {/* <NavItem>
-                                        <NavLink href='/register'> Register </NavLink>
-                                        </NavItem> */}
-                                        {/* </Col>
-                                    </Row> */}
                                         <div>
                                             <Row style={{ "backgroundColor": "white", "padding": "30px", "alignItems": "center" }}>
                                                 <Col><img src="https://scontent.fcxh2-1.fna.fbcdn.net/v/t1.15752-9/67609771_710910519370211_4970681392439492608_n.jpg?_nc_cat=103&_nc_oc=AQlZa-eHrlV3AoO_GHshKDZ1q9Ox_5n2GlX8MmGfSUPh7lRpoQq-iNfV356TvSJoI4g&_nc_ht=scontent.fcxh2-1.fna&oh=41feb87cbffb91692a3f5fbc5278d22f&oe=5DEBC048" width="640" height="288" /></Col>

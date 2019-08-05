@@ -9,6 +9,8 @@ export default class RegisterForm extends React.Component {
         super(props);
     
         this.setRedirect = this.setRedirect.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+
         this.state = {
           redirect: false,
         };
@@ -21,7 +23,7 @@ export default class RegisterForm extends React.Component {
       }
       renderRedirect = () => {
         if (this.state.redirect) {
-          return <Redirect to='/' />
+          return <Redirect to='/home' />
         }
       }
       aroundLogin = {
@@ -54,11 +56,12 @@ export default class RegisterForm extends React.Component {
                     alert(er.reason)
                 }
                 else {
-                    this.setRedirect();
                     Meteor.call('stages.createStages');
-                    
+                    // this.setRedirect();
+
                 }
             });
+            this.setRedirect();
         } else {
             alert("your passwords don't match")
         }
