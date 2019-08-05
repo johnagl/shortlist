@@ -43,8 +43,8 @@ export default class LandingPage extends React.Component {
                             )
                         }
                     } />
-                <Route path='/register' exact component = {RegisterForm}/>
-                <Route path='/login' exact component ={LoginForm}/>
+                <Route exact path='/register' component = {RegisterForm}/>
+                <Route exact path='/login'component ={LoginForm}/>
                 </div>
                 </BrowserRouter>
         )};
