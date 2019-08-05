@@ -32,7 +32,7 @@ export default class RegisterForm extends React.Component {
         display : "inlineBlock",
         textAlign : "center",
         width: "50%",
-        margin: "0 auto",
+        margin: "90px",
         marginTop: "15px",
         opacity: "0.9"
         }
