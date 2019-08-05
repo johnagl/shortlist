@@ -19,6 +19,6 @@
     align-items: flex-start;
     flex: 1;
     overflow-y: none;
-    min-width: 350px;
+    width: 350px;
     padding: 0px 25px 10px;
 }

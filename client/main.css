@@ -150,7 +150,7 @@ nav a:hover {
   min-height: 115px;
   /* box-shadow: 4px 4px 2px rgba(0,0,0,.20); */
   display: inline-block;
-  text-align: left;
+  text-align: right;
 }
 
 .default-logo {
@@ -206,12 +206,46 @@ nav a:hover {
   opacity: 75%;
 }
 
+.job-card .card-body {
+  margin: 15px 20px;
+  padding: 0;
+  text-align: left;
+}
+
 .job-card .card-text {
   white-space: nowrap; 
   width: 80%;
   overflow: hidden;
   text-overflow:ellipsis;
 }
+
+.job-card .card-footer {
+  position: absolute;
+  background: #FFFFFF;
+  bottom: 0;
+  font-size: 7pt;
+  width: 100%;
+  padding: 2px;
+  padding-right: 8px;
+  margin: 0;
+  border: none !important;
+  box-sizing: border-box; /* here */
+  border-radius: 0px 0px 1.5px 1.5px !important; /* to apply the same that the parent */
+  /* height: 100%; to make all height */
+  /* border-radius: 0 !important; */
+}
+
+/* .job-card > .card-footer {
+  text-align: left;
+} */
+
+/* .card-footer:last-child {
+  border-radius: 0;
+}
+
+.card-text:last-child {
+  margin-bottom: 0;
+} */
 
 .job-card .card-title {
   font-weight: bold;
@@ -227,9 +261,20 @@ nav a:hover {
 }
 
 /* Add / Edit Job Modals */
+
 .modal-open{
   padding:0 !important;
   overflow-y: auto !important;
+  max-height: 90vh;
+ }
+
+ .modal-body .content {
+  margin-top: 20px;
+  min-height: 50vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 65vh;
+  position: relative;
  }
 
 /* .jobCardsContainerSecond {
@@ -280,6 +325,15 @@ nav a:hover {
   border-radius: 2px;
   color: #FFFFFF;
 }
+
+.input-logo > img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+}
+
 
 .suggestion {
   padding: 10px;
@@ -336,10 +390,29 @@ nav a:hover {
   visibility: hidden;
 }
 
+.hide-border > .suggestions {
+  border: none;
+}
+
+.modal-footer {
+  text-align: center !important;
+  font-size: 12pt !important;
+  display: block !important;
+}
+
+form .button {
+  text-align: center;
+  margin: 25px 0px 8px 0px;
+}
+
 /* Documents Page */
 .documents-page {
   margin: 80px;
   text-align: center;
+}
+
+.documents-page > h2 {
+  margin-bottom: 30px;
 }
 
 .documents-table {
@@ -394,6 +467,20 @@ th > div {
 
 .document-icon .svg-inline--fa {
   font-size: 80pt !important;
+}
+
+.fileinput {
+  background-color: #003DA5;
+  padding: 4px 8px 4px 8px;
+  color: #FFFFFF;
+  display: inline;
+  border: 2px solid #003DA5;
+  cursor: pointer;
+}
+
+.fileinput:hover {
+  background-color: #FFFFFF;
+  color: #003DA5;
 }
 
 /* .documents {

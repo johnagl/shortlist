@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import JobForm from './JobForm.jsx';
+import AddJobForm from './AddJobForm.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
@@ -25,7 +25,7 @@ class AddButtonModal extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className = "add-button-container">
+        <div className ="add-button-container">
           { this.props.job ? null : 
             <Button className="addButton" onClick={this.toggle}>
               {this.props.floating ? "Add Job" : <FontAwesomeIcon icon={faPlus}/> }
@@ -34,8 +34,14 @@ class AddButtonModal extends React.Component {
             <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
               <ModalHeader toggle={this.toggle}>Add a Job</ModalHeader>
               <ModalBody >
-                <JobForm stage={this.props.stage} toggle={this.toggle}/>
+                <AddJobForm stage={this.props.stage} toggle={this.toggle}/>
               </ModalBody>
+              <ModalFooter>
+                <div className="clearbit">
+                    Company autcompletion courtesy of <br/>
+                    <a href="https://clearbit.com/" target="_blank">Clearbit Autocomplete API</a>
+                </div>
+              </ModalFooter>
           </Modal>
         </div>
       </React.Fragment>
