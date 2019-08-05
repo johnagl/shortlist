@@ -382,9 +382,15 @@ nav a:hover {
   border: none;
 }
 
-.clearbit {
+.modal-footer {
+  text-align: center !important;
+  font-size: 12pt !important;
+  display: block !important;
+}
+
+form .button {
   text-align: center;
-  font-size: 12pt;
+  margin: 25px 0px 8px 0px;
 }
 
 /* Documents Page */

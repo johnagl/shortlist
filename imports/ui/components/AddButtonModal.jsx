@@ -25,7 +25,7 @@ class AddButtonModal extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className = "add-button-container">
+        <div className ="add-button-container">
           { this.props.job ? null : 
             <Button className="addButton" onClick={this.toggle}>
               {this.props.floating ? "Add Job" : <FontAwesomeIcon icon={faPlus}/> }
@@ -36,6 +36,11 @@ class AddButtonModal extends React.Component {
               <ModalBody >
                 <AddJobForm stage={this.props.stage} toggle={this.toggle}/>
               </ModalBody>
+              <ModalFooter toggle={this.toggle}>
+                <div className="clearbit">
+                  Company suggestions courtesy of <a href="https://clearbit.com/" target="_blank">Clearbit Autocomplete API</a>
+                </div>
+              </ModalFooter>
           </Modal>
         </div>
       </React.Fragment>

@@ -128,7 +128,6 @@ class AddJobForm extends React.Component {
   render() {
     return (
         <Form  onSubmit={this.onSubmit}>
-
             <FormGroup className="suggestions-container">
                 <Label for="companyName">Company Name</Label>
                     <SearchAutocomplete
@@ -179,10 +178,8 @@ class AddJobForm extends React.Component {
                 <DateTimePicker name="onSiteInterview" onChange={this.onChangeOnSiteInterview} value={this.state.onSiteInterview} /></Col>
             </Row>
 
-            <Button>Submit</Button>
-            <hr/>
-            <div className="clearbit">
-                Company suggestions courtesy of <a href="https://clearbit.com/" target="_blank">Clearbit Autocomplete API</a>
+            <div className="button">
+                <Button>Submit</Button>
             </div>
       </Form>
     );
