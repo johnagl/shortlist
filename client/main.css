@@ -265,11 +265,21 @@ nav a:hover {
 .modal-open{
   padding:0 !important;
   overflow-y: auto !important;
+  max-height: 90vh;
  }
 
- .modal-body {
-  max-height: 70vh !important;
-  overflow-y: auto !important;
+ .modal-body .content {
+  margin-top: 20px;
+  max-height: 65vh;
+ }
+
+ .modal-body .content {
+  margin-top: 20px;
+  min-height: 50vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 65vh;
+  position: relative;
  }
 
 /* .jobCardsContainerSecond {

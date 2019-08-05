@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
-import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { editJob } from '../actions/index';
+import classnames from 'classnames';
+
 import CompanySuggestion from './CompanySuggestion';
 import DateTimePicker from 'react-datetime-picker';
 
@@ -13,16 +15,41 @@ import InputWithLogo from './InputWithLogo.jsx';
 import SearchAutocomplete from './SearchAutocomplete.jsx';
 
 class EditJobForm extends React.Component {
-  state = {
-    _id: this.props.job._id,
-    company: this.props.job.company,
-    title: this.props.job.title,
-    select: this.props.stage._id,
-    phoneInterview: this.props.job.phoneInterview.start,
-    onSiteInterview: this.props.job.onSiteInterview.start,
-    suggestions: [],
-    selectedSuggestion: null,
-}
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      activeTab: '1',
+      _id: this.props.job._id,
+      company: this.props.job.company,
+      title: this.props.job.title,
+      select: this.props.stage._id,
+      phoneInterview: this.props.job.phoneInterview.start,
+      onSiteInterview: this.props.job.onSiteInterview.start,
+      suggestions: [],
+      selectedSuggestion: null,
+    };
+  }
+
+  toggle(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab
+      });
+    }
+  }
+
+//   state = {
+//     _id: this.props.job._id,
+//     company: this.props.job.company,
+//     title: this.props.job.title,
+//     select: this.props.stage._id,
+//     phoneInterview: this.props.job.phoneInterview.start,
+//     onSiteInterview: this.props.job.onSiteInterview.start,
+//     suggestions: [],
+//     selectedSuggestion: null,
+// }
 
 onChangeText = async (e) => {
   await this.setState({ [e.target.name]: e.target.value });
@@ -94,8 +121,31 @@ renderOptions() {
 }
 
 render() {
+
+
   return (
-    <Form  onSubmit={this.onSubmit}>
+
+    <div> 
+      <Nav tabs>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: this.state.activeTab === '1' })}
+            onClick={() => { this.toggle('1'); }}
+          >
+            Tab1
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: this.state.activeTab === '2' })}
+            onClick={() => { this.toggle('2'); }}
+          >
+            Moar Tabs
+          </NavLink>
+        </NavItem>
+      </Nav>
+      <div className="content">
+      <Form  onSubmit={this.onSubmit}>
         <FormGroup className="suggestions-container">
             <Label for="companyName">Company Name</Label>
                 <SearchAutocomplete
@@ -152,6 +202,8 @@ render() {
             <Button>Submit</Button>
         </div>
   </Form>
+</div>
+    </div>
 );
 }
 }
