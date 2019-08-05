@@ -50,6 +50,7 @@ export default class LoginForm extends React.Component {
   }
   aroundLogin = {
     background: "white",
+    color: "black",
     border: "1px",
     padding: "10%",
     display : "inlineBlock",
@@ -69,11 +70,11 @@ export default class LoginForm extends React.Component {
       <h1>Login</h1>
       <Form onSubmit = {this.onSubmit}>
         <FormGroup>
-          <Label for="username">Username</Label>
+          {/* <Label for="username">Username</Label> */}
           <Input type="text" name="username" id="username" placeholder="Enter username" />
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Password</Label>
+          {/* <Label for="examplePassword">Password</Label> */}
           <Input type="password" name="password" id="password" placeholder="Enter password" />
         </FormGroup>
         <Button>Submit</Button>
