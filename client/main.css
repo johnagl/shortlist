@@ -382,6 +382,11 @@ nav a:hover {
   border: none;
 }
 
+.clearbit {
+  text-align: center;
+  font-size: 12pt;
+}
+
 /* Documents Page */
 .documents-page {
   margin: 80px;

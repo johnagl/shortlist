@@ -5,8 +5,6 @@ import CompanySuggestion from './CompanySuggestion.jsx';
 class SearchAutocomplete extends React.Component {
 
     state = {
-        suggestions: [],
-        selectedSuggestion: null,
         companyFocused: false,
     }
 
@@ -18,14 +16,10 @@ class SearchAutocomplete extends React.Component {
         this.setState({companyFocused: false});
     }
 
-    // async selectSuggestion(suggestion) {
-    //     await this.setState({selectedSuggestion: suggestion, company: suggestion.name});
-    // }
-
     renderSuggestions() {
         let suggestions = this.props.suggestions.map(suggestion => {
             return(
-            <div key={suggestion.domain} onMouseDown={ () => {(suggestion) => this.props.selectSuggestion(suggestion)} } >
+            <div key={suggestion.domain} onMouseDown={ (suggestion) => this.props.selectSuggestion(suggestion) } >
                 <CompanySuggestion key={suggestion.domain} name={suggestion.name} logo={suggestion.logo} />
             </div>
             );
@@ -45,7 +39,7 @@ class SearchAutocomplete extends React.Component {
 
     
   render() {
-    const { name, id, placeholder, icon, selection, value, onChange, suggestions, selectedSuggestion } = this.props;
+    const { name, id, placeholder, icon, selection, value, onChange, suggestions } = this.props;
 
     return (
         <div>
@@ -54,7 +48,7 @@ class SearchAutocomplete extends React.Component {
                 id={ id }
                 placeholder={ placeholder } 
                 icon={ icon }
-                selection={ selection} 
+                selection={ selection }
                 value={ value }
                 onChange={ (e) => this.props.onChange(e)}
                 onFocus={() => this.handleFocus()}

@@ -13,7 +13,7 @@ import FileUploadJobForm from './files/FileUploadJobForm.jsx';
 
 class InputWithLogo extends React.Component {
   render() {
-    const { id, name, placeholder, value, icon, selection, onChange,  } = this.props;
+    const { id, name, placeholder, value, icon, selection, onChange } = this.props;
     library.add(icon);
 
     return (

@@ -22,7 +22,6 @@ class AddJobForm extends React.Component {
       onSiteInterview: null,
       suggestions: [],
       selectedSuggestion: null,
-    //   companyFocused: false,
   }
 
   onChangeText = async (e) => {
@@ -104,36 +103,9 @@ class AddJobForm extends React.Component {
     return job;
   }
 
-//   handleFocus = () => {
-//     this.setState({companyFocused: true});
-//   }
-
-//   handleBlur = () => {
-//     this.setState({companyFocused: false});
-//   }
-
   async selectSuggestion(suggestion) {
     await this.setState({selectedSuggestion: suggestion, company: suggestion.name});
   }
-
-//   renderSuggestions() {
-//     let suggestions = this.state.suggestions.map(suggestion => {
-//       return(
-//         <div key={suggestion.domain} onMouseDown={ () => {this.selectSuggestion(suggestion)} } >
-//           <CompanySuggestion key={suggestion.domain} name={suggestion.name} logo={suggestion.logo} />
-//         </div>
-//       );
-//     })
-
-//     let className;
-//     this.state.companyFocused? className="suggestions" : className="suggestions hide"
-
-//       return (
-//         <div className={className}>
-//           { suggestions }
-//         </div>
-//       );
-//   }
 
   renderOptions() {
     let stagesIds = this.props.stages.allIds;
@@ -208,16 +180,13 @@ class AddJobForm extends React.Component {
             </Row>
 
             <Button>Submit</Button>
+            <hr/>
+            <div className="clearbit">
+                Company suggestions courtesy of <a href="https://clearbit.com/" target="_blank">Clearbit Autocomplete API</a>
+            </div>
       </Form>
-    
-      
     );
   }
-}
-
-position = {
-  position: 'relative',
-  left: '100px',
 }
 
 const mapStateToProps = (state) => {
