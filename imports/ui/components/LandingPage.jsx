@@ -3,6 +3,8 @@ import { Container, Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Labe
 import RegisterForm from './RegisterForm.jsx';
 import LoginForm from './LoginForm.jsx'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import '../../../client/main.css';
+
 import {
     Collapse,
     Navbar,
@@ -19,7 +21,7 @@ export default class LandingPage extends React.Component {
         return (
             <BrowserRouter>
             <div className="landing-page">
-                <Route path='/' render={
+                <Route exact path='/' render={
                         () => {
                             return (
                                 <div id="landing-page-header">
@@ -28,15 +30,17 @@ export default class LandingPage extends React.Component {
                                     <Row>
                                     <Col>
                                         <h2>Already registered?</h2>
-                                        <NavItem>
+                                        <Button href='/login'>Login</Button>
+                                        {/* <NavItem>
                                             <NavLink href='/login'> Login</NavLink>
-                                        </NavItem>
+                                        </NavItem> */}
                                     </Col>
                                     <Col>
                                         <h2>New?</h2>
-                                        <NavItem>
+                                        <Button href='/register'>Register</Button>
+                                        {/* <NavItem>
                                         <NavLink href='/register'> Register </NavLink>
-                                        </NavItem>
+                                        </NavItem> */}
                                     </Col>
                                     </Row>
                                 </div>

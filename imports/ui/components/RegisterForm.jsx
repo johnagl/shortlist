@@ -1,8 +1,31 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Meteor } from 'meteor/meteor';
+import { Redirect } from 'react-router-dom';
+
 
 export default class RegisterForm extends React.Component {
+    constructor(props) {
+        super(props);
+    
+        this.setRedirect = this.setRedirect.bind(this);
+        this.state = {
+          isOpen: false,
+          redirect: false,
+        };
+      }
+   
+      setRedirect = () => {
+        this.setState({
+          redirect: true
+        })
+      }
+      renderRedirect = () => {
+        if (this.state.redirect) {
+          return <Redirect to='/' />
+        }
+      }
+    
     onSubmit(e) {
         e.preventDefault();
         const ele = $(e.target);
@@ -18,10 +41,11 @@ export default class RegisterForm extends React.Component {
             };
             Accounts.createUser(accountInfo, function (er, result) {
                 if (er) {
-                    alert("There was an error making your account")
+                    alert(er.reason)
                 }
                 else {
                     Meteor.call('stages.createStages');
+                    
                 }
             });
         } else {
@@ -31,6 +55,7 @@ export default class RegisterForm extends React.Component {
     render() {
         return (
             <div>
+                {this.renderRedirect()}
                 <h1 className="textC">Register</h1>
                 <Form onSubmit={this.onSubmit}>
                     <FormGroup>

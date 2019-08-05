@@ -5,12 +5,26 @@ import RegisterForm from './RegisterForm.jsx';
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
+    this.setRedirect = this.setRedirect.bind(this);
+
     this.state = {
       modal: false,
       dashboard: false,
+      redirect: false,
     };
     this.toggle = this.toggle.bind(this);
 
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
+  }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
   }
 
   toggle() {
@@ -29,6 +43,7 @@ export default class LoginForm extends React.Component {
       if (er) {
         alert(er.reason);
       } else {
+        this.setRedirect();
         // console.log('success');
       }
     });
@@ -49,6 +64,7 @@ export default class LoginForm extends React.Component {
     // console.log('LOGIN FORM STAGESLIST: ' + this.props.stagesList);
     return (
       <div style = {this.aroundLogin}>
+      {this.renderRedirect()}
       <Container>
       <h1>Login</h1>
       <Form onSubmit = {this.onSubmit}>
