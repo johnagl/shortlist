@@ -68,6 +68,7 @@ inputStyle = {
     width: '200px',
     bottom: '16%',
     right: '4%',
+    zIndex: '2',
 
 }
 
