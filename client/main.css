@@ -390,6 +390,10 @@ nav a:hover {
   visibility: hidden;
 }
 
+.landing-page {
+  text-align: center;
+}
+
 .hide-border > .suggestions {
   border: none;
 }

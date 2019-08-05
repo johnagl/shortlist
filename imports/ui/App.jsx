@@ -29,12 +29,14 @@ class App extends React.Component {
           <div className="flex-container">
             <Switch>
               <Route 
-                exact path='/' 
+                exact path='/home' 
                 render={(routeProps) => (
                   <DashboardPage {...routeProps} jobsList={this.props.jobsList} stagesList={this.props.stagesList} />
                 )}
               />
               <Route path='/documents' component={DocumentsPage} />
+              {/* <Route path='/login' component={LoginForm} />
+              <Route path='/register' component={LoginForm} /> */}
               <Route 
                 exact path='/calendar' 
                 render={(routeProps) => (
@@ -43,9 +45,8 @@ class App extends React.Component {
               />
             </Switch>
           </div>
-        </BrowserRouter> : 
-        <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
-        }
+        </BrowserRouter> : <LandingPage currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
+        }{/* <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/> */}
       </div>
     );
   }

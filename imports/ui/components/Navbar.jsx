@@ -56,12 +56,12 @@ export default class Example extends React.Component {
       <div>
         {this.renderRedirect()}
         <Navbar className= "change" dark expand="md">
-          <NavbarBrand href="/">shortlist</NavbarBrand>
+          <NavbarBrand href="/home">shortlist</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-left" navbar>
               <NavItem>
-                <NavLink href="/" ><FontAwesomeIcon icon={faTh}/> jobs</NavLink>
+                <NavLink href="/home" ><FontAwesomeIcon icon={faTh}/> jobs</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/calendar"><FontAwesomeIcon icon={faCalendarAlt}/> calendar</NavLink>
