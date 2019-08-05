@@ -38,7 +38,8 @@ class AddButtonModal extends React.Component {
               </ModalBody>
               <ModalFooter>
                 <div className="clearbit">
-                  Company suggestions courtesy of <a href="https://clearbit.com/" target="_blank">Clearbit Autocomplete API</a>
+                    Company autcompletion courtesy of <br/>
+                    <a href="https://clearbit.com/" target="_blank">Clearbit Autocomplete API</a>
                 </div>
               </ModalFooter>
           </Modal>

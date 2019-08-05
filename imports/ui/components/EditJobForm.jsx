@@ -40,17 +40,6 @@ class EditJobForm extends React.Component {
     }
   }
 
-//   state = {
-//     _id: this.props.job._id,
-//     company: this.props.job.company,
-//     title: this.props.job.title,
-//     select: this.props.stage._id,
-//     phoneInterview: this.props.job.phoneInterview.start,
-//     onSiteInterview: this.props.job.onSiteInterview.start,
-//     suggestions: [],
-//     selectedSuggestion: null,
-// }
-
 onChangeText = async (e) => {
   await this.setState({ [e.target.name]: e.target.value });
 }
@@ -99,7 +88,7 @@ updateJob = (job) => {
 }
 
 async selectSuggestion(suggestion) {
-  await this.setState({selectedSuggestion: suggestion, name: suggestion.name});
+  await this.setState({selectedSuggestion: suggestion, company: suggestion.name});
 }
 
 renderOptions() {
@@ -121,10 +110,7 @@ renderOptions() {
 }
 
 render() {
-
-
   return (
-
     <div> 
       <Nav tabs>
         <NavItem>
@@ -132,7 +118,7 @@ render() {
             className={classnames({ active: this.state.activeTab === '1' })}
             onClick={() => { this.toggle('1'); }}
           >
-            Tab1
+            Details
           </NavLink>
         </NavItem>
         <NavItem>
@@ -140,72 +126,77 @@ render() {
             className={classnames({ active: this.state.activeTab === '2' })}
             onClick={() => { this.toggle('2'); }}
           >
-            Moar Tabs
+            Documents
           </NavLink>
         </NavItem>
       </Nav>
-      <div className="content">
-      <Form  onSubmit={this.onSubmit}>
-        <FormGroup className="suggestions-container">
-            <Label for="companyName">Company Name</Label>
-                <SearchAutocomplete
-                    name="company"
-                    id="companyName" 
-                    placeholder="Company Name" 
-                    icon={ faSearch }
-                    value={ this.state.company }
-                    onChange={ (e) => this.onChangeCompanyName(e) }
-                    suggestions = { this.state.suggestions }
-                    selection={ this.state.selectedSuggestion } 
-                    selectSuggestion = { (suggestion) => this.selectSuggestion(suggestion) }
-                />
-        </FormGroup>
 
-        <FormGroup>
-            <Label for="jobTitle">Job Title</Label>
-            <InputWithLogo 
-                name="title" 
-                id="jobTitle" 
-                placeholder="Job Title" 
-                icon={ faBriefcase } 
-                selection={ this.state.selectSuggestion }
-                value={ this.state.title }
-                onChange={ (e) => this.onChangeText(e)} />
-        </FormGroup>
+      <TabContent activeTab={this.state.activeTab} className="content">
+          <TabPane tabId="1">
+            <Form onSubmit={this.onSubmit}>
+              <FormGroup className="suggestions-container">
+                <Label for="companyName">Company Name</Label>
+                  <SearchAutocomplete
+                      name="company"
+                      id="companyName" 
+                      placeholder="Company Name" 
+                      icon={ faSearch }
+                      value={ this.state.company }
+                      onChange={ (e) => this.onChangeCompanyName(e) }
+                      suggestions = { this.state.suggestions }
+                      selection={ this.state.selectedSuggestion } 
+                      selectSuggestion = { (suggestion) => this.selectSuggestion(suggestion) }
+                  />
+              </FormGroup>
 
-        <FormGroup>
-        <Label for="jobStageSelect">Stage</Label>
-        <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeText} >
-            { this.renderOptions() }
-        </Input>
-        </FormGroup>
-  
-        <Row>
-        <Col xs="4" sm="4">Phone Interview: </Col>
-        <Col xs="4" sm="4">
-            <DateTimePicker name="phoneInterview" onChange={this.onChangePhoneInterview} value={this.state.phoneInterview}/>
-        </Col>
+              <FormGroup>
+                  <Label for="jobTitle">Job Title</Label>
+                  <InputWithLogo 
+                      name="title" 
+                      id="jobTitle" 
+                      placeholder="Job Title" 
+                      icon={ faBriefcase } 
+                      selection={ this.state.selectSuggestion }
+                      value={ this.state.title }
+                      onChange={ (e) => this.onChangeText(e)} />
+              </FormGroup>
+
+              <FormGroup>
+              <Label for="jobStageSelect">Stage</Label>
+              <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeText} >
+                  { this.renderOptions() }
+              </Input>
+              </FormGroup>
         
-        </Row>
-        
-        <br></br>
-        
-        <Row>
-        <Col xs="4" sm="4">On Site Interview: </Col>
-        <Col xs="4" sm="4">
-            <DateTimePicker name="onSiteInterview" onChange={this.onChangeOnSiteInterview} value={this.state.onSiteInterview} /></Col>
-        </Row>
+              <Row>
+              <Col xs="4" sm="4">Phone Interview: </Col>
+              <Col xs="4" sm="4">
+                  <DateTimePicker name="phoneInterview" onChange={this.onChangePhoneInterview} value={this.state.phoneInterview}/>
+              </Col>
+              
+              </Row>
+              
+              <br></br>
+              
+              <Row>
+              <Col xs="4" sm="4">On Site Interview: </Col>
+              <Col xs="4" sm="4">
+                  <DateTimePicker name="onSiteInterview" onChange={this.onChangeOnSiteInterview} value={this.state.onSiteInterview} /></Col>
+              </Row>
 
-        <FileUploadJobForm jobId={this.state._id}/>
+              <div className="button">
+                <Button>Submit</Button>
+              </div>
+            </Form>
+          </TabPane>
 
-        <div className="button">
-            <Button>Submit</Button>
-        </div>
-  </Form>
-</div>
-    </div>
-);
-}
+          <TabPane tabId="2">
+            <FileUploadJobForm jobId={this.state._id}/>
+          </TabPane>
+
+        </TabContent>
+    </div>);
+  } 
 }
 
 const mapStateToProps = (state) => {
