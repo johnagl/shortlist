@@ -61,7 +61,9 @@ export default class RegisterForm extends React.Component {
 
                 }
             });
+            if (Meteor.userId()) {
             this.setRedirect();
+            }
         } else {
             alert("your passwords don't match")
         }
