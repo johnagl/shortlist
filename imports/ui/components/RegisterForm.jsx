@@ -10,7 +10,6 @@ export default class RegisterForm extends React.Component {
     
         this.setRedirect = this.setRedirect.bind(this);
         this.state = {
-          isOpen: false,
           redirect: false,
         };
       }
@@ -44,6 +43,7 @@ export default class RegisterForm extends React.Component {
                     alert(er.reason)
                 }
                 else {
+                    this.setRedirect();
                     Meteor.call('stages.createStages');
                     
                 }
