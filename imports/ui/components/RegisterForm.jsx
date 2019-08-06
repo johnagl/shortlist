@@ -70,19 +70,19 @@ export default class RegisterForm extends React.Component {
         return (
             <div style = {this.aroundLogin}>
                 {this.renderRedirect()}
-                <h1 className="textC">Register</h1>
+                <h1 style={{"marginBottom":"30px"}} className="textC">Register</h1>
                 <Form onSubmit={this.onSubmit}>
-                    <FormGroup>
+                    <FormGroup style={{"marginBottom":"30px"}}>
                         {/* <Label for="username">Username</Label> */}
-                        <Input type="text" name="username" id="username" placeholder="Enter your username" />
+                        <Input type="text" name="username" id="username" placeholder="username" />
                     </FormGroup>
-              <FormGroup>
+              <FormGroup style={{"marginBottom":"30px"}}>
                   {/* <Label for="examplePassword">Password</Label> */}
-                  <Input type="password" name="password" id="password" placeholder="Enter a password" />
+                  <Input type="password" name="password" id="password" placeholder="password" />
               </FormGroup>
-              <FormGroup>
+              <FormGroup style={{"marginBottom":"30px"}}>
                   {/* <Label for="examplePassword">Confirm Password</Label> */}
-                  <Input type="password" name="password" id="confirmPassword" placeholder="Confirm password" />
+                  <Input type="password" name="password" id="confirmPassword" placeholder="confirm password" />
               </FormGroup>
               <Button className="buttonOr">Submit</Button>
           </Form>

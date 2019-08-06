@@ -72,17 +72,17 @@ export default class LoginForm extends React.Component {
       <div style = {this.aroundLogin}>
       {this.renderRedirect()}
       <Container>
-      <h1>Login</h1>
+      <h1 style={{"marginBottom":"30px"}}>Login</h1>
       <Form onSubmit = {this.onSubmit}>
-        <FormGroup>
+        <FormGroup style={{"marginBottom":"30px"}}>
           {/* <Label for="username">Username</Label> */}
-          <Input type="text" name="username" id="username" placeholder="Username" />
+          <Input type="text" name="username" id="username" placeholder="username" />
         </FormGroup>
-        <FormGroup>
+        <FormGroup style={{"marginBottom":"30px"}}>
           {/* <Label for="examplePassword">Password</Label> */}
-          <Input type="password" name="password" id="password" placeholder="Password" />
+          <Input type="password" name="password" id="password" placeholder="password" />
         </FormGroup>
-        <Button className="buttonOr">Submit</Button>
+        <Button style={{"marginBottom":"30px"}} className="buttonOr">Submit</Button>
         {/* <React.Fragment>
         <div className = "registerbuttoncontainer">
           <a className="registerButton" style={{'cursor':'pointer', 'color':'blue'}} onClick={this.toggle}>Register by clicking here</a>
