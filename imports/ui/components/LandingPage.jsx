@@ -114,15 +114,7 @@ export default class LandingPage extends React.Component {
                                 )
                             }
                         } />
-                        <Route exact path='/register' render={
-                            () => {
-                                return (
-                                    <Row style={{"marginLeft":"0", "marginRight":"0"}}>
-                                        <Col>
-                                    <RegisterForm/></Col>
-                                    <Col><img src="https://scontent.fcxh2-1.fna.fbcdn.net/v/t1.15752-9/s2048x2048/68598223_915139735488982_3361868058757955584_n.jpg?_nc_cat=104&_nc_oc=AQmTSTjZI_uvzBsYCl_q6_ZNe-MszHHjSnpMmQB-j8YFjvWgXy6-EeskQle7b24sAjA&_nc_ht=scontent.fcxh2-1.fna&oh=b4c535efdc892770a16ea1ac7f96e471&oe=5DD9CA3A" width="500" height="600"></img>
-                                    </Col></Row>
-                                )}}/>
+                        <Route exact path='/register' component={RegisterForm}/>
                         <Route exact path='/login' component={LoginForm}/>
                     </div>
                 </BrowserRouter>

@@ -9,6 +9,8 @@ export default class RegisterForm extends React.Component {
         super(props);
     
         this.setRedirect = this.setRedirect.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+
         this.state = {
           redirect: false,
         };
@@ -21,19 +23,18 @@ export default class RegisterForm extends React.Component {
       }
       renderRedirect = () => {
         if (this.state.redirect) {
-          return <Redirect to='/' />
+          return <Redirect to='/home' />
         }
       }
       aroundLogin = {
-          color:"black",
-        background: "white",
+          color:"white",
+        // background: "white",
         border: "1px",
         padding: "10%",
         display : "inlineBlock",
         textAlign : "center",
-        width: "auto",
-        margin: "90px",
-        marginTop: "15px",
+        width: "50%",
+        margin: "auto auto",
         opacity: "0.9"
         }
     onSubmit(e) {

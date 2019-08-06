@@ -52,15 +52,15 @@ export default class LoginForm extends React.Component {
     });
   }
   aroundLogin = {
-    background: "white",
-    color: "black",
+    // background: "white",
+    color: "white",
     border: "1px",
     padding: "10%",
     display : "inlineBlock",
     textAlign : "center",
     width: "50%",
-    margin: "90px",
-    marginTop: "15px",
+    margin: "auto auto",
+    // marginTop: "15px",
     opacity: "0.9"
     }
   render() {
