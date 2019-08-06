@@ -26,14 +26,15 @@
   - Ability to update job information/job application status 
 
 - #### Standard Requirements
-  - Ability to filter jobs according to job application stage, company, job position and others
-  - Using LinkedIn’s API (or other search engines) to allow users to easily input what they want into various fields
-  - Options for different dashboard views (users can toggle their preference)
+  - Ability to filter/search for jobs 
   - Ability to upload documents (resumes, cover letters)
-  - Search bar to find a specific job card quickly (filter)
-  - Calender to view deadlines or interview dates
+  - Calendar page to view interview dates
+  - Drag and drop job cards
+  - Company icons within the job cards
 
 - #### Stretch Requirements
+  - Drag and drop job cards 
+  - Drag and drop dates from within calendar
   - Metrics page which keeps track of user statistics and allows user to visualize their progress 
   - Options for different dashboard views (users can toggle their preference)
   - Ability to add jobs from external sources (indeed, linkedin)

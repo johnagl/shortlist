@@ -37,7 +37,7 @@ class JobCardsContainerFull extends Component {
 
             return (
                 <div key={stage._id} className='columnStyle'>
-                    {stage.title == 'Shortlist' ?  
+                    {stage.title == 'Interested' ?  
                     <React.Fragment>
                         <JobStageCardFull stage={stage} jobs={jobs}/>
                         <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
@@ -68,6 +68,7 @@ inputStyle = {
     width: '200px',
     bottom: '16%',
     right: '4%',
+    zIndex: '2',
 
 }
 
