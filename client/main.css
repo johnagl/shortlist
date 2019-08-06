@@ -36,6 +36,7 @@ code {
   flex-flow: column;
   /* height: 100vh; */
   min-height: 100vh;
+  background-color: #003DA5;
 }
 
 /* Navigation Bar */
@@ -99,8 +100,12 @@ nav a:hover {
   /* float: right; */
 }
 
+.buttonOr:hover {
+  background-color: #FF671F
+}
 /* Page Content */
 .flex-container {
+  background-color: white;
   /* display: flex; */
   /* flex-direction: column;
   justify-content: center;

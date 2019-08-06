@@ -2,6 +2,8 @@ import React from 'react';
 import { Container, Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import RegisterForm from './RegisterForm.jsx';
 import {Redirect} from 'react-router-dom';
+import '../../../client/main.css';
+
 
 export default class LoginForm extends React.Component {
   constructor(props) {
@@ -74,13 +76,13 @@ export default class LoginForm extends React.Component {
       <Form onSubmit = {this.onSubmit}>
         <FormGroup>
           {/* <Label for="username">Username</Label> */}
-          <Input type="text" name="username" id="username" placeholder="Enter username" />
+          <Input type="text" name="username" id="username" placeholder="Username" />
         </FormGroup>
         <FormGroup>
           {/* <Label for="examplePassword">Password</Label> */}
-          <Input type="password" name="password" id="password" placeholder="Enter password" />
+          <Input type="password" name="password" id="password" placeholder="Password" />
         </FormGroup>
-        <Button>Submit</Button>
+        <Button className="buttonOr">Submit</Button>
         {/* <React.Fragment>
         <div className = "registerbuttoncontainer">
           <a className="registerButton" style={{'cursor':'pointer', 'color':'blue'}} onClick={this.toggle}>Register by clicking here</a>
