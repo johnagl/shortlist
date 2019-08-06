@@ -27,15 +27,14 @@ export default class RegisterForm extends React.Component {
         }
       }
       aroundLogin = {
-          color:"black",
-        background: "white",
+          color:"white",
+        // background: "white",
         border: "1px",
         padding: "10%",
         display : "inlineBlock",
         textAlign : "center",
-        width: "auto",
-        margin: "90px",
-        marginTop: "15px",
+        width: "50%",
+        margin: "auto auto",
         opacity: "0.9"
         }
     onSubmit(e) {
@@ -57,13 +56,9 @@ export default class RegisterForm extends React.Component {
                 }
                 else {
                     Meteor.call('stages.createStages');
-                    // this.setRedirect();
-
                 }
             });
-            if (Meteor.userId()) {
             this.setRedirect();
-            }
         } else {
             alert("your passwords don't match")
         }
