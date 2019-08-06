@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Meteor } from 'meteor/meteor';
 import { Redirect } from 'react-router-dom';
+import '../../../client/main.css';
+
 
 
 export default class RegisterForm extends React.Component {
@@ -44,7 +46,7 @@ export default class RegisterForm extends React.Component {
         const username = ele.find("#username").val();
         const password = ele.find("#password").val();
         const confirmPassword = ele.find("#confirmPassword").val();
-
+        const thiss = this;
         if (password === confirmPassword && password !== "" && confirmPassword !== "") {
             let accountInfo = {
                 username: username,
@@ -53,12 +55,13 @@ export default class RegisterForm extends React.Component {
             Accounts.createUser(accountInfo, function (er, result) {
                 if (er) {
                     alert(er.reason)
+                    return;
                 }
                 else {
                     Meteor.call('stages.createStages');
+                    thiss.setRedirect();
                 }
             });
-            this.setRedirect();
         } else {
             alert("your passwords don't match")
         }
@@ -67,21 +70,21 @@ export default class RegisterForm extends React.Component {
         return (
             <div style = {this.aroundLogin}>
                 {this.renderRedirect()}
-                <h1 className="textC">Register</h1>
+                <h1 style={{"marginBottom":"30px"}} className="textC">Register</h1>
                 <Form onSubmit={this.onSubmit}>
-                    <FormGroup>
+                    <FormGroup style={{"marginBottom":"30px"}}>
                         {/* <Label for="username">Username</Label> */}
-                        <Input type="text" name="username" id="username" placeholder="Enter your username" />
+                        <Input type="text" name="username" id="username" placeholder="username" />
                     </FormGroup>
-              <FormGroup>
+              <FormGroup style={{"marginBottom":"30px"}}>
                   {/* <Label for="examplePassword">Password</Label> */}
-                  <Input type="password" name="password" id="password" placeholder="Enter a password" />
+                  <Input type="password" name="password" id="password" placeholder="password" />
               </FormGroup>
-              <FormGroup>
+              <FormGroup style={{"marginBottom":"30px"}}>
                   {/* <Label for="examplePassword">Confirm Password</Label> */}
-                  <Input type="password" name="password" id="confirmPassword" placeholder="Confirm password" />
+                  <Input type="password" name="password" id="confirmPassword" placeholder="confirm password" />
               </FormGroup>
-              <Button>Submit</Button>
+              <Button className="buttonOr">Submit</Button>
           </Form>
           </div>
     );
