@@ -69,8 +69,10 @@ export default class Example extends React.Component {
               <NavItem>
                 <NavLink href="/documents"><FontAwesomeIcon icon={faFileAlt}/> documents</NavLink>
               </NavItem>
-              <NavItem >              
-                <NavLink className="logout" onClick = {this.onClick}>logout</NavLink>
+              </Nav>
+              <Nav className="ml-auto" navbar>
+              <NavItem>              
+                <NavLink class="nav-link active" className="logout" onClick = {this.onClick}>logout</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
