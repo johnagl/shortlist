@@ -83,7 +83,7 @@ export default class RegisterForm extends React.Component {
                   {/* <Label for="examplePassword">Confirm Password</Label> */}
                   <Input type="password" name="password" id="confirmPassword" placeholder="confirm password" />
               </FormGroup>
-              <Button className="buttonOr">Submit</Button>
+              <Button className="buttonOr" style={{"backgroundColor":"#FF671F"}}>Submit</Button>
           </Form>
           </div>
     );
