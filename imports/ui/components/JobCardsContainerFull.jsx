@@ -69,7 +69,6 @@ inputStyle = {
     bottom: '16%',
     right: '4%',
     zIndex: '2',
-
 }
 
 const mapStateToProps = (state) => {
