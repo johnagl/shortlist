@@ -42,7 +42,7 @@ class JobCardsContainerFull extends Component {
                         <JobStageCardFull stage={stage} jobs={jobs}/>
                         <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
                         {/* This is the search input  */}
-                        <Input style={inputStyle} type="text hidden" name="search" autoComplete="off" id="search" placeholder="Filter Jobs" value = {this.state.search} onChange = {this.onChangeJobSearch} floating={true}/>
+                        <Input style={inputStyle} type="text hidden" name="search" autoComplete="off" id="search" placeholder="Filter Jobs" value = {this.state.search} onChange = {this.onChangeJobSearch} />
                     </React.Fragment> : 
                     <React.Fragment>
                         <JobStageCardFull stage={stage} jobs={jobs}/>
@@ -69,7 +69,6 @@ inputStyle = {
     bottom: '16%',
     right: '4%',
     zIndex: '2',
-
 }
 
 const mapStateToProps = (state) => {

@@ -35,8 +35,6 @@ class App extends React.Component {
                 )}
               />
               <Route path='/documents' component={DocumentsPage} />
-              {/* <Route path='/login' component={LoginForm} />
-              <Route path='/register' component={LoginForm} /> */}
               <Route 
                 exact path='/calendar' 
                 render={(routeProps) => (
@@ -46,7 +44,7 @@ class App extends React.Component {
             </Switch>
           </div>
         </BrowserRouter> : <LandingPage currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
-        }{/* <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/> */}
+        }
       </div>
     );
   }
@@ -61,7 +59,3 @@ export default withTracker(() => {
     currentUser: Meteor.user()
   };
 })(App);
-
-{/* <LoginForm currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/>
-
-<LandingPage currentUser={this.props.currentUser} stagesList = {this.props.stagesList}/> */}

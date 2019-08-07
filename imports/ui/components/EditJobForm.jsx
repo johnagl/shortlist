@@ -32,6 +32,19 @@ class EditJobForm extends React.Component {
     };
   }
 
+  async componentDidMount() {
+    try {
+      let response = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=:${this.state.company}`, {
+          method: "GET"
+      });
+      let suggestions = await response.json();
+      await this.setState({ suggestions });
+  
+    } catch(e) {
+        console.log(e);
+    }
+  }
+
   toggle(tab) {
     if (this.state.activeTab !== tab) {
       this.setState({
