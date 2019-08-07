@@ -58,8 +58,6 @@ class SearchAutocomplete extends React.Component {
                 selection={ selection }
                 value={ value }
                 onChange={ (e) => this.props.onChange(e)}
-                /*onFocus={() => this.handleFocus()}
-                onBlur={() => this.handleBlur()}*/
             />
             { this.renderSuggestions() }
         </div>
@@ -69,12 +67,3 @@ class SearchAutocomplete extends React.Component {
 }
 
 export default SearchAutocomplete;
-
-                {/* onFocus={async () => {
-                        await this.setState( {suggestionsFocused: true } );
-                    }
-                }
-                onBlur={async () => {
-                    await this.setState( {suggestionsFocused: false } );
-                    }
-                } */}
