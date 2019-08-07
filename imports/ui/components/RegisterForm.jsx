@@ -52,14 +52,14 @@ export default class RegisterForm extends React.Component {
                 username: username,
                 password: password
             };
-            Accounts.createUser(accountInfo, function (er, result) {
+            Accounts.createUser(accountInfo, (er, result) => {
                 if (er) {
                     alert(er.reason)
                     return;
                 }
                 else {
                     Meteor.call('stages.createStages');
-                    thiss.setRedirect();
+                    this.setRedirect();
                 }
             });
         } else {
@@ -80,7 +80,7 @@ export default class RegisterForm extends React.Component {
                   {/* <Label for="examplePassword">Password</Label> */}
                   <Input type="password" name="password" id="password" placeholder="password" />
               </FormGroup>
-              <FormGroup style={{"marginBottom":"30px"}}>
+              <FormGroup style={{"marginBottom":"30px", "backgroundColor":"#FF671F"}}>
                   {/* <Label for="examplePassword">Confirm Password</Label> */}
                   <Input type="password" name="password" id="confirmPassword" placeholder="confirm password" />
               </FormGroup>
