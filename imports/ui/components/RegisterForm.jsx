@@ -46,7 +46,6 @@ export default class RegisterForm extends React.Component {
         const username = ele.find("#username").val();
         const password = ele.find("#password").val();
         const confirmPassword = ele.find("#confirmPassword").val();
-        const thiss = this;
         if (password === confirmPassword && password !== "" && confirmPassword !== "") {
             let accountInfo = {
                 username: username,
