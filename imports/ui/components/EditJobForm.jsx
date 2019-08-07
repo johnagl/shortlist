@@ -25,6 +25,7 @@ class EditJobForm extends React.Component {
       company: this.props.job.company,
       title: this.props.job.title,
       select: this.props.stage._id,
+      durationSelect: 1,
       phoneInterview: this.props.job.phoneInterview.start,
       onSiteInterview: this.props.job.onSiteInterview.start,
       suggestions: [],
@@ -122,6 +123,15 @@ renderOptions() {
   return options;
 }
 
+renderTimeIntervals() {
+  let options  = [];
+
+  for(let i = 0.5; i <= 8; i = i + 0.5) {
+    options.push(<option key={i} value={i}>{i}</option>);
+  }
+  return options;
+}
+
 render() {
   return (
     <div> 
@@ -183,8 +193,13 @@ render() {
         
               <Row>
               <Col xs="4" sm="4">Phone Interview: </Col>
-              <Col xs="4" sm="4">
+              <Col xs="5.75" sm="5.75">
                   <DateTimePicker name="phoneInterview" onChange={this.onChangePhoneInterview} value={this.state.phoneInterview}/>
+              </Col>
+              <Col xs="2.5" sm="2.5">
+                <Input required type="select" name="durationSelect" id="durationSelect" value={this.state.durationSelect} onChange={this.onChangeText} >
+                    { this.renderTimeIntervals() }
+                </Input>
               </Col>
               
               </Row>
