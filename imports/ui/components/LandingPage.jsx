@@ -97,7 +97,7 @@ export default class LandingPage extends React.Component {
                                                 <Col><img src="https://scontent-sea1-1.xx.fbcdn.net/v/t1.15752-9/67777492_2431140800242262_3300235282355322880_n.jpg?_nc_cat=102&_nc_oc=AQly2roWMTp-AC6okIPs-B5s2OIDm24guEyQDjR0Ph1DxTsXOGWWu6KXtCkJfGtktAM&_nc_ht=scontent-sea1-1.xx&oh=05aa6c12aaa1bbaecdaab9deaac6319e&oe=5DE29940" width="640" height="288" /></Col>
                                                 <Col><h1 style={{ "textAlign": "center", "color": "black" }}>Visually organize and interact with your job applications</h1></Col>
                                             </Row>
-                                            <Row style={{ "backgroundColor": "#FF671F", "padding": "30px", "alignItems": "center", "marginRight":"0", "marginLeft":"0"}}>
+                                            <Row style={{ "backgroundColor": "orange", "padding": "30px", "alignItems": "center", "marginRight":"0", "marginLeft":"0"}}>
                                                 <Col><h1 style={{ "textAlign": "center" }}>Easily keep track of deadlines and interview dates.</h1></Col>
                                                 <Col>
                                                     <img src='https://scontent-sea1-1.xx.fbcdn.net/v/t1.15752-9/68505374_2369825873104732_4450220163203072000_n.jpg?_nc_cat=106&_nc_oc=AQmfLViejUCIthz7EqgnoQ2rvIpvOZv8DgaqgR_4GxLIRRAmMCXnX3K7hx7m-Uj6Gv8&_nc_ht=scontent-sea1-1.xx&oh=1d63f69bc7e9e3b47de5f8c9fec25179&oe=5DE8455C' width="640" height="288"></img>
