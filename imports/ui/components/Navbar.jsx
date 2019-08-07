@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTh } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
 <i class="fas fa-file-alt"></i>
 
 export default class Example extends React.Component {
@@ -56,7 +57,7 @@ export default class Example extends React.Component {
       <div>
         {this.renderRedirect()}
         <Navbar className= "change" dark expand="md">
-          <NavbarBrand href="/home">shortlist</NavbarBrand>
+          <NavbarBrand href="/home"><FontAwesomeIcon icon={faBriefcase} style={{"color":"FF671F"}}/>  shortlist</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-left" navbar>

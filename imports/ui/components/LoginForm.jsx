@@ -82,7 +82,7 @@ export default class LoginForm extends React.Component {
           {/* <Label for="examplePassword">Password</Label> */}
           <Input type="password" name="password" id="password" placeholder="password" />
         </FormGroup>
-        <Button style={{"marginBottom":"30px"}} className="buttonOr">Submit</Button>
+        <Button style={{"marginBottom":"30px", "backgroundColor":"#FF671F"}} className="buttonOr">Submit</Button>
         {/* <React.Fragment>
         <div className = "registerbuttoncontainer">
           <a className="registerButton" style={{'cursor':'pointer', 'color':'blue'}} onClick={this.toggle}>Register by clicking here</a>
