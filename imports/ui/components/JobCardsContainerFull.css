@@ -1,9 +1,7 @@
 .jobCardsContainerFull  {
     display: flex;
     flex-direction: row;
-    /* height: 100%; */
     flex: 1;
-    /* white-space:nowrap; */
 }
 
 .noFlexWrap {
@@ -11,7 +9,6 @@
 }
 
 .columnStyle {
-    /* background: #FAFAFA; */
     background: #FFFFFF;
     border-right: 1px solid #DADADA;
     display: flex;

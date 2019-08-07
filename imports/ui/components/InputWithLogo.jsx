@@ -51,28 +51,3 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, )(InputWithLogo);
 
-        {/* <InputGroup>
-            <Input 
-                type="text hidden" 
-                placeholder={ placeholder } 
-                value = { this.state.content }
-                onChange={ this.onChangeText }
-            />
-
-            <InputGroupAddon addonType="append">
-                { logo ? 
-                    <div className="input-logo">
-                        <img src={ logo }/>
-                    </div> :
-                    <FontAwesomeIcon icon={icon}/> 
-                }
-            </InputGroupAddon>
-        </InputGroup> */}
-
-
-        {/* <div className="input-group input-group-unstyled">
-            <input type="text" className="form-control" />
-            <span className="input-group-addon">
-                { icon }
-            </span>
-        </div> */}

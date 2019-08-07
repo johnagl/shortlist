@@ -7,8 +7,6 @@ class JobCardsContainer extends Component {
     
     render() {
         const { stage, jobs, view, direction } = this.props;
-        // console.log('STAGE IN JOB CARDS CONTAINER: ' + JSON.stringify(stage));
-        // console.log('STAGEID IN JOB CARDS CONTAINER: ' + JSON.stringify(stage.stageId));
 
         let jobCards = jobs.map((job, index) => {
             return(

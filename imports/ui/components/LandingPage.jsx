@@ -4,9 +4,6 @@ import RegisterForm from './RegisterForm.jsx';
 import LoginForm from './LoginForm.jsx'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../../../client/main.css';
-// import './calendar.jpg';
-// import dashboard from 'dashboard.jpg'
-// import Documents from './documents.jpg'
 
 import {
     Collapse,
@@ -121,28 +118,3 @@ export default class LandingPage extends React.Component {
         )
     };
 }
-
-
-{/* <div id="landing-page-header">
-                    <h1>Your job search just got a whole lot easier.</h1>
-                    <h3>Manage job applications with ease,<br />
-                        stay organized,<br />
-                        and keep track of it all with Shortlist.
-               </h3>
-                </div> */}
-
-{/* <Row>
-    <BrowserRouter>
-        <Col>
-            <h2>Already registered?</h2>
-            <Route path='/login' exact strict component={LoginForm} />
-            <NavItem>
-                <NavLink href='/login'> Login</NavLink>
-            </NavItem>
-        </Col>
-        <Col>
-            <h2>New?</h2>
-            <a href='/register' exact strict> Register </a>
-        </Col>
-    </BrowserRouter>
-</Row> */}

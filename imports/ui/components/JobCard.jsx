@@ -27,7 +27,6 @@ class JobCard extends React.Component {
   }
 
   renderLogo = (logoURL, name) => {
-    // return(<Avatar src={logoURL} className="logo" children={name} />);
     if(logoURL) {
       return(<img  className="logo" src={logoURL} onError={(e)=>{e.target.onerror = null; e.target.src="https://cdn.bulbagarden.net/upload/thumb/0/0d/025Pikachu.png/1200px-025Pikachu.png"}}/>);
     }
@@ -73,11 +72,7 @@ class JobCard extends React.Component {
     const { job, index, color, stage } = this.props;
     const logo = this.renderLogo(job.logo, job.company);
     const dateCreated = moment(job.dates.createdAt).format("MMM D, YYYY");
-
-    const footerStyle = {
-      "background": this.lightenDarkenColor(color, 60),
-    }
-
+    
     return (
       <div>
         <Draggable draggableId={String(job._id)} index={index}>
@@ -96,7 +91,7 @@ class JobCard extends React.Component {
                     </div>
                     <p className="card-text">{ job.title }</p>
                   </div>
-                  <div /*style={footerStyle*/ className="card-text card-footer">Created { dateCreated }</div>
+                  <div className="card-text card-footer">Created { dateCreated }</div>
                 </div>
               </div>
             )}
@@ -104,7 +99,6 @@ class JobCard extends React.Component {
           
           <React.Fragment>
             <div className = "add-button-container">
-              {/* <Button className="addButton" onClick={this.toggle}>Add Job</Button> */}
                 <Modal isOpen={this.state.modal} toggle={this.toggle} >
                   <ModalHeader toggle={this.toggle}>Edit a Job</ModalHeader>
                   <ModalBody>

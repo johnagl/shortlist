@@ -54,38 +54,7 @@ class DashboardPage extends React.Component {
     const mapStateToProps = (state) => {
       return{
         view: state.jobs.view,
-        // stages: state.jobs.stages /* <--this causes infinite loops! */
       }
     }
     
     export default connect(mapStateToProps, { sort })(DashboardPage);
-
-  //   render() {      
-  //     let CurrentView = () => {
-  //       if (this.props.view === 'Full'){
-  //         return (
-  //           <JobCardsContainerFull direction="vertical" jobsList={this.props.jobsList} stagesList={this.props.stagesList}/>
-  //         )
-  //       }
-  //       if (this.props.view === 'FullSecond'){
-  //         return (
-  //           <JobCardsContainerFullSecond direction="horizontal"/>
-  //         )
-  //       }
-  //       if (this.props.view === 'Partial'){
-  //         return (<JobCardsContainerPartial direction="horizontal"/>)
-  //       }
-  //     }
-        
-  //     return(
-  //       <DragDropContext onDragEnd={this.onDragEnd}>
-  //         <div className='dashboardContainer'>
-  //           <CurrentView/>
-  //           <div className="floating-add-button"> 
-  //             <AddButtonModal floating={true} /> 
-  //           </div>
-  //         </div>
-  //       </DragDropContext>
-  //     );
-  //   }
-  // }
