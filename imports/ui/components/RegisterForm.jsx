@@ -79,7 +79,7 @@ export default class RegisterForm extends React.Component {
                   {/* <Label for="examplePassword">Password</Label> */}
                   <Input type="password" name="password" id="password" placeholder="password" />
               </FormGroup>
-              <FormGroup style={{"marginBottom":"30px", "backgroundColor":"#FF671F"}}>
+              <FormGroup style={{"marginBottom":"30px"}}>
                   {/* <Label for="examplePassword">Confirm Password</Label> */}
                   <Input type="password" name="password" id="confirmPassword" placeholder="confirm password" />
               </FormGroup>
