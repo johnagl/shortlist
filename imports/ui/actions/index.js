@@ -51,6 +51,7 @@ export const editJob = (job, oldStageId, newStageId, indexStart) => dispatch => 
 }
 
 export const editJobEvent = (event, jobId, start, end, company, jobsList) => dispatch => {
+    console.log('EVENT: ' + JSON.stringify());
     dispatch({
         type: 'EDIT_JOB_EVENT',
         payload: event,

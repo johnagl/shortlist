@@ -55,7 +55,7 @@ const jobsReducer = (state = initState, action) => {
                 id: action.jobId,
                 start: action.start,
                 end: action.end,
-                title: 'Phone Interview  ' + action.company,
+                title: 'Phone Interview w/ ' + action.company,
                 type: 'phone interview',
                 company: action.company
       
@@ -65,7 +65,7 @@ const jobsReducer = (state = initState, action) => {
                 id: action.jobId,
                 start: action.start,
                 end: action.end,
-                title: 'On Site Interview  ' + action.company,
+                title: 'On Site Interview  @ ' + action.company,
                 type: 'on site interview',
                 company: action.company
       

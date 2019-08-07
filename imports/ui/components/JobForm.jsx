@@ -77,7 +77,7 @@ class JobForm extends React.Component {
         id: id,
         start: this.state.phoneInterview,
         end: this.state.phoneInterview,
-        title: 'Phone Interview  ' + this.state.name,
+        title: 'Phone Interview  w/ ' + this.state.name,
         type: 'phone interview',
         company: this.state.name,
 
@@ -86,7 +86,7 @@ class JobForm extends React.Component {
         id: id,
         start: this.state.onSiteInterview,
         end: this.state.onSiteInterview,
-        title: 'On Site Interview  ' + this.state.name,
+        title: 'On Site Interview  @ ' + this.state.name,
         type: 'on site interview',
         company: this.state.name,
       },

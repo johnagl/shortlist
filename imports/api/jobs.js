@@ -32,7 +32,7 @@ Meteor.methods({
             id: id,
             start: start,
             end: end,
-            title: 'Phone Interview  ' + company,
+            title: 'Phone Interview  w/ ' + company,
             type: 'phone interview',
             company: company,
   
@@ -47,7 +47,7 @@ Meteor.methods({
             id: id,
             start: start,
             end: end,
-            title: 'On Site Interview  ' + company,
+            title: 'On Site Interview  @ ' + company,
             type: 'on site interview',
             company: company,
   
