@@ -40,6 +40,7 @@ class InputWithLogo extends React.Component {
                     </div>
                 }
             </InputGroupAddon>
+            
         </InputGroup>
     );
   }

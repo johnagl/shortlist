@@ -13,14 +13,15 @@ class SearchAutocomplete extends React.Component {
     }
 
     handleBlur = () => {
-        this.setState({companyFocused: false});
+        this.setState({ companyFocused: false });
     }
 
     renderSuggestions() {
         let suggestions = this.props.suggestions.map(suggestion => {
             return(
-            <div key={suggestion.domain} onMouseDown={ () => {
+            <div key={suggestion.domain} onClick={ () => {
                     this.props.selectSuggestion(suggestion);
+                    this.setState({ companyFocused: false });
                 } 
             }>
                 <CompanySuggestion key={suggestion.domain} name={suggestion.name} logo={suggestion.logo} />
@@ -33,7 +34,7 @@ class SearchAutocomplete extends React.Component {
 
         return (
         <div className={className}>
-            <div className="suggestions">
+            <div className="suggestions" id="suggestions">
                 { suggestions }
             </div>
         </div>
@@ -45,7 +46,10 @@ class SearchAutocomplete extends React.Component {
     const { name, id, placeholder, icon, selection, value, onChange, suggestions } = this.props;
 
     return (
-        <div>
+        <div tabindex="0" id="search-autcomplete"
+            onFocus={() => this.handleFocus()}
+            onBlur= {() => this.handleBlur() }
+        >
             <InputWithLogo 
                 name= { name }
                 id={ id }
@@ -54,8 +58,8 @@ class SearchAutocomplete extends React.Component {
                 selection={ selection }
                 value={ value }
                 onChange={ (e) => this.props.onChange(e)}
-                onFocus={() => this.handleFocus()}
-                onBlur={() => this.handleBlur()}
+                /*onFocus={() => this.handleFocus()}
+                onBlur={() => this.handleBlur()}*/
             />
             { this.renderSuggestions() }
         </div>
@@ -65,3 +69,12 @@ class SearchAutocomplete extends React.Component {
 }
 
 export default SearchAutocomplete;
+
+                {/* onFocus={async () => {
+                        await this.setState( {suggestionsFocused: true } );
+                    }
+                }
+                onBlur={async () => {
+                    await this.setState( {suggestionsFocused: false } );
+                    }
+                } */}
