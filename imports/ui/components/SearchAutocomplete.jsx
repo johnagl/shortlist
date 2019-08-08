@@ -46,7 +46,7 @@ class SearchAutocomplete extends React.Component {
     const { name, id, placeholder, icon, selection, value, onChange, suggestions } = this.props;
 
     return (
-        <div tabindex="0" id="search-autcomplete"
+        <div tabIndex="0" id="search-autcomplete"
             onFocus={() => this.handleFocus()}
             onBlur= {() => this.handleBlur() }
         >

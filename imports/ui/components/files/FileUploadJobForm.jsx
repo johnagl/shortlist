@@ -174,9 +174,9 @@ class FileUploadJobForm extends Component {
 //
 export default withTracker( ( props ) => {
   const filesHandle = Meteor.subscribe('files.all');
-  console.log(filesHandle);
+  // console.log(filesHandle);
   const docsReadyYet = filesHandle.ready();
-  console.log(docsReadyYet);
+  // console.log(docsReadyYet);
   const files = UserFiles.find({}, {sort: {name: 1}}).fetch();
 
   return {

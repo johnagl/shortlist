@@ -6,7 +6,14 @@ import { editJob } from '../actions/index';
 import classnames from 'classnames';
 
 import CompanySuggestion from './CompanySuggestion';
-import DateTimePicker from 'react-datetime-picker';
+// import DateTimePicker from 'react-datetime-picker';
+
+import Moment from 'moment'
+import momentLocalizer from 'react-widgets-moment';
+// import DateTimePicker from 'react-widgets/lib/DateTimePicker';
+import DatePicker, { registerLocale } from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import "react-datepicker/dist/react-datepicker.css";
 
 import FileUploadJobForm from './files/FileUploadJobForm.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -133,6 +140,9 @@ renderTimeIntervals() {
 }
 
 render() {
+  Moment.locale('en');
+  momentLocalizer();
+
   return (
     <div> 
       <Nav tabs>
@@ -150,6 +160,14 @@ render() {
             onClick={() => { this.toggle('2'); }}
           >
             Documents
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: this.state.activeTab === '3' })}
+            onClick={() => { this.toggle('3'); }}
+          >
+            Dates
           </NavLink>
         </NavItem>
       </Nav>
@@ -194,7 +212,18 @@ render() {
               <Row>
               <Col xs="4" sm="4">Phone Interview: </Col>
               <Col xs="5.75" sm="5.75">
-                  <DateTimePicker name="phoneInterview" onChange={this.onChangePhoneInterview} value={this.state.phoneInterview}/>
+                  <DatePicker
+                    className="form-control"
+                    name="phoneInterview"
+                    selected={this.state.phoneInterview}
+                    onChange={this.onChangePhoneInterview}
+                    value={this.state.phoneInterview}
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={30}
+                    dateFormat="MMMM d, yyyy h:mm aa"
+                    timeCaption="time"
+                  />
               </Col>
               <Col xs="2.5" sm="2.5">
                 <Input required type="select" name="durationSelect" id="durationSelect" value={this.state.durationSelect} onChange={this.onChangeText} >
@@ -209,7 +238,8 @@ render() {
               <Row>
               <Col xs="4" sm="4">On Site Interview: </Col>
               <Col xs="4" sm="4">
-                  <DateTimePicker name="onSiteInterview" onChange={this.onChangeOnSiteInterview} value={this.state.onSiteInterview} /></Col>
+                  
+              </Col>
               </Row>
 
               <div className="button">
@@ -222,6 +252,10 @@ render() {
             <FileUploadJobForm jobId={this.state._id}/>
           </TabPane>
 
+          <TabPane tabId="3">
+
+          </TabPane>
+
         </TabContent>
     </div>);
   } 
@@ -232,3 +266,9 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {editJob})(EditJobForm);
+
+                  {/* <DateTimePicker 
+                    name="phoneInterview" 
+                    onChange={this.onChangePhoneInterview} 
+                    value={this.state.phoneInterview}
+                  /> */}
