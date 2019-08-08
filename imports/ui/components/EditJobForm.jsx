@@ -205,16 +205,16 @@ render() {
 
               <FormGroup className="form-date">
                 <Row>
-                  <Col xs="8.5" sm="8.5">
+                  <Col xs="8" sm="8">
                     <Label for="phoneInterviewStart">Phone Interview</Label>
                   </Col>
-                  <Col xs="3.5" sm="3.5">
+                  <Col xs="4" sm="4">
                     <Label for="phoneInterviewDuration">Duration (Hours)</Label>
                   </Col>
                 </Row>
 
                 <Row>
-                  <Col xs="8.5" sm="8.5">
+                  <Col xs="8" sm="8">
                     <DatePicker
                       className="form-control date-picker"
                       name="phoneInterview"
@@ -231,7 +231,7 @@ render() {
                     />
                   </Col>
 
-                  <Col xs="3.5" sm="3.5">
+                  <Col xs="4" sm="4">
                     <Input required 
                       type="select" 
                       className="date-duration"
@@ -248,16 +248,16 @@ render() {
 
               <FormGroup className="form-date">
                 <Row>
-                  <Col xs="9" sm="9">
+                  <Col xs="7" sm="7">
                     <Label for="onSiteInterview">On Site Interview</Label>
                   </Col>
-                  <Col xs="3" sm="3">
+                  <Col xs="4" sm="4">
                     <Label for="onSiteInterviewDuration">Duration (Hours)</Label>
                   </Col>
                 </Row>
 
                 <Row>
-                  <Col xs="9" sm="9">
+                  <Col xs="8" sm="8">
                     <DatePicker
                       className="form-control date-picker"
                       name="onSiteInterview"
@@ -274,7 +274,7 @@ render() {
                     />
                   </Col>
 
-                  <Col xs="3" sm="3">
+                  <Col xs="4" sm="4">
                     <Input required 
                       type="select" 
                       className="date-duration"
