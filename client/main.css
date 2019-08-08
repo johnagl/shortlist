@@ -398,6 +398,12 @@ nav a:hover {
   opacity: 0.2;
 }
 
+.card-placeholder {
+  border: solid 1px rgb(238, 237, 237);
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 .landing-page {
   text-align: center;
 }
