@@ -6,13 +6,29 @@ import { Droppable } from "react-beautiful-dnd";
 class JobCardsContainer extends Component {
     
     render() {
-        const { stage, jobs, view, direction } = this.props;
+        const { search, stage, jobs, direction } = this.props;
 
         let jobCards = jobs.map((job, index) => {
+
+            if(search) {
+                console.log(JSON.stringify(job.company.toLowerCase()) + '==?' + JSON.stringify(search.toLowerCase()));
+            }
+            
+            let hide = (search? !job.company.toLowerCase().includes(search.toLowerCase()) : false);
+
             return(
-                <JobCard key={job._id} job={job} color={stage.color} index={index} stage={stage} />
-            )               
+                <JobCard
+                    hide={hide} 
+                    key={job._id} 
+                    job={job} 
+                    color={stage.color} 
+                    index={index} 
+                    stage={stage} 
+                />
+            )
         })
+
+        console.log("job cards container re-rendered");
     
         return (
             <Droppable droppableId={String(stage._id)} direction={direction}>

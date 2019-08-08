@@ -248,7 +248,7 @@ render() {
 
               <FormGroup className="form-date">
                 <Row>
-                  <Col xs="7" sm="7">
+                  <Col xs="8" sm="8">
                     <Label for="onSiteInterview">On Site Interview</Label>
                   </Col>
                   <Col xs="4" sm="4">

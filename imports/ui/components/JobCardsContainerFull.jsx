@@ -10,7 +10,7 @@ import { Input } from 'reactstrap';
 class JobCardsContainerFull extends Component {
 
     state = {
-        search: ''
+        search: '',
     }
 
     componentDidMount(){
@@ -28,11 +28,9 @@ class JobCardsContainerFull extends Component {
             let stage = this.props.stages.byId[stageId];
             let jobs = [];
             for(let _id of jobIds) {
-                if(this.props.jobs.byId[_id].company.toLowerCase().includes(this.state.search.toLowerCase())){
+                // if(this.props.jobs.byId[_id].company.toLowerCase().includes(this.state.search.toLowerCase())){
                     jobs.push(this.props.jobs.byId[_id]);
-
-                };
-                
+                // };
             }
 
             return (
@@ -40,13 +38,31 @@ class JobCardsContainerFull extends Component {
                     {stage.title == 'Interested' ?  
                     <React.Fragment>
                         <JobStageCardFull stage={stage} jobs={jobs}/>
-                        <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
+                        <JobCardsContainer 
+                            search={this.state.search}
+                            stage={stage} 
+                            jobs={jobs}
+                            direction={this.props.direction}/>
                         {/* This is the search input  */}
-                        <Input style={inputStyle} type="text hidden" name="search" autoComplete="off" id="search" placeholder="Filter Jobs" value = {this.state.search} onChange = {this.onChangeJobSearch} />
+                        <Input 
+                            style={inputStyle} 
+                            type="text hidden" 
+                            name="search" 
+                            autoComplete="off" 
+                            id="search" 
+                            placeholder="Filter Jobs" 
+                            value = {this.state.search} 
+                            onChange = {this.onChangeJobSearch} 
+                        />
                     </React.Fragment> : 
                     <React.Fragment>
                         <JobStageCardFull stage={stage} jobs={jobs}/>
-                        <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
+                        <JobCardsContainer 
+                            search={this.state.search} 
+                            stage={stage} 
+                            jobs={jobs} 
+                            direction={this.props.direction}
+                        />
                     </React.Fragment>
                     }
 
