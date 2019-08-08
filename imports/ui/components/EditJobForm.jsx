@@ -34,7 +34,9 @@ class EditJobForm extends React.Component {
       select: this.props.stage._id,
       durationSelect: 1,
       phoneInterview: this.props.job.phoneInterview.start,
+      phoneInterviewDuration: (this.props.job.phoneInterview.end - this.props.job.phoneInterview.start),
       onSiteInterview: this.props.job.onSiteInterview.start,
+      onSiteInterviewDuration: (this.props.job.onSiteInterview.end - this.props.job.onSiteInterview.start),
       suggestions: [],
       selectedSuggestion: null,
     };
@@ -162,14 +164,6 @@ render() {
             Documents
           </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink
-            className={classnames({ active: this.state.activeTab === '3' })}
-            onClick={() => { this.toggle('3'); }}
-          >
-            Dates
-          </NavLink>
-        </NavItem>
       </Nav>
 
       <TabContent activeTab={this.state.activeTab} className="content">
@@ -208,39 +202,92 @@ render() {
                   { this.renderOptions() }
               </Input>
               </FormGroup>
-        
-              <Row>
-              <Col xs="4" sm="4">Phone Interview: </Col>
-              <Col xs="5.75" sm="5.75">
-                  <DatePicker
-                    className="form-control"
-                    name="phoneInterview"
-                    selected={this.state.phoneInterview}
-                    onChange={this.onChangePhoneInterview}
-                    value={this.state.phoneInterview}
-                    showTimeSelect
-                    timeFormat="HH:mm"
-                    timeIntervals={30}
-                    dateFormat="MMMM d, yyyy h:mm aa"
-                    timeCaption="time"
-                  />
-              </Col>
-              <Col xs="2.5" sm="2.5">
-                <Input required type="select" name="durationSelect" id="durationSelect" value={this.state.durationSelect} onChange={this.onChangeText} >
-                    { this.renderTimeIntervals() }
-                </Input>
-              </Col>
+
+              <FormGroup className="form-date">
+                <Row>
+                  <Col xs="8.5" sm="8.5">
+                    <Label for="phoneInterviewStart">Phone Interview</Label>
+                  </Col>
+                  <Col xs="3.5" sm="3.5">
+                    <Label for="phoneInterviewDuration">Duration (Hours)</Label>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col xs="8.5" sm="8.5">
+                    <DatePicker
+                      className="form-control date-picker"
+                      name="phoneInterview"
+                      id="phoneInterviewStart"
+                      autoComplete="off"
+                      selected={this.state.phoneInterview}
+                      onChange={this.onChangePhoneInterview}
+                      value={this.state.phoneInterview}
+                      showTimeSelect
+                      timeFormat="HH:mm"
+                      timeIntervals={30}
+                      dateFormat="MMMM d, yyyy h:mm aa"
+                      timeCaption="Time"
+                    />
+                  </Col>
+
+                  <Col xs="3.5" sm="3.5">
+                    <Input required 
+                      type="select" 
+                      className="date-duration"
+                      name="phoneInterviewDuration"
+                      id="phoneInterviewDuration"
+                      value={this.state.phoneInterviewDuration} 
+                      onChange={this.onChangeText} >
+                        { this.renderTimeIntervals() }
+                    </Input>
+                  </Col>
+                </Row>
               
-              </Row>
+              </FormGroup>
+
+              <FormGroup className="form-date">
+                <Row>
+                  <Col xs="9" sm="9">
+                    <Label for="onSiteInterview">On Site Interview</Label>
+                  </Col>
+                  <Col xs="3" sm="3">
+                    <Label for="onSiteInterviewDuration">Duration (Hours)</Label>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col xs="9" sm="9">
+                    <DatePicker
+                      className="form-control date-picker"
+                      name="onSiteInterview"
+                      id="onSiteInterviewStart"
+                      autoComplete="off"
+                      selected={this.state.onSiteInterview}
+                      onChange={this.onChangeOnSiteInterview}
+                      value={this.state.onSiteInterview}
+                      showTimeSelect
+                      timeFormat="HH:mm"
+                      timeIntervals={30}
+                      dateFormat="MMMM d, yyyy h:mm aa"
+                      timeCaption="Time"
+                    />
+                  </Col>
+
+                  <Col xs="3" sm="3">
+                    <Input required 
+                      type="select" 
+                      className="date-duration"
+                      name="onSiteInterviewDuration" 
+                      id="onSiteInterviewDuration"
+                      value={this.state.onSiteInterviewDuration} 
+                      onChange={this.onChangeText} >
+                        { this.renderTimeIntervals() }
+                    </Input>
+                  </Col>
+                </Row>
               
-              <br></br>
-              
-              <Row>
-              <Col xs="4" sm="4">On Site Interview: </Col>
-              <Col xs="4" sm="4">
-                  
-              </Col>
-              </Row>
+              </FormGroup>
 
               <div className="button">
                 <Button>Submit</Button>
@@ -250,10 +297,6 @@ render() {
 
           <TabPane tabId="2">
             <FileUploadJobForm jobId={this.state._id}/>
-          </TabPane>
-
-          <TabPane tabId="3">
-
           </TabPane>
 
         </TabContent>
@@ -272,3 +315,34 @@ export default connect(mapStateToProps, {editJob})(EditJobForm);
                     onChange={this.onChangePhoneInterview} 
                     value={this.state.phoneInterview}
                   /> */}
+
+
+              {/* <FormGroup className="form-date">
+                <Label for="phoneInterview">Phone Interview</Label>
+                <br></br>
+                <DatePicker
+                  className="form-control date-picker"
+                  name="phoneInterview"
+                  id="phoneInterviewStart"
+                  autoComplete='off'
+                  selected={this.state.phoneInterview}
+                  onChange={this.onChangePhoneInterview}
+                  value={this.state.phoneInterview}
+                  showTimeSelect
+                  timeFormat="HH:mm"
+                  timeIntervals={30}
+                  dateFormat="MMMM d, yyyy h:mm aa"
+                  timeCaption="Time"
+                />
+
+                <Input required
+                  className="date-duration"
+                  type="select" 
+                  name="durationSelect" 
+                  id="durationSelect" 
+                  value={this.state.durationSelect} 
+                  onChange={this.onChangeText} >
+                    { this.renderTimeIntervals() }
+                </Input>
+              
+              </FormGroup> */}

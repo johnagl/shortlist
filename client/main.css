@@ -413,6 +413,19 @@ form .button {
   margin: 25px 0px 8px 0px;
 }
 
+.form-date .date-picker {
+  width: 100%;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+.react-datepicker__input-container {
+  width: 70%;
+}
+
+
+
 /* Documents Page */
 .documents-page {
   margin: 80px;
