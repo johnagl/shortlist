@@ -9,11 +9,7 @@ class JobCardsContainer extends Component {
         const { search, stage, jobs, direction } = this.props;
 
         let jobCards = jobs.map((job, index) => {
-
-            if(search) {
-                console.log(JSON.stringify(job.company.toLowerCase()) + '==?' + JSON.stringify(search.toLowerCase()));
-            }
-            
+           
             let hide = (search? !job.company.toLowerCase().includes(search.toLowerCase()) : false);
 
             return(
@@ -27,8 +23,6 @@ class JobCardsContainer extends Component {
                 />
             )
         })
-
-        console.log("job cards container re-rendered");
     
         return (
             <Droppable droppableId={String(stage._id)} direction={direction}>

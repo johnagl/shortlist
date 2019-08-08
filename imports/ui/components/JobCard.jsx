@@ -58,7 +58,7 @@ class JobCard extends React.Component {
                 ref={provided.innerRef}
               >
               { hide ? 
-                <div className="card-placeholder">
+                <div>
                 </div> :
                 <div className={className} style={{"borderColor": color}} onClick={this.toggle}>
                   <div className="card-body" >
