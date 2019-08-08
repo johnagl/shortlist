@@ -25,8 +25,8 @@ class EditJobForm extends React.Component {
       company: this.props.job.company,
       title: this.props.job.title,
       select: this.props.stage._id,
-      durationPhoneInterview: 0.5,
-      durationOnSiteInterview: 0.5,
+      durationPhoneInterview: this.props.job.phoneInterview.durationPhoneInterview,
+      durationOnSiteInterview: this.props.job.onSiteInterview.durationOnSiteInterview,
       phoneInterview: this.props.job.phoneInterview.start,
       onSiteInterview: this.props.job.onSiteInterview.start,
       suggestions: [],
@@ -97,9 +97,9 @@ updateJob = (job) => {
   //END TIME LOGIC FOR PHONE INT:
   var newEndPhoneInterview = new Date(this.state.phoneInterview);
   var minutesPhoneInterview = 60 * this.state.durationPhoneInterview;
-  // console.log(minutesPhoneInterview);
   newEndPhoneInterview.setMinutes(newEndPhoneInterview.getMinutes() + minutesPhoneInterview);
   job["phoneInterview"]["end"] = newEndPhoneInterview;
+  job["phoneInterview"]["durationPhoneInterview"] = this.state.durationPhoneInterview;
   
 
   job["onSiteInterview"]["start"] = this.state.onSiteInterview;
@@ -108,6 +108,7 @@ updateJob = (job) => {
   var minutesOnSiteInterview = 60 * this.state.durationOnSiteInterview;
   newEndOnSiteInterview.setMinutes(newEndOnSiteInterview.getMinutes() + minutesOnSiteInterview);
   job["onSiteInterview"]["end"] = newEndOnSiteInterview;
+  job["onSiteInterview"]["durationOnSiteInterview"] = this.state.durationOnSiteInterview;
 
   if(this.state.selectedSuggestion) {
     job["domain"] = this.state.selectedSuggestion.domain;

@@ -22,6 +22,7 @@ export const fetchEvents = (jobs) => dispatch => {
 }
 
 export const addJob = (job, stageIdUnique, stageId) => dispatch => {
+    console.log('JOB IN ACTIONS: ' + JSON.stringify(job));
     dispatch({
         type: 'ADD_JOB',
         payload: job,
