@@ -45,17 +45,21 @@ class JobCard extends React.Component {
     const { job, index, color, stage, hide } = this.props;
     const logo = this.renderLogo(job.logo, job.company);
     const dateCreated = moment(job.dates.createdAt).format("MMM D, YYYY");
-    let className = "job-card" + (hide ? " hide": "");
+    let className = "job-card" + (hide ? " partial-fade": "");
+    let hideClass = (hide ? " partial-fade": "");
 
     return (
       <div>
-        <Draggable draggableId={String(job._id)} index={index}>
+        <Draggable draggableId={String(job._id)} index={index} className={hideClass}>
             {provided => (
               <div 
                 {...provided.draggableProps} 
                 {...provided.dragHandleProps} 
                 ref={provided.innerRef}
               >
+              { hide ? 
+                <div className="card-placeholder">
+                </div> :
                 <div className={className} style={{"borderColor": color}} onClick={this.toggle}>
                   <div className="card-body" >
                     <DeleteButton stage={ stage } jobID={ job._id } color={ color }/>
@@ -67,6 +71,7 @@ class JobCard extends React.Component {
                   </div>
                   <div className="card-text card-footer">Created { dateCreated }</div>
                 </div>
+              }
               </div>
             )}
           </Draggable>

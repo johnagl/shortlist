@@ -394,6 +394,10 @@ nav a:hover {
   visibility: hidden;
 }
 
+.partial-fade {
+  opacity: 0.2;
+}
+
 .landing-page {
   text-align: center;
 }
