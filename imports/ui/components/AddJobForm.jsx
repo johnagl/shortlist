@@ -20,6 +20,8 @@ class AddJobForm extends React.Component {
       select: (this.props.stage ? this.props.stage._id : this.props.stages.allIds[0]),
       phoneInterview: null,
       onSiteInterview: null,
+      durationPhoneInterview: 0.5,
+      durationOnSiteInterview: 0.5,
       suggestions: [],
       selectedSuggestion: null,
   }
@@ -53,6 +55,8 @@ class AddJobForm extends React.Component {
     let job = this.createNewJob();
     this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
     this.props.toggle();
+    // console.log('DURATION PHONE INTERVIEW: ' + this.state.durationPhoneInterview);
+    // console.log('DURATION ON SITE INT: ' + this.state.durationOnSiteInterview);
   }
 
   createNewJob = () => {
@@ -71,14 +75,16 @@ class AddJobForm extends React.Component {
         id: id,
         start: this.state.phoneInterview,
         end: this.state.phoneInterview,
+        durationPhoneInterview: this.state.durationPhoneInterview,
         title: 'Phone Interview w/ ' + this.state.company,
-        type: 'phone interview',
+        type: 'phone interview', 
         company: this.state.company,
       },
       onSiteInterview: {
         id: id,
         start: this.state.onSiteInterview,
         end: this.state.onSiteInterview,
+        durationOnSiteInterview: this.state.durationOnSiteInterview,
         title: 'On Site Interview @ ' + this.state.company,
         type: 'on site interview',
         company: this.state.company,
@@ -91,6 +97,23 @@ class AddJobForm extends React.Component {
       job["domain"] = this.state.selectedSuggestion.domain;
       job["logo"] = this.state.selectedSuggestion.logo;
     }
+
+
+    var newEndPhoneInterview = new Date(this.state.phoneInterview);
+    if (this.state.phoneInterview && this.state.durationPhoneInterview){
+      var minutesPhoneInterview = 60 * this.state.durationPhoneInterview;
+      newEndPhoneInterview.setMinutes(newEndPhoneInterview.getMinutes() + minutesPhoneInterview);
+      job["phoneInterview"]["end"] = newEndPhoneInterview;
+    }
+
+    var newEndOnSiteInterview = new Date(this.state.onSiteInterview);
+    if (this.state.onSiteInterview && this.state.durationOnSiteInterview){
+      var minutesOnSiteInterview = 60 * this.state.durationOnSiteInterview;
+      newEndOnSiteInterview.setMinutes(newEndOnSiteInterview.getMinutes() + minutesOnSiteInterview);
+      job["onSiteInterview"]["end"] = newEndOnSiteInterview;
+    }
+ 
+
 
     return job;
   }
@@ -114,6 +137,15 @@ class AddJobForm extends React.Component {
       return(<option key={stage._id} value={stage._id}>{stage.title}</option>)              
     });
 
+    return options;
+  }
+
+  renderTimeIntervals() {
+    let options  = [];
+  
+    for(let i = 0.5; i <= 8; i = i + 0.5) {
+      options.push(<option key={i} value={i}>{i}</option>);
+    }
     return options;
   }
 
@@ -156,19 +188,36 @@ class AddJobForm extends React.Component {
       
             <Row>
             <Col xs="4" sm="4">Phone Interview: </Col>
-            <Col xs="4" sm="4">
+            <Col xs="5.75" sm="5.75">
                 <DateTimePicker name="phoneInterview" onChange={this.onChangePhoneInterview} value={this.state.phoneInterview}/>
             </Col>
-            
             </Row>
+
+            <Row>
+              <Col xs="4" sm="4"> <Label for="durationPhoneInterview">Duration (hours): </Label> </Col>
+              <Col xs="5.75" sm="5.75">
+                <Input required type="select" name="durationPhoneInterview" id="durationPhoneInterview" value={this.state.durationPhoneInterview} onChange={this.onChangeText} >
+                    { this.renderTimeIntervals() }
+                </Input>
+              </Col>
+              </Row>
             
             <br></br>
             
             <Row>
             <Col xs="4" sm="4">On Site Interview: </Col>
-            <Col xs="4" sm="4">
+            <Col xs="5.75" sm="5.75">
                 <DateTimePicker name="onSiteInterview" onChange={this.onChangeOnSiteInterview} value={this.state.onSiteInterview} /></Col>
             </Row>
+
+            <Row>
+              <Col xs="4" sm="4"> <Label for="durationOnSiteInterview">Duration (hours): </Label> </Col>
+              <Col xs="5.75" sm="5.75">
+                <Input required type="select" name="durationOnSiteInterview" id="durationOnSiteInterview" value={this.state.durationOnSiteInterview} onChange={this.onChangeText} >
+                    { this.renderTimeIntervals() }
+                </Input>
+              </Col>
+              </Row>
 
             <div className="button">
                 <Button>Submit</Button>
