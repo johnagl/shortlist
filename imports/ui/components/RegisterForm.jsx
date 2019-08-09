@@ -28,17 +28,6 @@ export default class RegisterForm extends React.Component {
           return <Redirect to='/home' />
         }
       }
-      aroundLogin = {
-          color:"white",
-        // background: "white",
-        border: "1px",
-        padding: "10%",
-        display : "inlineBlock",
-        textAlign : "center",
-        width: "50%",
-        margin: "auto auto",
-        opacity: "0.9"
-        }
     onSubmit(e) {
         e.preventDefault();
         const ele = $(e.target);
@@ -67,20 +56,17 @@ export default class RegisterForm extends React.Component {
     }
     render() {
         return (
-            <div style = {this.aroundLogin}>
+            <div className="LoginRegForm">
                 {this.renderRedirect()}
                 <h1 style={{"marginBottom":"30px"}} className="textC">Register</h1>
                 <Form onSubmit={this.onSubmit}>
                     <FormGroup style={{"marginBottom":"30px"}}>
-                        {/* <Label for="username">Username</Label> */}
                         <Input type="text" name="username" id="username" placeholder="username" />
                     </FormGroup>
               <FormGroup style={{"marginBottom":"30px"}}>
-                  {/* <Label for="examplePassword">Password</Label> */}
                   <Input type="password" name="password" id="password" placeholder="password" />
               </FormGroup>
               <FormGroup style={{"marginBottom":"30px"}}>
-                  {/* <Label for="examplePassword">Confirm Password</Label> */}
                   <Input type="password" name="password" id="confirmPassword" placeholder="confirm password" />
               </FormGroup>
               <Button className="buttonOr" style={{"backgroundColor":"#FF671F"}}>Submit</Button>

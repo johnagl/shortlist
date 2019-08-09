@@ -53,19 +53,10 @@ export default class LoginForm extends React.Component {
       }
     });
   }
-  aroundLogin = {
-    color: "white",
-    border: "1px",
-    padding: "10%",
-    display : "inlineBlock",
-    textAlign : "center",
-    width: "50%",
-    margin: "auto auto",
-    opacity: "0.9"
-    }
+ 
   render() {
     return (
-      <div style = {this.aroundLogin}>
+      <div className="LoginRegForm">
       {this.renderRedirect()}
       <Container>
       <h1 style={{"marginBottom":"30px"}}>Login</h1>
