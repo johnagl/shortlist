@@ -124,6 +124,7 @@ nav a {
 .default-logo {
   background: #003DA5;
   color: #FFFFFF;
+}
 
 /* the padding: 0 in here is absolutely crucial.
  * Without it, the content is just so slightly off center;
@@ -433,3 +434,557 @@ th > div {
   background-color: #FFFFFF;
   color: #003DA5;
 }
+
+
+
+
+
+
+
+/*Whole style sheet all over again */
+* {
+  box-sizing: border-box;
+}
+
+.change {
+  color: #003DA5;
+  background-color: #003DA5;
+}
+#react-target {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+html, body {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* App */
+#App {
+  display: flex;
+  flex-flow: column;
+  /* height: 100vh; */
+  min-height: 100vh;
+  background-color: #003DA5;
+}
+
+/* Navigation Bar */
+nav {
+  /* padding: 16px;
+  color: #4484CE; */
+  /* background-color: #B1E5F2; */
+  background-color:#FFFFFF;
+  color: #003DA5;
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  position: sticky;
+  /** z-index 1000 is as an arbitrarily high number
+  * so that the nav bar appears in front of everything else
+  */
+  /* z-index: 1000; */
+  /* position: relative; */
+  top: 0;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0px 3px;
+  text-align: justify;
+}
+
+nav a {
+  padding: 16px;
+  margin-right: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Helvetica;
+  font-size: 18px;
+  /* color: #4484CE;
+  transition: 0.5s; */
+}
+
+.dropdown-toggle {
+  transition: 0.5s;
+}
+
+nav a:hover {
+  /* border-bottom: 2px solid #ff671F */
+}
+
+.nav-bar {
+  /* box-shadow: 0 0px 40px rgba(0,0,0,.075); */
+}
+
+.nav-link {
+  min-width: 90px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.logout {
+  cursor: pointer;
+  min-width: 0;
+  /* float: right; */
+}
+
+.buttonOr {
+  background-color: #FF671F
+}
+/* Page Content */
+.flex-container {
+  background-color: white;
+  /* display: flex; */
+  /* flex-direction: column;
+  justify-content: center;
+  min-width: 500px; */
+  /* margin:0px auto; */
+  /* margin-bottom: 20px; */
+  /* flex-wrap: nowrap; */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.dashboard {
+  margin: 30px;
+}
+
+.appStyle {
+  /* background-color: #eaeaea; */
+  /* min-height: 100vh;
+  z-index: 0; */
+}
+
+.backgroundColor {
+  background-color: 'red';
+}
+
+
+.dashboardContainer  {
+  overflow-y: auto;
+  overflow-x: auto;
+  /* height: 100%; */
+  flex: 1;
+  display: flex;
+  height: 100%;
+}
+
+.job-card {
+  background: #FFFFFF;
+  position: relative;
+  /* margin-bottom: 12px; */
+  margin-top: 6px;
+  margin-bottom: 6px;
+  border-radius: 3px;
+  border-style: solid;
+  width: 95%;
+  /* min-height: 109px; */
+  min-height: 115px;
+  /* box-shadow: 4px 4px 2px rgba(0,0,0,.20); */
+  display: inline-block;
+  text-align: right;
+}
+
+.default-logo {
+  background: #003DA5;
+  color: #FFFFFF;
+  /* position: relative; */
+}
+
+/* the padding: 0 in here is absolutely crucial.
+ * Without it, the content is just so slightly off center;
+ * not enough for any person to notice it,
+ * or believe you when you say so,
+ * but enough for YOU to perceive it and know it's there
+ * and see it every time you look at it.
+ * It'll drive you crazy, because nobody else can see it,
+ * and how can they NOT see it, are you blind, look at it, LOOK, LOOK!!!!
+ * But don't let anyone tell you otherwise. You saw it and you found it
+ * And changing it MADE A DIFFERENCE
+ * All thanks to padding: 0
+ * So stick to your guns! Believe in yourself!
+ * Even if it's to just move 2 pixels, when nobody else could ever notice it
+ * Because you're a perfectionist. So seek out the best,
+ * right up until the point where you think you're going insane. */
+.logo {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.delete-button {
+  display: table-cell;
+  vertical-align: middle;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-style: none;
+  visibility: hidden;
+}
+
+.job-card:hover .delete-button {
+  visibility: visible;
+}
+
+.delete-button:hover {
+  opacity: 75%;
+}
+
+.job-card .card-body {
+  margin: 15px 20px;
+  padding: 0;
+  text-align: left;
+}
+
+.job-card .card-text {
+  white-space: nowrap;
+  width: 80%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+
+.job-card .card-footer {
+  position: absolute;
+  background: #FFFFFF;
+  bottom: 0;
+  font-size: 7pt;
+  width: 100%;
+  padding: 2px;
+  padding-right: 8px;
+  margin: 0;
+  border: none !important;
+  box-sizing: border-box; /* here */
+  border-radius: 0px 0px 1.5px 1.5px !important; /* to apply the same that the parent */
+  /* height: 100%; to make all height */
+  /* border-radius: 0 !important; */
+}
+
+/* .job-card > .card-footer {
+  text-align: left;
+} */
+
+/* .card-footer:last-child {
+  border-radius: 0;
+}
+
+.card-text:last-child {
+  margin-bottom: 0;
+} */
+
+.job-card .card-title {
+  font-weight: bold;
+  font-size: 14pt;
+  text-overflow: ellipsis;
+}
+
+.jobCardsContainer {
+  text-align: center;
+  width: 100%;
+  flex: 1;
+  overflow-y: none;
+}
+
+/* Add / Edit Job Modals */
+
+.modal-open{
+  padding:0 !important;
+  overflow-y: auto !important;
+  max-height: 90vh;
+ }
+
+ .modal-body .content {
+  margin-top: 20px;
+  /* min-height: 50vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 65vh; */
+  position: relative;
+ }
+
+/* .jobCardsContainerSecond {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  display: inline-flex;
+} */
+
+.count-bubble {
+  font-weight: bold;
+  /* position: absolute;
+  top: 16%;
+  right: 3%; */
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  background: #FF671F;
+  color: #FFFFFF;
+}
+
+.floating-add-button {
+  position: fixed;
+  height: 80px;
+  width: 120px;
+  bottom: 3%;
+  right: 4%;
+}
+
+.floating-add-button .addButton {
+  background: #FF671F;
+  width: 100%;
+  height: 100%;
+  font-size: 14pt;
+  padding: 5px;
+  border: 2px solid #FF671F;
+  border-radius: 2px;
+  box-shadow: 3px 3px 3px rgba(0,0,0,.40);
+}
+
+.floating-add-button .addButton:hover {
+  background: #000000;
+  width: 100%;
+  padding: 5px;
+  border: 2px solid #000000;
+  border-radius: 2px;
+  color: #FFFFFF;
+}
+
+.input-logo > img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+}
+
+.suggestion {
+  padding: 10px;
+  border-bottom: 1px solid #EEEEEE;
+  text-align: left;
+  cursor: pointer;
+}
+
+.suggestion img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestion span {
+  vertical-align: middle;
+  margin: 0px 9px;
+}
+
+.suggestions {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  width: 100%;
+  font-size: 13px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 4px;
+  z-index: 1;
+  max-height: 150px;
+  overflow-y: scroll;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(221, 221, 221);
+  border-image: initial;
+}
+
+.suggestions-container {
+  position: relative;
+}
+
+.suggestion .truncate {
+  /* width: 185px; */
+  display: inline-block;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.partial-fade {
+  opacity: 0.2;
+}
+
+.card-placeholder {
+  border: solid 1px rgb(238, 237, 237);
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.landing-page {
+  text-align: center;
+}
+
+.hide-border > .suggestions {
+  border: none;
+}
+
+.modal-footer {
+  text-align: center !important;
+  font-size: 12pt !important;
+  display: block !important;
+}
+
+form .button {
+  text-align: center;
+  margin: 25px 0px 8px 0px;
+}
+
+.form-date .date-picker {
+  width: 100%;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+.react-datepicker__input-container {
+  width: 90%;
+}
+
+
+
+/* Documents Page */
+.documents-page {
+  margin: 80px;
+  text-align: center;
+}
+
+.documents-page > h2 {
+  margin-bottom: 30px;
+}
+
+.documents-table {
+  width:100%;
+  height:100%;
+  overflow-y: auto;
+  /* overflow-x: none; */
+}
+
+.documents-table table {
+  margin: auto;
+  margin-top: 30px;
+  min-width: 80%;
+  height: 10%;
+  overflow-y: auto;
+  text-align: left;
+}
+
+/* .document p {
+  white-space: nowrap;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
+
+td > div {
+  width: 90%;
+  margin: 0px 8px 0px 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* line-height: 16pt;
+  vertical-align: middle; */
+  /* padding: 0; */
+}
+
+td button {
+  margin: 0px 8px 0px 8px;
+}
+
+td a {
+  margin: 0px 8px 0px 8px;
+}
+
+th > div {
+  width: 90%;
+  margin: 0px 8px 0px 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.document-icon .svg-inline--fa {
+  font-size: 80pt !important;
+}
+
+.fileinput {
+  background-color: #003DA5;
+  padding: 4px 8px 4px 8px;
+  color: #FFFFFF;
+  display: inline;
+  border: 2px solid #003DA5;
+  cursor: pointer;
+}
+
+.fileinput:hover {
+  background-color: #FFFFFF;
+  color: #003DA5;
+}
+
+/* .documents {
+  font-size: 60pt;
+} */
+
+/* Footer
+.footer {
+  border-top: 1px solid #EEEEEE;
+  display: flex;
+  padding: 10px 40px;
+  height: 60px;
+  background: #003DA5;
+}
+
+.footer a {
+  color: #FFFFFF;
+  padding: 2px;
+}
+
+.footer a:hover {
+  color: #FFFFFF;
+  border-bottom: none;
+  text-decoration: none;
+  border-bottom: 2px solid#FF671F;
+} */
+
+/* [data-react-beautiful-dnd-placeholder="0"] {
+  background: black;
+  transform: translate(0px, -109px);
+} */
+

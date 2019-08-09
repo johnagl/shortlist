@@ -54,7 +54,6 @@ export default class LoginForm extends React.Component {
     });
   }
   aroundLogin = {
-    // background: "white",
     color: "white",
     border: "1px",
     padding: "10%",
@@ -62,12 +61,9 @@ export default class LoginForm extends React.Component {
     textAlign : "center",
     width: "50%",
     margin: "auto auto",
-    // marginTop: "15px",
     opacity: "0.9"
     }
   render() {
-    // console.log('LOGIN FORM CURRENTUSER: ' + this.props.currentUser);
-    // console.log('LOGIN FORM STAGESLIST: ' + this.props.stagesList);
     return (
       <div style = {this.aroundLogin}>
       {this.renderRedirect()}
@@ -75,25 +71,12 @@ export default class LoginForm extends React.Component {
       <h1 style={{"marginBottom":"30px"}}>Login</h1>
       <Form onSubmit = {this.onSubmit}>
         <FormGroup style={{"marginBottom":"30px"}}>
-          {/* <Label for="username">Username</Label> */}
           <Input type="text" name="username" id="username" placeholder="username" />
         </FormGroup>
         <FormGroup style={{"marginBottom":"30px"}}>
-          {/* <Label for="examplePassword">Password</Label> */}
           <Input type="password" name="password" id="password" placeholder="password" />
         </FormGroup>
         <Button style={{"marginBottom":"30px", "backgroundColor":"#FF671F"}} className="buttonOr">Submit</Button>
-        {/* <React.Fragment>
-        <div className = "registerbuttoncontainer">
-          <a className="registerButton" style={{'cursor':'pointer', 'color':'blue'}} onClick={this.toggle}>Register by clicking here</a>
-              <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-              <ModalHeader toggle={this.toggle}></ModalHeader>
-              <ModalBody>
-                <RegisterForm toggle={this.toggle}/>
-              </ModalBody>
-          </Modal>
-        </div>
-      </React.Fragment> */}
         
       </Form>
       </Container>
