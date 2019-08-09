@@ -4,7 +4,6 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Button, Form, FormGroup, La
 import { editJob } from '../actions/index';
 import classnames from 'classnames';
 
-// import DateTimePicker from 'react-datetime-picker';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
