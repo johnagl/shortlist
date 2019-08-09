@@ -1,7 +1,6 @@
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import IndividualFile from './IndividualFile.jsx';
 import UserFiles from '../../../api/FilesCol.js'
@@ -173,13 +172,9 @@ class FileUploadComponent extends Component {
 }
 
 
-// This is the HOC - included in this file just for convenience, but usually kept
-// in a separate file to provide separation of concerns.
 export default withTracker( ( props ) => {
   const filesHandle = Meteor.subscribe('files.all');
-  console.log(filesHandle);
   const docsReadyYet = filesHandle.ready();
-  console.log(docsReadyYet);
   const files = UserFiles.find({}, {sort: {name: 1}}).fetch();
 
   return {

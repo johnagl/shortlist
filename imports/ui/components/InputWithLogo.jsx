@@ -1,14 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import uuid from 'uuid';
-import { Col, Row, Button, Form, FormGroup, Label, Input, InputGroup, InputGroupAddon } from 'reactstrap';
-import { addJob, editJob } from '../actions/index';
-import CompanySuggestion from './CompanySuggestion';
-import DateTimePicker from 'react-datetime-picker';
+import { Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
-import FileUploadJobForm from './files/FileUploadJobForm.jsx';
 
 
 class InputWithLogo extends React.Component {

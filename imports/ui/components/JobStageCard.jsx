@@ -18,13 +18,3 @@ export default class JobStageCard extends Component {
     }
 }
 
-// const jobStageCardStyle = {
-//     width: '350px'
-// }
-
-// {/* <Card body inverse style={{ backgroundColor: '#eaeaea', borderColor: '#eaeaea' }}>
-// {/* <CardTitle  className="jobStageText">Shortlist</CardTitle> */}
-// {/* <JobStageDropdown style={{margin: 'auto'}} />
-// <CardText></CardText>
-// <AddButtonModal /> */}
-// </Card> */}

@@ -1,12 +1,10 @@
 import React from 'react';
-import { Container, Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import RegisterForm from './RegisterForm.jsx';
 import LoginForm from './LoginForm.jsx'
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import '../../../client/main.css';
-// import './calendar.jpg';
-// import dashboard from 'dashboard.jpg'
-// import Documents from './documents.jpg'
+
 
 import {
     Collapse,

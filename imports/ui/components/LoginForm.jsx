@@ -49,7 +49,6 @@ export default class LoginForm extends React.Component {
         alert(er.reason);
       } else {
         this.setRedirect();
-        // console.log('success');
       }
     });
   }

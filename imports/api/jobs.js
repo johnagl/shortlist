@@ -26,9 +26,7 @@ Meteor.methods({
         Jobs.update(job._id, job);
     },
     'jobs.updatePhoneInterview'(id, start, end, company){
-        // console.log(Jobs.find({_id: id}).fetch());
         var oldJobPhoneInterview = Jobs.find({_id: id}).fetch();
-        // console.log(oldJobPhoneInterview[0].phoneInterview.durationPhoneInterview);
         var durationPhoneInterview = oldJobPhoneInterview[0].phoneInterview.durationPhoneInterview;
 
 
