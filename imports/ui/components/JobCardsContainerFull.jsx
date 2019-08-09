@@ -10,7 +10,7 @@ import { Input } from 'reactstrap';
 class JobCardsContainerFull extends Component {
 
     state = {
-        search: ''
+        search: '',
     }
 
     componentDidMount(){
@@ -28,35 +28,51 @@ class JobCardsContainerFull extends Component {
             let stage = this.props.stages.byId[stageId];
             let jobs = [];
             for(let _id of jobIds) {
-                if(this.props.jobs.byId[_id].company.toLowerCase().includes(this.state.search.toLowerCase())){
+                // if(this.props.jobs.byId[_id].company.toLowerCase().includes(this.state.search.toLowerCase())){
                     jobs.push(this.props.jobs.byId[_id]);
-
-                };
-                
+                // };
             }
 
             return (
                 <div key={stage._id} className='columnStyle'>
-                    {stage.title == 'Interested' ?  
+                    {stage.title == 'Interested' ?
                     <React.Fragment>
                         <JobStageCardFull stage={stage} jobs={jobs}/>
-                        <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
+                        <JobCardsContainer
+                            search={this.state.search}
+                            stage={stage}
+                            jobs={jobs}
+                            direction={this.props.direction}/>
                         {/* This is the search input  */}
-                        <Input style={inputStyle} type="text hidden" name="search" autoComplete="off" id="search" placeholder="Filter Jobs" value = {this.state.search} onChange = {this.onChangeJobSearch} floating={true}/>
-                    </React.Fragment> : 
+                        <Input
+                            style={inputStyle}
+                            type="text hidden"
+                            name="search"
+                            autoComplete="off"
+                            id="search"
+                            placeholder="Filter Jobs"
+                            value = {this.state.search}
+                            onChange = {this.onChangeJobSearch}
+                        />
+                    </React.Fragment> :
                     <React.Fragment>
                         <JobStageCardFull stage={stage} jobs={jobs}/>
-                        <JobCardsContainer stage={stage} jobs={jobs} direction={this.props.direction}/>
+                        <JobCardsContainer
+                            search={this.state.search}
+                            stage={stage}
+                            jobs={jobs}
+                            direction={this.props.direction}
+                        />
                     </React.Fragment>
                     }
 
-                </div> 
+                </div>
             )
         })
 
         return (
             <div className="jobCardsContainerFull">
-                {jobStageCards}                      
+                {jobStageCards}
             </div>
         )
     }
@@ -69,7 +85,6 @@ inputStyle = {
     bottom: '16%',
     right: '4%',
     zIndex: '2',
-
 }
 
 const mapStateToProps = (state) => {
@@ -78,4 +93,3 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps, { fetchJobs, fetchStages })(JobCardsContainerFull);
-
