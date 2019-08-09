@@ -433,3 +433,14 @@ th > div {
   background-color: #FFFFFF;
   color: #003DA5;
 }
+
+.LoginRegForm {
+    color: white;
+    border: 1px;
+    padding : 10%;
+    display : inline-block;
+    text-align: center;
+    width: 50%;
+    margin: auto auto;
+    opacity: 0.9;
+    }
