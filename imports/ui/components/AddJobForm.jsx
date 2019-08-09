@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { addJob } from '../actions/index';
+import { addJob, editJob } from '../actions/index';
 
 import DatePicker, { registerLocale } from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,18 +12,46 @@ import InputWithLogo from './InputWithLogo.jsx';
 import SearchAutocomplete from './SearchAutocomplete.jsx'
 
 class AddJobForm extends React.Component {
+  constructor(props) {
+    super(props);
 
-  state = {
-    company: '',
-    title: '',
-    select: (this.props.stage ? this.props.stage._id : this.props.stages.allIds[0]),
-    phoneInterview: null,
-    onSiteInterview: null,
-    durationPhoneInterview: 0.5,
-    durationOnSiteInterview: 0.5,
-    suggestions: [],
-    selectedSuggestion: null,
+    // this.toggle ? this.toggle = this.toggle.bind(this) : null;
+
+    this.state = {
+      // activeTab: '1',
+      // _id: (this.props.job ? this.props.job._id : null),
+      company: (this.props.job ? this.props.job.company : ''),
+      title: (this.props.job ? this.props.job.title: ''),
+      select: (this.props.stage ? this.props.stage._id : this.props.stages.allIds[0]),
+      durationPhoneInterview: (this.props.job ? this.props.job.phoneInterview.durationPhoneInterview : 0.5),
+      durationOnSiteInterview: (this.props.job ? this.props.job.onSiteInterview.durationOnSiteInterview: 0.5),
+      phoneInterview: (this.props.job ? this.props.job.phoneInterview.start : null),
+      onSiteInterview: (this.props.job ? this.props.job.onSiteInterview.start : null),
+      suggestions: [],
+      selectedSuggestion: null,
+    };
   }
+
+  async componentDidMount() {
+    try {
+      let response = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=:${this.state.company}`, {
+          method: "GET"
+      });
+      let suggestions = await response.json();
+      await this.setState({ suggestions });
+
+    } catch(e) {
+        console.log(e);
+    }
+  }
+
+  // toggle(tab) {
+  //   if (this.state.activeTab !== tab) {
+  //     this.setState({
+  //       activeTab: tab
+  //     });
+  //   }
+  // }
 
   onChangeText = async (e) => {
     await this.setState({ [e.target.name]: e.target.value });
@@ -33,86 +61,118 @@ class AddJobForm extends React.Component {
   onChangeOnSiteInterview = (onSiteInterview) => this.setState({ onSiteInterview });
 
   onChangeCompanyName = async (e) => {
-  try {
-      await this.onChangeText(e);
+    try {
+        await this.onChangeText(e);
 
-    let response = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=:${this.state.company}`, {
-        method: "GET"
-    });
-    let suggestions = await response.json();
-    await this.setState({ suggestions, selectedSuggestion: null });
+      let response = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=:${this.state.company}`, {
+          method: "GET"
+      });
+      let suggestions = await response.json();
+      await this.setState({ suggestions, selectedSuggestion: null });
 
-  } catch(e) {
-      console.log(e);
-  }
+    } catch(e) {
+        console.log(e);
+    }
   }
 
 
   // Adds a job if one did not exist, otherwise edits existing job
   onSubmit = (e) => {
-  e.preventDefault();
-  let job = this.createNewJob();
-  this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
-  this.props.toggle();
+    e.preventDefault();
+    let job;
+    if(this.props.job) {
+      job = this.props.job;
+      this.updateJob(job);
+    } else {
+      job = this.createNewJob();
+      this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
+    }
+    this.props.toggle();
   }
 
   createNewJob = () => {
-  let id = uuid();
-  let job =  {
-    _id: id,
-    company: this.state.company,
-    title: this.state.title,
-    dates: {
-        createdAt: new Date(),
-    },
-    events: {
-      phoneInterview: this.state.phoneInterview,
-    },
-    phoneInterview: {
-      id: id,
-      start: this.state.phoneInterview,
-      end: this.state.phoneInterview,
-      durationPhoneInterview: this.state.durationPhoneInterview,
-      title: 'Phone Interview w/ ' + this.state.company,
-      type: 'phone interview',
+    let id = uuid();
+    let job =  {
+      _id: id,
       company: this.state.company,
-    },
-    onSiteInterview: {
-      id: id,
-      start: this.state.onSiteInterview,
-      end: this.state.onSiteInterview,
-      durationOnSiteInterview: this.state.durationOnSiteInterview,
-      title: 'On Site Interview @ ' + this.state.company,
-      type: 'on site interview',
-      company: this.state.company,
-    },
-    owner: Meteor.userId(),
-    username: Meteor.user()
+      title: this.state.title,
+      dates: {
+          createdAt: new Date(),
+      },
+      events: {
+        phoneInterview: this.state.phoneInterview,
+      },
+      phoneInterview: {
+        id: id,
+        start: this.state.phoneInterview,
+        end: this.state.phoneInterview,
+        durationPhoneInterview: this.state.durationPhoneInterview,
+        title: 'Phone Interview w/ ' + this.state.company,
+        type: 'phone interview',
+        company: this.state.company,
+      },
+      onSiteInterview: {
+        id: id,
+        start: this.state.onSiteInterview,
+        end: this.state.onSiteInterview,
+        durationOnSiteInterview: this.state.durationOnSiteInterview,
+        title: 'On Site Interview @ ' + this.state.company,
+        type: 'on site interview',
+        company: this.state.company,
+      },
+      owner: Meteor.userId(),
+      username: Meteor.user()
+    }
+
+    if(this.state.selectedSuggestion) {
+      job["domain"] = this.state.selectedSuggestion.domain;
+      job["logo"] = this.state.selectedSuggestion.logo;
+    }
+
+
+    var newEndPhoneInterview = new Date(this.state.phoneInterview);
+    if (this.state.phoneInterview && this.state.durationPhoneInterview){
+      var minutesPhoneInterview = 60 * this.state.durationPhoneInterview;
+      newEndPhoneInterview.setMinutes(newEndPhoneInterview.getMinutes() + minutesPhoneInterview);
+      job["phoneInterview"]["end"] = newEndPhoneInterview;
+    }
+
+    var newEndOnSiteInterview = new Date(this.state.onSiteInterview);
+    if (this.state.onSiteInterview && this.state.durationOnSiteInterview){
+      var minutesOnSiteInterview = 60 * this.state.durationOnSiteInterview;
+      newEndOnSiteInterview.setMinutes(newEndOnSiteInterview.getMinutes() + minutesOnSiteInterview);
+      job["onSiteInterview"]["end"] = newEndOnSiteInterview;
+    }
+    return job;
   }
 
-  if(this.state.selectedSuggestion) {
-    job["domain"] = this.state.selectedSuggestion.domain;
-    job["logo"] = this.state.selectedSuggestion.logo;
-  }
 
-
-  var newEndPhoneInterview = new Date(this.state.phoneInterview);
-  if (this.state.phoneInterview && this.state.durationPhoneInterview){
+  updateJob = (job) => {
+    job["company"] = this.state.company;
+    job["title"] = this.state.title;
+    job["phoneInterview"]["start"] = this.state.phoneInterview;
+    //END TIME LOGIC FOR PHONE INT:
+    var newEndPhoneInterview = new Date(this.state.phoneInterview);
     var minutesPhoneInterview = 60 * this.state.durationPhoneInterview;
     newEndPhoneInterview.setMinutes(newEndPhoneInterview.getMinutes() + minutesPhoneInterview);
     job["phoneInterview"]["end"] = newEndPhoneInterview;
-  }
-
-  var newEndOnSiteInterview = new Date(this.state.onSiteInterview);
-  if (this.state.onSiteInterview && this.state.durationOnSiteInterview){
+    job["phoneInterview"]["durationPhoneInterview"] = this.state.durationPhoneInterview;
+  
+  
+    job["onSiteInterview"]["start"] = this.state.onSiteInterview;
+    // END TIME LOGIC FOR ON SITE INT:
+    var newEndOnSiteInterview = new Date(this.state.onSiteInterview);
     var minutesOnSiteInterview = 60 * this.state.durationOnSiteInterview;
     newEndOnSiteInterview.setMinutes(newEndOnSiteInterview.getMinutes() + minutesOnSiteInterview);
     job["onSiteInterview"]["end"] = newEndOnSiteInterview;
-  }
-
-
-
-  return job;
+    job["onSiteInterview"]["durationOnSiteInterview"] = this.state.durationOnSiteInterview;
+  
+    if(this.state.selectedSuggestion) {
+      job["domain"] = this.state.selectedSuggestion.domain;
+      job["logo"] = this.state.selectedSuggestion.logo;
+    }
+  
+    this.props.editJob(job, this.props.stage._id, this.state.select, this.props.jobIndex);
   }
 
   async selectSuggestion(suggestion) {
@@ -273,4 +333,4 @@ const mapStateToProps = (state) => {
   return { jobs: state.jobs.jobs, stages: state.jobs.stages }
 }
 
-export default connect(mapStateToProps, {addJob})(AddJobForm);
+export default connect(mapStateToProps, {addJob, editJob})(AddJobForm);
