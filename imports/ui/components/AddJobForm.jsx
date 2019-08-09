@@ -15,11 +15,7 @@ class AddJobForm extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.toggle ? this.toggle = this.toggle.bind(this) : null;
-
     this.state = {
-      // activeTab: '1',
-      // _id: (this.props.job ? this.props.job._id : null),
       company: (this.props.job ? this.props.job.company : ''),
       title: (this.props.job ? this.props.job.title: ''),
       select: (this.props.stage ? this.props.stage._id : this.props.stages.allIds[0]),
@@ -44,15 +40,7 @@ class AddJobForm extends React.Component {
         console.log(e);
     }
   }
-
-  // toggle(tab) {
-  //   if (this.state.activeTab !== tab) {
-  //     this.setState({
-  //       activeTab: tab
-  //     });
-  //   }
-  // }
-
+  
   onChangeText = async (e) => {
     await this.setState({ [e.target.name]: e.target.value });
   }
@@ -176,156 +164,156 @@ class AddJobForm extends React.Component {
   }
 
   async selectSuggestion(suggestion) {
-  await this.setState({selectedSuggestion: suggestion, company: suggestion.name});
+    await this.setState({selectedSuggestion: suggestion, company: suggestion.name});
   }
 
   renderOptions() {
-  let stagesIds = this.props.stages.allIds;
-  let stages = [];
-  for(let id of stagesIds) {
-    stages.push(
-      {
-        _id: id,
-        title: this.props.stages.byId[id].title,
-      });
-  }
+    let stagesIds = this.props.stages.allIds;
+    let stages = [];
+    for(let id of stagesIds) {
+      stages.push(
+        {
+          _id: id,
+          title: this.props.stages.byId[id].title,
+        });
+    }
 
-  let options = stages.map(stage => {
-    return(<option key={stage._id} value={stage._id}>{stage.title}</option>)
-  });
+    let options = stages.map(stage => {
+      return(<option key={stage._id} value={stage._id}>{stage.title}</option>)
+    });
 
-  return options;
+    return options;
   }
 
   renderTimeIntervals() {
-  let options  = [];
+    let options  = [];
 
-  for(let i = 0.5; i <= 8; i = i + 0.5) {
-    options.push(<option key={i} value={i}>{i}</option>);
-  }
-  return options;
+    for(let i = 0.5; i <= 8; i = i + 0.5) {
+      options.push(<option key={i} value={i}>{i}</option>);
+    }
+    return options;
   }
 
   render() {
-  return (
-      <Form  onSubmit={this.onSubmit}>
-          <FormGroup className="suggestions-container">
-              <Label for="companyName">Company Name</Label>
-                  <SearchAutocomplete
-                      name="company"
-                      id="companyName"
-                      placeholder="Company Name"
-                      icon={ faSearch }
-                      value={ this.state.company }
-                      onChange={ (e) => this.onChangeCompanyName(e) }
-                      suggestions = { this.state.suggestions }
-                      selection={ this.state.selectedSuggestion }
-                      selectSuggestion = { (suggestion) => this.selectSuggestion(suggestion) }
-                  />
-          </FormGroup>
+    return (
+        <Form  onSubmit={this.onSubmit}>
+            <FormGroup className="suggestions-container">
+                <Label for="companyName">Company Name</Label>
+                    <SearchAutocomplete
+                        name="company"
+                        id="companyName"
+                        placeholder="Company Name"
+                        icon={ faSearch }
+                        value={ this.state.company }
+                        onChange={ (e) => this.onChangeCompanyName(e) }
+                        suggestions = { this.state.suggestions }
+                        selection={ this.state.selectedSuggestion }
+                        selectSuggestion = { (suggestion) => this.selectSuggestion(suggestion) }
+                    />
+            </FormGroup>
 
-          <FormGroup>
-              <Label for="jobTitle">Job Title</Label>
-              <InputWithLogo
-                  name="title"
-                  id="jobTitle"
-                  placeholder="Job Title"
-                  icon={ faBriefcase }
-                  selection={ this.state.selectSuggestion }
-                  value={ this.state.title }
-                  onChange={ (e) => this.onChangeText(e)} />
-          </FormGroup>
+            <FormGroup>
+                <Label for="jobTitle">Job Title</Label>
+                <InputWithLogo
+                    name="title"
+                    id="jobTitle"
+                    placeholder="Job Title"
+                    icon={ faBriefcase }
+                    selection={ this.state.selectSuggestion }
+                    value={ this.state.title }
+                    onChange={ (e) => this.onChangeText(e)} />
+            </FormGroup>
 
-          <FormGroup>
-          <Label for="jobStageSelect">Stage</Label>
-          <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeText} >
-              { this.renderOptions() }
-          </Input>
-          </FormGroup>
+            <FormGroup>
+            <Label for="jobStageSelect">Stage</Label>
+            <Input required type="select" name="select" id="jobStageSelect" value={this.state.select} onChange={this.onChangeText} >
+                { this.renderOptions() }
+            </Input>
+            </FormGroup>
 
-          <FormGroup className="form-date">
-                  <Row>
-                    <Col xs="8" sm="8">
-                      <Label>Phone Interview</Label>
-                    </Col>
-                    <Col xs="4" sm="4">
-                      <Label>Duration (Hours)</Label>
-                    </Col>
-                  </Row>
+            <FormGroup className="form-date">
+                    <Row>
+                      <Col xs="8" sm="8">
+                        <Label>Phone Interview</Label>
+                      </Col>
+                      <Col xs="4" sm="4">
+                        <Label>Duration (Hours)</Label>
+                      </Col>
+                    </Row>
 
-                  <Row>
-                    <Col xs="8" sm="8">
-                      <DatePicker 
-                        className="form-control date-picker"
-                        name="phoneInterview"
-                        autoComplete="off"
-                        selected={this.state.phoneInterview}
-                        onChange={this.onChangePhoneInterview} 
-                        value={this.state.phoneInterview}
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        timeIntervals={30}
-                        dateFormat="MMMM d, yyyy h:mm aa"
-                        timeCaption="Time"
-                      />
-                    </Col>
-                    <Col xs="4" sm="4">
-                      <Input required 
-                        type="select" 
-                        name="durationPhoneInterview" 
-                        id="durationPhoneInterview" 
-                        value={this.state.durationPhoneInterview} 
-                        onChange={this.onChangeText} >
-                          { this.renderTimeIntervals() }
-                      </Input>
-                    </Col>
-                  </Row>
-                </FormGroup>
+                    <Row>
+                      <Col xs="8" sm="8">
+                        <DatePicker 
+                          className="form-control date-picker"
+                          name="phoneInterview"
+                          autoComplete="off"
+                          selected={this.state.phoneInterview}
+                          onChange={this.onChangePhoneInterview} 
+                          value={this.state.phoneInterview}
+                          showTimeSelect
+                          timeFormat="HH:mm"
+                          timeIntervals={30}
+                          dateFormat="MMMM d, yyyy h:mm aa"
+                          timeCaption="Time"
+                        />
+                      </Col>
+                      <Col xs="4" sm="4">
+                        <Input required 
+                          type="select" 
+                          name="durationPhoneInterview" 
+                          id="durationPhoneInterview" 
+                          value={this.state.durationPhoneInterview} 
+                          onChange={this.onChangeText} >
+                            { this.renderTimeIntervals() }
+                        </Input>
+                      </Col>
+                    </Row>
+                  </FormGroup>
 
-                <FormGroup className="form-date">
-                  <Row>
-                    <Col xs="8" sm="8">
-                      <Label>On Site Interview</Label>
-                    </Col>
-                    <Col xs="4" sm="4">
-                      <Label>Duration (Hours)</Label>
-                    </Col>
-                  </Row>
+                  <FormGroup className="form-date">
+                    <Row>
+                      <Col xs="8" sm="8">
+                        <Label>On Site Interview</Label>
+                      </Col>
+                      <Col xs="4" sm="4">
+                        <Label>Duration (Hours)</Label>
+                      </Col>
+                    </Row>
 
-                  <Row>
-                    <Col xs="8" sm="8">
-                      <DatePicker 
-                        className="form-control date-picker"
-                        name="onSiteInterview" 
-                        autoComplete="off"
-                        selected={this.state.onSiteInterview}
-                        onChange={this.onChangeOnSiteInterview} 
-                        value={this.state.onSiteInterview} 
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        timeIntervals={30}
-                        dateFormat="MMMM d, yyyy h:mm aa"
-                        timeCaption="Time"
-                      />
-                    </Col>
-                    <Col xs="4" sm="4">
-                      <Input required 
-                        type="select" 
-                        name="durationOnSiteInterview" 
-                        id="durationOnSiteInterview" 
-                        value={this.state.durationOnSiteInterview} 
-                        onChange={this.onChangeText} >
-                          { this.renderTimeIntervals() }
-                      </Input>
-                    </Col>
-                  </Row>
-                </FormGroup>
+                    <Row>
+                      <Col xs="8" sm="8">
+                        <DatePicker 
+                          className="form-control date-picker"
+                          name="onSiteInterview" 
+                          autoComplete="off"
+                          selected={this.state.onSiteInterview}
+                          onChange={this.onChangeOnSiteInterview} 
+                          value={this.state.onSiteInterview} 
+                          showTimeSelect
+                          timeFormat="HH:mm"
+                          timeIntervals={30}
+                          dateFormat="MMMM d, yyyy h:mm aa"
+                          timeCaption="Time"
+                        />
+                      </Col>
+                      <Col xs="4" sm="4">
+                        <Input required 
+                          type="select" 
+                          name="durationOnSiteInterview" 
+                          id="durationOnSiteInterview" 
+                          value={this.state.durationOnSiteInterview} 
+                          onChange={this.onChangeText} >
+                            { this.renderTimeIntervals() }
+                        </Input>
+                      </Col>
+                    </Row>
+                  </FormGroup>
 
-          <div className="button">
-              <Button>Submit</Button>
-          </div>
-    </Form>
-  );
+            <div className="button">
+                <Button>Submit</Button>
+            </div>
+      </Form>
+    );
   }
 }
 
