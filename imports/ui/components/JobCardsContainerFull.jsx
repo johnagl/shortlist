@@ -28,9 +28,8 @@ class JobCardsContainerFull extends Component {
             let stage = this.props.stages.byId[stageId];
             let jobs = [];
             for(let _id of jobIds) {
-                // if(this.props.jobs.byId[_id].company.toLowerCase().includes(this.state.search.toLowerCase())){
                     jobs.push(this.props.jobs.byId[_id]);
-                // };
+
             }
 
             return (

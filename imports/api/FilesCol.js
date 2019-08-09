@@ -60,14 +60,6 @@ const UserFiles = new FilesCollection({
 });
 
 
-
-
-//   if (Meteor.isServer) {
-//     Meteor.publish('userFiles', function userFilesPublication(){
-//         return UserFiles.find();
-//     })
-// }
-
 if (Meteor.isServer) {
     UserFiles.denyClient();
   }

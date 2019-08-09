@@ -51,11 +51,6 @@ const jobsReducer = (state = initState, action) => {
                     }
                 }
         case 'EDIT_JOB_EVENT':
-            // console.log('REDUCER: ' + JSON.stringify(state.events.events[0]));
-
-            // for (event in state.events.events){
-            //     console.log('EVENt: ' + JSON.stringify(event));
-            // }
             var durationPhoneInterview;
             var durationOnSiteInterview;
             for (let i = 0; i < state.events.events.length; i++){
@@ -65,8 +60,6 @@ const jobsReducer = (state = initState, action) => {
                 }
                       
             }
-            // console.log(durationPhoneInterview);
-            // console.log(durationOnSiteInterview);
             let newPhoneInterview = {
                 id: action.jobId,
                 start: action.start,
@@ -115,14 +108,11 @@ const jobsReducer = (state = initState, action) => {
         case 'FETCH_STAGES':
             var byId = {};
             var allIds = [];
-            // console.log("PAYLOAD: " + JSON.stringify(action.payload));
 
             for(let stage of action.payload) {
                 byId[stage._id] = Object.assign({}, stage);
                 allIds.push(stage._id);
             }
-            // console.log("BY ID: " + JSON.stringify(byId));
-            // console.log("BY ALLIDS: " + JSON.stringify(allIds));
 
             return {
                 ...state,

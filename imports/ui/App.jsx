@@ -5,7 +5,6 @@ import DashboardPage from './components/DashboardPage';
 import CalendarPage from './components/CalendarPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
-import LoginForm from './components/LoginForm.jsx';
 import LandingPage from './components/LandingPage.jsx';
 import DocumentsPage from './components/DocumentsPage.jsx';
 

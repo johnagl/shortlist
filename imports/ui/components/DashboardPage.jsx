@@ -54,7 +54,6 @@ class DashboardPage extends React.Component {
     const mapStateToProps = (state) => {
       return{
         view: state.jobs.view,
-        // stages: state.jobs.stages /* <--this causes infinite loops! */
       }
     }
     

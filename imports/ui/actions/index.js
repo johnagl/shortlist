@@ -22,7 +22,6 @@ export const fetchEvents = (jobs) => dispatch => {
 }
 
 export const addJob = (job, stageIdUnique, stageId) => dispatch => {
-    console.log('JOB IN ACTIONS: ' + JSON.stringify(job));
     dispatch({
         type: 'ADD_JOB',
         payload: job,
@@ -36,8 +35,6 @@ export const addJob = (job, stageIdUnique, stageId) => dispatch => {
 };
 
 export const editJob = (job, oldStageId, newStageId, indexStart) => dispatch => {
-    // console.log('START: ' + JSON.stringify(job.phoneInterview.start));
-    // console.log('END: ' + JSON.stringify(job.phoneInterview.end));
     dispatch({
         type: 'EDIT_JOB',
         payload: job,
