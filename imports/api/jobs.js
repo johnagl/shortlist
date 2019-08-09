@@ -26,13 +26,18 @@ Meteor.methods({
         Jobs.update(job._id, job);
     },
     'jobs.updatePhoneInterview'(id, start, end, company){
+        // console.log(Jobs.find({_id: id}).fetch());
+        var oldJobPhoneInterview = Jobs.find({_id: id}).fetch();
+        // console.log(oldJobPhoneInterview[0].phoneInterview.durationPhoneInterview);
+        var durationPhoneInterview = oldJobPhoneInterview[0].phoneInterview.durationPhoneInterview;
 
 
         let newPhoneInterview = {
             id: id,
             start: start,
             end: end,
-            title: 'Phone Interview  ' + company,
+            durationPhoneInterview: durationPhoneInterview,
+            title: 'Phone Interview w/ ' + company,
             type: 'phone interview',
             company: company,
   
@@ -42,12 +47,17 @@ Meteor.methods({
     },
     'jobs.updateOnSiteInterview'(id, start, end, company){
 
+        var oldJobOnSiteInterview = Jobs.find({_id: id}).fetch();
+        // console.log(oldJobPhoneInterview[0].phoneInterview.durationPhoneInterview);
+        var durationOnSiteInterview = oldJobOnSiteInterview[0].onSiteInterview.durationOnSiteInterview;
+
 
         let newOnSiteInterview = {
             id: id,
             start: start,
             end: end,
-            title: 'On Site Interview  ' + company,
+            durationOnSiteInterview: durationOnSiteInterview,
+            title: 'On Site Interview @ ' + company,
             type: 'on site interview',
             company: company,
   

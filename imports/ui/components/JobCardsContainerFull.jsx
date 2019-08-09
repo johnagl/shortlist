@@ -44,6 +44,7 @@ class JobCardsContainerFull extends Component {
                             jobs={jobs}
                             direction={this.props.direction}/>
                         {/* This is the search input  */}
+
                         <Input
                             style={inputStyle}
                             type="text hidden"

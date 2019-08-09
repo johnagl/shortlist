@@ -26,8 +26,6 @@ class InputWithLogo extends React.Component {
                 placeholder={ placeholder } 
                 value = { this.props.value }
                 onChange = { onChange }
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
             />
 
             <InputGroupAddon addonType="append">
@@ -40,6 +38,7 @@ class InputWithLogo extends React.Component {
                     </div>
                 }
             </InputGroupAddon>
+
         </InputGroup>
     );
   }
@@ -50,29 +49,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, )(InputWithLogo);
-
-        {/* <InputGroup>
-            <Input 
-                type="text hidden" 
-                placeholder={ placeholder } 
-                value = { this.state.content }
-                onChange={ this.onChangeText }
-            />
-
-            <InputGroupAddon addonType="append">
-                { logo ? 
-                    <div className="input-logo">
-                        <img src={ logo }/>
-                    </div> :
-                    <FontAwesomeIcon icon={icon}/> 
-                }
-            </InputGroupAddon>
-        </InputGroup> */}
-
-
-        {/* <div className="input-group input-group-unstyled">
-            <input type="text" className="form-control" />
-            <span className="input-group-addon">
-                { icon }
-            </span>
-        </div> */}

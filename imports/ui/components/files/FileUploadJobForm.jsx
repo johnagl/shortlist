@@ -28,8 +28,7 @@ class FileUploadJobForm extends Component {
     let self = this;
 
     if (e.currentTarget.files && e.currentTarget.files[0]) {
-      // We upload only one file, in case
-      // there was multiple files selected
+      // We upload only one file, in case there were multiple files selected
       var file = e.currentTarget.files[0];
 
       if (file) {
@@ -185,14 +184,3 @@ export default withTracker( ( props ) => {
     files,
   };
 })(FileUploadJobForm);
-
-
-        // {/* <div className="row m-t-sm m-b-sm">
-        //   <div className="col-md-6">
-
-        //     {/* {this.showUploads()} */}
-
-        //   </div>
-        //   <div className="col-md-6">
-        //   </div>
-        // </div> */}

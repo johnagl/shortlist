@@ -22,6 +22,7 @@ class BigCalendar extends Component {
 
       var eventsTest = []
       this.props.jobs.map(job => {
+        // console.log(JSON.stringify(job.phoneInterview));
         if (job.phoneInterview.start !== null){
           eventsTest.push(job.phoneInterview);
 

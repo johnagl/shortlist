@@ -76,6 +76,8 @@ class AddJobForm extends React.Component {
       this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
     }
     this.props.toggle();
+    // console.log('DURATION PHONE INTERVIEW: ' + this.state.durationPhoneInterview);
+    // console.log('DURATION ON SITE INT: ' + this.state.durationOnSiteInterview);
   }
 
   createNewJob = () => {
@@ -96,7 +98,7 @@ class AddJobForm extends React.Component {
         end: this.state.phoneInterview,
         durationPhoneInterview: this.state.durationPhoneInterview,
         title: 'Phone Interview w/ ' + this.state.company,
-        type: 'phone interview',
+        type: 'phone interview', 
         company: this.state.company,
       },
       onSiteInterview: {
@@ -131,6 +133,7 @@ class AddJobForm extends React.Component {
       newEndOnSiteInterview.setMinutes(newEndOnSiteInterview.getMinutes() + minutesOnSiteInterview);
       job["onSiteInterview"]["end"] = newEndOnSiteInterview;
     }
+
     return job;
   }
 
@@ -187,7 +190,6 @@ class AddJobForm extends React.Component {
 
   renderTimeIntervals() {
     let options  = [];
-
     for(let i = 0.5; i <= 8; i = i + 0.5) {
       options.push(<option key={i} value={i}>{i}</option>);
     }
@@ -230,7 +232,6 @@ class AddJobForm extends React.Component {
                 { this.renderOptions() }
             </Input>
             </FormGroup>
-
             <FormGroup className="form-date">
                     <Row>
                       <Col xs="8" sm="8">
@@ -308,6 +309,15 @@ class AddJobForm extends React.Component {
                       </Col>
                     </Row>
                   </FormGroup>
+
+<!--             <Row>
+              <Col xs="4" sm="4"> <Label for="durationOnSiteInterview">Duration (hours): </Label> </Col>
+              <Col xs="5.75" sm="5.75">
+                <Input required type="select" name="durationOnSiteInterview" id="durationOnSiteInterview" value={this.state.durationOnSiteInterview} onChange={this.onChangeText} >
+                    { this.renderTimeIntervals() }
+                </Input>
+              </Col>
+              </Row> -->
 
             <div className="button">
                 <Button>Submit</Button>

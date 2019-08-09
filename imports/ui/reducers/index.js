@@ -51,11 +51,28 @@ const jobsReducer = (state = initState, action) => {
                     }
                 }
         case 'EDIT_JOB_EVENT':
+            // console.log('REDUCER: ' + JSON.stringify(state.events.events[0]));
+
+            // for (event in state.events.events){
+            //     console.log('EVENt: ' + JSON.stringify(event));
+            // }
+            var durationPhoneInterview;
+            var durationOnSiteInterview;
+            for (let i = 0; i < state.events.events.length; i++){
+                if (state.events.events[i]._id == action.jobId){
+                    durationPhoneInterview = state.events.events[i].phoneInterview.durationPhoneInterview;
+                    durationOnSiteInterview = state.events.events[i].onSiteInterview.durationOnSiteInterview
+                }
+                      
+            }
+            // console.log(durationPhoneInterview);
+            // console.log(durationOnSiteInterview);
             let newPhoneInterview = {
                 id: action.jobId,
                 start: action.start,
                 end: action.end,
-                title: 'Phone Interview  ' + action.company,
+                durationPhoneInterview: durationPhoneInterview,
+                title: 'Phone Interview w/  ' + action.company,
                 type: 'phone interview',
                 company: action.company
       
@@ -65,7 +82,8 @@ const jobsReducer = (state = initState, action) => {
                 id: action.jobId,
                 start: action.start,
                 end: action.end,
-                title: 'On Site Interview  ' + action.company,
+                durationOnSiteInterview: durationOnSiteInterview,
+                title: 'On Site Interview @ ' + action.company,
                 type: 'on site interview',
                 company: action.company
       
