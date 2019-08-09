@@ -310,15 +310,6 @@ class AddJobForm extends React.Component {
                     </Row>
                   </FormGroup>
 
-<!--             <Row>
-              <Col xs="4" sm="4"> <Label for="durationOnSiteInterview">Duration (hours): </Label> </Col>
-              <Col xs="5.75" sm="5.75">
-                <Input required type="select" name="durationOnSiteInterview" id="durationOnSiteInterview" value={this.state.durationOnSiteInterview} onChange={this.onChangeText} >
-                    { this.renderTimeIntervals() }
-                </Input>
-              </Col>
-              </Row> -->
-
             <div className="button">
                 <Button>Submit</Button>
             </div>
