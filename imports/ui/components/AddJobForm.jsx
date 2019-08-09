@@ -2,32 +2,47 @@ import React from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { addJob } from '../actions/index';
-import CompanySuggestion from './CompanySuggestion';
-import DateTimePicker from 'react-datetime-picker';
+import { addJob, editJob } from '../actions/index';
 
-import FileUploadJobForm from './files/FileUploadJobForm.jsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+
 import { faSearch, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import InputWithLogo from './InputWithLogo.jsx';
-import SearchAutocomplete from './SearchAutocomplete.jsx';
+import SearchAutocomplete from './SearchAutocomplete.jsx'
 
 class AddJobForm extends React.Component {
+  constructor(props) {
+    super(props);
 
-  state = {
-      company: '',
-      title: '',
+    this.state = {
+      company: (this.props.job ? this.props.job.company : ''),
+      title: (this.props.job ? this.props.job.title: ''),
       select: (this.props.stage ? this.props.stage._id : this.props.stages.allIds[0]),
-      phoneInterview: null,
-      onSiteInterview: null,
-      durationPhoneInterview: 0.5,
-      durationOnSiteInterview: 0.5,
+      durationPhoneInterview: (this.props.job ? this.props.job.phoneInterview.durationPhoneInterview : 0.5),
+      durationOnSiteInterview: (this.props.job ? this.props.job.onSiteInterview.durationOnSiteInterview: 0.5),
+      phoneInterview: (this.props.job ? this.props.job.phoneInterview.start : null),
+      onSiteInterview: (this.props.job ? this.props.job.onSiteInterview.start : null),
       suggestions: [],
       selectedSuggestion: null,
+    };
   }
 
+  async componentDidMount() {
+    try {
+      let response = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=:${this.state.company}`, {
+          method: "GET"
+      });
+      let suggestions = await response.json();
+      await this.setState({ suggestions });
+
+    } catch(e) {
+        console.log(e);
+    }
+  }
+  
   onChangeText = async (e) => {
-      await this.setState({ [e.target.name]: e.target.value });
+    await this.setState({ [e.target.name]: e.target.value });
   }
 
   onChangePhoneInterview = (phoneInterview) => this.setState({ phoneInterview });
@@ -52,8 +67,14 @@ class AddJobForm extends React.Component {
   // Adds a job if one did not exist, otherwise edits existing job
   onSubmit = (e) => {
     e.preventDefault();
-    let job = this.createNewJob();
-    this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
+    let job;
+    if(this.props.job) {
+      job = this.props.job;
+      this.updateJob(job);
+    } else {
+      job = this.createNewJob();
+      this.props.addJob(job, this.state.select, this.props.stages.byId[this.state.select].stageId);
+    }
     this.props.toggle();
     // console.log('DURATION PHONE INTERVIEW: ' + this.state.durationPhoneInterview);
     // console.log('DURATION ON SITE INT: ' + this.state.durationOnSiteInterview);
@@ -112,10 +133,37 @@ class AddJobForm extends React.Component {
       newEndOnSiteInterview.setMinutes(newEndOnSiteInterview.getMinutes() + minutesOnSiteInterview);
       job["onSiteInterview"]["end"] = newEndOnSiteInterview;
     }
- 
-
 
     return job;
+  }
+
+
+  updateJob = (job) => {
+    job["company"] = this.state.company;
+    job["title"] = this.state.title;
+    job["phoneInterview"]["start"] = this.state.phoneInterview;
+    //END TIME LOGIC FOR PHONE INT:
+    var newEndPhoneInterview = new Date(this.state.phoneInterview);
+    var minutesPhoneInterview = 60 * this.state.durationPhoneInterview;
+    newEndPhoneInterview.setMinutes(newEndPhoneInterview.getMinutes() + minutesPhoneInterview);
+    job["phoneInterview"]["end"] = newEndPhoneInterview;
+    job["phoneInterview"]["durationPhoneInterview"] = this.state.durationPhoneInterview;
+  
+  
+    job["onSiteInterview"]["start"] = this.state.onSiteInterview;
+    // END TIME LOGIC FOR ON SITE INT:
+    var newEndOnSiteInterview = new Date(this.state.onSiteInterview);
+    var minutesOnSiteInterview = 60 * this.state.durationOnSiteInterview;
+    newEndOnSiteInterview.setMinutes(newEndOnSiteInterview.getMinutes() + minutesOnSiteInterview);
+    job["onSiteInterview"]["end"] = newEndOnSiteInterview;
+    job["onSiteInterview"]["durationOnSiteInterview"] = this.state.durationOnSiteInterview;
+  
+    if(this.state.selectedSuggestion) {
+      job["domain"] = this.state.selectedSuggestion.domain;
+      job["logo"] = this.state.selectedSuggestion.logo;
+    }
+  
+    this.props.editJob(job, this.props.stage._id, this.state.select, this.props.jobIndex);
   }
 
   async selectSuggestion(suggestion) {
@@ -134,7 +182,7 @@ class AddJobForm extends React.Component {
     }
 
     let options = stages.map(stage => {
-      return(<option key={stage._id} value={stage._id}>{stage.title}</option>)              
+      return(<option key={stage._id} value={stage._id}>{stage.title}</option>)
     });
 
     return options;
@@ -142,7 +190,6 @@ class AddJobForm extends React.Component {
 
   renderTimeIntervals() {
     let options  = [];
-  
     for(let i = 0.5; i <= 8; i = i + 0.5) {
       options.push(<option key={i} value={i}>{i}</option>);
     }
@@ -156,24 +203,24 @@ class AddJobForm extends React.Component {
                 <Label for="companyName">Company Name</Label>
                     <SearchAutocomplete
                         name="company"
-                        id="companyName" 
-                        placeholder="Company Name" 
+                        id="companyName"
+                        placeholder="Company Name"
                         icon={ faSearch }
                         value={ this.state.company }
                         onChange={ (e) => this.onChangeCompanyName(e) }
                         suggestions = { this.state.suggestions }
-                        selection={ this.state.selectedSuggestion } 
+                        selection={ this.state.selectedSuggestion }
                         selectSuggestion = { (suggestion) => this.selectSuggestion(suggestion) }
                     />
             </FormGroup>
 
             <FormGroup>
                 <Label for="jobTitle">Job Title</Label>
-                <InputWithLogo 
-                    name="title" 
-                    id="jobTitle" 
-                    placeholder="Job Title" 
-                    icon={ faBriefcase } 
+                <InputWithLogo
+                    name="title"
+                    id="jobTitle"
+                    placeholder="Job Title"
+                    icon={ faBriefcase }
                     selection={ this.state.selectSuggestion }
                     value={ this.state.title }
                     onChange={ (e) => this.onChangeText(e)} />
@@ -185,39 +232,92 @@ class AddJobForm extends React.Component {
                 { this.renderOptions() }
             </Input>
             </FormGroup>
-      
-            <Row>
-            <Col xs="4" sm="4">Phone Interview: </Col>
-            <Col xs="5.75" sm="5.75">
-                <DateTimePicker name="phoneInterview" onChange={this.onChangePhoneInterview} value={this.state.phoneInterview}/>
-            </Col>
-            </Row>
+            <FormGroup className="form-date">
+                    <Row>
+                      <Col xs="8" sm="8">
+                        <Label>Phone Interview</Label>
+                      </Col>
+                      <Col xs="4" sm="4">
+                        <Label>Duration (Hours)</Label>
+                      </Col>
+                    </Row>
 
-            <Row>
-              <Col xs="4" sm="4"> <Label for="durationPhoneInterview">Duration (hours): </Label> </Col>
-              <Col xs="5.75" sm="5.75">
-                <Input required type="select" name="durationPhoneInterview" id="durationPhoneInterview" value={this.state.durationPhoneInterview} onChange={this.onChangeText} >
-                    { this.renderTimeIntervals() }
-                </Input>
-              </Col>
-              </Row>
-            
-            <br></br>
-            
-            <Row>
-            <Col xs="4" sm="4">On Site Interview: </Col>
-            <Col xs="5.75" sm="5.75">
-                <DateTimePicker name="onSiteInterview" onChange={this.onChangeOnSiteInterview} value={this.state.onSiteInterview} /></Col>
-            </Row>
+                    <Row>
+                      <Col xs="8" sm="8">
+                        <DatePicker 
+                          className="form-control date-picker"
+                          name="phoneInterview"
+                          autoComplete="off"
+                          selected={this.state.phoneInterview}
+                          onChange={this.onChangePhoneInterview} 
+                          value={this.state.phoneInterview}
+                          showTimeSelect
+                          timeFormat="HH:mm"
+                          timeIntervals={30}
+                          dateFormat="MMMM d, yyyy h:mm aa"
+                          timeCaption="Time"
+                        />
+                      </Col>
+                      <Col xs="4" sm="4">
+                        <Input required 
+                          type="select" 
+                          name="durationPhoneInterview" 
+                          id="durationPhoneInterview" 
+                          value={this.state.durationPhoneInterview} 
+                          onChange={this.onChangeText} >
+                            { this.renderTimeIntervals() }
+                        </Input>
+                      </Col>
+                    </Row>
+                  </FormGroup>
 
-            <Row>
+                  <FormGroup className="form-date">
+                    <Row>
+                      <Col xs="8" sm="8">
+                        <Label>On Site Interview</Label>
+                      </Col>
+                      <Col xs="4" sm="4">
+                        <Label>Duration (Hours)</Label>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col xs="8" sm="8">
+                        <DatePicker 
+                          className="form-control date-picker"
+                          name="onSiteInterview" 
+                          autoComplete="off"
+                          selected={this.state.onSiteInterview}
+                          onChange={this.onChangeOnSiteInterview} 
+                          value={this.state.onSiteInterview} 
+                          showTimeSelect
+                          timeFormat="HH:mm"
+                          timeIntervals={30}
+                          dateFormat="MMMM d, yyyy h:mm aa"
+                          timeCaption="Time"
+                        />
+                      </Col>
+                      <Col xs="4" sm="4">
+                        <Input required 
+                          type="select" 
+                          name="durationOnSiteInterview" 
+                          id="durationOnSiteInterview" 
+                          value={this.state.durationOnSiteInterview} 
+                          onChange={this.onChangeText} >
+                            { this.renderTimeIntervals() }
+                        </Input>
+                      </Col>
+                    </Row>
+                  </FormGroup>
+
+<!--             <Row>
               <Col xs="4" sm="4"> <Label for="durationOnSiteInterview">Duration (hours): </Label> </Col>
               <Col xs="5.75" sm="5.75">
                 <Input required type="select" name="durationOnSiteInterview" id="durationOnSiteInterview" value={this.state.durationOnSiteInterview} onChange={this.onChangeText} >
                     { this.renderTimeIntervals() }
                 </Input>
               </Col>
-              </Row>
+              </Row> -->
 
             <div className="button">
                 <Button>Submit</Button>
@@ -228,7 +328,7 @@ class AddJobForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { jobs: state.jobs.jobs, stages: state.jobs.stages }
+  return { jobs: state.jobs.jobs, stages: state.jobs.stages }
 }
 
-export default connect(mapStateToProps, {addJob})(AddJobForm);
+export default connect(mapStateToProps, {addJob, editJob})(AddJobForm);

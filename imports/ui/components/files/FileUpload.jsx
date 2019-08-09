@@ -129,7 +129,6 @@ class FileUploadComponent extends Component {
       // Run through each file that the user has stored
       // (make sure the subscription only sends files owned by this user)
       let display = fileCursors.map((aFile, key) => {
-        // console.log('A file: ', aFile.link(), aFile.get('name'))
         let link = UserFiles.findOne({_id: aFile._id}).link();  //The "view/download" link
 
         // Send out components that show details of each file
@@ -146,7 +145,7 @@ class FileUploadComponent extends Component {
       return <div>
         <div>
 					<input style = {{"display":"none"}} type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput" onChange={this.uploadIt}/>
-          <label /* style={this.uploadPStyle} */ className="fileinput" htmlFor="fileinput">Upload New File</label>
+          <label className="fileinput" htmlFor="fileinput">Upload New File</label>
         </div>
       
         <div className="documents-table">
@@ -173,10 +172,9 @@ class FileUploadComponent extends Component {
   }
 }
 
-//
+
 // This is the HOC - included in this file just for convenience, but usually kept
 // in a separate file to provide separation of concerns.
-//
 export default withTracker( ( props ) => {
   const filesHandle = Meteor.subscribe('files.all');
   console.log(filesHandle);
@@ -189,14 +187,3 @@ export default withTracker( ( props ) => {
     files,
   };
 })(FileUploadComponent);
-
-
-        // {/* <div className="row m-t-sm m-b-sm">
-        //   <div className="col-md-6">
-
-        //     {/* {this.showUploads()} */}
-
-        //   </div>
-        //   <div className="col-md-6">
-        //   </div>
-        // </div> */}

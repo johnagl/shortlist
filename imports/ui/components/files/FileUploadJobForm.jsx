@@ -140,8 +140,8 @@ class FileUploadJobForm extends Component {
 
       return <div>
         <div>
-					<p>Upload New File:</p>
-					<input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput" onChange={this.uploadIt}/>
+          <input style = {{"display":"none"}} type="file" id="fileinput2" disabled={this.state.inProgress} ref="fileinput" onChange={this.uploadIt}/>
+          <label className="fileinput" htmlFor="fileinput2">Upload New File</label>
 				</div>
       
         <div className="documents-table">

@@ -4,22 +4,32 @@ import JobCard from './JobCard.jsx';
 import { Droppable } from "react-beautiful-dnd";
 
 class JobCardsContainer extends Component {
-    
+
     render() {
-        const { stage, jobs, view, direction } = this.props;
+        const { search, stage, jobs, direction } = this.props;
 
         let jobCards = jobs.map((job, index) => {
+
+            let hide = (search? !job.company.toLowerCase().includes(search.toLowerCase()) : false);
+
             return(
-                <JobCard key={job._id} job={job} color={stage.color} index={index} stage={stage} />
-            )               
+                <JobCard
+                    hide={hide}
+                    key={job._id}
+                    job={job}
+                    color={stage.color}
+                    index={index}
+                    stage={stage}
+                />
+            )
         })
-    
+
         return (
             <Droppable droppableId={String(stage._id)} direction={direction}>
                 {provided => (
-                    <div 
-                        {...provided.droppableProps} 
-                        ref={provided.innerRef} 
+                    <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
                         className= "jobCardsContainer">
                         { jobCards }
                         { provided.placeholder }
@@ -32,7 +42,7 @@ class JobCardsContainer extends Component {
 
 
 const mapStateToProps = (state) => {
-    return { 
+    return {
         view: state.jobs.view,
         stages: state.jobs.stages
     }

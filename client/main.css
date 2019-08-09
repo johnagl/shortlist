@@ -34,27 +34,18 @@ code {
 #App {
   display: flex;
   flex-flow: column;
-  /* height: 100vh; */
   min-height: 100vh;
   background-color: #003DA5;
 }
 
 /* Navigation Bar */
 nav {
-  /* padding: 16px;
-  color: #4484CE; */
-  /* background-color: #B1E5F2; */
   background-color:#FFFFFF;
   color: #003DA5;
   overflow: hidden;
   display: flex;
   width: 100%;
   position: sticky;
-  /** z-index 1000 is as an arbitrarily high number 
-  * so that the nav bar appears in front of everything else
-  */
-  /* z-index: 1000; */
-  /* position: relative; */
   top: 0;
 }
 
@@ -72,20 +63,10 @@ nav a {
   text-decoration: none;
   font-family: Helvetica;
   font-size: 18px;
-  /* color: #4484CE;
-  transition: 0.5s; */
 }
 
 .dropdown-toggle {
   transition: 0.5s;
-}
-
-nav a:hover {
-  /* border-bottom: 2px solid #ff671F */
-}
-
-.nav-bar {
-  /* box-shadow: 0 0px 40px rgba(0,0,0,.075); */
 }
 
 .nav-link {
@@ -97,7 +78,6 @@ nav a:hover {
 .logout {
   cursor: pointer;
   min-width: 0;
-  /* float: right; */
 }
 
 .buttonOr {
@@ -106,13 +86,6 @@ nav a:hover {
 /* Page Content */
 .flex-container {
   background-color: white;
-  /* display: flex; */
-  /* flex-direction: column;
-  justify-content: center;
-  min-width: 500px; */
-  /* margin:0px auto; */
-  /* margin-bottom: 20px; */
-  /* flex-wrap: nowrap; */
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -120,12 +93,6 @@ nav a:hover {
 
 .dashboard {
   margin: 30px;
-}
-
-.appStyle {
-  /* background-color: #eaeaea; */
-  /* min-height: 100vh;
-  z-index: 0; */
 }
 
 .backgroundColor {
@@ -136,7 +103,6 @@ nav a:hover {
 .dashboardContainer  {
   overflow-y: auto;
   overflow-x: auto;
-  /* height: 100%; */
   flex: 1;
   display: flex;
   height: 100%;
@@ -145,15 +111,12 @@ nav a:hover {
 .job-card {
   background: #FFFFFF;
   position: relative;
-  /* margin-bottom: 12px; */
   margin-top: 6px;
   margin-bottom: 6px;
   border-radius: 3px;
   border-style: solid;
   width: 95%;
-  /* min-height: 109px; */
   min-height: 115px;
-  /* box-shadow: 4px 4px 2px rgba(0,0,0,.20); */
   display: inline-block;
   text-align: right;
 }
@@ -161,12 +124,11 @@ nav a:hover {
 .default-logo {
   background: #003DA5;
   color: #FFFFFF;
-  /* position: relative; */
 }
 
 /* the padding: 0 in here is absolutely crucial.
  * Without it, the content is just so slightly off center;
- * not enough for any person to notice it, 
+ * not enough for any person to notice it,
  * or believe you when you say so,
  * but enough for YOU to perceive it and know it's there
  * and see it every time you look at it.
@@ -218,7 +180,7 @@ nav a:hover {
 }
 
 .job-card .card-text {
-  white-space: nowrap; 
+  white-space: nowrap;
   width: 80%;
   overflow: hidden;
   text-overflow:ellipsis;
@@ -236,21 +198,7 @@ nav a:hover {
   border: none !important;
   box-sizing: border-box; /* here */
   border-radius: 0px 0px 1.5px 1.5px !important; /* to apply the same that the parent */
-  /* height: 100%; to make all height */
-  /* border-radius: 0 !important; */
 }
-
-/* .job-card > .card-footer {
-  text-align: left;
-} */
-
-/* .card-footer:last-child {
-  border-radius: 0;
-}
-
-.card-text:last-child {
-  margin-bottom: 0;
-} */
 
 .job-card .card-title {
   font-weight: bold;
@@ -266,7 +214,6 @@ nav a:hover {
 }
 
 /* Add / Edit Job Modals */
-
 .modal-open{
   padding:0 !important;
   overflow-y: auto !important;
@@ -275,25 +222,11 @@ nav a:hover {
 
  .modal-body .content {
   margin-top: 20px;
-  /* min-height: 50vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  max-height: 65vh; */
   position: relative;
  }
 
-/* .jobCardsContainerSecond {
-  width: 100%;
-  flex: 1;
-  overflow-y: auto;
-  display: inline-flex;
-} */
-
 .count-bubble {
   font-weight: bold;
-  /* position: absolute;
-  top: 16%;
-  right: 3%; */
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -386,12 +319,21 @@ nav a:hover {
 }
 
 .suggestion .truncate {
-  /* width: 185px; */
   display: inline-block;
 }
 
 .hide {
   visibility: hidden;
+}
+
+.partial-fade {
+  opacity: 0.2;
+}
+
+.card-placeholder {
+  border: solid 1px rgb(238, 237, 237);
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .landing-page {
@@ -413,6 +355,17 @@ form .button {
   margin: 25px 0px 8px 0px;
 }
 
+.form-date .date-picker {
+  width: 100%;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+.react-datepicker__input-container {
+  width: 90%;
+}
+
 /* Documents Page */
 .documents-page {
   margin: 80px;
@@ -427,7 +380,6 @@ form .button {
   width:100%;
   height:100%;
   overflow-y: auto;
-  /* overflow-x: none; */
 }
 
 .documents-table table {
@@ -439,12 +391,6 @@ form .button {
   text-align: left;
 }
 
-/* .document p {
-  white-space: nowrap;
-  width: 90%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-} */
 
 td > div {
   width: 90%;
@@ -452,9 +398,6 @@ td > div {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  /* line-height: 16pt;
-  vertical-align: middle; */
-  /* padding: 0; */
 }
 
 td button {
@@ -490,33 +433,3 @@ th > div {
   background-color: #FFFFFF;
   color: #003DA5;
 }
-
-/* .documents {
-  font-size: 60pt;
-} */
-
-/* Footer
-.footer {
-  border-top: 1px solid #EEEEEE;
-  display: flex;
-  padding: 10px 40px;
-  height: 60px;
-  background: #003DA5;
-}
-
-.footer a {
-  color: #FFFFFF;
-  padding: 2px;
-}
-
-.footer a:hover {
-  color: #FFFFFF;
-  border-bottom: none;
-  text-decoration: none;
-  border-bottom: 2px solid#FF671F;
-} */
-
-/* [data-react-beautiful-dnd-placeholder="0"] {
-  background: black;
-  transform: translate(0px, -109px);
-} */

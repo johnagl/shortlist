@@ -14,7 +14,7 @@ import { faTh } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFileAlt } from '@fortawesome/free-solid-svg-icons';
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
-<i class="fas fa-file-alt"></i>
+<i className="fas fa-file-alt"></i>
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -73,7 +73,7 @@ export default class Example extends React.Component {
               </Nav>
               <Nav className="ml-auto" navbar>
               <NavItem>              
-                <NavLink class="nav-link active" className="logout" onClick = {this.onClick}>logout</NavLink>
+                <NavLink className="nav-link active" className="logout" onClick = {this.onClick}>logout</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
