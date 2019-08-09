@@ -3,11 +3,8 @@ import { connect } from 'react-redux';
 import uuid from 'uuid';
 import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { addJob } from '../actions/index';
-import CompanySuggestion from './CompanySuggestion';
 import DateTimePicker from 'react-datetime-picker';
 
-import FileUploadJobForm from './files/FileUploadJobForm.jsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import InputWithLogo from './InputWithLogo.jsx';
 import SearchAutocomplete from './SearchAutocomplete.jsx';
